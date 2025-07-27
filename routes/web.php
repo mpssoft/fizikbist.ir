@@ -7,6 +7,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 Route::get('/', function () {
 
     return view('home.index');
+
 });
 
 Route::get('/dashboard', function () {
