@@ -38,14 +38,14 @@
                         <div>
                             <div class="text-sm text-gray-400">شماره تماس</div>
                             <a href="tel:09148797767" class="text-white hover:text-cyan-400 transition font-medium">
-                                ۰۹۱۴۸۷۹۷۷۶۷
+                                09141879767
                             </a>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 space-x-reverse">
                         <i class="fas fa-envelope text-blue-400"></i>
                         <div>
-                            <div class="text-sm text-gray-400">ایمیل پشتیبانی</div>
+                            <div class="text-sm text-gray-400"> ایمیل پشتیبانی</div>
                             <a href="mailto:hosseinssp@gmail.com" class="text-white hover:text-cyan-400 transition font-medium">
                                 hosseinssp@gmail.com
                             </a>
