@@ -28,7 +28,7 @@
             <!-- Support -->
             <div>
                 <h3 class="text-lg font-semibold mb-4 flex items-center">
-                    <i class="fas fa-headset mr-2 text-cyan-400"></i>
+                    <i class="fas fa-headset m-0 ml-2 text-cyan-400"></i>
                     پشتیبانی
                 </h3>
                 <div class="space-y-3">
@@ -36,8 +36,8 @@
                         <i class="fas fa-phone text-green-400"></i>
                         <div>
                             <div class="text-sm text-gray-400">شماره تماس</div>
-                            <a href="tel:09148797767" class="text-white hover:text-cyan-400 transition font-medium">
-                                ۰۹۱۴۸۷۹۷۷۶۷
+                            <a href="tel:09141879767" class="text-white hover:text-cyan-400 transition font-medium">
+                                09141879767
                             </a>
                         </div>
                     </div>

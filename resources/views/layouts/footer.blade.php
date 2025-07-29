@@ -14,7 +14,7 @@
                     بهترین روش‌های تدریس برای موفقیت در کنکور
                 </p>
             </div>
-
+            <!-- TEST FOOTER -->
             <!-- Quick Links -->
             <div>
                 <h3 class="text-lg font-semibold mb-4">دسترسی سریع</h3>
@@ -29,15 +29,17 @@
             <!-- Support -->
             <div>
                 <h3 class="text-lg font-semibold mb-4 flex items-center">
-                    <i class="fas fa-headset mr-2 text-cyan-400"></i>
+                    <i class="fas fa-headset text-cyan-400 m-0 ml-2"></i>
                     پشتیبانی
                 </h3>
                 <div class="space-y-3">
                     <div class="flex items-center space-x-3 space-x-reverse">
                         <i class="fas fa-phone text-green-400"></i>
                         <div>
+
+
                             <div class="text-sm text-gray-400">شماره تماس</div>
-                            <a href="tel:09148797767" class="text-white hover:text-cyan-400 transition font-medium">
+                            <a href="tel:09141879767" class="text-white hover:text-cyan-400 transition font-medium">
                                 09141879767
                             </a>
                         </div>
