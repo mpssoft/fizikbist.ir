@@ -3,9 +3,21 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Melipayamak\MelipayamakApi ;
 Route::get('/', function () {
 
+   /* try{
+        $sms = app('melipayamak')->sms();
+        //dd($sms);
+        $to = '09384056563';
+        $from = '50002710099676';
+        $text = 'به فیزیک بیست خواش آمدید';
+        $response = $sms->send($to,$from,$text);
+        $json = json_decode($response);
+        echo $json->Value; //RecId or Error Number
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }*/
     return view('home.index');
 
 });

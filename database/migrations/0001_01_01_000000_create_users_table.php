@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string("mobile");
-            $table->enum("two_factor_type",['off','sms','email']);
+            $table->string("mobile")->nullable();
+            $table->enum("two_factor_type",['off','sms','email'])->default('off');
             $table->string('email')->unique();
             $table->boolean('is_supper_user')->default(0);
             $table->boolean('is_staff')->default(0);

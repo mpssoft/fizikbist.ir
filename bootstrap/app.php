@@ -11,7 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then : function(){
-            Route::middleware('auth')
+            Route::middleware(['web','auth'])
                 ->prefix('user-panel')
                 ->name('user-panel.')
                 ->group(base_path('routes/user-panel/user-panel.php'));

@@ -13,17 +13,10 @@
                         <h2 class="text-3xl font-bold text-white mb-2">ورود به سیستم</h2>
                         <p class="text-gray-300">به دنیای فیزیک خوش آمدید</p>
                     </div>
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
                     <!-- Login Form -->
-                    <div id="loginForm">
+                    <div  id="loginForm">
+                        @include("layouts.errors")
                         <form class="space-y-6" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div>
@@ -41,6 +34,12 @@
                                 <input type="password" id="loginPassword" name="password"
                                        class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
                                        placeholder="رمز عبور خود را وارد کنید" required="">
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input id="remember" name="remember" type="checkbox" class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="remember" class="block text-gray-300 text-sm font-medium mb-2">
+                                    {{__('Remember me')}}
+                                </label>
                             </div>
 
                             <button type="submit"
@@ -60,68 +59,15 @@
                         <div class="text-right mt-6">
                             <p class="text-gray-300">
                                 حساب کاربری ندارید؟
-                                <button onclick="showRegister()"
+                                <a href="{{route('register')}}"
                                         class="text-cyan-400 hover:text-cyan-300 font-medium transition-colors">ثبت نام
                                     کنید
-                                </button>
+                                </a>
                             </p>
                         </div>
                     </div>
 
-                    <!-- Register Form -->
-                    <div id="registerForm" class="hidden">
-                        <div class="text-center mb-6">
-                            <h2 class="text-3xl font-bold text-white mb-2">ثبت نام</h2>
-                            <p class="text-gray-300">حساب کاربری جدید بسازید</p>
-                        </div>
-                        <form onsubmit="handleRegister(event)" class="space-y-4">
-                            <div>
-                                <label class="block text-gray-300 text-sm font-medium mb-2">
-                                    <i class="fas fa-id-card mr-2"></i>نام و نام خانوادگی
-                                </label>
-                                <input type="text" id="registerName"
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                       placeholder="نام کامل خود را وارد کنید" required="">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-sm font-medium mb-2">
-                                    <i class="fas fa-user mr-2"></i>نام کاربری
-                                </label>
-                                <input type="text" id="registerUsername"
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                       placeholder="نام کاربری دلخواه" required="">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-sm font-medium mb-2">
-                                    <i class="fas fa-lock mr-2"></i>رمز عبور
-                                </label>
-                                <input type="password" id="registerPassword"
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                       placeholder="رمز عبور قوی انتخاب کنید" required="">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-sm font-medium mb-2">
-                                    <i class="fas fa-phone mr-2"></i>شماره تماس
-                                </label>
-                                <input type="tel" id="registerPhone"
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                       placeholder="09123456789" required="">
-                            </div>
-                            <button type="submit"
-                                    class="w-full btn-success text-white py-3 rounded-xl font-semibold text-lg">
-                                <i class="fas fa-user-plus mr-2"></i>ثبت نام
-                            </button>
-                        </form>
-                        <div class="text-center mt-6">
-                            <p class="text-gray-300">
-                                قبلاً ثبت نام کرده‌اید؟
-                                <button onclick="showLogin()"
-                                        class="text-cyan-400 hover:text-cyan-300 font-medium transition-colors">وارد
-                                    شوید
-                                </button>
-                            </p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

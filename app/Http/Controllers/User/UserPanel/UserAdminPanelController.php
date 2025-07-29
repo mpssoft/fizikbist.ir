@@ -11,4 +11,8 @@ class UserAdminPanelController extends Controller
     {
         return view("user-panel.index");
     }
+    public function courses()
+    {
+        return "ok";
+    }
 }

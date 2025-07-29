@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\UserPanel\UserAdminPanelController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/",[UserAdminPanelController::class]);
+Route::get("/",[UserAdminPanelController::class,'index'])->name('home');
+
 
 
