@@ -18,8 +18,8 @@
 }
 
 .hero-pattern {
-    background-image: 
-        radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.4) 0%, transparent 50%), 
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(131, 56, 236, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 40% 80%, rgba(58, 134, 255, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(6, 255, 165, 0.4) 0%, transparent 50%),
@@ -114,4 +114,10 @@
     background: linear-gradient(45deg, #ff006e, #8338ec) !important;
     color: white !important;
     box-shadow: 0 8px 25px rgba(255, 0, 110, 0.5);
+}
+.user-profile-pic{
+    border-radius: 50px;
+    padding: 4px;
+    border: 2px solid #f2f2f2 !important;
+    margin-right: 10px;
 }

@@ -119,6 +119,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             'Monolog\\' => 8,
             'Mockery\\' => 8,
+            'Melipayamak\\Laravel\\' => 20,
+            'Melipayamak\\' => 12,
         ),
         'L' => 
         array (
@@ -403,6 +405,14 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/mockery/mockery/library/Mockery',
         ),
+        'Melipayamak\\Laravel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/melipayamak/laravel/src',
+        ),
+        'Melipayamak\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/melipayamak/php/src',
+        ),
         'League\\Uri\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/uri',
@@ -615,6 +625,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\User\\UserPanel\\UserAdminPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/UserPanel/UserAdminPanelController.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -3792,6 +3803,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'League\\Uri\\UriTemplate\\TemplateCanNotBeExpanded' => __DIR__ . '/..' . '/league/uri/UriTemplate/TemplateCanNotBeExpanded.php',
         'League\\Uri\\UriTemplate\\VarSpecifier' => __DIR__ . '/..' . '/league/uri/UriTemplate/VarSpecifier.php',
         'League\\Uri\\UriTemplate\\VariableBag' => __DIR__ . '/..' . '/league/uri/UriTemplate/VariableBag.php',
+        'Melipayamak\\BaseSms' => __DIR__ . '/..' . '/melipayamak/php/src/BaseSms.php',
+        'Melipayamak\\Branch' => __DIR__ . '/..' . '/melipayamak/php/src/Branch.php',
+        'Melipayamak\\BranchAsync' => __DIR__ . '/..' . '/melipayamak/php/src/BranchAsync.php',
+        'Melipayamak\\Contacts' => __DIR__ . '/..' . '/melipayamak/php/src/Contacts.php',
+        'Melipayamak\\ContactsAsync' => __DIR__ . '/..' . '/melipayamak/php/src/ContactsAsync.php',
+        'Melipayamak\\Laravel\\Facade' => __DIR__ . '/..' . '/melipayamak/laravel/src/Facade.php',
+        'Melipayamak\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/melipayamak/laravel/src/ServiceProvider.php',
+        'Melipayamak\\MelipayamakApi' => __DIR__ . '/..' . '/melipayamak/php/src/MelipayamakApi.php',
+        'Melipayamak\\SmsRest' => __DIR__ . '/..' . '/melipayamak/php/src/SmsRest.php',
+        'Melipayamak\\SmsRestAsync' => __DIR__ . '/..' . '/melipayamak/php/src/SmsRestAsync.php',
+        'Melipayamak\\SmsSoap' => __DIR__ . '/..' . '/melipayamak/php/src/SmsSoap.php',
+        'Melipayamak\\SmsSoapAsync' => __DIR__ . '/..' . '/melipayamak/php/src/SmsSoapAsync.php',
+        'Melipayamak\\Ticket' => __DIR__ . '/..' . '/melipayamak/php/src/Ticket.php',
+        'Melipayamak\\TicketAsync' => __DIR__ . '/..' . '/melipayamak/php/src/TicketAsync.php',
+        'Melipayamak\\Users' => __DIR__ . '/..' . '/melipayamak/php/src/Users.php',
+        'Melipayamak\\UsersAsync' => __DIR__ . '/..' . '/melipayamak/php/src/UsersAsync.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
