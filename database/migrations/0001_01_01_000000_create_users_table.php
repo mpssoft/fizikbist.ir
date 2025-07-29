@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string("mobile");
+            $table->enum("two_factor_type",['off','sms','email']);
             $table->string('email')->unique();
+            $table->boolean('is_supper_user')->default(0);
+            $table->boolean('is_staff')->default(0);
             $table->timestamp('email_verified_at')->nullable();
 
             $table->string('password');
