@@ -24,11 +24,18 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+ /*   public function rules(): array
     {
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+        ];
+    }*/
+    public function rules(): array
+    {
+        return [
+            'login' => ['required', 'string'], // can be email or mobile
+            //'password' => ['required', 'string'],
         ];
     }
 
@@ -37,7 +44,7 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    /*public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
 
@@ -50,6 +57,21 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+    }*/
+    public function authenticate(): void
+    {
+        $this->ensureIsNotRateLimited();
+
+        $login = $this->input('login');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
+
+        if (!Auth::attempt([$field => $login, 'password' => $this->password], $this->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'login' => __('auth.failed'),
+            ]);
+        }
+        RateLimiter::clear($this->throttleKey());
+        $this->session()->regenerate();
     }
 
     /**

@@ -46,7 +46,7 @@
                     </div>
                 @else
                     <div id="authButtons">
-                        <a  href="{{ route("login") }}" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                        <a  href="#" onclick="showLogin()" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
                             ورود / ثبت نام
                         </a>
                     </div>

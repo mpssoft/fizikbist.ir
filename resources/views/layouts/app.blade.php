@@ -7,12 +7,13 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+
         <script src="https://cdn.tailwindcss.com"></script>
 {{--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">--}}
         <link href="./fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
         <link href="/css/fizik_styles.css" rel="stylesheet">
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     </head>
     <body class="main-bg min-h-screen font-sans antialiased" dir="rtl">
         <div class="min-h-screen ">
@@ -27,6 +28,8 @@
                 </header>
             @endisset
 
+
+
             <!-- Page Content -->
             <main>
                 @yield('content')
@@ -35,8 +38,14 @@
 
             @include("layouts.frontend.footer")
         </div>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="/js/jquery/jquery.min.js"> </script>
     <script src="/js/script.js" ></script>
+
+        @stack('scripts')
+
     </body>
 </html>
 @include('sweetalert::alert')
 @yield('script')
+

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section("content")
     <main>
         <!-- Home Section -->
@@ -14,7 +15,8 @@
                     <p class="text-2xl mb-10 opacity-95 font-medium drop-shadow-lg">
                         با استاد حسین نژاداسد و روش‌های نوین تدریس
                     </p>
-                    <button onclick="showSection('courses')" class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                    <button onclick="showSection('courses')"
+                            class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
                         <i class="fas fa-rocket mr-3"></i>
                         شروع یادگیری
                     </button>
@@ -43,7 +45,8 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <div class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white text-6xl">
+                            <div
+                                class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white text-6xl">
                                 <i class="fas fa-user-tie"></i>
                             </div>
                             <h3 class="text-xl font-semibold mt-4 text-gray-800">استاد حسین نژاداسد</h3>
@@ -62,11 +65,21 @@
                 <!-- Course Filter -->
                 <div class="flex justify-center mb-8">
                     <div class="glass-effect rounded-lg shadow-md p-2 flex space-x-2 space-x-reverse">
-                        <button onclick="showCourses('all')" class="course-filter-btn active px-4 py-2 rounded-md transition">همه</button>
-                        <button onclick="showCourses('grade10')" class="course-filter-btn px-4 py-2 rounded-md transition">پایه دهم</button>
-                        <button onclick="showCourses('grade11')" class="course-filter-btn px-4 py-2 rounded-md transition">پایه یازدهم</button>
-                        <button onclick="showCourses('grade12')" class="course-filter-btn px-4 py-2 rounded-md transition">پایه دوازدهم</button>
-                        <button onclick="showCourses('konkur')" class="course-filter-btn px-4 py-2 rounded-md transition">کنکور</button>
+                        <button onclick="showCourses('all')"
+                                class="course-filter-btn active px-4 py-2 rounded-md transition">همه
+                        </button>
+                        <button onclick="showCourses('grade10')"
+                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه دهم
+                        </button>
+                        <button onclick="showCourses('grade11')"
+                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه یازدهم
+                        </button>
+                        <button onclick="showCourses('grade12')"
+                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه دوازدهم
+                        </button>
+                        <button onclick="showCourses('konkur')"
+                                class="course-filter-btn px-4 py-2 rounded-md transition">کنکور
+                        </button>
                     </div>
                 </div>
 
@@ -79,6 +92,69 @@
 
         <!-- Login/Register Section -->
 
+        <section id="loginSection" class="section">
+            <div class="min-h-screen flex items-center justify-center px-4 py-16 gradient-bg hero-pattern">
+                <div class="max-w-md w-full">
+                    <div class="auth-container rounded-3xl shadow-2xl p-8 neon-glow">
+                        <div class="text-center mb-8">
+                            <div
+                                class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-atom text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-white mb-2">ورود با موبایل</h2>
+                            <p class="text-gray-300">کد تأیید برای شما ارسال خواهد شد</p>
+                        </div>
+
+                        <!-- OTP Form -->
+                        <div id="loginForm">
+                            <div id="errorBox" class="text-red-400 text-sm mb-4 hidden"></div>
+                            <form id="otpForm" class="space-y-6">
+                                @csrf
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-medium mb-2">
+                                        <i class="fas fa-mobile-alt mr-2"></i> شماره موبایل
+                                    </label>
+                                    <input type="text" name="mobile" id="mobile"
+                                           class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
+                                           placeholder="مثلاً 09123456789" required>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="remember" name="remember" type="checkbox"
+                                           class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="remember" class="ml-2 block text-gray-300 text-sm">
+                                        مرا به خاطر بسپار
+                                    </label>
+                                </div>
+
+                                <!-- OTP Code Input (hidden initially) -->
+                                <div id="otpCodeBox" class="hidden">
+                                    <label class="block text-gray-300 text-sm font-medium mb-2">
+                                        <i class="fas fa-key mr-2"></i> کد تأیید
+                                    </label>
+                                    <input type="text" name="otp" id="otp"
+                                           class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
+                                           placeholder="کد ارسال‌شده را وارد کنید">
+                                </div>
+
+                                <button type="submit"
+                                        class="w-full btn-primary text-white py-3 rounded-xl font-semibold text-lg"
+                                        id="sendOtpBtn">
+                                    ارسال کد تأیید
+                                </button>
+
+                                <div id="timerBox" class="text-center text-cyan-300 mt-4 hidden">
+                                    لطفاً <span id="timer">60</span> ثانیه صبر کنید...
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Admin Panel -->
         <section id="adminSection" class="section hidden">
@@ -86,7 +162,8 @@
                 <div class="bg-white rounded-2xl shadow-xl p-8">
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-3xl font-bold text-gray-800">پنل مدیریت</h2>
-                        <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                        <button onclick="logout()"
+                                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
                             خروج
                         </button>
                     </div>
@@ -97,11 +174,15 @@
                         <form onsubmit="addCourse(event)" class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-gray-700 text-sm font-bold mb-2">نام دوره</label>
-                                <input type="text" id="courseName" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500" required>
+                                <input type="text" id="courseName"
+                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
+                                       required>
                             </div>
                             <div>
                                 <label class="block text-gray-700 text-sm font-bold mb-2">پایه تحصیلی</label>
-                                <select id="courseGrade" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500" required>
+                                <select id="courseGrade"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
+                                        required>
                                     <option value="">انتخاب کنید</option>
                                     <option value="grade10">پایه دهم</option>
                                     <option value="grade11">پایه یازدهم</option>
@@ -111,22 +192,28 @@
                             </div>
                             <div>
                                 <label class="block text-gray-700 text-sm font-bold mb-2">قیمت (تومان)</label>
-                                <input type="number" id="coursePrice" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500" required>
+                                <input type="number" id="coursePrice"
+                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
+                                       required>
                             </div>
                             <div>
                                 <label class="block text-gray-700 text-sm font-bold mb-2">تخفیف (درصد)</label>
-                                <input type="number" id="courseDiscount" min="0" max="100" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
+                                <input type="number" id="courseDiscount" min="0" max="100"
+                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">عکس دوره (اختیاری)</label>
-                                <input type="file" id="courseImage" accept="image/*" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
+                                <input type="file" id="courseImage" accept="image/*"
+                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
                                 <div id="courseImagePreview" class="mt-2 hidden">
                                     <img id="coursePreviewImg" class="w-32 h-32 object-cover rounded-lg border">
                                 </div>
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">توضیحات</label>
-                                <textarea id="courseDescription" rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500" required></textarea>
+                                <textarea id="courseDescription" rows="4"
+                                          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
+                                          required></textarea>
                             </div>
                             <div class="md:col-span-2">
                                 <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium">
@@ -190,7 +277,8 @@
                             <i class="fas fa-info-circle text-yellow-600 ml-2"></i>
                             <span class="font-semibold text-yellow-800">اطلاعات پرداخت</span>
                         </div>
-                        <p class="text-yellow-700 text-sm">درگاه پرداخت آنلاین غیرفعال است. لطفاً مبلغ را به شماره کارت زیر واریز کنید:</p>
+                        <p class="text-yellow-700 text-sm">درگاه پرداخت آنلاین غیرفعال است. لطفاً مبلغ را به شماره کارت
+                            زیر واریز کنید:</p>
                     </div>
 
                     <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
@@ -204,18 +292,21 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-gray-700 text-sm font-bold mb-2">آپلود فیش واریزی</label>
-                            <input type="file" id="receiptFile" accept="image/*" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-purple-500">
+                            <input type="file" id="receiptFile" accept="image/*"
+                                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-purple-500">
                         </div>
 
                         <div id="receiptPreview" class="hidden">
                             <img id="previewImage" class="max-w-full h-48 object-contain border rounded-lg">
                         </div>
 
-                        <button onclick="submitPurchase()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+                        <button onclick="submitPurchase()"
+                                class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold">
                             تایید پرداخت
                         </button>
 
-                        <button onclick="showSection('courses')" class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">
+                        <button onclick="showSection('courses')"
+                                class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">
                             بازگشت
                         </button>
                     </div>
@@ -230,7 +321,8 @@
                 <div class="glass-effect rounded-3xl shadow-2xl p-8 mb-8 text-white">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="flex items-center space-x-6 space-x-reverse mb-4 md:mb-0">
-                            <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center text-3xl">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center text-3xl">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
                             <div id="userHeaderInfo">
@@ -297,43 +389,45 @@
     <!-- /.content -->
     @push('scripts')
         <script type="module">
+
+
             $.ajaxSetup({
-                headers :{
-                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $(document).on('click','.delete-action',function (e){
+            $(document).on('click', '.delete-action', function (e) {
                 e.preventDefault();
 
                 let id = $(this).attr('id');
                 let url = $(this).attr('href');
                 Swal.fire({
-                    title : 'حذف',
-                    text : 'آیا مطمئن هستید؟',
+                    title: 'حذف',
+                    text: 'آیا مطمئن هستید؟',
                     icon: 'warning',
-                    cancelButtonText  :'لغو',
+                    cancelButtonText: 'لغو',
                     confirmButtonText: 'حذف',
-                    confirmButtonColor:'red',
-                    cancelButtonColor :'blue',
-                    showCancelButton:true
+                    confirmButtonColor: 'red',
+                    cancelButtonColor: 'blue',
+                    showCancelButton: true
                 }).then((result) => {
-                    if(result.isConfirmed){
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url : url,
-                            method : 'DELETE',
-                            success : function(response) {
+                            url: url,
+                            method: 'DELETE',
+                            success: function (response) {
                                 Swal.fire({
-                                    text : response.data.message,
-                                    showConfirmButton:false,
-                                    color:'#fff',
+                                    text: response.data.message,
+                                    showConfirmButton: false,
+                                    color: '#fff',
                                     background: '#28a745',
-                                    icon:'success',
-                                    toast:true,
-                                    timer:1000
+                                    icon: 'success',
+                                    toast: true,
+                                    timer: 1000
                                 });
                                 $(`tr[data='${id}']`).remove();
                             },
-                            error: function(response){
+                            error: function (response) {
 
                             }
                         });
@@ -342,6 +436,104 @@
             });
 
         </script>
+
+        <script>
+
+            $(document).ready(function () {
+                let otpPhase = false;
+
+                $('#otpForm').on('submit', function (e) {
+                    e.preventDefault();
+
+                    const mobile = $('#mobile').val();
+                    const otp = $('#otp').val();
+                    const token = $('input[name="_token"]').val();
+                    const remember = $('#remember').is(':checked');
+
+                    $('#errorBox').addClass('hidden').text('');
+                    $('#sendOtpBtn').prop('disabled', true);
+
+                    if (!otpPhase) {
+                        // Step 1: Send OTP to mobile
+                        $.ajax({
+                            url: '{{ route('otp.send') }}',
+                            type: 'POST',
+                            data: {
+                                _token: token,
+                                mobile: mobile
+                            },
+                                success: function (response) {
+                                    if (response.status === 'ok') {
+                                        $('#otpCodeBox').removeClass('hidden');
+                                        $('#timerBox').removeClass('hidden');
+                                        $('#sendOtpBtn').text('ورود').prop('disabled', false);
+                                        startTimer();
+                                        otpPhase = true;
+                                    } else {
+                                        showError('ارسال کد با خطا مواجه شد');
+                                        $('#sendOtpBtn').prop('disabled', false);
+                                    }
+                                },
+
+                            error: function (xhr) {
+                                let message = 'خطایی رخ داده است';
+                                if (xhr.responseJSON?.message) message = xhr.responseJSON.message;
+                                showError(message);
+                                $('#sendOtpBtn').prop('disabled', false);
+                            }
+                        });
+                    } else {
+                        // Step 2: Verify OTP
+                        $.ajax({
+                            url: '{{ route('otp.verify') }}',
+                            type: 'POST',
+                            data: {
+                                _token: token,
+                                mobile: mobile,
+                                otp: otp,
+                                remember: remember ? 1 : 0
+                            },
+                                success: function (response) {
+                                    if (response.status === 'ok') {
+                                        $('#timerBox').addClass('hidden'); // ✅ hide timer
+                                        window.location.href = '{{ route('dashboard') }}'; // ✅ redirect
+                                    } else {
+                                        showError(response.message || 'کد وارد شده اشتباه است');
+                                        $('#sendOtpBtn').prop('disabled', false);
+                                    }
+                                },
+
+                            error: function (xhr) {
+                                showError('خطا در بررسی کد تأیید');
+                                $('#sendOtpBtn').prop('disabled', false);
+                            }
+                        });
+                    }
+                });
+
+                function showError(message) {
+                    $('#errorBox').removeClass('hidden').text(message);
+                }
+
+                function startTimer() {
+                    let seconds = 60;
+                    $('#timerBox').removeClass('hidden');
+                    $('#timer').text(seconds);
+
+                    const timerInterval = setInterval(function () {
+                        seconds--;
+                        $('#timer').text(seconds);
+
+                        if (seconds <= 0) {
+                            clearInterval(timerInterval);
+                            $('#timerBox').addClass('hidden');
+                            $('#sendOtpBtn').prop('disabled', false);
+                        }
+                    }, 1000);
+                }
+            });
+        </script>
+
     @endpush
 @endsection
 @section('script')

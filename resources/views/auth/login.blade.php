@@ -25,7 +25,15 @@
                                 </label>
                                 <input type="text" id="loginUsername" name="email" value="{{old('email')}}"
                                        class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                       placeholder="نام کاربری خود را وارد کنید" required="">
+                                       placeholder="نام کاربری خود را وارد کنید">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 text-sm font-medium mb-2">
+                                    <i class="fas fa-user mr-2"></i> نام کاربری (ایمیل)
+                                </label>
+                                <input type="text" name="login"
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
+                                       placeholder="Email or Mobile" required autofocus>
                             </div>
                             <div>
                                 <label class="block text-gray-300 text-sm font-medium mb-2">

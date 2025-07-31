@@ -12,6 +12,10 @@
                 <p class="text-gray-400 text-sm">
                     بهترین روش‌های تدریس برای موفقیت در کنکور
                 </p>
+                <p>
+                    <a referrerpolicy='origin' style="margin:0px auto" target='_blank' href='https://trustseal.enamad.ir/?id=632183&Code=xJYyLTHTFh7EGETnk32r98NnemVXfodx'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=632183&Code=xJYyLTHTFh7EGETnk32r98NnemVXfodx' alt='' style='cursor:pointer' code='xJYyLTHTFh7EGETnk32r98NnemVXfodx'></a>
+
+                </p>
             </div>
 
             <!-- Quick Links -->

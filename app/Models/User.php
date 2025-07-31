@@ -23,8 +23,10 @@ class User extends Authenticatable
         'password',
         'mobile',
         'two_factor_type',
-        'is_supper_user',
-        'is_staff'
+        'otp',
+        'otp_expires_at',
+        'role',
+
     ];
 
     /**
@@ -48,5 +50,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function hasTwoFactorAuthenticationEnabled()
+    {
+        return  $this->two_factor_type !== 'off';
+    }
+    public function hasSmsTwoFactorAuthenticationEnabled()
+    {
+        return  $this->two_factor_type == 'sms';
+    }
+    public function activeCode()
+    {
+        return $this->hasMany(ActiveCode::class);
     }
 }

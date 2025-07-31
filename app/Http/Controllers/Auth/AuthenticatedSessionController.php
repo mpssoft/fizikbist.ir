@@ -7,10 +7,13 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+    use TwoFactorAuthenticate;
     /**
      * Display the login view.
      */
@@ -25,11 +28,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
         $request->authenticate();
-
         $request->session()->regenerate();
+        if($this->loggedIn($request,$request->user())){
 
-        return redirect()->intended('/user-panel');
+        }else{
+            return redirect()->intended($request->user()->role === 'admin' ? '/admin/dashboard' : '/dashboard');
+        }
+
+
+    }
+    public function username()
+    {
+        $login = request()->input('login');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
+        request()->merge([$field => $login]);
+        return $field;
     }
 
     /**

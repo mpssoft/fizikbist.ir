@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'Alert' =>  \RealRashid\SweetAlert\Facades\Alert::class,
             'Melipayamak' => Melipayamak\Laravel\Facade::class,
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

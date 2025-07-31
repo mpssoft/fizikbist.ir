@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string("mobile")->nullable();
             $table->enum("two_factor_type",['off','sms','email'])->default('off');
             $table->string('email')->unique();
-            $table->boolean('is_supper_user')->default(0);
-            $table->boolean('is_staff')->default(0);
+            $table->string('otp')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->enum('role', ['user', 'admin'])->default('user');
             $table->timestamp('email_verified_at')->nullable();
-
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

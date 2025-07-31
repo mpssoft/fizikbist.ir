@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'raygansms' => [
+        'username' => env('RAYGANSMS_USERNAME'),
+        'password' => env('RAYGANSMS_PASSWORD')
+    ],
 
 ];
