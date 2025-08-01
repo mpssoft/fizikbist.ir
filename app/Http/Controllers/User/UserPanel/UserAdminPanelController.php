@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class UserAdminPanelController extends Controller
 {
-    public function index()
+    public function home()
     {
-        return view("user-panel.index");
+        return view("users.home");
     }
     public function courses()
     {

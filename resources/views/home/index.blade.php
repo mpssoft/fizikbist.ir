@@ -496,7 +496,7 @@
                                 success: function (response) {
                                     if (response.status === 'ok') {
                                         $('#timerBox').addClass('hidden'); // ✅ hide timer
-                                        window.location.href = '{{ route('dashboard') }}'; // ✅ redirect
+                                        window.location.href = '{{ route('user.home') }}'; // ✅ redirect
                                     } else {
                                         showError(response.message || 'کد وارد شده اشتباه است');
                                         $('#sendOtpBtn').prop('disabled', false);
