@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Melipayamak\MelipayamakApi ;
 Route::get('/', function () {
 
-
+    //auth()->loginUsingId(1);
 //   try{
 //        $sms = app('melipayamak',config('melipayamak'))->sms();
 //        //dd($sms);

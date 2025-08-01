@@ -2,8 +2,9 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center space-x-4 space-x-reverse">
-                <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                    <a href="{{ env("APP_URL") }}" > فیزیک بیست </a>
+                <div
+                    class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+                    <a href="{{ env("APP_URL") }}"> فیزیک بیست </a>
                 </div>
             </div>
 
@@ -17,28 +18,41 @@
                         دوره‌ها
                         <i class="fas fa-chevron-down mr-1 text-xs"></i>
                     </button>
-                    <div class="absolute left-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <a href="#" onclick="showCourses('grade10')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دهم</a>
-                        <a href="#" onclick="showCourses('grade11')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه یازدهم</a>
-                        <a href="#" onclick="showCourses('grade12')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دوازدهم</a>
-                        <a href="#" onclick="showCourses('konkur')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">کنکور</a>
+                    <div
+                        class="absolute left-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <a href="#" onclick="showCourses('grade10')"
+                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دهم</a>
+                        <a href="#" onclick="showCourses('grade11')"
+                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه یازدهم</a>
+                        <a href="#" onclick="showCourses('grade12')"
+                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دوازدهم</a>
+                        <a href="#" onclick="showCourses('konkur')"
+                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">کنکور</a>
                     </div>
                 </div>
 
                 <div id="userPanelLink" class="hidden">
-                    <a href="#" onclick="showUserDashboard()" class="text-gray-700 hover:text-cyan-400 transition">پنل کاربری</a>
+                    <a href="#" onclick="showUserDashboard()" class="text-gray-700 hover:text-cyan-400 transition">پنل
+                        کاربری</a>
                 </div>
                 @if(auth()->check())
                     <div class="relative group">
                         <button class="text-gray-700 hover:text-cyan-400 transition flex items-center">
                             {{ auth()->user()->name }}
-                            <i ><img src="/images/1176.png" alt="" class="user-profile-pic"> </i>
+                            <i><img src="/images/1176.png" alt="" class="user-profile-pic"> </i>
                         </button>
-                        <div class="absolute left-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                            <a href="{{ route('user-panel.home') }}"  class="block px-4 py-2 text-white hover:bg-cyan-500/20">دوره های من</a>
-                            <a href="#" onclick="showCourses('grade11')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">مالی و اشتراک</a>
-                            <a href="#" onclick="showCourses('grade12')" class="block px-4 py-2 text-white hover:bg-cyan-500/20">پرسش ها</a>
-                            <a href="#" onclick="event.preventDefault();document.getElementById('logout').submit();" class="block px-4 py-2 text-white hover:bg-cyan-500/20">خروج از حساب</a>
+                        <div
+                            class="absolute left-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="{{ route('profile.edit') }}"
+                               class="block px-4 py-2 text-white hover:bg-cyan-500/20">پروفایل من</a>
+                            <a href="{{ route('user-panel.home') }}"
+                               class="block px-4 py-2 text-white hover:bg-cyan-500/20">دوره های من</a>
+                            <a href="#" onclick="showCourses('grade11')"
+                               class="block px-4 py-2 text-white hover:bg-cyan-500/20">مالی و اشتراک</a>
+                            <a href="#" onclick="showCourses('grade12')"
+                               class="block px-4 py-2 text-white hover:bg-cyan-500/20">پرسش ها</a>
+                            <a href="#" onclick="event.preventDefault();document.getElementById('logout').submit();"
+                               class="block px-4 py-2 text-white hover:bg-cyan-500/20">خروج از حساب</a>
                             <form action="{{ route('logout') }}" method="post" id="logout">
                                 @csrf
                             </form>
@@ -46,7 +60,8 @@
                     </div>
                 @else
                     <div id="authButtons">
-                        <a  href="#" onclick="showLogin()" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                        <a href="#" onclick="showLogin()"
+                           class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
                             ورود / ثبت نام
                         </a>
                     </div>
@@ -71,20 +86,26 @@
                 <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="block py-3 text-gray-700">خانه</a>
                 <div class="py-3">
                     <div class="text-gray-700 font-medium mb-2">دوره‌ها</div>
-                    <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()" class="block py-2 pr-4 text-gray-600">پایه دهم</a>
-                    <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()" class="block py-2 pr-4 text-gray-600">پایه یازدهم</a>
-                    <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()" class="block py-2 pr-4 text-gray-600">پایه دوازدهم</a>
-                    <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()" class="block py-2 pr-4 text-gray-600">کنکور</a>
+                    <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()"
+                       class="block py-2 pr-4 text-gray-600">پایه دهم</a>
+                    <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()"
+                       class="block py-2 pr-4 text-gray-600">پایه یازدهم</a>
+                    <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()"
+                       class="block py-2 pr-4 text-gray-600">پایه دوازدهم</a>
+                    <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()"
+                       class="block py-2 pr-4 text-gray-600">کنکور</a>
                 </div>
-                <div id="mobileUserPanelLink" class="hidden">
-                    <a href="#" onclick="showUserDashboard(); toggleMobileMenu()" class="block py-3 text-gray-700">پنل کاربری</a>
-                </div>
-
-
-
-                    <button onclick="showLogin(); toggleMobileMenu()" class="w-full bg-purple-600 text-white py-2 rounded-lg mt-4">
-                    ورود / ثبت نام
-                </button>
+                @if(auth()->check())
+                    <div id="mobileUserPanelLink" class="hidden">
+                        <a href="#" onclick="showUserDashboard(); toggleMobileMenu()" class="block py-3 text-gray-700">پنل
+                            کاربری</a>
+                    </div>
+                @else
+                    <button onclick="showLogin(); toggleMobileMenu()"
+                            class="w-full bg-purple-600 text-white py-2 rounded-lg mt-4">
+                        ورود / ثبت نام
+                    </button>
+                @endif
 
             </div>
         </div>

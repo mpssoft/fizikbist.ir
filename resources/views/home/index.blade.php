@@ -92,7 +92,7 @@
 
         <!-- Login/Register Section -->
 
-        <section id="loginSection" class="section">
+        <section id="loginSection" class="section hidden">
             <div class="min-h-screen flex items-center justify-center px-4 py-16 gradient-bg hero-pattern">
                 <div class="max-w-md w-full">
                     <div class="auth-container rounded-3xl shadow-2xl p-8 neon-glow">
@@ -112,17 +112,17 @@
                                 @csrf
                                 <div>
                                     <label class="block text-gray-300 text-sm font-medium mb-2">
-                                        <i class="fas fa-mobile-alt mr-2"></i> شماره موبایل
+                                        <i class="fas fa-mobile-alt mr-2 ml-2 fa-lg"></i> شماره موبایل
                                     </label>
                                     <input type="text" name="mobile" id="mobile"
                                            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                           placeholder="مثلاً 09123456789" required>
+                                           placeholder="09123456789" required>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input id="remember" name="remember" type="checkbox"
-                                           class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                    <label for="remember" class="ml-2 block text-gray-300 text-sm">
+                                           class="h-4 w-4 mr-2 text-blue-300 focus:ring-blue-500 border-gray-200 rounded">
+                                    <label for="remember" class="ml-2 block text-gray-300 text-sm mr-4 ">
                                         مرا به خاطر بسپار
                                     </label>
                                 </div>

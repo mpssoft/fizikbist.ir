@@ -40,7 +40,7 @@ class OtpLoginController extends Controller
                 [
                     'name' => 'کاربر جدید',
                     'email' => $request->mobile . '@otp.local',
-                    'password' => bcrypt('defaultpass') // dummy password
+                    'password' => bcrypt('defaultpass'), // dummy password
                 ]
             );
 
