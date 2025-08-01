@@ -8,19 +8,20 @@
     <div class="hidden sm:block text-sm md:text-lg font-bold truncate">👋 {{ Auth::user()->name }} عزیز؛ خوش اومدی</div>
 
     <div class="flex items-center space-x-3 space-x-reverse">
-        <div><i class="fas fa-bell text-lg"></i></div>
-        <div><i class="fas fa-lock text-lg"></i></div>
+        <div><i class="fas fa-bell text-lg ml-3"></i></div>
+        <div><i class="fas fa-lock text-lg ml-3"></i></div>
 
         <div><!-- Theme Toggle -->
-            <button @click="dark = !dark" class="bg-slate-200 dark:bg-slate-700 p-2 rounded-full">
+            <button @click="dark = !dark" class="w-10 h-10 bg-slate-200 dark:bg-slate-700 p-2 rounded-full ml-1">
                 <i x-show="!dark" class="fas fa-moon"></i>
                 <i x-show="dark" class="fas fa-sun"></i>
             </button></div>
 
         <!-- Dropdown -->
         <div class="relative" x-data="{ open: false }">
-            <button @click="open = !open" class="focus:outline-none">
-                <img src="your-avatar.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="avatar">
+            <button @click="open = !open" class="focus:outline-none ">
+                <img src="/images/user-avatar-man.jpg" class="w-10 h-10 rounded-full border-2 border-gray-100 " alt="avatar">
+                {{--                               <i class="fas fa-user w-10 h-10" ></i>--}}
             </button>
             <div
                 x-show="open"
@@ -29,10 +30,10 @@
                 class="absolute left-0 mt-2 w-64 max-w-[90vw] bg-slate-800 text-white rounded-xl shadow-lg z-50 p-4 space-y-3"
             >
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <img src="your-avatar.jpg" class="w-12 h-12 rounded-full border-2 border-green-400" alt="avatar">
+                    <img src="/images/user-avatar-man.jpg" class="w-12 h-12 rounded-full border-2 border-green-400" alt="avatar">
                     <div>
-                        <p class="font-bold">اکبر خلیل زاده</p>
-                        <a href="#" class="text-sm text-blue-400 hover:underline">مشاهده پنل کاربری</a>
+                        <p class="font-bold">  {{ auth()->user()->name }}</p>
+                        <a href="{{ route('user.home') }}" class="text-sm text-blue-400 hover:underline">مشاهده پنل کاربری</a>
                     </div>
                 </div>
 
@@ -51,20 +52,23 @@
                 <hr class="border-slate-600">
 
                 <nav class="text-sm space-y-2">
-                    <a href="#" class="flex items-center space-x-2 space-x-reverse block px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                        <span>🎥</span><span>دوره ها</span>
+                    <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fas fa-video text-base"></i><span>دوره ها</span>
                     </a>
-                    <a href="#" class="flex items-center space-x-2 space-x-reverse block px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                        <span>💳</span><span>مالی و اشتراک</span>
+                    <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fas fa-credit-card text-base"></i><span>مالی و اشتراک</span>
                     </a>
-                    <a href="#" class="flex items-center space-x-2 space-x-reverse block px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                        <span>❓</span><span>پرسش‌ها</span>
+                    <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fas fa-question-circle text-base"></i><span>پرسش‌ها</span>
                     </a>
-                    <a href="#" class="flex items-center space-x-2 space-x-reverse block px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                        <span>📌</span><span>ماموریت‌ها</span>
+                    <a href="#" class="flex items-center justify-between px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <div class="flex items-center space-x-2 space-x-reverse">
+                            <i class="fas fa-thumbtack text-base rotate-45"></i><span>ماموریت‌ها</span>
+                        </div>
                         <span class="bg-yellow-400 text-black rounded-full w-5 h-5 text-xs flex items-center justify-center">۴</span>
                     </a>
                 </nav>
+
 
                 <hr class="border-slate-600">
 
