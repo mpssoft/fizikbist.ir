@@ -14,7 +14,7 @@
         <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
             <i class="fas fa-home"></i> صفحه اصلی
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
+        <a href="{{ route('user.courses') }}" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
             <i class="fas fa-graduation-cap"></i> دوره‌ها
         </a>
         <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">

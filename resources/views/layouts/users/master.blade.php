@@ -16,7 +16,7 @@
 
     <style>
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: sans-serif, 'Vazirmatn';
         }
         body.sidebar-open {
             overflow: hidden;

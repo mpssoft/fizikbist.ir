@@ -6,36 +6,119 @@
                     class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
                     <a href="{{ env("APP_URL") }}"> فیزیک بیست </a>
                 </div>
+{{--                <a href="#" onclick="showSection('home')" class="text-gray-700 hover:text-cyan-400 transition">خانه</a>--}}
+
+                <!-- Courses Dropdown -->
+                <div class="hidden md:flex flex gap-6 items-center block px-6  py-4 " x-data="{ openMenu: null }">
+
+                    <!-- دوره‌های آموزشی -->
+                    <div class="relative">
+                        <button @click="openMenu = openMenu === 'courses' ? null : 'courses'" class="flex items-center gap-1">
+                            دوره‌های آموزشی <i class="fas fa-chevron-down text-xs mt-0.5"></i>
+                        </button>
+                        <div
+                            x-show="openMenu === 'courses'"
+                            @click.away="openMenu = null"
+                            x-transition
+                            class="absolute right-0 mt-6 w-[600px] bg-slate-800 text-white rounded-xl shadow-xl z-50 p-6"
+                        >
+                            <div class="flex flex-row-reverse gap-6">
+                                <!-- آموزش blocks -->
+                                <div class="w-4/5 space-y-4">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-cyan-400 text-xl">
+                                                <i class="fas fa-graduation-cap"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold">دوره‌های آموزشی</p>
+                                                <p class="text-xs text-gray-300 mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-green-400 text-xl">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold">پیشرفت من</p>
+                                                <p class="text-xs text-gray-300 mt-1">مسیر پیشرفت آموزشی شما</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-pink-400 text-xl">
+                                                <i class="fas fa-gift"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold">دوره‌های رایگان</p>
+                                                <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-yellow-400 text-xl">
+                                                <i class="fas fa-certificate"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold">آزمون پایان دوره</p>
+                                                <p class="text-xs text-gray-300 mt-1">برگزاری آزمون های دوره</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <hr class="border-slate-600">
+                                    <div>
+                                        <h4 class="text-sm font-semibold mb-2">محبوب‌ترین آموزش‌ها</h4>
+                                        <div class="flex flex-wrap gap-2 text-sm">
+                                            <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش جاوا اسکریپت</span>
+                                            <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش لاراول</span>
+                                            <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش وردپرس</span>
+                                            <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش React</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- پایه‌ها -->
+                                <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-600 pr-4 space-y-2 text-sm text-center">
+                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه دهم</a>
+                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه یازدهم</a>
+                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه دوازدهم</a>
+                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">کنکور</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- پرسش و پاسخ‌ها -->
+                    <a href="#" class="hover:text-cyan-400">پرسش و پاسخ‌ها</a>
+
+                    <!-- مقالات -->
+                    <a href="#" class="hover:text-cyan-400">مقالات</a>
+
+
+
+                    <!-- لینک‌های مفید -->
+                    <div class="relative">
+                        <button @click="openMenu = openMenu === 'links' ? null : 'links'" class="flex items-center gap-1">
+                            لینک‌های مفید <i class="fas fa-chevron-down text-xs mt-0.5"></i>
+                        </button>
+                        <div
+                            x-show="openMenu === 'links'"
+                            @click.away="openMenu = null"
+                            x-transition
+                            class="absolute right-0 p-4 mt-6 w-62 whitespace-nowrap w bg-slate-800 text-white rounded-lg shadow-lg z-50 py-2"
+                        >
+
+                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
+                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
+                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-                <a href="#" onclick="showSection('home')" class="text-gray-700 hover:text-cyan-400 transition">خانه</a>
-
-                <!-- Courses Dropdown -->
-                <div class="relative group">
-                    <button class="text-gray-700 hover:text-cyan-400 transition flex items-center">
-                        دوره‌ها
-                        <i class="fas fa-chevron-down mr-1 text-xs"></i>
-                    </button>
-                    <div
-                        class="absolute left-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <a href="#" onclick="showCourses('grade10')"
-                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دهم</a>
-                        <a href="#" onclick="showCourses('grade11')"
-                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه یازدهم</a>
-                        <a href="#" onclick="showCourses('grade12')"
-                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">پایه دوازدهم</a>
-                        <a href="#" onclick="showCourses('konkur')"
-                           class="block px-4 py-2 text-white hover:bg-cyan-500/20">کنکور</a>
-                    </div>
-                </div>
-
-                <div id="userPanelLink" class="hidden">
-                    <a href="#" onclick="showUserDashboard()" class="text-gray-700 hover:text-cyan-400 transition">پنل
-                        کاربری</a>
-                </div>
-                @if(auth()->check())
+            @if(auth()->check())
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="focus:outline-none ">
                             <img src="/images/user-avatar-man.jpg" class="w-12 h-12 rounded-full border-2 border-gray-100 mt-2" alt="avatar">
@@ -89,8 +172,8 @@
 
 
                             <hr class="border-slate-600">
-
-                            <a href="#" class="block text-center text-red-400 hover:underline">خروج از حساب کاربری</a>
+                            <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
+                            <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()"  class="block text-center text-red-400 hover:underline">خروج از حساب کاربری</a>
                         </div>
                     </div>
                 @else
