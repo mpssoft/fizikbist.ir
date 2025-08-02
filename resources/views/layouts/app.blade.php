@@ -13,7 +13,7 @@
         <link href="./fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
         <link href="/css/fizik_styles.css" rel="stylesheet">
         <!-- Scripts -->
-
+        @yield('style')
     </head>
     <body class="main-bg min-h-screen font-sans antialiased" dir="rtl">
         <div class="min-h-screen ">

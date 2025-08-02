@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .spinner {
+            border-width: 2px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            border-radius: 9999px;
+            width: 1.25rem;
+            height: 1.25rem;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
+    </style>
+@endsection
 @section("content")
     <main>
         <!-- Home Section -->
@@ -132,16 +150,23 @@
                                     <label class="block text-gray-300 text-sm font-medium mb-2">
                                         <i class="fas fa-key mr-2"></i> کد تأیید
                                     </label>
-                                    <input type="text" name="otp" id="otp"
-                                           class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                           placeholder="کد ارسال‌شده را وارد کنید">
+
+                                    <div id="otpInputs" class="flex gap-3 justify-center rtl flex-row-reverse">
+                                        <input type="text" maxlength="1" class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none" inputmode="numeric" />
+                                        <input type="text" maxlength="1" class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none" inputmode="numeric" />
+                                        <input type="text" maxlength="1" class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none" inputmode="numeric" />
+                                        <input type="text" maxlength="1" class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none" inputmode="numeric" />
+                                    </div>
+
                                 </div>
 
                                 <button type="submit"
-                                        class="w-full btn-primary text-white py-3 rounded-xl font-semibold text-lg"
-                                        id="sendOtpBtn">
-                                    ارسال کد تأیید
+                                        id="sendOtpBtn"
+                                        class="w-full btn-primary text-white py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
+                                    <span class="btn-text">ارسال کد تأیید</span>
+                                    <span class="spinner hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                                 </button>
+
 
                                 <div id="timerBox" class="text-center text-cyan-300 mt-4 hidden">
                                     لطفاً <span id="timer">60</span> ثانیه صبر کنید...
@@ -441,17 +466,19 @@
 
             $(document).ready(function () {
                 let otpPhase = false;
-
+                let otpAttempts = 0;
+                const MAX_ATTEMPTS = 3;
                 $('#otpForm').on('submit', function (e) {
                     e.preventDefault();
 
                     const mobile = $('#mobile').val();
-                    const otp = $('#otp').val();
+                    const otp = $('.otp-digit').map((i, el) => el.value).get().join('');
                     const token = $('input[name="_token"]').val();
                     const remember = $('#remember').is(':checked');
 
                     $('#errorBox').addClass('hidden').text('');
                     $('#sendOtpBtn').prop('disabled', true);
+                    $('#sendOtpBtn .spinner').removeClass('hidden');
 
                     if (!otpPhase) {
                         // Step 1: Send OTP to mobile
@@ -466,12 +493,16 @@
                                     if (response.status === 'ok') {
                                         $('#otpCodeBox').removeClass('hidden');
                                         $('#timerBox').removeClass('hidden');
+                                        $('#sendOtpBtn .spinner').addClass('hidden');
                                         $('#sendOtpBtn').text('ورود').prop('disabled', false);
+
                                         startTimer();
                                         otpPhase = true;
-                                    } else {
+                                        $('.otp-digit').val('');
+                                        $('.otp-digit').first().focus();                                    } else {
                                         showError('ارسال کد با خطا مواجه شد');
                                         $('#sendOtpBtn').prop('disabled', false);
+                                        $('#sendOtpBtn .spinner').addClass('hidden');
                                     }
                                 },
 
@@ -480,6 +511,7 @@
                                 if (xhr.responseJSON?.message) message = xhr.responseJSON.message;
                                 showError(message);
                                 $('#sendOtpBtn').prop('disabled', false);
+                                $('#sendOtpBtn .spinner').addClass('hidden');
                             }
                         });
                     } else {
@@ -497,9 +529,31 @@
                                     if (response.status === 'ok') {
                                         $('#timerBox').addClass('hidden'); // ✅ hide timer
                                         window.location.href = '{{ route('user.home') }}'; // ✅ redirect
+                                        otpAttempts = 0;
                                     } else {
-                                        showError(response.message || 'کد وارد شده اشتباه است');
+                                        otpAttempts++;
+
+                                        if (otpAttempts >= MAX_ATTEMPTS) {
+                                            // hide OTP input
+                                            $('#otpCodeBox').addClass('hidden');
+                                            $('#timerBox').addClass('hidden');
+
+                                            // clear digit inputs
+                                            $('.otp-digit').val('');
+
+                                            // reset OTP phase
+                                            otpPhase = false;
+
+                                            // show message and reset button text
+                                            showError('تعداد تلاش‌های شما به پایان رسید. لطفاً شماره موبایل را دوباره وارد کنید.');
+                                            $('#sendOtpBtn .btn-text').text('ارسال کد تأیید');
+                                        } else {
+                                            showError(response.message || 'کد وارد شده اشتباه است');
+                                        }
+
+                                        $('#sendOtpBtn .spinner').addClass('hidden');
                                         $('#sendOtpBtn').prop('disabled', false);
+
                                     }
                                 },
 
@@ -516,7 +570,7 @@
                 }
 
                 function startTimer() {
-                    let seconds = 60;
+                    let seconds = 120;
                     $('#timerBox').removeClass('hidden');
                     $('#timer').text(seconds);
 
@@ -531,6 +585,29 @@
                         }
                     }, 1000);
                 }
+
+                // Handle OTP auto-focus and submission
+                $(document).on('input', '.otp-digit', function () {
+                    const inputs = $('.otp-digit');
+                    const index = inputs.index(this);
+
+                    // Move to next input if value entered
+                    if (this.value.length === 1 && index < inputs.length - 1) {
+                        inputs.eq(index + 1).focus();
+                    }
+
+                    // Move to previous if backspace
+                    if (this.value.length === 0 && index > 0) {
+                        inputs.eq(index - 1).focus();
+                    }
+
+                    // If all filled, auto-submit
+                    const otp = inputs.map((i, el) => el.value).get().join('');
+                    if (otp.length === 4) {
+                        $('#otpForm').trigger('submit');
+                    }
+                });
+
             });
         </script>
 
