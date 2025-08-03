@@ -528,7 +528,12 @@
                                 success: function (response) {
                                     if (response.status === 'ok') {
                                         $('#timerBox').addClass('hidden'); // ✅ hide timer
-                                        window.location.href = '{{ route('user.home') }}'; // ✅ redirect
+
+                                        if(response.role == 'user')
+                                            window.location.href = '{{ route('user.home') }}'; // ✅ redirect
+                                        else
+                                            window.location.href = '{{ route('admin.home') }}'; // ✅ redirect
+
                                         otpAttempts = 0;
                                     } else {
                                         otpAttempts++;

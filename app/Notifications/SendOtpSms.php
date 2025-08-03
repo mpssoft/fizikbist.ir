@@ -20,7 +20,7 @@ class SendOtpSms extends Notification
 
     public function via($notifiable)
     {
-        return ['sms']; // custom channel we'll define next
+        return ['melipayamak','raygansms']; // ['raygansms','melipayamak'] custom channel we'll define next
     }
 
     public function toRayganSms()
@@ -28,6 +28,14 @@ class SendOtpSms extends Notification
         return [
             'to' => $this->mobile,
             'message' => "کد احراز هویت شما: {$this->otp} \nfizikbist.ir"
+        ];
+    }
+    public function toMeliPayamakSms()
+    {
+        return [
+            'to' => $this->mobile,
+            'otpCode' => $this->otp,
+            'bodyId' => 352289,
         ];
     }
 }

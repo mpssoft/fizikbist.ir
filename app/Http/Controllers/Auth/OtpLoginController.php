@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\SendOtpSms;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +23,8 @@ class OtpLoginController extends Controller
         $attemptKey = 'otp_attempts_' . $mobile;
         $blockKey = 'otp_blocked_' . $mobile;
 
-        // If mobile is blocked
+
+        // اگر بلاک شده باشه (بعد از 3 بار ارسال)
         if (Cache::has($blockKey)) {
             return response()->json([
                 'status' => 'error',
@@ -28,17 +32,13 @@ class OtpLoginController extends Controller
             ], 429);
         }
 
-        // Increment attempt count
-        $attempts = Cache::increment($attemptKey);
-        if ($attempts === 1) {
-            // set 1-hour expiry from first attempt
-            Cache::put($attemptKey, 1, now()->addHour());
-        }
+        // گرفتن تعداد تلاش‌ها از کش
+        $attempts = Cache::get($attemptKey, 0);
 
-        if ($attempts > 3)  {
-            // Block for 1 hour
+        if ($attempts >= 3) {
+            // بلاک کردن برای یک ساعت
             Cache::put($blockKey, true, now()->addHour());
-            Cache::forget($attemptKey); // optional: reset attempts after block
+            Cache::forget($attemptKey);
 
             return response()->json([
                 'status' => 'error',
@@ -46,15 +46,35 @@ class OtpLoginController extends Controller
             ], 429);
         }
 
-        // Generate OTP
+        // افزایش تعداد تلاش‌ها و ذخیره با انقضا 1 ساعت (از اولین تلاش)
+        if ($attempts == 0) {
+            Cache::put($attemptKey, 1, now()->addHour());
+        } else {
+            Cache::increment($attemptKey);
+        }
+
+        // تولید کد OTP
         $otp = rand(1000, 9999);
-        Cache::put('otp_' . $mobile, $otp, 180); // expires in 3 minutes
+        Cache::put('otp_' . $mobile, $otp, now()->addMinutes(3));
 
-        Notification::route('sms', $mobile)
-            ->notify(new \App\Notifications\SendOtpSms($otp, $mobile));
+        // ارسال پیامک
+        $channel = new MelipayamakChannel();
+        $response = $channel->send(null, new SendOtpSms($otp, $mobile));
 
-        return response()->json(['status' => 'ok']);
+        if ($response['StrRetStatus'] == "Ok") {
+            return response()->json([
+                'status' => 'ok',
+                'code' => $response['RetStatus'],
+            ]);
+        } else {
+            return response()->json([
+                'status' => $response['StrRetStatus'],
+                'code' => $response['RetStatus'],
+                'message' => 'خطا هنگام ارسال کد'
+            ]);
+        }
     }
+
 
 
     public function verifyOtp(Request $request)
@@ -79,7 +99,8 @@ class OtpLoginController extends Controller
             Auth::login($user, $request->remember == 1);
             Cache::forget('otp_' . $request->mobile);
 
-            return response()->json(['status' => 'ok']);
+            return response()->json(['status' => 'ok', 'role' => $user->role]);
+
         }
 
         return response()->json(['status' => 'error', 'message' => 'کد وارد شده اشتباه است']);

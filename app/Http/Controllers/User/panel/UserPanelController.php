@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User\UserPanel;
+namespace App\Http\Controllers\User\panel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserAdminPanelController extends Controller
+class UserPanelController extends Controller
 {
     public function home()
     {

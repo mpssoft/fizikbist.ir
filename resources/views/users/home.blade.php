@@ -1,4 +1,4 @@
-@extends('layouts.users.master')
+@extends('layouts.user.master')
 
 @section('content')
     <!-- Stats Section -->

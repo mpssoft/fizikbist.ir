@@ -7,21 +7,26 @@ use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
-        then : function(){
-            Route::middleware(['web','auth'])
+        then: function () {
+            Route::middleware(['web', 'auth'])
                 ->prefix('user')
                 ->name('user.')
                 ->group(base_path('routes/user/user.php'));
+            Route::middleware(['web', 'auth','admin.auth'])
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(base_path('routes/admin/admin.php'));
+
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'Alert' =>  \RealRashid\SweetAlert\Facades\Alert::class,
+            'Alert' => \RealRashid\SweetAlert\Facades\Alert::class,
             'Melipayamak' => Melipayamak\Laravel\Facade::class,
-            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'admin.auth' => \App\Http\Middleware\AdminAuthenticateMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

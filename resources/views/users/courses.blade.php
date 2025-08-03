@@ -1,4 +1,4 @@
-@extends('layouts.users.master')
+@extends('layouts.user.master')
 
 @section('content')
     <h2> Coures list</h2>

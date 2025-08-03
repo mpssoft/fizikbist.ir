@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.10.1",
         "melipayamak/laravel": "1.0.0",
         "nwidart/laravel-modules": "*",
-        "realrashid/sweet-alert": "^7.3"
+        "realrashid/sweet-alert": "^7.3",
+      "ext-soap": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

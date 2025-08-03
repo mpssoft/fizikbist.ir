@@ -3,24 +3,14 @@
 use App\Http\Controllers\Auth\OtpLoginController;
 use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use Melipayamak\MelipayamakApi ;
 Route::get('/', function () {
 
     //auth()->loginUsingId(1);
-//   try{
-//        $sms = app('melipayamak',config('melipayamak'))->sms();
-//        //dd($sms);
-//        $to = '09384056563';
-//        $from = '50002710099676';
-//        $text = '1234';
-//        $response = $sms->send($to,$from,$text);
-//        $json = json_decode($response);
-//        echo $json->Value; //RecId or Error Number
-//    }catch(Exception $e){
-//        echo $e->getMessage();
-//    }
+
     return view('home.index');
 
 });

@@ -134,7 +134,7 @@
                                 <img src="/images/user-avatar-man.jpg" class="w-12 h-12 rounded-full border-2 border-green-400" alt="avatar">
                                 <div>
                                     <p class="font-bold">  {{ auth()->user()->name }}</p>
-                                    <a href="{{ route('user.home') }}" class="text-sm text-blue-400 hover:underline">مشاهده پنل کاربری</a>
+                                    <a href="{{ auth()->user()->role == 'user'? route('user.home'):route('admin.home') }}" class="text-sm text-blue-400 hover:underline">مشاهده پنل کاربری</a>
                                 </div>
                             </div>
 
