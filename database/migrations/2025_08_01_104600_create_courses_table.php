@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->string('title');
             $table->unsignedBigInteger('price' )->default(0);
             $table->integer('time')->default(10);
-            $table->string('spotplayer_id'); // e.g., the video ID from SpotPlayer
+            $table->string('spotplayer_course_id')->default(0); // e.g., the video ID from SpotPlayer
             $table->unsignedBigInteger('discount_price')->nullable()->default(0);
             $table->timestamp('discount_expires_at')->nullable();
             $table->text('description')->nullable();

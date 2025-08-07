@@ -32,7 +32,7 @@ return [
 // images folder in public path
         'images' => [
             'driver' => 'local',
-            'root' => public_path('images'),
+            'root' => base_path('public_html/images'),
             'url' => '/images',
         ],
         'local' => [

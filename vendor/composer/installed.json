@@ -5544,6 +5544,68 @@
             "install-path": "../phpunit/phpunit"
         },
         {
+            "name": "pishran/zarinpal",
+            "version": "v4.3.5",
+            "version_normalized": "4.3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pishran/Zarinpal.git",
+                "reference": "dd2ee1cebf3d4628ea44805f19e7f1aedaeb62c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pishran/Zarinpal/zipball/dd2ee1cebf3d4628ea44805f19e7f1aedaeb62c9",
+                "reference": "dd2ee1cebf3d4628ea44805f19e7f1aedaeb62c9",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.2|^8.0"
+            },
+            "time": "2025-02-24T10:19:19+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pishran\\Zarinpal\\ServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Pishran\\Zarinpal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Farid Aghili",
+                    "email": "farid@pishranit.ir",
+                    "homepage": "https://www.faridaghili.ir",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Zarinpal library for Laravel.",
+            "homepage": "https://github.com/pishran/zarinpal",
+            "keywords": [
+                "laravel",
+                "payment",
+                "zarinpal"
+            ],
+            "support": {
+                "issues": "https://github.com/pishran/Zarinpal/issues",
+                "source": "https://github.com/pishran/Zarinpal/tree/v4.3.5"
+            },
+            "install-path": "../pishran/zarinpal"
+        },
+        {
             "name": "psr/clock",
             "version": "1.0.0",
             "version_normalized": "1.0.0.0",

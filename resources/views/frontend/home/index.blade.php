@@ -21,7 +21,9 @@
     </style>
 @endsection
 @section("content")
-    @include('frontend.home.home-slider')
+
+    @include('frontend.home.home-slider', ['sliders' => \App\Models\Slider::orderBy('order')->get()])
+
     <main>
         <!-- Home Section -->
         <section id="homeSection" class="section">

@@ -17,7 +17,7 @@ class Course extends Model
         'cover_image',
         'slug',
         'teacher_id',
-        'spotplayer_id'
+        'spotplayer_course_id'
     ];
 
     // The teacher of this course (one teacher per course)
@@ -46,6 +46,9 @@ class Course extends Model
             ->wherePivotNotNull('point')
             ->withTimestamps();
     }
-
+    public function orders()
+    {
+        $this->hasMany(Order::class);
+    }
 
 }

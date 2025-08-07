@@ -23,15 +23,13 @@ class SliderController extends Controller
         $data = $request->validate([
             'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'link' => 'nullable|url',
-            'image' => 'required|image|max:2048',
+            'link' => 'nullable',
+            'image' => 'required',
+            'order' => 'numeric',
         ]);
 
         $data['is_active'] = $request->has('is_active');
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('sliders', 'public');
-        }
 
         Slider::create($data);
         toast('اسلاید جدید با موفقیت ایحاد  شد','success','center');
@@ -46,19 +44,16 @@ class SliderController extends Controller
         $data = $request->validate([
             'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'link' => 'nullable|url',
-            'image' => 'nullable|image|max:2048',
-            'is_active' => 'boolean',
+            'link' => 'nullable',
+            'image' => 'nullable',
+            'order' => 'numeric',
         ]);
 
-        $data['is_active'] = $request->has('is_active');
+        $data['is_active'] = $request->has('is_active')? 1:0;
 
-        if ($request->hasFile('image')) {
-            // Optionally: delete old image
-            $data['image'] = $request->file('image')->store('sliders', 'public');
-        }
 
         $slider->update($data);
+        toast('اسلاید جدید با موفقیت بروزرسانی  شد','success','center');
         return redirect()->route('admin.sliders.index')->with('success', 'اسلایدر ویرایش شد.');
     }
 

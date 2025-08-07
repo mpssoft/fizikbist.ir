@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.10.1",
         "melipayamak/laravel": "1.0.0",
         "nwidart/laravel-modules": "*",
+        "pishran/zarinpal": "^4.3",
         "realrashid/sweet-alert": "^7.3"
     },
     "require-dev": {

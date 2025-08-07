@@ -1,19 +1,17 @@
 @once
     @push('styles')
-        <!-- Swiper CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     @endpush
 
     @push('scripts')
-        <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const swiper = new Swiper(".mySwiper", {
+            document.addEventListener("DOMContentLoaded", function () {
+                new Swiper(".swiper-container", {
                     loop: true,
+                    effect: 'fade',
                     autoplay: {
                         delay: 5000,
-                        disableOnInteraction: false,
                     },
                     pagination: {
                         el: ".swiper-pagination",
@@ -27,35 +25,34 @@
             });
         </script>
     @endpush
+
 @endonce
 
-<div class="w-full max-w-7xl mx-auto px-4 py-6">
-    <div class="swiper mySwiper rounded-xl overflow-hidden shadow-xl">
-        <div class="swiper-wrapper">
-            @foreach($sliders as $slider)
-                <div class="swiper-slide relative group">
-                    <img src="{{ asset('storage/' . $slider->image) }}"
-                         alt="{{ $slider->title }}"
-                         class="w-full h-72 md:h-96 object-cover" />
-
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300 flex flex-col items-start justify-end p-6 text-white">
-                        <h2 class="text-2xl md:text-3xl font-bold mb-1">{{ $slider->title }}</h2>
-                        <p class="text-sm md:text-base">{{ $slider->subtitle }}</p>
-
-                        @if($slider->link)
-                            <a href="{{ $slider->link }}"
-                               class="mt-4 inline-block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm md:text-base transition">
-                                مشاهده بیشتر
-                            </a>
-                        @endif
+@if($sliders->count())
+    <div class="relative w-full overflow-hidden">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach ($sliders as $slider)
+                    <div class="swiper-slide">
+                        <div class="w-full h-[70vh] md:h-[85vh] bg-cover bg-center flex items-center justify-center" style="background-image: url('{{ $slider->image }}');">
+                            <div class="bg-black/50 p-6 rounded-xl text-center max-w-xl mx-auto text-white">
+                                <h2 class="text-2xl md:text-4xl font-bold mb-3">{{ $slider->title }}</h2>
+                                <p class="mb-4">{{ $slider->description }}</p>
+                                @if($slider->link)
+                                    <a href="{{ $slider->link }}" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                                        اطلاعات بیشتر
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <!-- Navigation buttons -->
+            <div class="swiper-button-next text-white"></div>
+            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-pagination !bottom-4"></div>
         </div>
-
-        <!-- Navigation -->
-        <div class="swiper-button-next text-white"></div>
-        <div class="swiper-button-prev text-white"></div>
-        <div class="swiper-pagination"></div>
     </div>
-</div>
+@endif
+

@@ -56,22 +56,24 @@
 
         <!-- Sliders List -->
         <div class="space-y-6">
+            @foreach($sliders as $slider)
             <!-- Slider Row 1 -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl transition-all duration-300">
                 <div class="p-4 sm:p-6">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
                         <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                             <div class="w-24 h-16 sm:w-32 sm:h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 image-preview">
-                                <span class="text-white text-xs font-medium">تصویر اسلایدر</span>
+
+                                <img src="{{$slider->image}}" />
                             </div>
                             <div class="text-center sm:text-right">
-                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">خوش آمدید به آکادمی آنلاین</h3>
-                                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">بهترین دوره‌های آموزشی آنلاین را با ما تجربه کنید</p>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $slider->title }}</h3>
+                                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">{{ $slider->subtitle }}</p>
                                 <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
                                     <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                                     </svg>
-                                    <span class="text-sm text-blue-600 dark:text-blue-400">/courses</span>
+                                    <span class="text-sm text-blue-600 dark:text-blue-400">{{ $slider->link }}</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +82,7 @@
                                 فعال
                             </span>
                             <div class="flex items-center gap-2">
-                                <a href="/admin/sliders/1/edit" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">
+                                <a href="{{ route('admin.sliders.edit',$slider->id) }}" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">
                                     <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                     </svg>
@@ -142,7 +144,7 @@
                     </div>
                 </div>
             </div>
-
+            @endforeach
             <!-- Slider Row 2 -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl transition-all duration-300">
                 <div class="p-4 sm:p-6">

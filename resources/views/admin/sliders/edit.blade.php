@@ -1,5 +1,21 @@
 @extends('layouts.admin.master')
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
+            document.getElementById('button-image').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+        });
+
+        // set file link
+        function fmSetLink($url) {
+            document.getElementById('image_label').value = $url;
+        }
+    </script>
+@endpush
 @section('content')
     <div class="max-w-4xl mx-auto">
         <!-- Header Section -->
@@ -56,7 +72,10 @@
         <!-- Main Form -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div class="p-8">
-                <form id="sliderForm" class="space-y-8">
+                @include('layouts.errors')
+                <form id="sliderForm" class="space-y-8" method="post" action="{{ route('admin.sliders.update',$slider->id) }}">
+                   @csrf
+                    @method('patch')
                     <!-- Title Field -->
                     <div class="space-y-2">
                         <label for="title" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -93,7 +112,9 @@
                         <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
                             <div class="flex flex-col sm:flex-row items-center gap-6">
                                 <div class="w-48 h-32 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-sm font-medium">تصویر فعلی اسلایدر</span>
+
+                                    <img src="{{$slider->image}}" />
+
                                 </div>
                                 <div class="text-center sm:text-right">
                                     <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">slider-welcome.jpg</h4>
@@ -123,7 +144,7 @@
                     <!-- New Image Upload -->
                     <div class="space-y-2">
                         <label for="image" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
-                            تغییر تصویر اسلایدر
+                            تصویر اسلایدر *
                         </label>
                         <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-purple-500 transition-colors duration-200 cursor-pointer">
                             <input type="file" id="image" name="image" accept="image/*" class="hidden" onchange="previewImage(this)">
@@ -131,19 +152,27 @@
                                 <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
-                                <p class="text-xl text-gray-500 dark:text-gray-400 mb-2">تصویر جدید را انتخاب کنید</p>
+                                <p class="text-xl text-gray-500 dark:text-gray-400 mb-2">تصویر اسلایدر را انتخاب کنید</p>
                                 <p class="text-sm text-gray-400">یا فایل را اینجا بکشید و رها کنید</p>
                             </div>
-                            <button type="button" onclick="document.getElementById('image').click()"
-                                    class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 hover:shadow-lg hover:scale-105 transition-all duration-200">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                </svg>
-                                انتخاب تصویر جدید
-                            </button>
+                            <div class="flex items-stretch space-x-2">
+                                <input type="text" id="image_label" name="image" value="{{old('image',$slider->image)}}"
+                                       class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                  bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                  focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                       placeholder="Image">
+
+                                <button type="button" id="button-image"
+                                        class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                   bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
+                   hover:bg-gray-200 dark:hover:bg-gray-700
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                                    Select
+                                </button>
+                            </div>
+
                         </div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">فرمت‌های مجاز: JPG, PNG, GIF - حداکثر حجم: 2MB - ابعاد پیشنهادی: 1920x800 پیکسل</p>
-                        <p class="text-sm text-orange-600 dark:text-orange-400">⚠️ در صورت انتخاب تصویر جدید، تصویر فعلی جایگزین خواهد شد</p>
                     </div>
 
                     <!-- Link Field -->
@@ -152,7 +181,7 @@
                             لینک اسلایدر
                         </label>
                         <div class="relative">
-                            <input type="url" id="link" name="link" value="/courses"
+                            <input type="text" id="link" name="link" value="/courses"
                                    class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -193,20 +222,6 @@
                                 </div>
                             </label>
                         </div>
-                    </div>
-
-                    <!-- Change Log -->
-                    <div class="space-y-4">
-                        <label class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
-                            یادداشت تغییرات (اختیاری)
-                        </label>
-                        <textarea id="change_log" name="change_log" rows="3"
-                                  class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
-                                         bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
-                                         focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
-                                         focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 resize-none"
-                                  placeholder="توضیح کوتاهی از تغییرات اعمال شده..."></textarea>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">این یادداشت در تاریخچه تغییرات ذخیره می‌شود</p>
                     </div>
 
                     <!-- Form Actions -->

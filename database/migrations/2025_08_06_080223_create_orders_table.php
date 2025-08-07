@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('price');
+
             $table->string('status')->default('pending'); // pending, paid, failed
             $table->timestamps();
 

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->string('gateway')->default('manual'); // or zarinpal, stripe, etc.
+            $table->string('gateway')->default('zarinpal'); // or zarinpal, stripe, etc.
             $table->string('transaction_id')->nullable();
             $table->string('status')->default('initiated'); // initiated, success, failed
-            $table->integer('amount');
+            $table->string('resnumber')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

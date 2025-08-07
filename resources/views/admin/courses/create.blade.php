@@ -1,5 +1,26 @@
 @extends('layouts.admin.master')
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
+            document.getElementById('button-image').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+        });
+
+        // set file link
+        function fmSetLink($url) {
+            document.getElementById('image_label').value = $url;
+        }
+      function removeCamas(){
+          $('.format_number').each(function(index, element) {
+              $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
+          });
+        }
+    </script>
+@endpush
 @section('content')
     <div class="max-w-4xl mx-auto mt-5">
         <!-- Header Section -->
@@ -54,7 +75,7 @@
         <!-- Main Form Container -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div class="p-8">
-                <form method="POST" action="/admin/courses" enctype="multipart/form-data" class="space-y-8">
+                <form method="POST" action="{{route('admin.courses.store')}}" onsubmit="removeCamas()" enctype="multipart/form-data" class="space-y-8">
                     @csrf
 
                     <!-- Course Title -->
@@ -218,27 +239,57 @@
                                 تصویر کاور
                             </span>
                         </label>
-                        <div class="relative">
-                            <input type="file" name="cover_image" id="cover_image"
-                                   class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                   accept="image/*">
-                            <div class="w-full px-4 py-8 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600
-                                        bg-gray-50 dark:bg-gray-700 text-center hover:border-indigo-400
-                                        hover:bg-indigo-50 dark:hover:bg-gray-600 transition-all duration-200">
-                                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                </svg>
-                                <p class="text-gray-600 dark:text-gray-300 font-medium">
-                                    کلیک کنید یا فایل را بکشید
-                                </p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">PNG, JPG, GIF تا 10MB</p>
+                        <!-- Image Upload -->
+                        <div class="space-y-2">
+
+                            <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-purple-500 transition-colors duration-200 cursor-pointer">
+
+                                <div class="flex items-stretch space-x-2">
+                                    <input type="text" id="image_label" name="cover_image"
+                                           class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                  bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                  focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                           placeholder="Image">
+
+                                    <button type="button" id="button-image"
+                                            class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                   bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
+                   hover:bg-gray-200 dark:hover:bg-gray-700
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                                        Select
+                                    </button>
+                                </div>
+
                             </div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">فرمت‌های مجاز: JPG, PNG, GIF - حداکثر حجم: 2MB - ابعاد پیشنهادی: 1920x800 پیکسل</p>
                         </div>
                         @error('cover_image')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
+                    <!-- SpotPlayer Course Id -->
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                </svg>
+                               کد درس در اسپات پلیر
+                            </span>
+                        </label>
+                        <input type="text" name="spotplayer_course_id"
+                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                      focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600
+                                      focus:ring-4 focus:ring-blue-500/20 transition-all duration-200
+                                      placeholder-gray-400 dark:placeholder-gray-500"
+                               value="{{ old('spotplayer_course_id') }}"
+                               placeholder="5d2ee35bcddc092a304ae5eb"
+                               required>
+                        @error('title')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <!-- Description -->
                     <div class="group">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">

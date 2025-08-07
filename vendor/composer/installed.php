@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7711918499fb7ab30d321b9f5961ca2c5e97e7a0',
+        'reference' => '70ec7a2f13a5cb3b273e3fbb1942f854611f81a9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -559,7 +559,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7711918499fb7ab30d321b9f5961ca2c5e97e7a0',
+            'reference' => '70ec7a2f13a5cb3b273e3fbb1942f854611f81a9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -876,6 +876,15 @@
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'pishran/zarinpal' => array(
+            'pretty_version' => 'v4.3.5',
+            'version' => '4.3.5.0',
+            'reference' => 'dd2ee1cebf3d4628ea44805f19e7f1aedaeb62c9',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../pishran/zarinpal',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'psr/clock' => array(
             'pretty_version' => '1.0.0',

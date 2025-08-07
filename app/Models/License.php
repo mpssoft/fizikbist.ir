@@ -11,10 +11,17 @@ class License extends Model
 
     protected $fillable = [
         'user_id',
-        'course_id',
-        'spotplayer_license',
-        'expires_at',
+        'order_id',
+        'spotplayer_code',
+        'course_ids',
+        'license_data',
     ];
+
+    protected $casts = [
+        'course_ids' => 'array',
+        'license_data' => 'array',
+    ];
+
 
     public function user()
     {

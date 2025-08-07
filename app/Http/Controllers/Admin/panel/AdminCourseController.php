@@ -47,14 +47,12 @@ class AdminCourseController extends Controller
             'discount_price' => 'nullable|integer|min:0',
             'discount_expires_at' => 'nullable|date',
             'description' => 'nullable|string',
-            'cover_image' => 'nullable|image|max:2048',
+            'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
             'status' => 'in:active,in_progress,inactive'
         ]);
 
-        if ($request->hasFile('cover_image')) {
-            $data['cover_image'] = $request->file('cover_image')->store('course_covers', 'public');
-        }
+
 
         $data['slug'] = Str::slug($data['title']) . '-' . uniqid();
 
@@ -83,16 +81,10 @@ class AdminCourseController extends Controller
             'discount_price' => 'nullable|integer|min:0',
             'discount_expires_at' => 'nullable|date',
             'description' => 'nullable|string',
-            'cover_image' => 'nullable|image|max:2048',
+            'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
         ]);
 
-        if ($request->hasFile('cover_image')) {
-            if ($course->cover_image) {
-                Storage::disk('public')->delete($course->cover_image);
-            }
-            $data['cover_image'] = $request->file('cover_image')->store('course_covers', 'public');
-        }
 
         $data['slug'] = Str::slug($data['title']) . '-' . uniqid();
 
