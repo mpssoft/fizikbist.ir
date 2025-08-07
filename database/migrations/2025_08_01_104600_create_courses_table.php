@@ -10,10 +10,13 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('price' )->default(0);
-            $table->unsignedBigInteger('discount_price')->default(0);
+            $table->integer('time')->default(10);
+            $table->string('spotplayer_id'); // e.g., the video ID from SpotPlayer
+            $table->unsignedBigInteger('discount_price')->nullable()->default(0);
             $table->timestamp('discount_expires_at')->nullable();
             $table->text('description')->nullable();
             $table->string('cover_image')->nullable();
+            $table->enum('status',['active','in_progress','inactive'])->default('active');
             $table->string('slug')->unique();
             $table->foreignId('teacher_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
@@ -25,6 +28,7 @@ return new class extends Migration {
             $table->timestamp('enrolled_at')->nullable();
 
             $table->boolean('completed')->default(false);
+            $table->integer('point')->nullable(); // or float if needed
             $table->timestamps();
 
             $table->unique(['course_id', 'user_id']);

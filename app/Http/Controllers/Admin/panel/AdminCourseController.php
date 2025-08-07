@@ -5,16 +5,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class AdminCourseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //Course::factory()->count(10)->create();
-        $courses = Course::with('teacher')->latest()->paginate(15);
-        return view('admin.courses.index', compact('courses'));
+        $user = Auth::user();
+
+        $courses = Course::withCount([
+            'raters as ratings_count',
+            'students as students_count'
+        ])
+            ->withAvg('raters', 'course_user.point')
+            ->with([
+                'raters' => function($q) use ($user) {
+                    $q->where('user_id', $user->id);
+                },
+                'teacher'
+            ])
+            ->paginate(10);
+
+
+
+        return view('admin.courses.index', compact('courses', 'user'));
     }
 
     public function create()
@@ -33,6 +49,7 @@ class AdminCourseController extends Controller
             'description' => 'nullable|string',
             'cover_image' => 'nullable|image|max:2048',
             'teacher_id' => 'nullable|exists:users,id',
+            'status' => 'in:active,in_progress,inactive'
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -53,7 +70,8 @@ class AdminCourseController extends Controller
 
     public function edit(Course $course)
     {
-        $teachers = User::where('role', 'teacher')->get();
+        $teachers = User::where('role', 'teacher')->orWhere('role','admin')->get();
+
         return view('admin.courses.edit', compact('course', 'teachers'));
     }
 

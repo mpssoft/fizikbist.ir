@@ -8,6 +8,7 @@ Route::get("/",[AdminPanelController::class,'home'])->name('home');
 
 
 Route::resource('courses', \App\Http\Controllers\Admin\panel\AdminCourseController::class)->names('courses');
+Route::resource('sliders', \App\Http\Controllers\Admin\panel\SliderController::class)->names('sliders');
 
 
 

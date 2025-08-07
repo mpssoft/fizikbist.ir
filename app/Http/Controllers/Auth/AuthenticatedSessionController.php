@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    protected $redirectTo = "/user-panel";
+    protected $redirectTo = "/";
     public function create(): View
     {
         return view('auth.login');

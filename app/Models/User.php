@@ -63,4 +63,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(ActiveCode::class);
     }
+    public function ratedCourses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withPivot('point')
+            ->withTimestamps();
+    }
+    // Courses where the user is a student (registered in courses)
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withPivot('point')  // rating given by user
+            ->withTimestamps();
+    }
+    public function licenses() {
+        return $this->hasMany(License::class);
+    }
+    // Courses where the user is a teacher
+    public function teachingCourses()
+    {
+        return $this->hasMany(Course::class, 'teacher_id');
+    }
+
+
 }

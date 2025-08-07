@@ -38,10 +38,61 @@
         </div>
     </div>
 </div>
+<script src="/js/jquery/jquery.min.js"> </script>
+<script>
+    function number_format(str) {
+
+        // Ensure the value can be parsed as a float
+        if (!isNaN(str) && str != "") {
+            // Parse the value to a float and format it
+            var floatValue = parseFloat(str);
+
+            if (!isNaN(floatValue)) {
+                var formattedValue = floatValue
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Add commas as thousand separators
+
+                return (formattedValue); // return formatted value back
+            }
+        }
+    }
+    $(document).ready(function() {
+
+        $(document).on('input','.format_number', function () {
+            var $input = $(this);
+            var value = $input.val().replace(/,/g, ""); // Remove existing commas
+
+            // Allow typing of the decimal point
+            if (value === ".") {
+                return; // Do nothing if the user has only typed a decimal point
+            }
+
+            // Ensure the value is a valid number or can be parsed as one
+            if (!isNaN(value) && value != "") {
+                // Split the value into integer and decimal parts (if any)
+
+                var parts = value.split('.');
+                var integerPart = parts[0]; // The integer part before the decimal
+                var decimalPart = parts[1]; // The decimal part after the point, if any
+
+                // Add commas to the integer part
+                var formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                // Recombine the integer part with the decimal part (if it exists)
+                var formattedValue = decimalPart !== undefined ? formattedInteger + '.' + decimalPart : formattedInteger;
+
+                $input.val( formattedValue); // Set formatted value back to input
+
+
+        }
+    });
+    });
+</script>
 @include('sweetalert::alert')
 @yield('script')
 
 @stack('scripts')
+
 </body>
 </html>
 

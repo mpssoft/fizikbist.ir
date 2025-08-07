@@ -85,6 +85,9 @@ return array(
     'LaravelLang\\LocaleList\\' => array($vendorDir . '/laravel-lang/locale-list/src'),
     'LaravelLang\\Lang\\' => array($vendorDir . '/laravel-lang/lang/src'),
     'LaravelLang\\Config\\' => array($vendorDir . '/laravel-lang/config/src'),
+    'Intervention\\Image\\Laravel\\' => array($vendorDir . '/intervention/image-laravel/src'),
+    'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src'),
+    'Intervention\\Gif\\' => array($vendorDir . '/intervention/gif/src'),
     'Illuminate\\Support\\' => array($vendorDir . '/laravel/framework/src/Illuminate/Macroable', $vendorDir . '/laravel/framework/src/Illuminate/Collections', $vendorDir . '/laravel/framework/src/Illuminate/Conditionable'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'GuzzleHttp\\UriTemplate\\' => array($vendorDir . '/guzzlehttp/uri-template/src'),
@@ -113,4 +116,5 @@ return array(
     'Artesaos\\SEOTools\\' => array($vendorDir . '/artesaos/seotools/src/SEOTools'),
     'ArchTech\\Enums\\' => array($vendorDir . '/archtechx/enums/src'),
     'App\\' => array($baseDir . '/app', $vendorDir . '/laravel/pint/app'),
+    'Alexusmai\\LaravelFileManager\\' => array($vendorDir . '/alexusmai/laravel-file-manager/src'),
 );

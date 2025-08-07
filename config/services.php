@@ -38,5 +38,8 @@ return [
         'username' => env('RAYGANSMS_USERNAME'),
         'password' => env('RAYGANSMS_PASSWORD')
     ],
+    'spotplayer' => [
+        'api_key' => env('SPOTPLAYER_API_KEY'),
+    ],
 
 ];

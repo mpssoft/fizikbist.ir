@@ -14,6 +14,7 @@
         <link href="/css/fizik_styles.css" rel="stylesheet">
         <!-- Scripts -->
         @yield('style')
+        @stack('styles')
     </head>
     <body class="main-bg min-h-screen font-sans antialiased" dir="rtl">
         <div class="min-h-screen ">

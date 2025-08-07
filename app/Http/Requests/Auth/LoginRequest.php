@@ -18,7 +18,12 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
-
+    protected function redirectTo($request)
+    {
+        if (! $request->expectsJson()) {
+            return redirect("/"); // default
+        }
+    }
     /**
      * Get the validation rules that apply to the request.
      *

@@ -2,18 +2,13 @@
 
 use App\Http\Controllers\Auth\OtpLoginController;
 use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use Melipayamak\MelipayamakApi ;
-Route::get('/', function () {
-
-    //auth()->loginUsingId(1);
-
-    return view('home.index');
-
-});
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
