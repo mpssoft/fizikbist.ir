@@ -49,7 +49,9 @@ class AdminCourseController extends Controller
             'description' => 'nullable|string',
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
-            'status' => 'in:active,in_progress,inactive'
+            'status' => 'in:active,in_progress,inactive',
+            'spotplayer_course_id' => 'nullable',
+            'time' =>  'nullable'
         ]);
 
 
@@ -83,6 +85,8 @@ class AdminCourseController extends Controller
             'description' => 'nullable|string',
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
+             'spotplayer_course_id' => 'nullable',
+            'time' =>  'nullable'
         ]);
 
 

@@ -19,15 +19,15 @@ class SpotPlayerService
 
     public function createLicenseForUser($user, $order, $courseIds): ?License
     {
-        Log::info(" reached createLicenseForUser");
+        Log::info(" reached createLicenseForUser $user->name  $order->course->title courseIds: $courseIds" );
         $payload = $this->buildLicensePayload($user, $courseIds);
 
         $response = Http::withHeaders([
-            'Authorization' => 'Apikey ' . $this->apiKey,
-
+            '$API' => $this->apiKey,
+            '$LEVEL' => '-1',
             'Accept' => 'application/json',
         ])->post($this->baseUrl, $payload);
-
+        Log::info("response from spotplayer: ".$response);
         if ($response->successful()) {
             $data = $response->json();
 
@@ -56,7 +56,7 @@ class SpotPlayerService
     {
         return [
             'test' => true,
-            'course' => $courseIds,
+            'course' => [$courseIds],
             'offline' => 30,
             'name' => $user->name ?? 'User',
             'payload' => '',

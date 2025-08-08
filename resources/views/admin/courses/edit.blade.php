@@ -156,7 +156,7 @@
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-red-500 focus:bg-white dark:focus:bg-gray-600
                                       focus:ring-4 focus:ring-red-500/20 transition-all duration-200"
-                               value="{{ old('discount_expires_at', $course->discount_expires_at ? $course->discount_expires_at->format('Y-m-d\TH:i') : '') }}">
+                               value="{{ old('discount_expires_at', $course->discount_expires_at ? \Carbon\Carbon::parse($course->discount_expires_at)->format('Y-m-d H:i:s') : '') }}">
                         @error('discount_expires_at')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -224,7 +224,31 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
+                    <!-- Course Time -->
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"/>
+                    </svg>
+                                طول دوره
+                            </span>
+                        </label>
+                        <input type="text" name="time"
+                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                      focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600
+                                      focus:ring-4 focus:ring-blue-500/20 transition-all duration-200
+                                      placeholder-gray-400 dark:placeholder-gray-500"
+                               value="{{ old('time') }}"
+                               placeholder="مدت زمان دوره به ساعت ..."
+                               required>
+                        @error('time')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <!-- Current Cover Image Display -->
                     @if($course->cover_image)
                         <div class="group">
@@ -289,8 +313,8 @@
                                       placeholder-gray-400 dark:placeholder-gray-500"
                                value="{{ old('spotplayer_course_id',$course->spotplayer_course_id) }}"
                                placeholder="5d2ee35bcddc092a304ae5eb"
-                               required>
-                        @error('title')
+                               >
+                        @error('spotplayer_course_id')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>

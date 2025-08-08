@@ -51,13 +51,14 @@ class PaymentController extends Controller
             ->amount($course->price) // مبلغ تراکنش
             ->request()
             ->description($course->title) // توضیحات تراکنش
-            ->callbackUrl('https://fizikbist.ir/user/payment/zarinpalCallback/?order_id=' . $order->id . '&price=' . $order->price) // آدرس برگشت پس از پرداخت
+            ->callbackUrl('http://localhost:8000/user/payment/zarinpalCallback/?order_id=' . $order->id . '&price=' . $order->price) // آدرس برگشت پس از پرداخت
             // ->mobile($user->mobile) // شماره موبایل مشتری - اختیاری
             //  ->email($user->email) // ایمیل مشتری - اختیاری
             ->send();
         //dd($response);
         if (!$response->success()) {
-            return $response->error()->message();
+            alert('', $response->error()->message(), 'toast');
+            return redirect('/');
         }
 
 // ذخیره اطلاعات در دیتابیس
@@ -80,8 +81,8 @@ class PaymentController extends Controller
             ->send();
 
         if (!$response->success()) {
-            alert('', 'خطا در پرداخت', 'toast');
-            return $response->error()->message();
+            alert('', $response->error()->message(), 'toast');
+            return redirect('/');
 
         }
 
@@ -125,6 +126,7 @@ public function paymentSuccess($orderId, SpotPlayerService $spotPlayer)
 
         // Assign course to user
         $user->courses()->syncWithoutDetaching([$order->course_id]);
+        Log::info("passed syncWithoutDetaching");
 
         // Call SpotPlayer API
         $this->generateLicense(request(), $spotPlayer);
@@ -144,8 +146,11 @@ public function paymentSuccess($orderId, SpotPlayerService $spotPlayer)
 public
 function generateLicense(Request $request, SpotPlayerService $spotPlayer)
 {
-    $orderId = $request->input('order_id');
-    $order = Order::with('user')->findOrFail($orderId);
+    Log::info("first line of generateLicense");
+    $orderId = 1;//$request->input('order_id');
+    Log::info("Order id is : $orderId");
+
+    $order = Order::with('user','course')->findOrFail($orderId);
     Log::info("reached generateLicense");
     // Get user info
     $user = $order->user;
