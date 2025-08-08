@@ -12,7 +12,10 @@ class License extends Model
     protected $fillable = [
         'user_id',
         'order_id',
-        'spotplayer_code',
+        'course_id',
+        'spotplayer_id',
+        'spotplayer_key',
+        'spotplayer_url',
         'course_ids',
         'license_data',
     ];

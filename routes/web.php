@@ -22,7 +22,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'twoFactorAuthForm'])->name('twoFactorAuthForm');
 Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verifyToken'])->name('auth.verifyToken');
-Route::get("/spot/{orderId}/{spot}",[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
+
+
+//Route::get("/spot/{orderId}/{spot}",[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
+
 Route::post('/send-otp', [OtpLoginController::class, 'sendOtp'])->name('otp.send');
 Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.verify');
 

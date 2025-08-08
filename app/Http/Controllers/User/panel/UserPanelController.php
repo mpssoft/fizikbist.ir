@@ -9,7 +9,7 @@ class UserPanelController extends Controller
 {
     public function home()
     {
-        return view("users.home");
+        return view("user.home");
     }
     public function courses()
     {

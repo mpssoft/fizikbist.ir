@@ -34,6 +34,7 @@ class SpotPlayerService
             return License::create([
                 'user_id'         => $user->id,
                 'order_id'        => $order->id,
+                'course_id'        => $order->course->id,
                 'spotplayer_id'   => $data['_id'] ?? null,
                 'spotplayer_key'  => $data['key'] ?? null,
                 'spotplayer_url'  => $data['url'] ?? null,

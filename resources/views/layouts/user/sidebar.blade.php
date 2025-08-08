@@ -1,40 +1,74 @@
 <aside
-    class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-lg z-40 transform transition-transform duration-300 md:relative md:translate-x-0 -translate-x-full"
+    class="fixed top-0 bottom-0 right-0 w-72 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-[-8px_0_24px_rgba(0,0,0,0.15)] dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)] z-40 transform transition-all duration-300 ease-in-out md:relative md:translate-x-0 -translate-x-full"
     :class="sidebarOpen ? 'translate-x-0' : 'translate-x-full'"
     @click.away=" !toggleButton ? sidebarOpen = false : toggleButton = false"
 >
-
-    <div class="flex justify-between items-center p-4 border-gray-400 border-b  md:justify-center">
-        <div
-            class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-            <a href="{{ env("APP_URL") }}"> فیزیک بیست </a>
+    <!-- Header Section -->
+    <div class="flex justify-between items-center p-6 shadow-[0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] md:justify-center">
+        <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
+            <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
+                <i class="fas fa-atom drop-shadow-sm"></i>
+                فیزیک بیست
+            </a>
         </div>
     </div>
-    <nav class="flex flex-col gap-3 px-4 text-sm md:text-base mt-4">
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-home"></i> صفحه اصلی
+
+    <!-- Navigation Section -->
+    <nav class="flex flex-col gap-2 px-4 text-sm md:text-base mt-6">
+        <a href="{{route('admin.home')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-home text-pink-500 group-hover:text-pink-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">صفحه اصلی</span>
         </a>
-        <a href="{{ route('user.courses') }}" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-graduation-cap"></i> دوره‌ها
+
+        <a href="{{route('admin.courses.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-graduation-cap text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">دوره‌ها</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-question-circle"></i> پرسش‌ها
+        <a href="{{route('admin.sliders.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-graduation-cap text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">اسلایدرها</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-wallet"></i> مالی
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-users text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">کاربران</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-heart"></i> دنبال‌شده‌ها
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-question-circle text-green-500 group-hover:text-green-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">پرسش‌ها</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-comments"></i> نظرات
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-wallet text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">مالی</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-envelope"></i> پیغام‌ها
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-heart text-red-500 group-hover:text-red-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">دنبال‌شده‌ها</span>
         </a>
-        <a href="#" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-            <i class="fas fa-bell"></i> اعلانات
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-comments text-indigo-500 group-hover:text-indigo-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">نظرات</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-envelope text-teal-500 group-hover:text-teal-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">پیغام‌ها</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+            <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors duration-200 w-5"></i>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">اعلانات</span>
         </a>
     </nav>
 
+    <!-- Footer Section -->
+    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-50 to-transparent dark:from-slate-800 dark:to-transparent">
+        <div class="text-center text-xs text-gray-500 dark:text-gray-400">
+            <p>نسخه 2.0.1</p>
+        </div>
+    </div>
 </aside>

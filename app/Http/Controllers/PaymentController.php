@@ -30,6 +30,7 @@ class PaymentController extends Controller
             ->first();
 
         if ($existing) {
+            alert("پرداخت تکراری","قبلا پرداخت برای این دوره انجام شده است ","success");
             return redirect()->route('user.courses')->with('info', 'You already bought this course.');
         }
 
@@ -103,7 +104,7 @@ class PaymentController extends Controller
 
 
         $payment->order->update([
-            'status ' => 'paid',
+            'status' => 'paid',
         ]);
 
         // payment success so request license fro spotplayer
@@ -147,7 +148,7 @@ public
 function generateLicense(Request $request, SpotPlayerService $spotPlayer)
 {
     Log::info("first line of generateLicense");
-    $orderId = 1;//$request->input('order_id');
+    $orderId = $request->input('order_id');
     Log::info("Order id is : $orderId");
 
     $order = Order::with('user','course')->findOrFail($orderId);
