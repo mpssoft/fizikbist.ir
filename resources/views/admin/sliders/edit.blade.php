@@ -81,7 +81,7 @@
                         <label for="title" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
                             عنوان اسلایدر *
                         </label>
-                        <input type="text" id="title" name="title" required value="خوش آمدید به آکادمی آنلاین"
+                        <input type="text" id="title" name="title" required value="{{$slider->title}}"
                                class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -100,7 +100,7 @@
                                          bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                          focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
                                          focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 resize-none"
-                                  placeholder="توضیح کوتاه و جذاب درباره محتوای اسلایدر">بهترین دوره‌های آموزشی آنلاین را با ما تجربه کنید</textarea>
+                                  placeholder="توضیح کوتاه و جذاب درباره محتوای اسلایدر">{{ $slider->subtitle }}</textarea>
                         <p class="text-sm text-gray-500 dark:text-gray-400">توضیح کوتاهی که زیر عنوان اصلی نمایش داده می‌شود</p>
                     </div>
 
