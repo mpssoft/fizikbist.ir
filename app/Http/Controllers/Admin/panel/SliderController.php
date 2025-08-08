@@ -24,7 +24,7 @@ class SliderController extends Controller
             'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',
             'link' => 'nullable',
-            'image' => 'required',
+            'image' => 'nullable',
             'order' => 'numeric',
         ]);
 

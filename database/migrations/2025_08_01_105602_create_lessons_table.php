@@ -12,6 +12,8 @@ return new class extends Migration {
             $table->string('title');
             $table->text('content')->nullable();
             $table->integer('order')->default(0); // lesson order in course
+            $table->integer('view')->default(0);
+            $table->integer('like')->default(0);
             $table->timestamps();
         });
         Schema::create('lesson_user', function (Blueprint $table) {
