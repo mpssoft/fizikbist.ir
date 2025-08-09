@@ -16,6 +16,8 @@ class Course extends Model
         'description',
         'cover_image',
         'slug',
+        'time',
+        'status',
         'teacher_id',
         'spotplayer_course_id'
     ];

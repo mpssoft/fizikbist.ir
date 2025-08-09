@@ -178,7 +178,7 @@
                     </div>
                 @else
                     <div id="authButtons">
-                        <a href="#" onclick="showLogin()"
+                        <a href="#" onclick="openLightbox()"
                            class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
                             ورود / ثبت نام
                         </a>

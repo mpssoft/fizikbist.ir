@@ -14,10 +14,11 @@ class AdminCourseController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
+        $activeCourses = Course::where("status","active")->get();
         $courses = Course::withCount([
             'raters as ratings_count',
-            'students as students_count'
+            'students as students_count',
+
         ])
             ->withAvg('raters', 'course_user.point')
             ->with([
@@ -29,8 +30,7 @@ class AdminCourseController extends Controller
             ->paginate(10);
 
 
-
-        return view('admin.courses.index', compact('courses', 'user'));
+        return view('admin.courses.index', compact('courses', 'user','activeCourses'));
     }
 
     public function create()

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Lightbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lightbox-overlay {
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox-content {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+<!-- Main Content -->
+<div class="text-center">
+    <h1 class="text-4xl font-bold text-white mb-8">به پلتفرم ما خوش آمدید</h1>
+    <p class="text-white/80 mb-8 text-lg">دسترسی آسان به حساب کاربری خود را تجربه کنید</p>
+    <button onclick="openLightbox()" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200 shadow-lg">
+        ورود
+    </button>
+</div>
+
+<!-- Lightbox Overlay -->
+<div id="lightboxOverlay" class="fixed inset-0 bg-black/50 lightbox-overlay hidden z-50" onclick="closeLightbox()">
+    <!-- Lightbox Content -->
+    <div class="lightbox-content fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4" onclick="event.stopPropagation()">
+        <!-- Header -->
+        <div class="p-8 pb-6">
+            <div class="flex justify-end mb-4">
+                <button onclick="closeLightbox()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="text-center mb-6">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-atom text-white text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">خوش آمدید</h2>
+            </div>
+            <p class="text-gray-600 mb-8">شماره موبایل خود را برای دریافت کد تایید وارد کنید</p>
+
+            <!-- Mobile Step -->
+            <div id="mobileStep" class="space-y-6">
+                <div>
+                    <label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">شماره موبایل</label>
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                        placeholder="شماره موبایل را وارد کنید"
+                        maxlength="11"
+                    >
+                </div>
+
+                <button
+                    type="button"
+                    onclick="sendOTP()"
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02] shadow-lg"
+                >
+                    ارسال کد تایید
+                </button>
+            </div>
+
+            <!-- OTP Step -->
+            <div id="otpStep" class="space-y-6 hidden">
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-4">کد ۴ رقمی به شماره زیر ارسال شد</p>
+                    <p class="font-semibold text-gray-800" id="displayMobile"></p>
+                    <button onclick="editMobile()" class="text-sm text-blue-600 hover:text-blue-500 mt-2">تغییر شماره</button>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-4 text-center">کد تایید را وارد کنید</label>
+                    <div class="flex justify-center space-x-3">
+                        <input
+                            type="text"
+                            maxlength="1"
+                            class="w-12 h-12 text-center text-xl font-semibold border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                            oninput="moveToNext(this, 1)"
+                            onkeydown="handleBackspace(this, event)"
+                            id="otp1"
+                        >
+                        <input
+                            type="text"
+                            maxlength="1"
+                            class="w-12 h-12 text-center text-xl font-semibold border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                            oninput="moveToNext(this, 2)"
+                            onkeydown="handleBackspace(this, event)"
+                            id="otp2"
+                        >
+                        <input
+                            type="text"
+                            maxlength="1"
+                            class="w-12 h-12 text-center text-xl font-semibold border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                            oninput="moveToNext(this, 3)"
+                            onkeydown="handleBackspace(this, event)"
+                            id="otp3"
+                        >
+                        <input
+                            type="text"
+                            maxlength="1"
+                            class="w-12 h-12 text-center text-xl font-semibold border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                            oninput="moveToNext(this, 4)"
+                            onkeydown="handleBackspace(this, event)"
+                            id="otp4"
+                        >
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">کد را دریافت نکردید؟</p>
+                    <button onclick="resendOTP()" class="text-sm text-blue-600 hover:text-blue-500 font-medium mt-1" id="resendBtn">
+                        ارسال مجدد کد
+                    </button>
+                    <p class="text-xs text-gray-500 mt-2" id="timer"></p>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="verifyOTP()"
+                    class="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200 transform hover:scale-[1.02] shadow-lg"
+                >
+                    تایید و ورود
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function openLightbox() {
+        document.getElementById('lightboxOverlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightboxOverlay').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    let resendTimer = 30;
+    let timerInterval;
+
+    function sendOTP() {
+        const mobile = document.getElementById('mobile').value;
+
+        if (!mobile || mobile.length < 10) {
+            alert('لطفا شماره موبایل معتبر وارد کنید');
+            return;
+        }
+
+        // Hide mobile step and show OTP step
+        document.getElementById('mobileStep').classList.add('hidden');
+        document.getElementById('otpStep').classList.remove('hidden');
+
+        // Display mobile number
+        document.getElementById('displayMobile').textContent = mobile;
+
+        // Focus on first OTP input
+        document.getElementById('otp1').focus();
+
+        // Start resend timer
+        startResendTimer();
+
+        // Demo message
+        alert('دمو: کد تایید با موفقیت ارسال شد!\n\nبرای تست می‌توانید هر ۴ رقمی وارد کنید.');
+    }
+
+    function moveToNext(current, position) {
+        if (current.value.length === 1) {
+            if (position < 4) {
+                document.getElementById(`otp${position + 1}`).focus();
+            }
+
+            // Auto-verify when all 4 digits are entered
+            if (position === 4) {
+                setTimeout(() => {
+                    const otp = getOTPValue();
+                    if (otp.length === 4) {
+                        verifyOTP();
+                    }
+                }, 100);
+            }
+        }
+    }
+
+    function handleBackspace(current, event) {
+        if (event.key === 'Backspace' && current.value === '') {
+            const currentId = current.id;
+            const currentNum = parseInt(currentId.replace('otp', ''));
+            if (currentNum > 1) {
+                document.getElementById(`otp${currentNum - 1}`).focus();
+            }
+        }
+    }
+
+    function getOTPValue() {
+        return document.getElementById('otp1').value +
+            document.getElementById('otp2').value +
+            document.getElementById('otp3').value +
+            document.getElementById('otp4').value;
+    }
+
+    function verifyOTP() {
+        const otp = getOTPValue();
+
+        if (otp.length !== 4) {
+            alert('لطفا کد ۴ رقمی کامل را وارد کنید');
+            return;
+        }
+
+        // Demo verification
+        alert('دمو: کد تایید با موفقیت تایید شد!\n\nشما وارد شدید.');
+        closeLightbox();
+        resetForm();
+    }
+
+    function editMobile() {
+        document.getElementById('otpStep').classList.add('hidden');
+        document.getElementById('mobileStep').classList.remove('hidden');
+        clearInterval(timerInterval);
+        resetOTPInputs();
+    }
+
+    function resendOTP() {
+        // Reset timer
+        startResendTimer();
+        resetOTPInputs();
+        document.getElementById('otp1').focus();
+        alert('دمو: کد تایید مجدداً ارسال شد!');
+    }
+
+    function startResendTimer() {
+        resendTimer = 30;
+        const resendBtn = document.getElementById('resendBtn');
+        const timerElement = document.getElementById('timer');
+
+        resendBtn.disabled = true;
+        resendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+        timerInterval = setInterval(() => {
+            timerElement.textContent = `ارسال مجدد در ${resendTimer} ثانیه`;
+            resendTimer--;
+
+            if (resendTimer < 0) {
+                clearInterval(timerInterval);
+                resendBtn.disabled = false;
+                resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                timerElement.textContent = '';
+            }
+        }, 1000);
+    }
+
+    function resetOTPInputs() {
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`otp${i}`).value = '';
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('mobile').value = '';
+        resetOTPInputs();
+        document.getElementById('otpStep').classList.add('hidden');
+        document.getElementById('mobileStep').classList.remove('hidden');
+        clearInterval(timerInterval);
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c47f78b08f2dbd',t:'MTc1NDcxMzYxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
