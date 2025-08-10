@@ -52,5 +52,8 @@ class Course extends Model
     {
         $this->hasMany(Order::class);
     }
-
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

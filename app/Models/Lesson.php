@@ -6,5 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    //
+    protected $fillable = [
+        'course_id',
+        'title',
+        'description',
+        'video_url',
+        'spotplayer_lesson_id',
+        'tags',
+        'thumbnail',
+        'is_free',
+        'price',
+        'status',
+        'order',
+        'view',
+        'like',
+    ];
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

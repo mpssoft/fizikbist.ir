@@ -29,4 +29,6 @@ Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verif
 Route::post('/send-otp', [OtpLoginController::class, 'sendOtp'])->name('otp.send');
 Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.verify');
 
+// player
+Route::get('/play/{lesson}',[HomeController::class,'play'])->name('play');
 require __DIR__.'/auth.php';

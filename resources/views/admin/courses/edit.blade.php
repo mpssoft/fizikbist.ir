@@ -13,6 +13,11 @@
     function fmSetLink($url) {
         document.getElementById('image_label').value = $url;
     }
+    function removeCamas() {
+        $('.format_number').each(function (index, element) {
+            $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
+        });
+    }
 </script>
 @section('content')
     <div class="max-w-4xl mx-auto mt-5">
@@ -68,7 +73,7 @@
         <!-- Main Form Container -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div class="p-8">
-                <form method="POST" action="{{ route('admin.courses.update', $course->id) }}" enctype="multipart/form-data" class="space-y-8">
+                <form method="POST" onsubmit="removeCamas()" action="{{ route('admin.courses.update', $course->id) }}  enctype="multipart/form-data" class="space-y-8">
                     @csrf
                     @method('PUT')
 
@@ -108,11 +113,11 @@
                                     قیمت (تومان)
                                 </span>
                             </label>
-                            <input type="number" name="price"
+                            <input type="text" name="price"
                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-green-500 focus:bg-white dark:focus:bg-gray-600
-                                          focus:ring-4 focus:ring-green-500/20 transition-all duration-200"
+                                          focus:ring-4 focus:ring-green-500/20 transition-all duration-200 format_number"
                                    value="{{ old('price', $course->price) }}" required>
                             @error('price')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -129,11 +134,11 @@
                                     قیمت با تخفیف
                                 </span>
                             </label>
-                            <input type="number" name="discount_price"
+                            <input type="text" name="discount_price"
                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-orange-500 focus:bg-white dark:focus:bg-gray-600
-                                          focus:ring-4 focus:ring-orange-500/20 transition-all duration-200"
+                                          focus:ring-4 focus:ring-orange-500/20 transition-all duration-200 format_number"
                                    value="{{ old('discount_price', $course->discount_price) }}">
                             @error('discount_price')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

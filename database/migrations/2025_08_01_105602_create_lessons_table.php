@@ -10,7 +10,15 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('content')->nullable();
+            $table->text('description')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('spotplayer_lesson_id')->nullable()->default(0);
+            $table->string('tags')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->boolean('is_free')->default(true);
+            $table->integer('price')->nullable()->default(0);
+
+            $table->enum('status',['published','draft'])->default('published');
             $table->integer('order')->default(0); // lesson order in course
             $table->integer('view')->default(0);
             $table->integer('like')->default(0);

@@ -79,8 +79,8 @@
             </div>
 
             <!-- Teacher Introduction -->
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="  max-w-7xl mx-auto px-4 py-16">
+                <div class="dark:bg-slate-400 rounded-2xl shadow-xl p-8 md:p-12">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">معرفی استاد</h2>
@@ -203,7 +203,7 @@
 
 
         <!-- Free Lessons Section -->
-        <section class="py-20 bg-gray-100" id="free-courses-section">
+        <section class="py-20 bg-gray-200" id="free-courses-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold text-gray-800 mb-4">درس‌های رایگان</h2>
@@ -212,9 +212,10 @@
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Free Lesson Card 1 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+                    @foreach($lessons as $lesson)
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
                         <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative">
+                            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative" style="background:url('{{$lesson->thumbnail}}');background-size: contain">
                                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                                 <div class="text-white text-4xl z-10">🎬</div>
                                 <div class="absolute inset-0 flex items-center justify-center">
@@ -224,161 +225,23 @@
                                 </div>
                             </div>
                             <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۱۵:۳۰</div>
+                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">
+                                {{ $lesson->duration}} </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">مقدمه‌ای بر HTML</h3>
-                            <p class="text-gray-600 mb-4">اولین قدم‌های خود را در دنیای توسعه وب با یادگیری HTML بردارید.</p>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $lesson->title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ $lesson->description }}</p>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center text-gray-500 text-sm">
                                     <span class="ml-2">👁</span>
-                                    <span>۱۲,۳۴۵ بازدید</span>
+                                    <span>{{$lesson->view}}  بازدید</span>
                                 </div>
-                                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">تماشا کنید</button>
+                                <a href="{{route('play',$lesson->id)}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">تماشا کنید</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Free Lesson Card 2 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center relative">
-                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                                <div class="text-white text-4xl z-10">📊</div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
-                                        <div class="w-0 h-0 border-l-[20px] border-l-green-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۲۲:۱۵</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">آشنایی با Python</h3>
-                            <p class="text-gray-600 mb-4">مبانی برنامه‌نویسی Python را از صفر یاد بگیرید و اولین برنامه خود را بنویسید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-gray-500 text-sm">
-                                    <span class="ml-2">👁</span>
-                                    <span>۸,۹۲۱ بازدید</span>
-                                </div>
-                                <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">تماشا کنید</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Free Lesson Card 3 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center relative">
-                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                                <div class="text-white text-4xl z-10">🎨</div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
-                                        <div class="w-0 h-0 border-l-[20px] border-l-purple-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۱۸:۴۵</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">اصول طراحی UI</h3>
-                            <p class="text-gray-600 mb-4">اصول بنیادی طراحی رابط کاربری و نحوه ایجاد طراحی‌های جذاب را بیاموزید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-gray-500 text-sm">
-                                    <span class="ml-2">👁</span>
-                                    <span>۱۵,۶۷۸ بازدید</span>
-                                </div>
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition duration-300">تماشا کنید</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Free Lesson Card 4 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center relative">
-                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                                <div class="text-white text-4xl z-10">📱</div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
-                                        <div class="w-0 h-0 border-l-[20px] border-l-red-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۲۵:۱۰</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">توسعه اپلیکیشن موبایل</h3>
-                            <p class="text-gray-600 mb-4">مقدمه‌ای بر توسعه اپلیکیشن‌های موبایل و انتخاب بهترین پلتفرم.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-gray-500 text-sm">
-                                    <span class="ml-2">👁</span>
-                                    <span>۹,۴۳۲ بازدید</span>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300">تماشا کنید</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Free Lesson Card 5 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center relative">
-                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                                <div class="text-white text-4xl z-10">💼</div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
-                                        <div class="w-0 h-0 border-l-[20px] border-l-yellow-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۱۲:۳۰</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">مدیریت پروژه</h3>
-                            <p class="text-gray-600 mb-4">اصول مدیریت پروژه و نحوه رهبری تیم‌های موفق را یاد بگیرید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-gray-500 text-sm">
-                                    <span class="ml-2">👁</span>
-                                    <span>۶,۷۸۹ بازدید</span>
-                                </div>
-                                <button class="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300">تماشا کنید</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Free Lesson Card 6 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative">
-                            <div class="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center relative">
-                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                                <div class="text-white text-4xl z-10">🔒</div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
-                                        <div class="w-0 h-0 border-l-[20px] border-l-indigo-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
-                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">۲۰:۰۰</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">امنیت سایبری</h3>
-                            <p class="text-gray-600 mb-4">مبانی امنیت سایبری و نحوه محافظت از داده‌ها و سیستم‌ها.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-gray-500 text-sm">
-                                    <span class="ml-2">👁</span>
-                                    <span>۱۱,۲۳۴ بازدید</span>
-                                </div>
-                                <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">تماشا کنید</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                 </div>
 
                 <div class="text-center mt-12">
                     <button class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-300">مشاهده همه درس‌های رایگان</button>
@@ -387,10 +250,10 @@
         </section>
 
         <!-- Featured Courses Section -->
-        <section class="py-20 bg-white">
+        <section class="py-20  dark:bg-gray-900 dark:text-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-4">دوره‌های محبوب</h2>
+                    <h2 class="text-4xl font-bold dark:text-white mb-4">دوره‌های محبوب</h2>
                     <p class="text-xl text-gray-600 max-w-2xl mx-auto">محبوب‌ترین دوره‌های ما را کشف کنید که برای کمک به تسلط بر مهارت‌های جدید و پیشرفت شغلی شما طراحی شده‌اند.</p>
                 </div>
 
@@ -418,72 +281,8 @@
                         </div>
                     </div>
                     @endforeach
-                    <!-- Course Card 1 -->
-                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                            <div class="text-white text-6xl">💻</div>
-                        </div>
-                        <div class="p-6">
-                           {{-- <div class="flex items-center justify-between mb-3">
-                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">برنامه‌نویسی</span>
-                                <div class="flex items-center text-yellow-500">
-                                    <span class="text-sm font-medium">۴.۸</span>
-                                    <span class="mr-1">⭐</span>
-                                </div>
-                            </div>--}}
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">بوت‌کمپ توسعه وب</h3>
-                            <p class="text-gray-600 mb-4">HTML، CSS، JavaScript و React را برای ساخت اپلیکیشن‌های وب مدرن از صفر یاد بگیرید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="text-2xl font-bold text-blue-600">۹۹ دلار</div>
-                                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">ثبت‌نام کنید</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Course Card 2 -->
-                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
-                            <div class="text-white text-6xl">📊</div>
-                        </div>
-                        <div class="p-6">
-                          {{--  <div class="flex items-center justify-between mb-3">
-                                <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">علم داده</span>
-                                <div class="flex items-center text-yellow-500">
-                                    <span class="text-sm font-medium">۴.۹</span>
-                                    <span class="mr-1">⭐</span>
-                                </div>
-                            </div>--}}
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">کلاس جامع تحلیل داده</h3>
-                            <p class="text-gray-600 mb-4">Python، SQL و تجسم داده را یاد بگیرید تا یک تحلیلگر داده ماهر شوید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="text-2xl font-bold text-green-600">۱۲۹ دلار</div>
-                                <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">ثبت‌نام کنید</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Course Card 3 -->
-                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                            <div class="text-white text-6xl">🎨</div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">طراحی</span>
-                                <div class="flex items-center text-yellow-500">
-                                    <span class="text-sm font-medium">۴.۷</span>
-                                    <span class="mr-1">⭐</span>
-                                </div>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">دوره کامل طراحی UI/UX</h3>
-                            <p class="text-gray-600 mb-4">رابط‌های کاربری و تجربه‌های خیره‌کننده با ابزارهای استاندارد صنعت بسازید.</p>
-                            <div class="flex items-center justify-between">
-                                <div class="text-2xl font-bold text-purple-600">۸۹ دلار</div>
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition duration-300">ثبت‌نام کنید</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
 
                 <div class="text-center mt-12">
                     <button class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-300">مشاهده همه دوره‌ها</button>
@@ -951,7 +750,7 @@
             }
         });
     </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96bfc4f781293ea1',t:'MTc1NDY2NDAzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+
 @endsection
 @section('head')
     {{ $head ?? '' }}

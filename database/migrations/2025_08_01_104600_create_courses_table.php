@@ -10,7 +10,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('price' )->default(0);
-            $table->integer('time')->default(10);
+            $table->integer('time')->nullable()->default(0);
             $table->string('spotplayer_course_id')->nullable()->default(0); // e.g., the video ID from SpotPlayer
             $table->unsignedBigInteger('discount_price')->nullable()->default(0);
             $table->timestamp('discount_expires_at')->nullable();
