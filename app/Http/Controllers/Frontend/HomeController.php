@@ -12,7 +12,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        auth()->loginUsingId(1);
+       // auth()->loginUsingId(1);
+
         $sliders = Slider::all();
         $courses = Course::all();
         $lessons = Lesson::latest()->take(6)->get();

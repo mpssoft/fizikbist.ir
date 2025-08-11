@@ -21,9 +21,11 @@ Route::middleware('guest')->group(function () {
         return redirect('/');
     });
 
-    Route::get('login', function(){
+  /*  Route::get('login', function(){
         return redirect('/');
     })
+        ->name('login');*/
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
