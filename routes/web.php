@@ -25,10 +25,11 @@ Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verif
 
 
 //Route::get("/spot/{orderId}/{spot}",[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
-
+Route::get('/spotx', [HomeController::class, 'refreshCookie']);
 Route::post('/send-otp', [OtpLoginController::class, 'sendOtp'])->name('otp.send');
 Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.verify');
 
 // player
 Route::get('/play/{lesson}',[HomeController::class,'play'])->name('play');
+Route::get('/playCourse/{course}',[HomeController::class,'playCourse'])->name('playCourse');
 require __DIR__.'/auth.php';
