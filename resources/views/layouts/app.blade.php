@@ -19,7 +19,7 @@
 
 
 {{--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">--}}
-        <link href="./fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
+        <link href="/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
         <link href="/css/fizik_styles.css" rel="stylesheet">
         <!-- Scripts -->
         @yield('style')

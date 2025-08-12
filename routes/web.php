@@ -1,9 +1,11 @@
 <?php
 
 
-use Alexusmai\LaravelFileManager\FileManager;
+
 use App\Http\Controllers\Auth\OtpLoginController;
 use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
+
+use App\Http\Controllers\Frontend\ContactMessageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 
@@ -22,6 +24,17 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'twoFactorAuthForm'])->name('twoFactorAuthForm');
 Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verifyToken'])->name('auth.verifyToken');
+
+Route::prefix('course')->group(function(){
+    Route::get('all',[\App\Http\Controllers\Frontend\CourseController::class,'all'])->name('all.courses');
+});
+Route::get('/free/lessons',[\App\Http\Controllers\LessonController::class,'free'])->name('free.lessons');
+Route::get('about',[HomeController::class,'about'])->name('about');
+Route::get('contact',[HomeController::class,'contact'])->name('contact');
+Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+Route::get('ask',[HomeController::class,'faq'])->name('faq');
+
+
 
 
 //Route::get("/spot/{orderId}/{spot}",[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);

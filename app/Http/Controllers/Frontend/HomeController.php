@@ -68,4 +68,17 @@ class HomeController extends Controller
             setcookie('X', $mm[1], time() + (3600*24*365*100), '/', 'localhost', true, false);
         }
     }
+
+    public function about()
+    {
+        return view('frontend.home.about');
+    }
+    public function contact()
+    {
+        return view('frontend.home.contact');
+    }
+    public function faq()
+    {
+        return view('frontend.home.faq');
+    }
 }

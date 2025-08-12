@@ -26,7 +26,7 @@
                                 <!-- آموزش blocks -->
                                 <div class="w-4/5 space-y-4">
                                     <div class="grid grid-cols-2 gap-4 text-sm">
-                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('all.courses')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-cyan-400 text-xl">
                                                 <i class="fas fa-graduation-cap"></i>
                                             </div>
@@ -35,7 +35,7 @@
                                                 <p class="text-xs text-gray-300 mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
                                             </div>
                                         </a>
-                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('user.home')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-green-400 text-xl">
                                                 <i class="fas fa-chart-line"></i>
                                             </div>
@@ -44,16 +44,16 @@
                                                 <p class="text-xs text-gray-300 mt-1">مسیر پیشرفت آموزشی شما</p>
                                             </div>
                                         </a>
-                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('free.lessons')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-pink-400 text-xl">
                                                 <i class="fas fa-gift"></i>
                                             </div>
                                             <div>
-                                                <p class="font-bold">دوره‌های رایگان</p>
+                                                <p class="font-bold">درس های رایگان</p>
                                                 <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
                                             </div>
                                         </a>
-                                        <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                       {{-- <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-yellow-400 text-xl">
                                                 <i class="fas fa-certificate"></i>
                                             </div>
@@ -61,9 +61,9 @@
                                                 <p class="font-bold">آزمون پایان دوره</p>
                                                 <p class="text-xs text-gray-300 mt-1">برگزاری آزمون های دوره</p>
                                             </div>
-                                        </a>
+                                        </a>--}}
                                     </div>
-                                    <hr class="border-slate-600">
+                                   {{-- <hr class="border-slate-600">
                                     <div>
                                         <h4 class="text-sm font-semibold mb-2">محبوب‌ترین آموزش‌ها</h4>
                                         <div class="flex flex-wrap gap-2 text-sm">
@@ -72,7 +72,7 @@
                                             <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش وردپرس</span>
                                             <span class="bg-slate-700 px-3 py-1 rounded-full">آموزش React</span>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
 
                                 <!-- پایه‌ها -->
@@ -106,9 +106,9 @@
                             class="absolute right-0 p-4 mt-6 w-62 whitespace-nowrap w bg-slate-800 text-white rounded-lg shadow-lg z-50 py-2"
                         >
 
-                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
-                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
-                            <a href="#" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
+                            <a href="{{route('faq')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
+                            <a href="{{route('about')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
+                            <a href="{{route('contact')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
                         </div>
                     </div>
                 </div>
@@ -194,49 +194,122 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden">
-        <div class="p-4">
-            <button onclick="toggleMobileMenu()" class="float-left mb-4">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            <div class="clear-both">
-                <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="block hover:bg-gray-100 py-3 text-gray-700">
-                    <i class="fas fa-home mr-4 ml-2 "></i> خانه
-                </a>
-                <div class="py-3">
-                    <div class="text-gray-700 font-medium mb-2">
-                        <i class="fas fa-book mr-4 ml-2"></i> دوره‌ها
+    <!-- Beautiful Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl z-50 md:hidden border-l border-gray-200 dark:border-gray-700">
+
+        <!-- Header Section -->
+        <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 p-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <div class="relative z-10">
+                <button onclick="toggleMobileMenu()" class="float-left mb-4 text-white/90 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <div class="clear-both">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-white font-bold text-lg">آکادمی فیزیک بیست</h2>
+                            <p class="text-white/80 text-sm">یادگیری بدون محدودیت</p>
+                        </div>
                     </div>
-                    <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()" class="block hover:bg-gray-100 py-2 pr-4 text-gray-600">
-                        <i class="fas fa-chalkboard-teacher mr-4 ml-2"></i> پایه دهم
-                    </a>
-                    <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()" class="block hover:bg-gray-100 py-2 pr-4 text-gray-600">
-                        <i class="fas fa-user-graduate mr-4 ml-2"></i> پایه یازدهم
-                    </a>
-                    <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()" class="block hover:bg-gray-100 py-2 pr-4 text-gray-600">
-                        <i class="fas fa-graduation-cap mr-4 ml-2"></i> پایه دوازدهم
-                    </a>
-                    <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()" class="block hover:bg-gray-100 py-2 pr-4 text-gray-600">
-                        <i class="fas fa-university mr-4 ml-2"></i> کنکور
-                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Content -->
+        <div class="p-6 space-y-2 overflow-y-auto h-full pb-32">
+
+            <!-- Home -->
+            <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                    <i class="fas fa-home text-white text-sm"></i>
+                </div>
+                <span class="font-medium">خانه</span>
+            </a>
+
+            <!-- Courses Section -->
+            <div class="space-y-2">
+                <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
+                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-book text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold text-lg">دوره‌ها</span>
                 </div>
 
-                @if(auth()->check())
-                    <div id="mobileUserPanelLink">
-                        <a href="{{route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="block hover:bg-gray-100 py-3 text-gray-700">
-                            <i class="fas fa-user-cog mr-4 ml-2"></i> پنل کاربری
-                        </a>
-                    </div>
-                @else
-                    <button onclick="showLogin(); toggleMobileMenu()"
-                            class="w-full bg-purple-600 text-white py-2 rounded-lg mt-4">
-                        <i class="fas fa-sign-in-alt mr-4 ml-2"></i> ورود / ثبت نام
-                    </button>
-                @endif
+                <div class="mr-6 space-y-1">
+                    <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                            <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
+                        </div>
+                        <span class="font-medium">پایه دهم</span>
+                        <div class="mr-auto">
+                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                            <i class="fas fa-user-graduate text-white text-xs"></i>
+                        </div>
+                        <span class="font-medium">پایه یازدهم</span>
+                        <div class="mr-auto">
+                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                            <i class="fas fa-graduation-cap text-white text-xs"></i>
+                        </div>
+                        <span class="font-medium">پایه دوازدهم</span>
+                        <div class="mr-auto">
+                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                            <i class="fas fa-university text-white text-xs"></i>
+                        </div>
+                        <span class="font-medium">کنکور</span>
+                        <div class="mr-auto">
+                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
+
+            @if(auth()->check())
+                <div id="mobileUserPanelLink" class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                            <i class="fas fa-user-cog text-white text-sm"></i>
+                        </div>
+                        <span class="font-medium">پنل کاربری</span>
+                    </a>
+                </div>
+            @else
+                <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button onclick="showLogin(); toggleMobileMenu()"
+                            class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 hover:from-purple-700 hover:via-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center space-x-3 space-x-reverse">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>ورود / ثبت نام</span>
+                    </button>
+                </div>
+            @endif
         </div>
 
 
     </div>
+
 </nav>
+@push('scripts')
+    <script>
+    function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+    }
+    </script>
+@endpush
