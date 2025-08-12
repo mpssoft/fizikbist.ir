@@ -41,6 +41,7 @@ class SliderController extends Controller
     }
 
     public function update(Request $request, Slider $slider) {
+
         $data = $request->validate([
             'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',

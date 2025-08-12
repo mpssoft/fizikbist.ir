@@ -1,264 +1,226 @@
-@once
-    @push('styles')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-        <style>
-            /* Custom gradient overlays */
-            .gradient-overlay {
-                background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%);
-            }
+<style>
+    .slide {
+        transition: transform 0.5s ease-in-out;
+    }
 
-            /* Enhanced navigation buttons */
-            .swiper-button-next,
-            .swiper-button-prev {
-                width: 50px !important;
-                height: 50px !important;
-                background: rgba(255, 255, 255, 0.1) !important;
-                backdrop-filter: blur(10px) !important;
-                border-radius: 50% !important;
-                border: 2px solid rgba(255, 255, 255, 0.2) !important;
-                transition: all 0.3s ease !important;
-            }
+    .slide-enter-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+    }
 
-            .swiper-button-next:hover,
-            .swiper-button-prev:hover {
-                background: rgba(255, 255, 255, 0.2) !important;
-                transform: scale(1.1) !important;
-                border-color: rgba(255, 255, 255, 0.4) !important;
-            }
+    .slide-enter-right {
+        animation: slideInRight 0.8s ease-out forwards;
+    }
 
-            .swiper-button-next::after,
-            .swiper-button-prev::after {
-                font-size: 18px !important;
-                font-weight: bold !important;
-                color: white !important;
-            }
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
 
-            /* Enhanced pagination */
-            .swiper-pagination-bullet {
-                width: 12px !important;
-                height: 12px !important;
-                background: rgba(255, 255, 255, 0.4) !important;
-                border: 2px solid rgba(255, 255, 255, 0.6) !important;
-                opacity: 1 !important;
-                transition: all 0.3s ease !important;
-            }
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
 
-            .swiper-pagination-bullet-active {
-                background: #f97316 !important;
-                border-color: #f97316 !important;
-                transform: scale(1.2) !important;
-                box-shadow: 0 0 20px rgba(249, 115, 22, 0.6) !important;
-            }
+    .slide-content {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
 
-            /* Content animations */
-            .slide-content {
-                animation: slideUp 0.8s ease-out;
-            }
+    .slide-image {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+</style>
+<div class="container mx-auto px-4 max-w-4xl" >
 
-            @keyframes slideUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
 
-            /* Enhanced button styling */
-            .cta-button {
-                background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-                box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
-                transition: all 0.3s ease;
-            }
-
-            .cta-button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 12px 35px rgba(249, 115, 22, 0.4);
-                background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
-            }
-
-            /* Parallax effect */
-            .parallax-bg {
-                transition: transform 0.1s ease-out;
-            }
-
-            /* Glass morphism effect */
-            .glass-card {
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            }
-
-            /* Floating animation for decorative elements */
-            .floating {
-                animation: floating 3s ease-in-out infinite;
-            }
-
-            @keyframes floating {
-                0%, 100% {
-                    transform: translateY(0px);
-                }
-                50% {
-                    transform: translateY(-10px);
-                }
-            }
-
-            /* Progress bar */
-            .progress-bar {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 4px;
-                background: linear-gradient(90deg, #f97316, #ea580c);
-                animation: progress 5s linear infinite;
-            }
-
-            @keyframes progress {
-                0% {
-                    width: 0%;
-                }
-                100% {
-                    width: 100%;
-                }
-            }
-        </style>
-    @endpush
-
-    @push('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const swiper = new Swiper(".swiper-container", {
-                    loop: true,
-                    effect: 'fade',
-                    fadeEffect: {
-                        crossFade: true
-                    },
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                        dynamicBullets: true,
-                    },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
-                    speed: 1000,
-                    parallax: true,
-                    on: {
-                        slideChange: function () {
-                            // Reset progress bar animation
-                            const progressBars = document.querySelectorAll('.progress-bar');
-                            progressBars.forEach(bar => {
-                                bar.style.animation = 'none';
-                                setTimeout(() => {
-                                    bar.style.animation = 'progress 5s linear infinite';
-                                }, 10);
-                            });
-                        }
-                    }
-                });
-
-                // Add parallax effect on mouse move
-                document.addEventListener('mousemove', (e) => {
-                    const slides = document.querySelectorAll('.parallax-bg');
-                    const x = e.clientX / window.innerWidth;
-                    const y = e.clientY / window.innerHeight;
-
-                    slides.forEach(slide => {
-                        const moveX = (x - 0.5) * 20;
-                        const moveY = (y - 0.5) * 20;
-                        slide.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-                    });
-                });
-            });
-        </script>
-        <script>(function () {
-                function c() {
-                    var b = a.contentDocument || a.contentWindow.document;
-                    if (b) {
-                        var d = b.createElement('script');
-                        d.innerHTML = "window.__CF$cv$params={r:'96bff57ae1514434',t:'MTc1NDY2NjAxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                        b.getElementsByTagName('head')[0].appendChild(d)
-                    }
-                }
-
-                if (document.body) {
-                    var a = document.createElement('iframe');
-                    a.height = 1;
-                    a.width = 1;
-                    a.style.position = 'absolute';
-                    a.style.top = 0;
-                    a.style.left = 0;
-                    a.style.border = 'none';
-                    a.style.visibility = 'hidden';
-                    document.body.appendChild(a);
-                    if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else {
-                        var e = document.onreadystatechange || function () {
-                        };
-                        document.onreadystatechange = function (b) {
-                            e(b);
-                            'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                        }
-                    }
-                }
-            })();</script>
-    @endpush
-
-@endonce
-<div class="relative w-full overflow-hidden">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
+    <!-- Slider Container -->
+    <div class="mt-10 mb-10 relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 overflow-hidden transition-colors duration-300">
+        <!-- Slides Wrapper -->
+        <div class="relative h-96 md:h-[500px] overflow-hidden ">
             <!-- Slide 1 -->
             @foreach($sliders as $slider)
-                <div class="swiper-slide">
-                    <div class="relative w-full h-[70vh] md:h-[85vh] bg-cover bg-center parallax-bg"
-                         style="background-image: url('{{ $slider->image }}');">
-                        <div class="absolute inset-0 gradient-overlay"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="glass-card p-8 md:p-12 rounded-2xl text-center max-w-2xl mx-4 text-white slide-content">
-                                <!-- Decorative floating elements -->
-                                <div
-                                    class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 rounded-full floating opacity-60"></div>
-                                <div
-                                    class="absolute -bottom-2 -left-2 w-6 h-6 bg-blue-500 rounded-full floating opacity-40"
-                                    style="animation-delay: 1s;"></div>
+                <div class="slide absolute inset-0 w-full h-full" id="slide-1">
+                <div class="relative w-full h-full">
+                    <!-- Background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
 
-                                <h2 class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text ">
-                                    {{$slider->title}}
-                                </h2>
-                                <p class="text-lg md:text-xl mb-8 text-gray-200 leading-relaxed">
-                                    {{ $slider->subtitle }}
-                                </p>
-                                @if($slider->link)
-                                    <a href="#"
-                                       class="inline-block cta-button text-white font-semibold py-4 px-8 rounded-full transition duration-300 text-lg">
-                                        اطلاعات بیشتر
-                                    </a>
-                                @endif
+                    <!-- Content Grid -->
+                    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full md:pr-30" dir="ltr">
+
+                        <!-- Text Section (Left) -->
+                        <div dir="rtl" class="text-right slide-content flex flex-col justify-center p-8 md:p-12  text-white order-2 md:order-1">
+                            <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{{ $slider->title }}</h2>
+                            <p class="text-base md:text-lg lg:text-xl mb-6 opacity-90">{{ $slider->subtitle }}</p>
+                            @if($slider->link)
+                                <a href="#" class="leading-right bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors duration-300 shadow-lg w-fit">اطلاعات بیشتر</a>
+                            @endif
+                        </div>
+                        <!-- Photo Section (Right) -->
+                        <div class="  hidden md:block slide-image  items-center justify-center p-8 md:p-12 order-1 md:order-2">
+                            <div style="background:url('{{$slider->image}}');background-size:contain ;" class="w-80 h-80 md:w-full md:h-full rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm shadow-amber-500 border-white/20">
+
                             </div>
                         </div>
-                        <div class="progress-bar"></div>
+
                     </div>
                 </div>
+            </div>
             @endforeach
 
         </div>
 
-        <!-- Enhanced Navigation buttons -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <!-- Navigation Arrows -->
+        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm" onclick="previousSlide()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
 
-        <!-- Enhanced Pagination -->
-        <div class="swiper-pagination !bottom-8"></div>
+        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm" onclick="nextSlide()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <!-- Dots Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex ">
+            <button class="w-3 h-3 rounded-full bg-white transition-all duration-500 hover:scale-110 active-dot ml-3" onclick="goToSlide(0)" id="dot-0"></button>
+            <button class="w-3 h-3 rounded-full bg-white bg-opacity-40 transition-all duration-500 hover:scale-110 ml-3" onclick="goToSlide(1)" id="dot-1"></button>
+            <button class="w-3 h-3 rounded-full bg-white bg-opacity-40 transition-all duration-500 hover:scale-110 ml-3" onclick="goToSlide(2)" id="dot-2"></button>
+        </div>
     </div>
+
+
 </div>
 
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('[id^="dot-"]');
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            const slideContent = slide.querySelector('.slide-content');
+            const slideImage = slide.querySelector('.slide-image');
+
+            if (index === currentSlide) {
+                slide.style.transform = 'translateX(0)';
+
+                // Animate content and image
+                setTimeout(() => {
+                    slideContent.classList.add('slide-enter-left');
+                    slideImage.classList.add('slide-enter-right');
+                }, 100);
+            } else {
+                // Reset animations
+                slideContent.classList.remove('slide-enter-left');
+                slideImage.classList.remove('slide-enter-right');
+
+                if (index < currentSlide) {
+                    slide.style.transform = 'translateX(-100%)';
+                } else {
+                    slide.style.transform = 'translateX(100%)';
+                }
+            }
+        });
+
+        // Update dots
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.remove('bg-opacity-40', 'bg-opacity-60');
+                dot.classList.add('active-dot');
+                dot.style.transform = 'scale(1.2)';
+                dot.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+            } else {
+                dot.classList.remove('active-dot');
+                dot.style.transform = 'scale(1)';
+                dot.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function previousSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+    }
+
+    // Auto-play functionality
+    setInterval(nextSlide, 10000);
+
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let endX = 0;
+
+    document.querySelector('.relative.bg-white').addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    document.querySelector('.relative.bg-white').addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        }
+    }
+
+    // Dark mode toggle functionality
+    function toggleDarkMode() {
+        document.documentElement.classList.toggle('dark');
+
+        // Save preference to localStorage
+        if (document.documentElement.classList.contains('dark')) {
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            localStorage.setItem('darkMode', 'false');
+        }
+    }
+
+    // Initialize dark mode based on user preference or system preference
+    function initializeDarkMode() {
+        const savedMode = localStorage.getItem('darkMode');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedMode === 'true' || (savedMode === null && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+        }
+    }
+
+    // Initialize
+    initializeDarkMode();
+    updateSlider();
+</script>

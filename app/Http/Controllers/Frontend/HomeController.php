@@ -15,10 +15,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-       // auth()->loginUsingId(1);
+        auth()->loginUsingId(1);
 
         $sliders = Slider::all();
-        $courses = Course::all();
+        $courses = Course::where('spotplayer_course_id','!=','')->get();
         $lessons = Lesson::latest()->take(6)->get();
         return view('frontend.home.index',compact('sliders','courses','lessons'));
     }
@@ -30,28 +30,18 @@ class HomeController extends Controller
 
         public function refreshCookie(Request $request)
     {
-        $cookieName = 'X';
-        $X = $request->cookie($cookieName);
-
-        if (!$X || (microtime(true) * 1000) > hexdec(substr($X, 24, 12))) {
+        if ((microtime(true) * 1000) > hexdec(substr($X = $_COOKIE['X'], 24, 12))) {
             $ch = curl_init();
             curl_setopt_array($ch, [
-                CURLOPT_HEADER         => true,
-                CURLOPT_NOBODY         => true,
+                CURLOPT_HEADER => true,
+                CURLOPT_NOBODY => true,
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_URL            => 'https://app.spotplayer.ir/',
-                CURLOPT_HTTPHEADER     => ['cookie: X=' . $X],
+                CURLOPT_URL => 'https://app.spotplayer.ir/',
+                CURLOPT_HTTPHEADER => ['cookie: X=' . $X]
             ]);
-            preg_match('/X=([a-f0-9]+);/', curl_exec($ch), $match);
-            curl_close($ch);
-
-            if (!empty($match[1])) {
-                cookie()->queue(cookie($cookieName, $match[1], 525600, '/', 'fizikbist.ir', true, false));
-            }
+            preg_match('/X=([a-f0-9]+);/', curl_exec($ch), $mm);
+            setcookie('X', $mm[1], time() + (3600*24*365*100), '/', 'fizikbist.ir', true, false);
         }
-
-        return response()->noContent();
-
 
     }
     public function playCourse(Request $request , Course $course)

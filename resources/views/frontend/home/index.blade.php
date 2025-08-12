@@ -17,42 +17,7 @@
                 transform: rotate(360deg);
             }
         }
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Vazirmatn', sans-serif; direction: rtl; }
 
-        .slider-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slide {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .slide.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .course-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .stat-counter {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #3B82F6;
-        }
     </style>
 @endsection
 @section("content")
@@ -284,9 +249,6 @@
 
               </div>
 
-                <div class="text-center mt-12">
-                    <button class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-300">مشاهده همه دوره‌ها</button>
-                </div>
             </div>
         </section>
 
@@ -696,60 +658,7 @@
         }
     </script>
     {{ $script ?? '' }}
-    <script>
-        let slideIndex = 1;
-        showSlide(slideIndex);
 
-        // Auto-advance slides every 5 seconds
-        setInterval(function() {
-            plusSlides(1);
-        }, 5000);
-
-        function plusSlides(n) {
-            showSlide(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
-
-        function showSlide(n) {
-            let slides = document.getElementsByClassName("slide");
-            let dots = document.getElementsByClassName("slider-dot");
-
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("opacity-100");
-                dots[i].classList.add("opacity-50");
-            }
-
-            slides[slideIndex-1].classList.add("active");
-            dots[slideIndex-1].classList.remove("opacity-50");
-            dots[slideIndex-1].classList.add("opacity-100");
-        }
-
-        // Add click functionality to all buttons
-        document.querySelectorAll('button').forEach(button => {
-            if (!button.onclick && !button.classList.contains('slider-dot')) {
-                button.addEventListener('click', function() {
-                    // Simulate button action with visual feedback
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-
-                    // You can add specific actions for different buttons here
-                    console.log('Button clicked:', this.textContent);
-                });
-            }
-        });
-    </script>
 
 @endsection
 @section('head')

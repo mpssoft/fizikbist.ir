@@ -16,6 +16,7 @@ class Lesson extends Model
         'thumbnail',
         'is_free',
         'price',
+        'duration',
         'status',
         'order',
         'view',
@@ -24,5 +25,9 @@ class Lesson extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(User::class);
     }
 }
