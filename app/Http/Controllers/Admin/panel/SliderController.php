@@ -28,7 +28,7 @@ class SliderController extends Controller
             'order' => 'numeric',
         ]);
 
-        $data['is_active'] = $request->has('is_active');
+        $data['is_active'] = $request->has('is_active')? true:false;
 
 
         Slider::create($data);
@@ -50,7 +50,7 @@ class SliderController extends Controller
             'order' => 'numeric',
         ]);
 
-        $data['is_active'] = $request->has('is_active')? 1:0;
+        $data['is_active'] = $request->has('is_active')? true:false;
 
 
         $slider->update($data);

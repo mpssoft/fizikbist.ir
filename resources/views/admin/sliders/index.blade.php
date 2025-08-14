@@ -78,8 +78,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row items-center gap-3">
-                            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                فعال
+                            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-green-100 {{$slider->is_active ? 'text-green-800 dark:bg-green-900':'text-orange-500 dark:bg-orange-500'}}  dark:text-green-200">
+                                {{$slider->is_active ? 'فعال':'غیرفعال'}}
                             </span>
                             <div class="flex items-center gap-2">
                                 <a href="{{ route('admin.sliders.edit',$slider->id) }}" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">

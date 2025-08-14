@@ -22,7 +22,7 @@
 @endsection
 @section("content")
         <!-- Hero Slider Section -->
-        @include('frontend.home.home-slider', ['sliders' => \App\Models\Slider::orderBy('order')->get()])
+        @include('frontend.home.home-slider', ['sliders' => $sliders])
         <!-- Home Section -->
         <section id="homeSection" class="section">
             <!-- Hero Section -->

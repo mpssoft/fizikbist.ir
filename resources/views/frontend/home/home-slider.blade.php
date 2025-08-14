@@ -71,8 +71,8 @@
                         </div>
                         <!-- Photo Section (Right) -->
                         <div class="  hidden md:block slide-image  items-center justify-center p-8 md:p-12 order-1 md:order-2">
-                            <div style="background:url('{{$slider->image}}');background-size:contain ;" class="w-80 h-80 md:w-full md:h-full rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm shadow-amber-500 border-white/20">
-
+                            <div  class=" md:w-full md:h-full rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm shadow-amber-500 border-white/20">
+                                <img src="{{$slider->image}}" class="w-full h-full" />
                             </div>
                         </div>
 
@@ -98,9 +98,13 @@
 
         <!-- Dots Indicator -->
         <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex ">
-            <button class="w-3 h-3 rounded-full bg-white transition-all duration-500 hover:scale-110 active-dot ml-3" onclick="goToSlide(0)" id="dot-0"></button>
-            <button class="w-3 h-3 rounded-full bg-white bg-opacity-40 transition-all duration-500 hover:scale-110 ml-3" onclick="goToSlide(1)" id="dot-1"></button>
-            <button class="w-3 h-3 rounded-full bg-white bg-opacity-40 transition-all duration-500 hover:scale-110 ml-3" onclick="goToSlide(2)" id="dot-2"></button>
+
+            @php $index = 0; @endphp
+            @foreach($sliders as $s)
+                 <button class="w-3 h-3 rounded-full bg-white transition-all duration-500 hover:scale-110 active-dot ml-3" onclick="goToSlide({{$index++}})" id="dot-0"></button>
+            @endforeach
+
+
         </div>
     </div>
 
