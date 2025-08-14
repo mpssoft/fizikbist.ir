@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Discount\Providers;
+namespace Modules\Cart\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -8,13 +8,13 @@ use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-class DiscountServiceProvider extends ServiceProvider
+class CartServiceProvider extends ServiceProvider
 {
     use PathNamespace;
 
-    protected string $name = 'Discount';
+    protected string $name = 'Cart';
 
-    protected string $nameLower = 'discount';
+    protected string $nameLower = 'cart';
 
     /**
      * Boot the application events.

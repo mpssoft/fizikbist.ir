@@ -1,18 +1,18 @@
 <?php
 
-namespace Modules\Discount\Http\Controllers\Admin;
+namespace Modules\Cart\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DiscountController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('discount::index');
+        return view('cart::index');
     }
 
     /**
@@ -20,7 +20,7 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        return view('discount::create');
+        return view('cart::create');
     }
 
     /**
@@ -33,7 +33,7 @@ class DiscountController extends Controller
      */
     public function show($id)
     {
-        return view('discount::show');
+        return view('cart::show');
     }
 
     /**
@@ -41,7 +41,7 @@ class DiscountController extends Controller
      */
     public function edit($id)
     {
-        return view('discount::edit');
+        return view('cart::edit');
     }
 
     /**

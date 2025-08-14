@@ -123,10 +123,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Modules\\Discount\\Tests\\' => 23,
-            'Modules\\Discount\\Database\\Seeders\\' => 34,
-            'Modules\\Discount\\Database\\Factories\\' => 36,
-            'Modules\\Discount\\' => 17,
+            'Modules\\Cart\\Tests\\' => 19,
+            'Modules\\Cart\\Database\\Seeders\\' => 30,
+            'Modules\\Cart\\Database\\Factories\\' => 32,
+            'Modules\\Cart\\' => 13,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -426,21 +426,21 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Modules\\Discount\\Tests\\' => 
+        'Modules\\Cart\\Tests\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/tests',
+            0 => __DIR__ . '/../..' . '/Modules/Cart/tests',
         ),
-        'Modules\\Discount\\Database\\Seeders\\' => 
+        'Modules\\Cart\\Database\\Seeders\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/database/seeders',
+            0 => __DIR__ . '/../..' . '/Modules/Cart/database/seeders',
         ),
-        'Modules\\Discount\\Database\\Factories\\' => 
+        'Modules\\Cart\\Database\\Factories\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/database/factories',
+            0 => __DIR__ . '/../..' . '/Modules/Cart/database/factories',
         ),
-        'Modules\\Discount\\' => 
+        'Modules\\Cart\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/app',
+            0 => __DIR__ . '/../..' . '/Modules/Cart/app',
         ),
         'Mockery\\' => 
         array (
@@ -713,7 +713,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Alexusmai\\LaravelFileManager\\Traits\\ContentTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/ContentTrait.php',
         'Alexusmai\\LaravelFileManager\\Traits\\PathTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/PathTrait.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminCourseController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\AdminLessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminLessonController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminPanelController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/GradeController.php',
         'App\\Http\\Controllers\\Admin\\panel\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/SliderController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -731,7 +733,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/CourseController.php',
+        'App\\Http\\Controllers\\Frontend\\ContactMessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ContactMessageController.php',
+        'App\\Http\\Controllers\\Frontend\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CourseController.php',
         'App\\Http\\Controllers\\Frontend\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/HomeController.php',
+        'App\\Http\\Controllers\\Frontend\\LessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/LessonController.php',
         'App\\Http\\Controllers\\LessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/LessonController.php',
         'App\\Http\\Controllers\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaymentController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -742,7 +747,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\ActiveCode' => __DIR__ . '/../..' . '/app/Models/ActiveCode.php',
+        'App\\Models\\ContactMessage' => __DIR__ . '/../..' . '/app/Models/ContactMessage.php',
         'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
+        'App\\Models\\Grade' => __DIR__ . '/../..' . '/app/Models/Grade.php',
         'App\\Models\\Lesson' => __DIR__ . '/../..' . '/app/Models/Lesson.php',
         'App\\Models\\License' => __DIR__ . '/../..' . '/app/Models/License.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
@@ -4437,13 +4444,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
-        'Modules\\Discount\\Database\\Seeders\\DiscountDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Discount/database/seeders/DiscountDatabaseSeeder.php',
-        'Modules\\Discount\\Http\\Controllers\\Admin\\DiscountController' => __DIR__ . '/../..' . '/Modules/Discount/app/Http/Controllers/Admin/DiscountController.php',
-        'Modules\\Discount\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Discount/app/Http/Controllers/DiscountController.php',
-        'Modules\\Discount\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Discount/app/Models/Discount.php',
-        'Modules\\Discount\\Providers\\DiscountServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/DiscountServiceProvider.php',
-        'Modules\\Discount\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/EventServiceProvider.php',
-        'Modules\\Discount\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/RouteServiceProvider.php',
+        'Modules\\Cart\\Database\\Seeders\\CartDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Cart/database/seeders/CartDatabaseSeeder.php',
+        'Modules\\Cart\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Cart/app/Http/Controllers/CartController.php',
+        'Modules\\Cart\\Providers\\CartServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/CartServiceProvider.php',
+        'Modules\\Cart\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/EventServiceProvider.php',
+        'Modules\\Cart\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/RouteServiceProvider.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
