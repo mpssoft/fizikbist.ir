@@ -50,8 +50,8 @@ class CartService
                 $cart->put($key, $item);
             } else {
                 $cart->put($key, [
-                    'type'  => $type,
-                    'id'    => $id,
+                    'item_type'  => $type,
+                    'item_id'    => $id,
                     'qty'   => $qty,
                     'price' => $price,
                     'discount' => $discount ? $discount : null                ]);
@@ -95,8 +95,9 @@ class CartService
         if (Auth::check()) {
             $cart = Auth::user()->cartItems()->get()->toArray();
             //$this->autoApplyDiscounts($cart);
+
             $cart = collect($cart)->map(function ($item) {
-                if (isset($item['type'], $item['id'])) {
+                if (isset($item['item_type'], $item['item_id'])) {
                     $item = $this->withRelationshipIfExist($item);
                 }
                 return $item;
@@ -104,7 +105,7 @@ class CartService
 
             // key the cart by type-id for consistency
             $cart = $cart->keyBy(function ($item) {
-                return $item['type'] . '-' . $item['id'];
+                return $item['item_type'] . '-' . $item['item_id'];
             });
 
             return $cart;
@@ -114,7 +115,7 @@ class CartService
 
             // key the cart by type-id
             $cart = collect($cart)->keyBy(function ($item) {
-                return $item['type'] . '-' . $item['id'];
+                return $item['item_type'] . '-' . $item['item_id'];
             });
 
             return $cart;
@@ -138,7 +139,7 @@ class CartService
     private function withRelationshipIfExist($item)
     {
 
-        $modelClass = $item['type'];
+        $modelClass = $item['item_type'];
 
         if (class_exists($modelClass)) {
             $item['model'] = $modelClass::find($item['id']); // Eloquent model
@@ -251,8 +252,8 @@ class CartService
 
         foreach ($guestCart as $item) {
             $existing = $user->cartItems()
-                ->where('item_type', $item['type'])
-                ->where('item_id', $item['id'])
+                ->where('item_type', $item['item_type'])
+                ->where('item_id', $item['item_id'])
                 ->first();
 
             if ($existing) {
@@ -260,8 +261,8 @@ class CartService
                 $existing->save();
             } else {
                 $user->cartItems()->create([
-                    'type'    => $item['type'],
-                    'item_id' => $item['id'],
+                    'item_type'    => $item['item_type'],
+                    'item_id' => $item['item_id'],
                     'qty'     => $item['qty'],
                     'price'   => $item['price'] ?? 0
                 ]);

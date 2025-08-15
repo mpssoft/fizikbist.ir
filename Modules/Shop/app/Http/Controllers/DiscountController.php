@@ -35,16 +35,18 @@ class DiscountController extends Controller
             'code'       => ['nullable', 'string', 'max:50', Rule::unique('discounts')],
             'type'       => ['required', 'in:percent,fixed'],
             'value'      => ['required', 'numeric', 'min:0'],
-            'applies_to' => ['required', 'string'], // course, lesson, product...
-            'item_id'    => ['nullable', 'integer'],
-            'is_active'  => ['required', 'boolean'],
             'start_at'   => ['nullable', 'date'],
             'end_at'     => ['nullable', 'date'],
         ]);
 
+        if(isset($request->is_active)){
+            $data['is_active'] = 1;
+        }else
+            $data['is_active'] = 0;
+
         Discount::create($data);
 
-        return redirect()->route('admin.shop.discounts.index')
+        return redirect()->route('shop.admin.discounts.index')
             ->with('success', 'کد تخفیف با موفقیت ایجاد شد.');
     }
 
@@ -65,16 +67,16 @@ class DiscountController extends Controller
             'code'       => ['nullable', 'string', 'max:50', Rule::unique('discounts')->ignore($discount->id)],
             'type'       => ['required', 'in:percent,fixed'],
             'value'      => ['required', 'numeric', 'min:0'],
-            'applies_to' => ['required', 'string'],
-            'item_id'    => ['nullable', 'integer'],
-            'is_active'  => ['required', 'boolean'],
             'start_at'   => ['nullable', 'date'],
             'end_at'     => ['nullable', 'date'],
         ]);
-
+        if(isset($request->is_active)){
+            $data['is_active'] = 1;
+        }else
+            $data['is_active'] = 0;
         $discount->update($data);
-
-        return redirect()->route('admin.shop.discounts.index')
+        toast('تخفیف با موفقیت ویرایش شد.','success','center');
+        return redirect()->route('shop.admin.discounts.index')
             ->with('success', 'تخفیف با موفقیت ویرایش شد.');
     }
 
@@ -85,7 +87,7 @@ class DiscountController extends Controller
     {
         $discount->delete();
 
-        return redirect()->route('admin.shop.discounts.index')
+        return redirect()->route('shop.admin.discounts.index')
             ->with('success', 'تخفیف حذف شد.');
     }
 }

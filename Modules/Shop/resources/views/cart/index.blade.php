@@ -37,14 +37,17 @@
                             <thead>
                             <tr class="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-200">
                                 <th class="py-4 px-6 text-right font-medium">نوع محصول</th>
-
-                                <th class="py-4 px-6 text-right font-medium">تعداد</th>
                                 <th class="py-4 px-6 text-right font-medium">قیمت</th>
                                 <th class="py-4 px-6 text-right font-medium">تخفیف</th>
                                 <th class="py-4 px-6 text-right font-medium">عملیات</th>
                             </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            @php
+
+                            $wholePrice = 0;
+                            $wholeDiscount = 0;
+                            @endphp
                             @foreach($cart as $item)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors duration-200">
                                 <td class="py-4 px-6">
@@ -58,27 +61,30 @@
                                     </div>
                                 </td>
 
+
                                 <td class="py-4 px-6">
-                                    <div class="flex items-center space-x-2 space-x-reverse">
-                                        <button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center transition-colors">
-                                            <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                                            </svg>
-                                        </button>
-                                        <span class="w-12 text-center font-medium text-gray-800 dark:text-gray-100">{{ $item['qty'] }}</span>
-                                        <button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center transition-colors">
-                                            <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="font-semibold text-gray-800 dark:text-gray-100">{{number_format($item['price'])}} تومان</span>
+                                    @if($item['discount'])
+                                        @php
+                                            $discount = collect(json_decode($item['discount'],true));
+                                            if($discount['type'] == 'percent')
+                                                $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
+                                            else
+                                                $discounted = $item['price'] - $discount['value'] ;
+
+                                        @endphp
+                                    <del class="text-red-600 text-sm "> {{number_format($item['price'])}} تومان</del>
+                                        <span class="font-semibold text-gray-800 dark:text-gray-100">{{number_format($discounted) }} تومان</span>
+
+                                    @else
+
+                                        <span class="font-semibold text-gray-800 dark:text-gray-100">{{number_format($item['price'])}} تومان</span>
+                                    @endif
                                 </td>
                                 <td class="py-4 px-6">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
-                                            10%
+                                              @if($item['discount'])
+                                                  {{$discount['type'] == 'percent' ? $discount['value'].'٪':$discount['value'].' تومان '}}
+                                                  @endif
                                         </span>
                                 </td>
                                 <td class="py-4 px-6">
@@ -97,7 +103,9 @@
 
                     <!-- Mobile Card View -->
                     <div class="md:hidden space-y-4 p-4">
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-300">
+                        @foreach($cart as $item)
+
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-300">
                             <div class="flex items-start justify-between mb-3">
                                 <div class="flex items-center">
                                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center ml-3 transition-colors duration-300">
@@ -106,8 +114,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">محصول دیجیتال</h3>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 font-mono transition-colors duration-300">#12345</p>
+                                        <h3 class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">{{$item['model']['title']}}</h3>
+
                                     </div>
                                 </div>
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 transition-colors duration-300">
@@ -115,60 +123,38 @@
                                 </span>
                             </div>
                             <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-2 space-x-reverse">
-                                    <button class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 hover:bg-gray-100 dark:hover:bg-gray-500 flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-500">
-                                        <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                                        </svg>
-                                    </button>
-                                    <span class="w-12 text-center font-medium text-gray-800 dark:text-gray-100 transition-colors duration-300">2</span>
-                                    <button class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 hover:bg-gray-100 dark:hover:bg-gray-500 flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-500">
-                                        <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">250,000 تومان</p>
-                                    <button class="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium mt-1 transition-colors duration-300">حذف</button>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-300">
-                            <div class="flex items-start justify-between mb-3">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center ml-3 transition-colors duration-300">
-                                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">کتاب الکترونیک</h3>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 font-mono transition-colors duration-300">#67890</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-2 space-x-reverse">
-                                    <button class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 hover:bg-gray-100 dark:hover:bg-gray-500 flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-500">
-                                        <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                                        </svg>
-                                    </button>
-                                    <span class="w-12 text-center font-medium text-gray-800 dark:text-gray-100 transition-colors duration-300">1</span>
-                                    <button class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 hover:bg-gray-100 dark:hover:bg-gray-500 flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-500">
-                                        <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                        </svg>
-                                    </button>
-                                </div>
                                 <div class="text-left">
-                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">150,000 تومان</p>
-                                    <button class="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium mt-1 transition-colors duration-300">حذف</button>
+                                    @if($item['discount'])
+                                        @php
+                                            $discount = collect(json_decode($item['discount'],true));
+                                            if($discount['type'] == 'percent')
+                                                $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
+                                            else
+                                                $discounted = $item['price'] - $discount['value'] ;
+                                            $wholePrice += $item['price'];
+                                            $wholeDiscount += $item['price'] - $discounted;
+                                        @endphp
+
+                                    <del class="font-semibold text-red-800 dark:text-red-800 transition-colors text-sm  duration-300">
+                                        {{$item['price']}} تومان</del>
+                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">{{$discounted}} تومان</p>
+                                    @else
+                                        @php  $wholePrice += $item['price']; @endphp
+                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">250,000 تومان</p>
+                                    @endif
+
                                 </div>
+                                <button class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-all duration-200 hover:shadow-lg">
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                    حذف
+                                </button>
                             </div>
                         </div>
+                        @endforeach
+
                     </div>
                 </div>
 
@@ -205,11 +191,11 @@
                             <div class="space-y-4 mb-6">
                                 <div class="flex justify-between text-gray-600 dark:text-gray-300">
                                     <span>جمع کل محصولات:</span>
-                                    <span>400,000 تومان</span>
+                                    <span>{{ $wholePrice }} تومان</span>
                                 </div>
                                 <div class="flex justify-between text-green-600 dark:text-green-400">
                                     <span>تخفیف:</span>
-                                    <span>-25,000 تومان</span>
+                                    <span>{{ $wholeDiscount }} تومان</span>
                                 </div>
                                 <div class="flex justify-between text-gray-600 dark:text-gray-300">
                                     <span>هزینه ارسال:</span>
@@ -218,7 +204,7 @@
                                 <hr class="border-gray-200 dark:border-gray-600">
                                 <div class="flex justify-between text-lg font-bold text-gray-800 dark:text-gray-100">
                                     <span>مبلغ نهایی:</span>
-                                    <span class="text-blue-600 dark:text-blue-400">375,000 تومان</span>
+                                    <span class="text-blue-600 dark:text-blue-400">{{ $wholePrice-$wholeDiscount }} تومان</span>
                                 </div>
                             </div>
 

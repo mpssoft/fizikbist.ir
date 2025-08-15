@@ -26,19 +26,19 @@ class CartController extends Controller
     public function index()
     {
         $cart = $this->cartService->getCart();
-        dd($cart);
+
         $cart =  collect($cart)->map(function ($item) {
 
-            if (isset($item['type'], $item['id'])) {
-                $modelClass = $item['type'];
+            if (isset($item['item_type'], $item['item_id'])) {
+                $modelClass = $item['item_type'];
 
                 if (class_exists($modelClass)) {
-                    $item['model'] = $modelClass::find($item['id']); // Eloquent model
+                    $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
                 }
             }
             return $item;
         });
-
+        //dd($cart);
         return view('shop::cart.index', compact('cart'));
     }
 
