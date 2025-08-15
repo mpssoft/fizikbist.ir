@@ -131,6 +131,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Shop\\Database\\Seeders\\' => 30,
             'Modules\\Shop\\Database\\Factories\\' => 32,
             'Modules\\Shop\\' => 13,
+            'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -454,6 +455,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Shop\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Shop/app',
+        ),
+        'Modules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules',
         ),
         'Mockery\\' => 
         array (

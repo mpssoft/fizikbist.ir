@@ -65,6 +65,7 @@ return array(
     'Modules\\Shop\\Database\\Seeders\\' => array($baseDir . '/Modules/Shop/database/seeders'),
     'Modules\\Shop\\Database\\Factories\\' => array($baseDir . '/Modules/Shop/database/factories'),
     'Modules\\Shop\\' => array($baseDir . '/Modules/Shop/app'),
+    'Modules\\' => array($baseDir . '/Modules'),
     'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
     'Melipayamak\\Laravel\\' => array($vendorDir . '/melipayamak/laravel/src'),
     'Melipayamak\\' => array($vendorDir . '/melipayamak/php/src'),
