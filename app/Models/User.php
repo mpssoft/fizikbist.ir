@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Shop\Models\CartItem;
+use Modules\Shop\Models\Discount;
 
 class User extends Authenticatable
 {
@@ -87,6 +89,15 @@ class User extends Authenticatable
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class);
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
     }
 
 }

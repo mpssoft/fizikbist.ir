@@ -30,6 +30,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="text-1xl font-bold text-blue-600"> {{ number_format($course->price) }}تومان  </div>
                                 <a href="{{route('user.create.order',$course->id)}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">خرید دوره </a>
+                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">خرید دوره </a>
                             </div>
                         </div>
                     </div>

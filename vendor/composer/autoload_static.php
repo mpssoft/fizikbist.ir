@@ -123,10 +123,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Modules\\Cart\\Tests\\' => 19,
-            'Modules\\Cart\\Database\\Seeders\\' => 30,
-            'Modules\\Cart\\Database\\Factories\\' => 32,
-            'Modules\\Cart\\' => 13,
+            'Modules\\Shop\\Tests\\' => 19,
+            'Modules\\Shop\\Services\\' => 22,
+            'Modules\\Shop\\Database\\Seeders\\' => 30,
+            'Modules\\Shop\\Database\\Factories\\' => 32,
+            'Modules\\Shop\\' => 13,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -426,21 +427,25 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Modules\\Cart\\Tests\\' => 
+        'Modules\\Shop\\Tests\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Cart/tests',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/tests',
         ),
-        'Modules\\Cart\\Database\\Seeders\\' => 
+        'Modules\\Shop\\Services\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Cart/database/seeders',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/Services',
         ),
-        'Modules\\Cart\\Database\\Factories\\' => 
+        'Modules\\Shop\\Database\\Seeders\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Cart/database/factories',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/database/seeders',
         ),
-        'Modules\\Cart\\' => 
+        'Modules\\Shop\\Database\\Factories\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Cart/app',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/database/factories',
+        ),
+        'Modules\\Shop\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Shop/app',
         ),
         'Mockery\\' => 
         array (
@@ -4444,11 +4449,17 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
-        'Modules\\Cart\\Database\\Seeders\\CartDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Cart/database/seeders/CartDatabaseSeeder.php',
-        'Modules\\Cart\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Cart/app/Http/Controllers/CartController.php',
-        'Modules\\Cart\\Providers\\CartServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/CartServiceProvider.php',
-        'Modules\\Cart\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/EventServiceProvider.php',
-        'Modules\\Cart\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Cart/app/Providers/RouteServiceProvider.php',
+        'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
+        'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
+        'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',
+        'Modules\\Shop\\Http\\Controllers\\ShopController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/ShopController.php',
+        'Modules\\Shop\\Listeners\\MergeCartAfterLogin' => __DIR__ . '/../..' . '/Modules/Shop/app/Listeners/MergeCartAfterLogin.php',
+        'Modules\\Shop\\Models\\CartItem' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/CartItem.php',
+        'Modules\\Shop\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/Discount.php',
+        'Modules\\Shop\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/EventServiceProvider.php',
+        'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/RouteServiceProvider.php',
+        'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/ShopServiceProvider.php',
+        'Modules\\Shop\\Services\\CartService' => __DIR__ . '/../..' . '/Modules/Shop/Services/CartService.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',

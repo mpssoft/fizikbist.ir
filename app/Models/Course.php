@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+use Modules\Shop\Models\Discount;
+
 class Course extends Model
 {
     use HasFactory;
@@ -55,5 +58,11 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
+    }
+    // In Course model
+
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
     }
 }

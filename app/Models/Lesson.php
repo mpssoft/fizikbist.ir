@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Modules\Shop\Models\Discount;
+
 class Lesson extends Model
 {
     protected $fillable = [
@@ -29,5 +31,9 @@ class Lesson extends Model
     public function students()
     {
         return $this->belongsToMany(User::class);
+    }
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
     }
 }
