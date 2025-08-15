@@ -29,8 +29,20 @@
                             <p class="text-gray-600 mb-4">{{ $course->description }}</p>
                             <div class="flex items-center justify-between">
                                 <div class="text-1xl font-bold text-blue-600"> {{ number_format($course->price) }}تومان  </div>
-                                <a href="{{route('user.create.order',$course->id)}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">خرید دوره </a>
-                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">خرید دوره </a>
+
+
+                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" aria-label="Add to cart"
+                                   class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-wide
+          bg-neutral-900 text-neutral-100 hover:bg-black active:bg-neutral-800
+          shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
+          dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-900">
+                                    <!-- Icon placeholder (use your favorite icon font class here) -->
+                                    <i class="fa-solid fa-cart-plus text-neutral-200 group-hover:text-white text-base"></i>
+                                    خرید دوره
+                                </a>
+
+
+
                             </div>
                         </div>
                     </div>

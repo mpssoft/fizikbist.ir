@@ -177,6 +177,22 @@
                         </div>
                     </div>
                 @else
+
+                    <a href="/cart" type="button" aria-label="Open cart"
+                            class="relative inline-flex items-center justify-center rounded-full bg-white/80 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 hover:bg-white dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white shadow-sm ring-1 ring-neutral-200/70 dark:ring-neutral-700/60 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-10 h-10">
+                        <!-- Cart icon -->
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
+                            <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
+                        </svg>
+
+                        <!-- Optional notification dot; show/hide as needed -->
+
+                        <!-- Soft ripple highlight -->
+                        <span class="pointer-events-none absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
+                    </a>
+
                     <div id="authButtons">
                         <a href="#" onclick="openLightbox()"
                            class="btn-primary text-white px-6 py-2 rounded-lg font-medium">

@@ -18,6 +18,7 @@ class CartService
     public function addItem($type, $id, $qty = 1, $price = 0)
     {
         $discount = $this->getDiscountForItem($type, $id);
+
         if (Auth::check()) {
             $existing = CartItem::where('user_id', Auth::id())
                 ->where('item_type', $type)
@@ -167,13 +168,38 @@ class CartService
 
         }
     }
+    public function removeDiscount($code)
+    {
+        if(Auth::check()) {
+            $cart = Auth::user()->cartItems()->get();
 
+                foreach ($cart as $item) {
+                    if($code == json_decode($item->discount)->code){
+                        // remove discount
+                        $item->discount = null;
+                        $item->update();
+                    }
+                }
+        }else{
+            $cart = $this->getCart();
+            $cart = $cart->map(function ($item) use ($code) {
+                    if(isset($item['discount']['code']))
+                        if($item['discount']['code']== $code){
+                            $item['discount'] = null;
+                        }
+                return $item;
+            });
+            Cookie::queue($this->cookieName, json_encode($cart), $this->cookieMinutes);
+
+        }
+    }
     /**
      * Apply discount code manually
      */
     public function applyDiscountCode($code)
     {
         $cart = $this->getCart();
+        $find = 0;
         $discount = Discount::where('code', $code)
             ->where('is_active', true)
             ->where(function ($q) {
@@ -188,26 +214,50 @@ class CartService
             return ['success' => false, 'message' => 'کد تخفیف معتبر نیست'];
         }
 
-        $cart = $cart->map(function ($item) use ($discount) {
-            if (
-                $discount->applies_to === $item['type'] &&
-                ($discount->item_id === null || $discount->item_id == $item['id'])
-            ) {
-                $item['discount'] = $discount->type === 'percent'
-                    ? ($discount->value . '%')
-                    : ($discount->value . ' تومان');
-            }
-            return $item;
-        });
+        foreach ($discount->allItems() as $dis )  {
+
+            $cart = $cart->map(function ($item) use ($discount, $dis ,&$find) {
+
+                $itemClass = $item['item_type'];
+
+                if ($itemClass === get_class($dis) && $item['item_id'] === $dis->id) {
+                    $item['discount'] = $discount;
+
+                    $find = 1;
+                }else
+                    $item['discount'] = null;
+                return $item;
+            });
+        }
 
         if (!Auth::check()) {
 
             Cookie::queue($this->cookieName, json_encode($cart), $this->cookieMinutes);
+
+        } else {
+
+            $cart = Auth::user()->cartItems()->get();
+
+            foreach ($discount->allItems() as $dis) {
+                foreach ($cart as $item) {
+
+                    if (get_class($dis) === $item->item_type && $dis->id == $item->item_id) {
+                        $item->discount = $discount;
+                        $item->update();
+                        $find = 1;
+                    }else{
+                        $item->discount = null;
+                        $item->update();
+                    }
+           }
+            }
         }
+        if($find)
+            return ['success' => true, 'message' => 'تخفیف اعمال شد', 'discount' => $discount];
+        else
+            return ['success' => false, 'message' => ' کد معتبر است اما برای هیچ یک از محصولات این سبد تعیین نشده', 'discount' => $discount];
 
-        return ['success' => true, 'message' => 'تخفیف اعمال شد', 'discount' => $discount];
     }
-
     /**
      * Auto-apply discounts without code
      */

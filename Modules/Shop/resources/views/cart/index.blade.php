@@ -45,6 +45,7 @@
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                             @php
 
+
                             $wholePrice = 0;
                             $wholeDiscount = 0;
                             @endphp
@@ -65,7 +66,8 @@
                                 <td class="py-4 px-6">
                                     @if($item['discount'])
                                         @php
-                                            $discount = collect(json_decode($item['discount'],true));
+
+                                            $discount = collect($item['discount']);
                                             if($discount['type'] == 'percent')
                                                 $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
                                             else
@@ -127,7 +129,12 @@
                                 <div class="text-left">
                                     @if($item['discount'])
                                         @php
-                                            $discount = collect(json_decode($item['discount'],true));
+                                            $hasDiscount = true;
+
+                                            $discount = collect($item['discount']);
+                                             $discountCode = $discount['code'];
+                                             $discountPrice = $discount['value'];
+                                             $discountType = $discount['type'] == 'percent' ? '%':'تومان';
                                             if($discount['type'] == 'percent')
                                                 $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
                                             else
@@ -145,6 +152,7 @@
                                     @endif
 
                                 </div>
+
                                 <button class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-all duration-200 hover:shadow-lg">
                                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -162,6 +170,67 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div class="lg:col-span-2">
                         <!-- Coupon Section -->
+                        <!-- Alerts (validation errors) -->
+                        @if(session('result'))
+
+                            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-1 text-xs font-medium">
+                              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-1 14-4-4 1.414-1.414L11 12.172l5.586-5.586L18 8l-7 8Z"/>
+                              </svg>
+                              {{ session('result')['message'] }}
+                            </span>
+
+
+                       @else
+                            @if ($errors->any())
+                                <div class="mb-6 rounded-xl border border-rose-300/60 bg-rose-50/80 text-rose-700 dark:border-rose-500/40 dark:bg-rose-900/30 dark:text-rose-200 p-4">
+
+                                    <ul class="list-disc pr-5 text-sm space-y-1">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        @endif
+                        @if(isset($hasDiscount))
+                        <div class=" mb-4">
+                            <div class="flex items-start justify-between rounded-xl border border-green-300 bg-green-50 dark:bg-green-900/30 dark:border-green-700 p-4">
+                                <div class="flex items-center gap-3">
+                                    <!-- Success icon -->
+                                    <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-green-500 text-white">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </span>
+
+                                    <div class="leading-relaxed">
+                                        <p class="text-sm font-semibold text-green-800 dark:text-green-200">
+                                            کد تخفیف اعمال شده
+                                        </p>
+                                        <p class="mt-1 text-sm text-green-700 dark:text-green-300">
+                                            کد: <span class="font-bold tracking-wide text-green-900 dark:text-green-100">{{$discountCode ?? ''}}</span>
+                                            <span class="mx-2 text-green-600/60">|</span>
+                                            مقدار تخفیف:
+                                            <span class="font-bold text-green-900 dark:text-green-100">{{$discountPrice ?? ''}} {{$discountType ?? ''}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Remove/clear discount -->
+                                <form action="{{route('shop.cart.removeDiscount')}}" method="post" class="shrink-0">
+                                    <input type="hidden" value="{{$discountCode??''}}" name="code">
+                                   @csrf
+                                    <button type="submit" class="inline-flex items-center gap-2 rounded-lg bg-white text-red-600 hover:text-red-700 hover:bg-red-50 dark:bg-transparent dark:text-red-300 dark:hover:text-red-200 border border-red-200 dark:border-red-600 px-3 py-2 text-sm transition">
+                                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                        حذف کد
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        @endif
                         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
                             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
                                 <svg class="w-5 h-5 ml-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,10 +239,13 @@
                                 کد تخفیف
                             </h3>
                             <div class="flex space-x-3 space-x-reverse">
-                                <input type="text" placeholder="کد تخفیف خود را وارد کنید" class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
+                                <form action="{{route('shop.cart.applyDiscount')}}" method="post" class="w-full flex space-x-3 space-x-reverse">
+                                @csrf
+                                <input type="text" name="code" placeholder="کد تخفیف خود را وارد کنید" class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-400 placeholder-gray-500 dark:placeholder-gray-400">
                                 <button class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
                                     اعمال
                                 </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -191,11 +263,11 @@
                             <div class="space-y-4 mb-6">
                                 <div class="flex justify-between text-gray-600 dark:text-gray-300">
                                     <span>جمع کل محصولات:</span>
-                                    <span>{{ $wholePrice }} تومان</span>
+                                    <span>{{ number_format($wholePrice) }} تومان</span>
                                 </div>
                                 <div class="flex justify-between text-green-600 dark:text-green-400">
                                     <span>تخفیف:</span>
-                                    <span>{{ $wholeDiscount }} تومان</span>
+                                    <span>{{ number_format($wholeDiscount) }} تومان</span>
                                 </div>
                                 <div class="flex justify-between text-gray-600 dark:text-gray-300">
                                     <span>هزینه ارسال:</span>
@@ -204,7 +276,7 @@
                                 <hr class="border-gray-200 dark:border-gray-600">
                                 <div class="flex justify-between text-lg font-bold text-gray-800 dark:text-gray-100">
                                     <span>مبلغ نهایی:</span>
-                                    <span class="text-blue-600 dark:text-blue-400">{{ $wholePrice-$wholeDiscount }} تومان</span>
+                                    <span class="text-blue-600 dark:text-blue-400">{{ number_format($wholePrice-$wholeDiscount) }} تومان</span>
                                 </div>
                             </div>
 

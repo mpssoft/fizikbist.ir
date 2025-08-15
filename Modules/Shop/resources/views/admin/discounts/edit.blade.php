@@ -96,7 +96,18 @@
                         <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">اختیاری</p>
                     </div>
                 </div>
-
+                <!-- NEW: Attach to Courses (multiple selection) -->
+                <div>
+                    <label for="courses" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">به کدام دوره(دوره ها) اعمال شود؟</label>
+                    <select id="courses" name="courses[]" multiple
+                            class="w-full min-h-[9rem] rounded-lg border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700/60 text-slate-800 dark:text-slate-100 px-3 py-2 focus-ring">
+                        <!-- Sample options; replace with your data -->
+                        @foreach(\App\Models\Course::all() as $course)
+                            <option value="{{$course->id}}" {{in_array($course->id,$discount->courses()->pluck('id')->toArray())? 'selected':'' }}>{{$course->title}}</option>
+                        @endforeach
+                    </select>
+                    <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">کلید کنترل/کامند را نگه دارید و چند مورد را انتخاب کنید.</p>
+                </div>
                 <!-- Active -->
                 <div class="flex items-center gap-3">
                     <input id="is_active" name="is_active" type="checkbox"

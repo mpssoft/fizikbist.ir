@@ -1,5 +1,6 @@
 @extends('layouts.admin.master')
 @section('content')
+
     <div class="h-full bg-gradient-to-b from-slate-50 to-white text-slate-800 dark:from-slate-900 dark:to-slate-950 dark:text-slate-100 antialiased">
         <div class="min-h-full">
             <div class="max-w-5xl mx-auto px-4 sm:px-4 lg:px-5 py-5">
@@ -81,6 +82,18 @@
                                 <input name="end_at" type="datetime-local" class="w-full rounded-lg border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700/60 text-slate-800 dark:text-slate-100 px-3 py-2 focus-ring">
                                 <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">اختیاری</p>
                             </div>
+                        </div>
+                        <!-- NEW: Attach to Courses (multiple selection) -->
+                        <div>
+                            <label for="courses" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">به کدام دوره(دوره ها) اعمال شود؟</label>
+                            <select id="courses" name="courses[]" multiple
+                                    class="w-full min-h-[9rem] rounded-lg border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700/60 text-slate-800 dark:text-slate-100 px-3 py-2 focus-ring">
+                                <!-- Sample options; replace with your data -->
+                                @foreach(\App\Models\Course::all() as $course)
+                                    <option value="{{$course->id}}">{{$course->title}}</option>
+                                @endforeach
+                            </select>
+                            <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">کلید کنترل/کامند را نگه دارید و چند مورد را انتخاب کنید.</p>
                         </div>
 
                         <!-- Active -->

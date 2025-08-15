@@ -36,6 +36,7 @@ class DiscountController extends Controller
             'type'       => ['required', 'in:percent,fixed'],
             'value'      => ['required', 'numeric', 'min:0'],
             'start_at'   => ['nullable', 'date'],
+            'courses'   => ['nullable', 'exists:courses,id'],
             'end_at'     => ['nullable', 'date'],
         ]);
 
@@ -43,8 +44,13 @@ class DiscountController extends Controller
             $data['is_active'] = 1;
         }else
             $data['is_active'] = 0;
+        $discount = Discount::create($data);
 
-        Discount::create($data);
+        if(isset($request->courses)) {
+            $discount->courses()->attach($data['courses']);
+        }
+
+
 
         return redirect()->route('shop.admin.discounts.index')
             ->with('success', 'کد تخفیف با موفقیت ایجاد شد.');
@@ -67,6 +73,7 @@ class DiscountController extends Controller
             'code'       => ['nullable', 'string', 'max:50', Rule::unique('discounts')->ignore($discount->id)],
             'type'       => ['required', 'in:percent,fixed'],
             'value'      => ['required', 'numeric', 'min:0'],
+            'courses'   => ['nullable', 'exists:courses,id'],
             'start_at'   => ['nullable', 'date'],
             'end_at'     => ['nullable', 'date'],
         ]);
@@ -75,6 +82,11 @@ class DiscountController extends Controller
         }else
             $data['is_active'] = 0;
         $discount->update($data);
+
+        isset($data['courses'])
+            ? $discount->courses()->sync($data['courses'])
+            : $discount->courses()->detach();
+
         toast('تخفیف با موفقیت ویرایش شد.','success','center');
         return redirect()->route('shop.admin.discounts.index')
             ->with('success', 'تخفیف با موفقیت ویرایش شد.');

@@ -66,10 +66,7 @@ class CartController extends Controller
 
         $this->cartService->addItem($type, $id, 1, $price);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'محصول به سبد اضافه شد'
-        ]);
+        return redirect('/cart');
     }
 
     /**
@@ -89,7 +86,12 @@ class CartController extends Controller
             'message' => 'محصول از سبد حذف شد'
         ]);
     }
+    public function removeDiscount(Request $request)
+    {
 
+        $this->cartService->removeDiscount($request->code);
+        return redirect('/cart');
+    }
     /**
      * Apply discount code manually
      */
@@ -100,8 +102,10 @@ class CartController extends Controller
         ]);
 
         $result = $this->cartService->applyDiscountCode($request->code);
-
-        return response()->json($result);
+        if(!$result['success'])
+            return response()->redirectTo('/cart')->withErrors($result['message']);
+        else
+            return redirect('/cart')->with('result',$result);
     }
 
     /**

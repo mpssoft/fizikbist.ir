@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
             $table->unsignedInteger('qty')->default(1);
             $table->unsignedBigInteger('price')->nullable();
-            $table->string('discount')->nullable(); // '10%' or '50000 تومان'
+            $table->text('discount')->nullable(); //
             $table->timestamps();
 
             $table->unique(['user_id', 'item_type', 'item_id']);
