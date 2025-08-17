@@ -22,6 +22,7 @@ class Course extends Model
         'time',
         'status',
         'teacher_id',
+        'grade_id',
         'spotplayer_course_id'
     ];
 
@@ -64,5 +65,9 @@ class Course extends Model
     public function discounts()
     {
         return $this->morphToMany(Discount::class, 'discountable');
+    }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
     }
 }

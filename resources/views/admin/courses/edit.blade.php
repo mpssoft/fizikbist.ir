@@ -76,7 +76,35 @@
                 <form method="POST" onsubmit="removeCamas()" action="{{ route('admin.courses.update', $course->id) }}  enctype="multipart/form-data" class="space-y-8">
                     @csrf
                     @method('PUT')
+                <!-- Grade Selection -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
 
+
+
+                                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m12 4 9 5-9 5-9-5 5-2.8M21 9v6m0 0a2 2 0 1 1-4 0v-3" />
+                                </svg>
+
+                                پایه | مقطع | دسته
+                            </span>
+                    </label>
+                    <select name="grade_id"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                       focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
+                        <option value="">-- انتخاب نوع --</option>
+                        @foreach(App\Models\Grade::all() as $grade)
+                            <option value="{{$grade->id}}" {{$grade->id == $course->id ? 'selected':''}}> {{ $grade->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('grade_id')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
                     <!-- Course Title -->
                     <div class="group">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">

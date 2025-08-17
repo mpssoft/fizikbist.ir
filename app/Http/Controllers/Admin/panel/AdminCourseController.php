@@ -25,7 +25,7 @@ class AdminCourseController extends Controller
                 'raters' => function($q) use ($user) {
                     $q->where('user_id', $user->id);
                 },
-                'teacher'
+                'teacher','grade'
             ])
             ->paginate(10);
 
@@ -51,7 +51,8 @@ class AdminCourseController extends Controller
             'teacher_id' => 'nullable|exists:users,id',
             'status' => 'in:active,in_progress,inactive',
             'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+            'time' =>  'nullable',
+            'grade_id'=> 'integer|exists:grades,id'
         ]);
 
 
@@ -86,7 +87,8 @@ class AdminCourseController extends Controller
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
              'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+            'time' =>  'nullable',
+            'grade_id' =>  'integer|exists:grades,id'
         ]);
 
 

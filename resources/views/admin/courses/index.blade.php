@@ -172,14 +172,17 @@
                                         <img src="{{$course->cover_image}}" /> </a>
                                 </div>
                                 <div class="text-center sm:text-right">
-                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $course->title }}</h3>
-                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">{{ $course->description }}</p>
-                                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                            <span class="text-white text-sm font-bold">ا</span>
+                                    <h3 class="inline-flex text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $course->title }}</h3>
+                                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gary-100 text-green-800 dark:bg-gray-900 dark:text-green-200">
+                                        {{$course->grade->name}}
+                                    </span>
+                                    <div class="inline-flex  items-center justify-center sm:justify-start gap-2 mb-2">
+                                        <div class="w-auto px-4 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                            <span class="text-white text-sm font-bold">مدرس : {{  $course->teacher->name ?? 'No teacher assigned' }}</span>
                                         </div>
-                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{  $course->teacher->name ?? 'No teacher assigned' }} </span>
                                     </div>
+                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">{{ $course->description }}</p>
+
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row items-center gap-3">
