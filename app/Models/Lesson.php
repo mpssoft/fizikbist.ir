@@ -13,7 +13,7 @@ class Lesson extends Model
         'title',
         'description',
         'video_url',
-        'spotplayer_lesson_id',
+        'spotplayer_id',
         'tags',
         'thumbnail',
         'is_free',

@@ -18,7 +18,7 @@ class HomeController extends Controller
         auth()->loginUsingId(1);
 
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
-        $courses = Course::where('spotplayer_course_id','!=','')->get();
+        $courses = Course::where('spotplayer_id','!=','')->get();
         $lessons = Lesson::latest()->take(6)->get();
         return view('frontend.home.index',compact('sliders','courses','lessons'));
     }

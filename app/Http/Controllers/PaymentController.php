@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\License;
 use App\Models\Course;
@@ -18,55 +19,83 @@ class PaymentController extends Controller
 {
 
     // STEP 1: Create an order (user clicks "buy course")
-    public function createOrder($courseId)
+    public function createOrder()
     {
         $user = auth()->user();
-        // get cart items
-        $course = Course::findOrFail($courseId);
+        $cart = $user->cartItems()->get(); // fetch user's cart
 
-        // Prevent duplicate orders
-        $existing = Order::where('user_id', $user->id)
-            ->where('course_id', $courseId)
-            ->where('status', 'paid')
-            ->first();
-
-        if ($existing) {
-            alert("پرداخت تکراری","قبلا پرداخت برای این دوره انجام شده است ","success");
-            return redirect()->route('user.courses')->with('info', 'You already bought this course.');
+        if ($cart->isEmpty()) {
+            alert('سبد خرید خالی است', 'هیچ آیتمی برای پرداخت وجود ندارد', 'toast');
+            return redirect()->route('cart.index');
         }
 
+        // Check for already purchased courses
+        $alreadyBought = [];
+        foreach ($cart as $cartItem) {
+            $itemClass = $cartItem['item_type'];
+            $itemId = $cartItem['item_id'];
+
+            $exists = OrderItem::where('item_type', $itemClass)
+                ->where('item_id', $itemId)
+                ->whereHas('order', function($query) use ($user) {
+                    $query->where('user_id', $user->id)
+                        ->where('status', 'paid');
+                })->exists();
+
+            if ($exists) {
+                $alreadyBought[] = $cartItem['item_name'] ?? $itemId;
+            }
+        }
+
+        if (!empty($alreadyBought)) {
+            alert('پرداخت تکراری', 'شما قبلا این دوره(ها) را خریداری کرده‌اید: ' . implode(', ', $alreadyBought), 'success');
+            return redirect()->route('cart.index');
+        }
+
+        // Calculate total price
+        $totalPrice = $cart->sum(fn($item) => $item['price'] ?? 0);
+
+        // Create the Order
         $order = Order::create([
             'user_id' => $user->id,
-            'course_id' => $courseId,
             'status' => 'pending',
-            'price' => $course->price
+            'price' => $totalPrice
         ]);
 
-        Payment::create([
+        // Create OrderItems
+        foreach ($cart as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'item_id' => $cartItem['item_id'],
+                'item_type' => $cartItem['item_type'],
+                'price' => $cartItem['price'],
+                'discount' => $cartItem['discount'] ?? null
+            ]);
+        }
+
+        // Payment creation & redirect (same as before)
+        $payment = Payment::create([
             'order_id' => $order->id,
             'gateway' => 'zarinpal',
             'status' => 'initiated',
         ]);
-        // Redirect to fake/manual payment page or gateway
+
         $response = zarinpal()
-            ->merchantId(config('zarinpal.merchant_id')) // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount($course->price) // مبلغ تراکنش
+            ->merchantId(config('zarinpal.merchant_id'))
+            ->amount($totalPrice)
             ->request()
-            ->description($course->title) // توضیحات تراکنش
-            ->callbackUrl('http://localhost:8000/user/payment/zarinpalCallback/?order_id=' . $order->id . '&price=' . $order->price) // آدرس برگشت پس از پرداخت
-            // ->mobile($user->mobile) // شماره موبایل مشتری - اختیاری
-            //  ->email($user->email) // ایمیل مشتری - اختیاری
+            ->description('پرداخت سفارش #' . $order->id)
+            ->callbackUrl(route('user.payment.zarinpalCallback', [
+                'order_id' => $order->id,
+                'price' => $totalPrice
+            ]))
             ->send();
-        //dd($response);
+
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
-            return redirect('/');
+            return redirect()->route('cart.index');
         }
 
-// ذخیره اطلاعات در دیتابیس
-// $response->authority();
-
-// هدایت مشتری به درگاه پرداخت
         return $response->redirect();
     }
 
@@ -158,7 +187,7 @@ function generateLicense(Request $request, SpotPlayerService $spotPlayer)
     $user = $order->user;
 
     // These are SpotPlayer course IDs (you must store or map them yourself)
-    $spotplayerCourseIds = $order->course->spotplayer_course_id; // Adjust field name
+    $spotplayerCourseIds = $order->course->spotplayer_id; // Adjust field name
 
     // Generate license
     $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseIds);

@@ -23,7 +23,7 @@ class Course extends Model
         'status',
         'teacher_id',
         'grade_id',
-        'spotplayer_course_id'
+        'spotplayer_id'
     ];
 
     // The teacher of this course (one teacher per course)

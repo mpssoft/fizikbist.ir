@@ -338,16 +338,16 @@
                                کد(شناسه) درس در اسپات پلیر
                             </span>
                         </label>
-                        <input type="text" name="spotplayer_course_id"
+                        <input type="text" name="spotplayer_id"
                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600
                                       focus:ring-4 focus:ring-blue-500/20 transition-all duration-200
                                       placeholder-gray-400 dark:placeholder-gray-500"
-                               value="{{ old('spotplayer_course_id',$course->spotplayer_course_id) }}"
+                               value="{{ old('spotplayer_id',$course->spotplayer_id) }}"
                                placeholder="5d2ee35bcddc092a304ae5eb"
                                >
-                        @error('spotplayer_course_id')
+                        @error('spotplayer_id')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>

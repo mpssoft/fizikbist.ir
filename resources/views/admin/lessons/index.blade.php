@@ -289,7 +289,7 @@
                                         {{ $lesson->title }}
                                     </div>
                                     <div class="text-sm text-gray-500 dark:text-gray-400">
-                                        شناسه ویدیو: {{ $lesson->spotplayer_lesson_id }}
+                                        شناسه ویدیو: {{ $lesson->spotplayer_id }}
                                     </div>
                                 </div>
                             </div>

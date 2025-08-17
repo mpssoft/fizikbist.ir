@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('video_url')->nullable();
-            $table->string('spotplayer_lesson_id')->nullable()->default(0);
+            $table->string('spotplayer_id')->nullable()->default(0);
             $table->string('tags')->nullable();
             $table->string('thumbnail')->nullable();
             $table->boolean('is_free')->default(true);
