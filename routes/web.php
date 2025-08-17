@@ -24,7 +24,7 @@ Route::get('/r',function(){
     echo Artisan::output();
 });
 
-
+Route::get('/spot/{order}/{spot}',[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,5 +1,6 @@
 @extends('layouts.admin.master')
 
+
 @section('content')
     <div class="container mx-auto px-4 py-6" x-data>
         <div class="max-w-7xl mx-auto">
@@ -318,4 +319,6 @@
             }
         </script>
     @endpush
+
 @endsection
+

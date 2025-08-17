@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
-use App\Models\License;
-use App\Models\Course;
 use App\Services\SpotPlayerService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Pishran\Zarinpal\Zarinpal;
+use Modules\Shop\Models\CartItem;
+
 
 
 class PaymentController extends Controller
@@ -43,17 +41,46 @@ class PaymentController extends Controller
                 })->exists();
 
             if ($exists) {
-                $alreadyBought[] = $cartItem['item_name'] ?? $itemId;
+                $alreadyBought[] = $cartItem['item_name'] ?? $cartItem->item->title;
             }
         }
 
         if (!empty($alreadyBought)) {
-            alert('پرداخت تکراری', 'شما قبلا این دوره(ها) را خریداری کرده‌اید: ' . implode(', ', $alreadyBought), 'success');
-            return redirect()->route('cart.index');
+            alert('پرداخت تکراری', ' شما قبلا این دوره(ها) را خریداری کرده‌اید: ' . implode(', ', $alreadyBought), 'success');
+            return redirect()->route('shop.cart.index');
         }
 
         // Calculate total price
-        $totalPrice = $cart->sum(fn($item) => $item['price'] ?? 0);
+        //$totalPrice = $cart->sum(fn($item) => $item['price'] ?? 0);
+        // Calculate total price with discounts
+        // Calculate total price with discounts
+        $totalPrice = $cart->sum(function ($item) {
+            $i = json_decode($item->discount,true);
+            $price = $item['price'] ?? 0;
+            if (!is_null($item->discount)) {
+                if ($i['type'] === 'percent') {
+                    $price -= $price * ($i['value'] / 100);
+                } else  {
+                    $price -= $i['value'];
+                }
+            }
+
+            return max($price, 0); // never below zero
+        });
+
+// Create the Order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'status'  => 'pending',
+            'price'   => $totalPrice,
+        ]);
+
+// Create the Order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'status'  => 'pending',
+            'price'   => $totalPrice,
+        ]);
 
         // Create the Order
         $order = Order::create([
@@ -112,8 +139,8 @@ class PaymentController extends Controller
             ->send();
 
         if (!$response->success()) {
-            alert('', $response->error()->message(), 'toast');
-            return redirect('/');
+            alert('', $response->error()->message(), 'error');
+            return redirect('/cart');
 
         }
 
@@ -138,68 +165,79 @@ class PaymentController extends Controller
         ]);
 
         // payment success so request license fro spotplayer
-        $this->paymentSuccess(request('order_id'), new SpotPlayerService());
+        //$this->paymentSuccess(request('order_id'), new SpotPlayerService());
+        $this->paymentSuccess($payment->order, new SpotPlayerService());
 
-        alert('', 'پرداخت موفق', 'toast');
+        //alert('', 'پرداخت موفق', 'toast');
+        // clear cart items
+
+        CartItem::where('user_id', auth()->id())->delete();
+        Cookie::queue(Cookie::forget('shop_cart'));
 
         return redirect(route('user.courses'));
 }
 
 // STEP 2: Simulate payment success
-public function paymentSuccess($orderId, SpotPlayerService $spotPlayer)
-{
-    DB::beginTransaction();
+    public function paymentSuccess(Order $order, SpotPlayerService $spotPlayer)
+    {
+        DB::beginTransaction();
 
-    try {
-        $order = Order::findOrFail($orderId);
-        $user = auth()->user();
-        Log::info("reached paymentSuccess");
+        try {
+            $order->load('items.item'); // eager load order items + related models
+            $user = auth()->user();
+            Log::info("Reached paymentSuccess for order {$order->id}");
 
-        // Assign course to user
-        $user->courses()->syncWithoutDetaching([$order->course_id]);
-        Log::info("passed syncWithoutDetaching");
+            foreach ($order->items as $item) {
+                $model = $item->item; // e.g., Course, Product, etc.
+                Log::info("model  is: ". $model->title);
+                // Attach course to user
+                if ($model instanceof \App\Models\Course) {
+                    $user->courses()->syncWithoutDetaching([$model->id]);
+                    Log::info("Attached course {$model->id} to user {$user->id}");
+                }
 
-        // Call SpotPlayer API
-        $this->generateLicense(request(), $spotPlayer);
+                // Generate SpotPlayer license if available
+                if (!empty($model->spotplayer_id)) {
+                    $licenses[] = $this->generateLicense($user, $order, $model, $spotPlayer);
 
-        DB::commit();
+                }
+            }
 
-        return redirect()->route('user.courses')->with('success', 'Payment successful. Course unlocked!');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        Log::error('Payment error', ['message' => $e->getMessage()]);
-        return back()->with('error', 'Payment processed but license generation failed.');
-    }
+            DB::commit();
 
-}
-
-
-public
-function generateLicense(Request $request, SpotPlayerService $spotPlayer)
-{
-    Log::info("first line of generateLicense");
-    $orderId = $request->input('order_id');
-    Log::info("Order id is : $orderId");
-
-    $order = Order::with('user','course')->findOrFail($orderId);
-    Log::info("reached generateLicense");
-    // Get user info
-    $user = $order->user;
-
-    // These are SpotPlayer course IDs (you must store or map them yourself)
-    $spotplayerCourseIds = $order->course->spotplayer_id; // Adjust field name
-
-    // Generate license
-    $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseIds);
-
-    if (!$licenseResponse || empty($licenseResponse['spotplayer_key'])) {
-        return response()->json(['error' => 'Failed to generate license from SpotPlayer'], 500);
+            return redirect()->route('admin.courses.index')
+                ->with(['success'=>'Payment successful. Your items are unlocked!','licenses'=>$licenses]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Payment error', [
+                'order_id' => $order->id,
+                'message'  => $e->getMessage(),
+            ]);
+            return back()->with('error', 'Payment processed but license generation failed.');
+        }
     }
 
 
-    return response()->json([
-        'message' => 'License generated and saved successfully.',
-        'status' => 'ok',
-    ]);
-}
+
+    protected function generateLicense($user, Order $order, $model, SpotPlayerService $spotPlayer)
+    {
+        Log::info("Generating SpotPlayer license for user {$user->id}, item {$model->id}");
+
+        $spotplayerCourseId = $model->spotplayer_id;
+
+        $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseId,$model);
+
+        if (!$licenseResponse || empty($licenseResponse['spotplayer_key'])) {
+            Log::error("Failed to generate SpotPlayer license for item {$model->id}");
+            return false;
+        }
+
+       // Log::info("SpotPlayer license generated successfully". $licenseResponse);
+
+        return ['license' => $licenseResponse->spotplayer_key,
+            'course'=>$licenseResponse->course->title,
+            'teacher'=>$licenseResponse->course->teacher->name
+            ];
+    }
+
 }

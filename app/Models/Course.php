@@ -40,7 +40,7 @@ class Course extends Model
             ->withTimestamps();
     }
 
-    public function license()
+    public function licenses()
     {
         $this->hasMany(License::class);
     }

@@ -17,9 +17,9 @@ class SpotPlayerService
         $this->baseUrl = 'https://panel.spotplayer.ir/license/edit/';
     }
 
-    public function createLicenseForUser($user, $order, $courseIds): ?License
+    public function createLicenseForUser($user, $order, $courseIds,$model): ?License
     {
-        Log::info(" reached createLicenseForUser $user->name  $order->course->title courseIds: $courseIds" );
+        Log::info(" reached createLicenseForUser $user->name $model->title   courseIds: $courseIds" );
         $payload = $this->buildLicensePayload($user, $courseIds);
 
         $response = Http::withHeaders([
@@ -30,17 +30,18 @@ class SpotPlayerService
         Log::info("response from spotplayer: ".$response);
         if ($response->successful()) {
             $data = $response->json();
-
+            Log::info('response success ...');
             return License::create([
                 'user_id'         => $user->id,
                 'order_id'        => $order->id,
-                'course_id'        => $order->course->id,
+                'course_id'        => $model->id,
                 'spotplayer_id'   => $data['_id'] ?? null,
                 'spotplayer_key'  => $data['key'] ?? null,
                 'spotplayer_url'  => $data['url'] ?? null,
                 'course_ids'      => $courseIds,
                 'license_data'    => $data,
             ]);
+
         }
 
         Log::error('SpotPlayer license creation failed', [
@@ -56,7 +57,7 @@ class SpotPlayerService
     protected function buildLicensePayload($user,  $courseIds): array
     {
         return [
-            'test' => false,
+            'test' => true,
             'course' => [$courseIds],
             'offline' => 30,
             'name' => $user->name ?? 'User',

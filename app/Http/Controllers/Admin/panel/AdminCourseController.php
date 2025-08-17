@@ -106,7 +106,6 @@ class AdminCourseController extends Controller
         }
 
         $course->delete();
-
         return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully!');
     }
 }
