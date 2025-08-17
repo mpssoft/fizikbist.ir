@@ -29,7 +29,7 @@
                                 id="mobile"
                                 name="mobile"
                                 required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                                class="w-full text-gray-600 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
                                 placeholder="شماره موبایل را وارد کنید"
                                 maxlength="11"
                             >

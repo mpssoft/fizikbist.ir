@@ -66,6 +66,11 @@ class Course extends Model
     {
         return $this->morphToMany(Discount::class, 'discountable');
     }
+
+    public function orderItems()
+    {
+        return $this->morphToMany(OrderItem::class,'item');
+    }
     public function grade()
     {
         return $this->belongsTo(Grade::class);

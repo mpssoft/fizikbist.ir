@@ -21,6 +21,7 @@ class PaymentController extends Controller
     public function createOrder($courseId)
     {
         $user = auth()->user();
+        // get cart items
         $course = Course::findOrFail($courseId);
 
         // Prevent duplicate orders

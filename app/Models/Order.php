@@ -12,15 +12,14 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function course() {
-        return $this->belongsTo(Course::class);
-    }
 
     public function payments() {
         return $this->hasMany(Payment::class);
     }
-    public function licenses()
+
+
+    public function items()
     {
-        return $this->hasMany(License::class);
+        return $this->hasMany(OrderItem::class);
     }
 }

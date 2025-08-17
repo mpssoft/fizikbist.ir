@@ -36,4 +36,8 @@ class Lesson extends Model
     {
         return $this->morphToMany(Discount::class, 'discountable');
     }
+    public function orderItems()
+    {
+        return $this->morphToMany(OrderItem::class,'item');
+    }
 }
