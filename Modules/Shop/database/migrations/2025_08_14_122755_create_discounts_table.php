@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('code')->nullable(); // for manual code entry
             $table->enum('type', ['percent', 'fixed']);
-            $table->decimal('value', 10, 2);
+            $table->bigInteger('value');
             $table->timestamp('start_at')->nullable();
             $table->timestamp('end_at')->nullable();
             $table->boolean('is_active')->default(true);

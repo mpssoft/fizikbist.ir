@@ -15,6 +15,7 @@ class CartItem extends Model
         'item_type',       // course, lesson, article, product
         'item_id',    // id of the related item
         'qty',
+        'code',
         'price',      // optional, could store at time of adding to cart
         'discount',   // optional, store discount applied
     ];

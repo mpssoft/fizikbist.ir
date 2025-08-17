@@ -81,7 +81,7 @@ class CartController extends Controller
 
         $this->cartService->removeItem($request->type, $request->id);
 
-        return response()->json([
+        return redirect('/cart')->with([
             'success' => true,
             'message' => 'محصول از سبد حذف شد'
         ]);

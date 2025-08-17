@@ -45,13 +45,9 @@
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                     @php
-
-
                                         $wholePrice = 0;
                                         $wholeDiscount = 0;
                                     @endphp
-
-
                                     @foreach($cart as $item)
                                         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors duration-200">
                                             <td class="py-4 px-6">
@@ -97,12 +93,17 @@
                                         </span>
                                             </td>
                                             <td class="py-4 px-6">
-                                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-all duration-200 hover:shadow-lg">
-                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                    </svg>
-                                                    حذف
-                                                </button>
+                                                <form action="{{route('shop.cart.remove')}}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="hidden" value="{{$item['item_type']}}" name="type" >
+                                                    <input type="hidden" value="{{$item['item_id']}}" name="id" >
+                                                    <button class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-all duration-200 hover:shadow-lg">
+                                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                        </svg>
+                                                        حذف
+                                                    </button></form>
                                             </td>
                                         </tr>
 
@@ -142,9 +143,9 @@
                                                             $discount = collect(json_decode($item['discount']));
                                                         else
                                                             $discount = collect($item['discount']);
-                                                         $discountCode = $discount['code'];
-                                                         $discountPrice = $discount['value'];
-                                                         $discountType = $discount['type'] == 'percent' ? '%':'تومان';
+                                                         $discountCode[] = $discount['code'];
+                                                         $discountPrice[] = $discount['value'];
+                                                         $discountType[] = $discount['type'] == 'percent' ? '%':'تومان';
                                                         if($discount['type'] == 'percent')
                                                             $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
                                                         else
@@ -162,13 +163,17 @@
                                                 @endif
 
                                             </div>
-
+                                            <form action="{{route('shop.cart.remove')}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" value="{{$item['item_type']}}" name="type" >
+                                                <input type="hidden" value="{{$item['item_id']}}" name="id" >
                                             <button class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 transition-all duration-200 hover:shadow-lg">
                                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                                 </svg>
                                                 حذف
-                                            </button>
+                                            </button></form>
                                         </div>
                                     </div>
                                 @endforeach
@@ -218,26 +223,34 @@
                                                     <p class="text-sm font-semibold text-green-800 dark:text-green-200">
                                                         کد تخفیف اعمال شده
                                                     </p>
-                                                    <p class="mt-1 text-sm text-green-700 dark:text-green-300">
-                                                        کد: <span class="font-bold tracking-wide text-green-900 dark:text-green-100">{{$discountCode ?? ''}}</span>
-                                                        <span class="mx-2 text-green-600/60">|</span>
-                                                        مقدار تخفیف:
-                                                        <span class="font-bold text-green-900 dark:text-green-100">{{$discountPrice ?? ''}} {{$discountType ?? ''}}</span>
-                                                    </p>
+                                                    @php
+
+                                                        $discounts = array_map(null,$discountCode,$discountPrice,$discountType);
+
+                                                     @endphp
+                                                    @foreach($discounts as [$code,$price,$type])
+                                                        <p class="mt-1 text-sm text-green-700 dark:text-green-300 inline-flex">
+                                                            کد: <span class="font-bold tracking-wide text-green-900 dark:text-green-100">{{$code ?? ''}}</span>
+                                                            <span class="mx-2 text-green-600/60">|</span>
+                                                            مقدار تخفیف:
+                                                            <span class="font-bold text-green-900 dark:text-green-100">{{$price ?? ''}} {{$type ?? ''}}</span>
+                                                        </p>
+                                                        <form action="{{route('shop.cart.removeDiscount')}}" method="post" class="inline-block ">
+                                                            <input type="hidden" value="{{$code??''}}" name="code">
+                                                            @csrf
+                                                            <button class="p-2 sm:p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200" title="حذف">
+                                                                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                        <br>
+                                                    @endforeach
                                                 </div>
                                             </div>
 
-                                            <!-- Remove/clear discount -->
-                                            <form action="{{route('shop.cart.removeDiscount')}}" method="post" class="shrink-0">
-                                                <input type="hidden" value="{{$discountCode??''}}" name="code">
-                                                @csrf
-                                                <button type="submit" class="inline-flex items-center gap-2 rounded-lg bg-white text-red-600 hover:text-red-700 hover:bg-red-50 dark:bg-transparent dark:text-red-300 dark:hover:text-red-200 border border-red-200 dark:border-red-600 px-3 py-2 text-sm transition">
-                                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                    </svg>
-                                                    حذف کد
-                                                </button>
-                                            </form>
+
+
                                         </div>
                                     </div>
                                 @endif

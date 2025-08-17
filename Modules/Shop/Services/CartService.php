@@ -27,6 +27,7 @@ class CartService
 
             if ($existing) {
                 $existing->qty += $qty;
+                $existing->code = $discount->code??'';
                 $existing->discount = $discount ? $discount : null;
                 $existing->save();
             } else {
@@ -35,6 +36,7 @@ class CartService
                     'item_type'    => $type,
                     'item_id' => $id,
                     'qty'     => $qty,
+                    'code'     => $discount->code??'',
                     'price'   => $price,
                     'discount'   => $discount ? $discount : null
                 ]);
@@ -171,15 +173,9 @@ class CartService
     public function removeDiscount($code)
     {
         if(Auth::check()) {
-            $cart = Auth::user()->cartItems()->get();
+            Auth::user()->cartItems()->where('code',$code)->update(['discount'=>null]);
 
-                foreach ($cart as $item) {
-                    if($code == json_decode($item->discount)->code){
-                        // remove discount
-                        $item->discount = null;
-                        $item->update();
-                    }
-                }
+
         }else{
             $cart = $this->getCart();
             $cart = $cart->map(function ($item) use ($code) {
@@ -243,6 +239,7 @@ class CartService
 
                     if (get_class($dis) === $item->item_type && $dis->id == $item->item_id) {
                         $item->discount = $discount;
+                        $item->code = $discount->code;
                         $item->update();
                         $find = 1;
                     }/*else{
