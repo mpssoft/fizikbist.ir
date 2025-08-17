@@ -21,10 +21,8 @@
     </style>
 @endsection
 @section("content")
-
-    @include('frontend.home.home-slider', ['sliders' => \App\Models\Slider::orderBy('order')->get()])
-
-    <main>
+        <!-- Hero Slider Section -->
+        @include('frontend.home.home-slider', ['sliders' => $sliders])
         <!-- Home Section -->
         <section id="homeSection" class="section">
             <!-- Hero Section -->
@@ -37,17 +35,17 @@
                     <p class="text-2xl mb-10 opacity-95 font-medium drop-shadow-lg">
                         با استاد حسین نژاداسد و روش‌های نوین تدریس
                     </p>
-                    <button onclick="showSection('courses')"
+                    <a href="#free-courses-section"
                             class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
                         <i class="fas fa-rocket mr-3"></i>
                         شروع یادگیری
-                    </button>
+                    </a>
                 </div>
             </div>
 
             <!-- Teacher Introduction -->
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="  max-w-7xl mx-auto px-4 py-16">
+                <div class="dark:bg-slate-400 rounded-2xl shadow-xl p-8 md:p-12">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">معرفی استاد</h2>
@@ -78,352 +76,348 @@
                 </div>
             </div>
         </section>
-
-        <!-- Courses Section -->
-        <section id="coursesSection" class="section hidden">
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <h2 class="text-4xl font-bold text-center text-white mb-12">دوره‌های آموزشی</h2>
-
-                <!-- Course Filter -->
-                <div class="flex justify-center mb-8">
-                    <div class="glass-effect rounded-lg shadow-md p-2 flex space-x-2 space-x-reverse">
-                        <button onclick="showCourses('all')"
-                                class="course-filter-btn active px-4 py-2 rounded-md transition">همه
-                        </button>
-                        <button onclick="showCourses('grade10')"
-                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه دهم
-                        </button>
-                        <button onclick="showCourses('grade11')"
-                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه یازدهم
-                        </button>
-                        <button onclick="showCourses('grade12')"
-                                class="course-filter-btn px-4 py-2 rounded-md transition">پایه دوازدهم
-                        </button>
-                        <button onclick="showCourses('konkur')"
-                                class="course-filter-btn px-4 py-2 rounded-md transition">کنکور
+        <!-- Lightbox Overlay -->
+        <div id="lightboxOverlay" class="fixed inset-0 bg-black/50 lightbox-overlay hidden z-50" >
+            <!-- Lightbox Content -->
+            <div class="lightbox-content fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gradient-bg rounded-2xl shadow-2xl w-full max-w-md mx-4" onclick="event.stopPropagation()">
+                <!-- Header -->
+                <div class="p-8 pb-6">
+                    <div class="flex justify-end mb-4">
+                        <button onclick="closeLightbox()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
                         </button>
                     </div>
-                </div>
+                    <div class="text-center mb-6">
+                        <div
+                            class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-atom text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white"> ورود با موبایل</h2>
+                    </div>
+                    <p class="text-gray-300 mb-8 text-center">شماره موبایل خود را برای دریافت کد تایید وارد کنید</p>
+                    <div id="errorBox" class="text-red-400 text-sm mb-4 hidden"></div>
+                    <form id="otpForm" class="space-y-6">
+                        @csrf
+                    <!-- Mobile Step -->
+                    <div id="mobileStep" class="space-y-6">
+                        <div id="mobileSection">
+                            <label for="mobile" class="block text-sm font-medium text-gray-400 mb-2">شماره موبایل</label>
+                            <input
+                                type="tel"
+                                id="mobile"
+                                name="mobile"
+                                required
+                                class="w-full px-4 py-3 dark:text-gray-400 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus transition-all duration-200"
+                                placeholder="شماره موبایل را وارد کنید"
+                                maxlength="11"
+                            >
+                        </div>
+                        <!-- OTP Code Input (hidden initially) -->
+                        <div id="otpCodeBox" class="hidden">
+                            <a onclick="event.preventDefault();showMobileSection()">تغییر شماره</a>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">
+                                <i class="fas fa-key mr-2"></i> کد تأیید
+                            </label>
 
-                <!-- Courses Grid -->
-                <div id="coursesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Courses will be populated by JavaScript -->
+                            <div id="otpInputs" class="flex gap-3 justify-center rtl flex-row-reverse">
+                                <input type="text" maxlength="1"
+                                       class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
+                                       inputmode="numeric"/>
+                                <input type="text" maxlength="1"
+                                       class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
+                                       inputmode="numeric"/>
+                                <input type="text" maxlength="1"
+                                       class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
+                                       inputmode="numeric"/>
+                                <input type="text" maxlength="1"
+                                       class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
+                                       inputmode="numeric"/>
+                            </div>
+
+                        </div>
+                        <div class="flex items-center">
+                            <input id="remember" name="remember" type="checkbox"
+                                   class="h-4 w-4 mr-2 text-blue-300 focus:ring-blue-500 border-gray-200 rounded">
+                            <label for="remember" class="ml-2 block text-gray-500 text-sm mr-4 ">
+                                مرا به خاطر بسپار
+                            </label>
+                        </div>
+                        <button type="submit"
+                                id="sendOtpBtn"
+                                class="w-full btn-primary text-white py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
+                            <span class="btn-text">ارسال کد تأیید</span>
+                            <span
+                                class="spinner hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        </button>
+
+
+
+                        <div id="timerBox" class="text-center text-cyan-300 mt-4 hidden">
+                            لطفاً <span id="timer">60</span> ثانیه صبر کنید...
+                        </div>
+                    </div>
+
+
+                    </form>
+
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Login/Register Section -->
 
-        <section id="loginSection" class="section hidden">
-            <div class="min-h-screen flex items-center justify-center px-4 py-16 gradient-bg hero-pattern">
-                <div class="max-w-md w-full">
-                    <div class="auth-container rounded-3xl shadow-2xl p-8 neon-glow">
-                        <div class="text-center mb-8">
-                            <div
-                                class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                                <i class="fas fa-atom text-white text-2xl"></i>
-                            </div>
-                            <h2 class="text-3xl font-bold text-white mb-2">ورود با موبایل</h2>
-                            <p class="text-gray-300">کد تأیید برای شما ارسال خواهد شد</p>
-                        </div>
+        <!-- Free Lessons Section -->
+        <section class="py-20 bg-gray-200" id="free-courses-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">درس‌های رایگان</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">با درس‌های رایگان ما شروع کنید و کیفیت آموزش‌هایمان را تجربه کنید.</p>
+                </div>
 
-                        <!-- OTP Form -->
-                        <div id="loginForm">
-                            <div id="errorBox" class="text-red-400 text-sm mb-4 hidden"></div>
-                            <form id="otpForm" class="space-y-6">
-                                @csrf
-                                <div>
-                                    <label class="block text-gray-300 text-sm font-medium mb-2">
-                                        <i class="fas fa-mobile-alt mr-2 ml-2 fa-lg"></i> شماره موبایل
-                                    </label>
-                                    <input type="text" name="mobile" id="mobile"
-                                           class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none input-glow transition-all"
-                                           placeholder="09123456789" required>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="remember" name="remember" type="checkbox"
-                                           class="h-4 w-4 mr-2 text-blue-300 focus:ring-blue-500 border-gray-200 rounded">
-                                    <label for="remember" class="ml-2 block text-gray-300 text-sm mr-4 ">
-                                        مرا به خاطر بسپار
-                                    </label>
-                                </div>
-
-                                <!-- OTP Code Input (hidden initially) -->
-                                <div id="otpCodeBox" class="hidden">
-                                    <label class="block text-gray-300 text-sm font-medium mb-2">
-                                        <i class="fas fa-key mr-2"></i> کد تأیید
-                                    </label>
-
-                                    <div id="otpInputs" class="flex gap-3 justify-center rtl flex-row-reverse">
-                                        <input type="text" maxlength="1"
-                                               class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
-                                               inputmode="numeric"/>
-                                        <input type="text" maxlength="1"
-                                               class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
-                                               inputmode="numeric"/>
-                                        <input type="text" maxlength="1"
-                                               class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
-                                               inputmode="numeric"/>
-                                        <input type="text" maxlength="1"
-                                               class="otp-digit w-14 h-14 text-center text-white text-2xl bg-white/10 border border-white/20 rounded-xl input-glow outline-none"
-                                               inputmode="numeric"/>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Free Lesson Card 1 -->
+                    @foreach($lessons as $lesson)
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+                        <div class="relative">
+                            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative" style="background:url('{{$lesson->thumbnail}}');background-size: contain">
+                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                                <div class="text-white text-4xl z-10">🎬</div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition duration-300">
+                                        <div class="w-0 h-0 border-l-[20px] border-l-blue-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent mr-1"></div>
                                     </div>
-
                                 </div>
-
-                                <button type="submit"
-                                        id="sendOtpBtn"
-                                        class="w-full btn-primary text-white py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
-                                    <span class="btn-text">ارسال کد تأیید</span>
-                                    <span
-                                        class="spinner hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                                </button>
-
-
-                                <div id="timerBox" class="text-center text-cyan-300 mt-4 hidden">
-                                    لطفاً <span id="timer">60</span> ثانیه صبر کنید...
-                                </div>
-                            </form>
-
+                            </div>
+                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">رایگان</div>
+                            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">
+                                {{ $lesson->duration}} </div>
                         </div>
-
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $lesson->title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ $lesson->description }}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <span class="ml-2">👁</span>
+                                    <span>{{$lesson->view}}  بازدید</span>
+                                </div>
+                                <a href="{{route('play',$lesson->id)}}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">تماشا کنید</a>
+                            </div>
+                        </div>
                     </div>
+                    @endforeach
+                 </div>
+
+                <div class="text-center mt-12">
+                    <button class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-300">مشاهده همه درس‌های رایگان</button>
                 </div>
             </div>
         </section>
 
+        <!-- Featured Courses Section -->
+        <section class="py-20  dark:bg-gray-900 dark:text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold dark:text-white mb-4">دوره‌های محبوب</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">محبوب‌ترین دوره‌های ما را کشف کنید که برای کمک به تسلط بر مهارت‌های جدید و پیشرفت شغلی شما طراحی شده‌اند.</p>
+                </div>
 
-        <!-- Admin Panel -->
-        <section id="adminSection" class="section hidden">
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <div class="flex justify-between items-center mb-8">
-                        <h2 class="text-3xl font-bold text-gray-800">پنل مدیریت</h2>
-                        <button onclick="logout()"
-                                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                            خروج
-                        </button>
-                    </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($courses as $course)
+                        <!-- Course Card 1 -->
+                        <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                            <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center " style="background:url('{{$course->cover_image}}');background-size: contain">
 
-                    <!-- Add Course Form -->
-                    <div class="mb-12">
-                        <h3 class="text-2xl font-semibold mb-6">افزودن دوره جدید</h3>
-                        <form onsubmit="addCourse(event)" class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">نام دوره</label>
-                                <input type="text" id="courseName"
-                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
-                                       required>
                             </div>
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">پایه تحصیلی</label>
-                                <select id="courseGrade"
-                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
-                                        required>
-                                    <option value="">انتخاب کنید</option>
-                                    <option value="grade10">پایه دهم</option>
-                                    <option value="grade11">پایه یازدهم</option>
-                                    <option value="grade12">پایه دوازدهم</option>
-                                    <option value="konkur">کنکور</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">قیمت (تومان)</label>
-                                <input type="number" id="coursePrice"
-                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
-                                       required>
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">تخفیف (درصد)</label>
-                                <input type="number" id="courseDiscount" min="0" max="100"
-                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">عکس دوره (اختیاری)</label>
-                                <input type="file" id="courseImage" accept="image/*"
-                                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
-                                <div id="courseImagePreview" class="mt-2 hidden">
-                                    <img id="coursePreviewImg" class="w-32 h-32 object-cover rounded-lg border">
+                            <div class="p-6">
+                                {{-- <div class="flex items-center justify-between mb-3">
+                                     <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">برنامه‌نویسی</span>
+                                     <div class="flex items-center text-yellow-500">
+                                         <span class="text-sm font-medium">۴.۸</span>
+                                         <span class="mr-1">⭐</span>
+                                     </div>
+                                 </div>--}}
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $course->title }}</h3>
+                                <p class="text-gray-600 mb-4">{{ $course->description }}</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="text-1xl font-bold text-blue-600"> {{ number_format($course->price) }}تومان  </div>
+
+
+                                    <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" aria-label="Add to cart"
+                                       class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-wide
+          bg-neutral-900 text-neutral-100 hover:bg-black active:bg-neutral-800
+          shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
+          dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-900">
+                                        <!-- Icon placeholder (use your favorite icon font class here) -->
+                                        <i class="fa-solid fa-cart-plus text-neutral-200 group-hover:text-white text-base"></i>
+                                        خرید دوره
+                                    </a>
+
+
+
                                 </div>
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-gray-700 text-sm font-bold mb-2">توضیحات</label>
-                                <textarea id="courseDescription" rows="4"
-                                          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-cyan-500"
-                                          required></textarea>
-                            </div>
-                            <div class="md:col-span-2">
-                                <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-medium">
-                                    <i class="fas fa-plus mr-2"></i>افزودن دوره
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Courses Management -->
-                    <div class="mb-12">
-                        <h3 class="text-2xl font-semibold mb-6">مدیریت دوره‌ها</h3>
-                        <div id="coursesManagement" class="space-y-4">
-                            <!-- Courses will be populated by JavaScript -->
                         </div>
-                    </div>
+                    @endforeach
+              </div>
 
-                    <!-- Pending Purchases -->
-                    <div class="mb-12">
-                        <h3 class="text-2xl font-semibold mb-6">خریدهای در انتظار تایید</h3>
-                        <div id="pendingPurchases" class="space-y-4">
-                            <!-- Pending purchases will be populated by JavaScript -->
-                        </div>
-                    </div>
+            </div>
+        </section>
 
-                    <!-- Users List -->
+        <!-- Statistics Section -->
+        <section class="py-20 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-6">کاربران ثبت نام شده</h3>
-                        <div id="usersList" class="overflow-x-auto">
-                            <table class="w-full bg-gray-50 rounded-lg">
-                                <thead class="bg-gray-200">
-                                <tr>
-                                    <th class="px-4 py-3 text-right">نام</th>
-                                    <th class="px-4 py-3 text-right">نام کاربری</th>
-                                    <th class="px-4 py-3 text-right">شماره تماس</th>
-                                    <th class="px-4 py-3 text-right">دوره‌های خریداری شده</th>
-                                </tr>
-                                </thead>
-                                <tbody id="usersTableBody">
-                                <!-- Users will be populated by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <div class="stat-counter mb-2">+۵۰ هزار</div>
+                        <h3 class="text-xl font-semibold mb-2">دانشجوی ثبت‌نام شده</h3>
+                        <p class="text-gray-300">یادگیرندگان فعال در سراسر جهان</p>
+                    </div>
+                    <div>
+                        <div class="stat-counter mb-2">+۲۰۰</div>
+                        <h3 class="text-xl font-semibold mb-2">مدرس متخصص</h3>
+                        <p class="text-gray-300">متخصصان صنعت</p>
+                    </div>
+                    <div>
+                        <div class="stat-counter mb-2">+۵۰۰</div>
+                        <h3 class="text-xl font-semibold mb-2">دوره موجود</h3>
+                        <p class="text-gray-300">در دسته‌بندی‌های مختلف</p>
+                    </div>
+                    <div>
+                        <div class="stat-counter mb-2">%۹۵</div>
+                        <h3 class="text-xl font-semibold mb-2">نرخ موفقیت</h3>
+                        <p class="text-gray-300">نرخ تکمیل دوره</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Purchase Form -->
-        <section id="purchaseSection" class="section hidden">
-            <div class="max-w-2xl mx-auto px-4 py-16">
-                <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">تکمیل خرید</h2>
+        <!-- Why Choose Us Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">چرا پلتفرم ما را انتخاب کنید؟</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">ما همه چیزهایی که برای موفقیت در سفر یادگیری خود نیاز دارید را فراهم می‌کنیم.</p>
+                </div>
 
-                    <div id="courseDetails" class="mb-8">
-                        <!-- Course details will be populated by JavaScript -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">یادگیری شخصی‌سازی شده</h3>
+                        <p class="text-gray-600">مسیرهای یادگیری تطبیقی متناسب با سرعت و سبک یادگیری شما.</p>
                     </div>
 
-                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-info-circle text-yellow-600 ml-2"></i>
-                            <span class="font-semibold text-yellow-800">اطلاعات پرداخت</span>
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🏆</span>
                         </div>
-                        <p class="text-yellow-700 text-sm">درگاه پرداخت آنلاین غیرفعال است. لطفاً مبلغ را به شماره کارت
-                            زیر واریز کنید:</p>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">گواهینامه‌های صنعتی</h3>
+                        <p class="text-gray-600">گواهینامه‌های معتبری کسب کنید که چشم‌انداز شغلی شما را بهبود می‌بخشد.</p>
                     </div>
 
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                        <div class="text-center">
-                            <h3 class="font-semibold text-blue-800 mb-2">شماره کارت</h3>
-                            <p class="text-2xl font-mono text-blue-900 mb-2">6037-9919-1234-5678</p>
-                            <p class="text-blue-700">به نام: حسین نژاداسد</p>
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">💬</span>
                         </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">پشتیبانی ۲۴/۷</h3>
+                        <p class="text-gray-600">هر زمان که نیاز داشتید از تیم پشتیبانی اختصاصی ما کمک بگیرید.</p>
                     </div>
 
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">آپلود فیش واریزی</label>
-                            <input type="file" id="receiptFile" accept="image/*"
-                                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-purple-500">
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">📱</span>
                         </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">یادگیری موبایل</h3>
+                        <p class="text-gray-600">با پلتفرم بهینه‌شده برای موبایل ما، هر جا و هر زمان یاد بگیرید.</p>
+                    </div>
 
-                        <div id="receiptPreview" class="hidden">
-                            <img id="previewImage" class="max-w-full h-48 object-contain border rounded-lg">
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🔄</span>
                         </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">دسترسی مادام‌العمر</h3>
+                        <p class="text-gray-600">پس از ثبت‌نام، برای همیشه با به‌روزرسانی‌های رایگان به دوره‌هایتان دسترسی داشته باشید.</p>
+                    </div>
 
-                        <button onclick="submitPurchase()"
-                                class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold">
-                            تایید پرداخت
-                        </button>
-
-                        <button onclick="showSection('courses')"
-                                class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">
-                            بازگشت
-                        </button>
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">👥</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">انجمن</h3>
+                        <p class="text-gray-600">به انجمن پر جنب و جوش یادگیرندگان و متخصصان بپیوندید.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- User Dashboard -->
-        <section id="userSection" class="section hidden">
-            <div class="max-w-7xl mx-auto px-4 py-16">
-                <!-- Header Section -->
-                <div class="glass-effect rounded-3xl shadow-2xl p-8 mb-8 text-white">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="flex items-center space-x-6 space-x-reverse mb-4 md:mb-0">
-                            <div
-                                class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center text-3xl">
-                                <i class="fas fa-user-graduate"></i>
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">دانشجویان ما چه می‌گویند</h2>
+                    <p class="text-xl text-gray-600">داستان‌های موفقیت واقعی از جامعه یادگیری ما.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">ع.ا</div>
+                            <div class="mr-4">
+                                <h4 class="font-semibold text-gray-800">علی احمدی</h4>
+                                <p class="text-gray-600 text-sm">توسعه‌دهنده نرم‌افزار</p>
                             </div>
-                            <div id="userHeaderInfo">
-                                <!-- User header info will be populated by JavaScript -->
+                        </div>
+                        <div class="flex text-yellow-500 mb-3">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <p class="text-gray-700">"دوره توسعه وب کاملاً شغل من را متحول کرد. مدرسان فوق‌العاده هستند و محتوا بی‌نظیر است!"</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold">م.ر</div>
+                            <div class="mr-4">
+                                <h4 class="font-semibold text-gray-800">مریم رضایی</h4>
+                                <p class="text-gray-600 text-sm">تحلیلگر داده</p>
                             </div>
                         </div>
-                        <button onclick="logout()" class="btn-danger text-white px-6 py-3 rounded-xl font-medium">
-                            <i class="fas fa-sign-out-alt mr-2"></i>خروج
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="glass-effect rounded-2xl p-6 text-white text-center card-hover">
-                        <div class="text-4xl mb-3 text-green-400">
-                            <i class="fas fa-check-circle"></i>
+                        <div class="flex text-yellow-500 mb-3">
+                            <span>⭐⭐⭐⭐⭐</span>
                         </div>
-                        <div class="text-2xl font-bold mb-1" id="activeCourses">0</div>
-                        <div class="text-gray-300">دوره‌های فعال</div>
+                        <p class="text-gray-700">"پس از تکمیل دوره علم داده، شغل رویایی‌ام را به عنوان تحلیلگر داده پیدا کردم. بسیار توصیه می‌کنم!"</p>
                     </div>
 
-                    <div class="glass-effect rounded-2xl p-6 text-white text-center card-hover">
-                        <div class="text-4xl mb-3 text-yellow-400">
-                            <i class="fas fa-clock"></i>
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-semibold">ح.م</div>
+                            <div class="mr-4">
+                                <h4 class="font-semibold text-gray-800">حسن محمدی</h4>
+                                <p class="text-gray-600 text-sm">طراح UX</p>
+                            </div>
                         </div>
-                        <div class="text-2xl font-bold mb-1" id="pendingCourses">0</div>
-                        <div class="text-gray-300">در انتظار تایید</div>
-                    </div>
-
-                    <div class="glass-effect rounded-2xl p-6 text-white text-center card-hover">
-                        <div class="text-4xl mb-3 text-blue-400">
-                            <i class="fas fa-graduation-cap"></i>
+                        <div class="flex text-yellow-500 mb-3">
+                            <span>⭐⭐⭐⭐⭐</span>
                         </div>
-                        <div class="text-2xl font-bold mb-1" id="totalCourses">0</div>
-                        <div class="text-gray-300">کل دوره‌ها</div>
-                    </div>
-                </div>
-
-                <!-- User Info Card -->
-                <div class="glass-effect rounded-2xl shadow-xl p-8 mb-8 text-white">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-user-circle mr-3 text-cyan-400"></i>
-                        اطلاعات کاربری
-                    </h3>
-                    <div id="userDetailedInfo" class="grid md:grid-cols-2 gap-6">
-                        <!-- Detailed user info will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Courses Section -->
-                <div class="glass-effect rounded-2xl shadow-xl p-8 text-white">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-play-circle mr-3 text-purple-400"></i>
-                        دوره‌های من
-                    </h3>
-                    <div id="userCourses" class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-                        <!-- User courses will be populated by JavaScript -->
+                        <p class="text-gray-700">"دوره طراحی UI/UX تمام مهارت‌هایی که برای ورود به حوزه طراحی نیاز داشتم را به من داد. پروژه‌ها فوق‌العاده کاربردی بودند!"</p>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+
+        <!-- Call to Action Section -->
+        <section class="h-[70vh] md:h-[100vh] py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+            <div class="container mx-auto px-6 text-center pt-20">
+                <h2 class="text-4xl font-bold mb-6">آماده شروع سفر یادگیری خود هستید؟</h2>
+                <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">به هزاران دانشجویی بپیوندید که در حال حاضر با دوره‌های تخصصی ما شغل خود را پیش می‌برند.</p>
+                <div class="space-x-4 space-x-reverse">
+                    <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition duration-300">همین امروز شروع کنید</button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">مرور دوره‌ها</button>
+                </div>
+            </div>
+        </section>
+
     <!-- /.content -->
     @push('scripts')
         <script type="module">
@@ -476,6 +470,22 @@
         </script>
 
         <script>
+            function openLightbox() {
+                document.getElementById('lightboxOverlay').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                document.getElementById('lightboxOverlay').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            function showMobileSection(){
+                $('#mobileSection').fadeIn();
+                $('#otpCodeBox').fadeOut();
+
+            }
+            let resendTimer = 30;
+            let timerInterval;
 
             $(document).ready(function () {
                 let otpPhase = false;
@@ -633,6 +643,7 @@
     @endpush
 @endsection
 @section('script')
+
     <script>
         tailwind.config = {
             theme: {
@@ -659,6 +670,8 @@
         }
     </script>
     {{ $script ?? '' }}
+
+
 @endsection
 @section('head')
     {{ $head ?? '' }}

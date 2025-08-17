@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->usePublicPath(__DIR__."/../../public_html");
+
     }
 
     /**
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->loadViewsFrom(base_path('Modules/Shop/resources/views'), 'shop');
         Notification::extend('raygansms', function ($app) {
             return new RayganSmsChannel();
         });

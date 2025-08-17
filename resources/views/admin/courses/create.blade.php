@@ -91,7 +91,35 @@
                 <form method="POST" action="{{route('admin.courses.store')}}" onsubmit="removeCamas()"
                       enctype="multipart/form-data" class="space-y-8">
                     @csrf
+                    <!-- Grade Selection -->
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
 
+
+
+                                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m12 4 9 5-9 5-9-5 5-2.8M21 9v6m0 0a2 2 0 1 1-4 0v-3" />
+                                </svg>
+
+                                پایه | مقطع | دسته
+                            </span>
+                        </label>
+                        <select name="grade_id"
+                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                       focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
+                            <option value="">-- انتخاب نوع --</option>
+                            @foreach(App\Models\Grade::all() as $grade)
+                                <option value="{{$grade->id}}"> {{ $grade->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('grade_id')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <!-- Course Title -->
                     <div class="group">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
@@ -275,7 +303,7 @@
                                       placeholder-gray-400 dark:placeholder-gray-500"
                                value="{{ old('time') }}"
                                placeholder="مدت زمان دوره به ساعت ..."
-                               required>
+                               >
                         @error('time')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -331,19 +359,19 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                                 </svg>
-                               کد درس در اسپات پلیر
+                               کد(شناسه) درس در اسپات پلیر
                             </span>
                         </label>
-                        <input type="text" name="spotplayer_course_id"
+                        <input type="text" name="spotplayer_id"
                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600
                                       focus:ring-4 focus:ring-blue-500/20 transition-all duration-200
                                       placeholder-gray-400 dark:placeholder-gray-500"
-                               value="{{ old('spotplayer_course_id') }}"
+                               value="{{ old('spotplayer_id') }}"
                                placeholder="5d2ee35bcddc092a304ae5eb"
                                >
-                        @error('spotplayer_course_id')
+                        @error('spotplayer_id')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>

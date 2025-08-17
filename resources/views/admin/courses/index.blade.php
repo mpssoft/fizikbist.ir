@@ -103,7 +103,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-blue-100 text-sm font-medium">کل دوره‌ها</p>
-                            <p class="text-3xl font-bold">24</p>
+                            <p class="text-3xl font-bold">{{ count($courses) }}</p>
                         </div>
                         <div class="p-3 bg-white/20 rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-green-100 text-sm font-medium">دوره‌های فعال</p>
-                            <p class="text-3xl font-bold">18</p>
+                            <p class="text-3xl font-bold"> {{count($activeCourses)}}</p>
                         </div>
                         <div class="p-3 bg-white/20 rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-orange-100 text-sm font-medium">کل دانشجویان</p>
-                            <p class="text-3xl font-bold">1,247</p>
+                            <p class="text-3xl font-bold">{{ $courses->students_count ?? 0 }}</p>
                         </div>
                         <div class="p-3 bg-white/20 rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,18 +168,21 @@
                                     <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                     </svg>
-                                    <a href="{{route('user.create.order',$course->id)}}" >
+                                    <a href="{{route('playCourse',$course->id)}}" >
                                         <img src="{{$course->cover_image}}" /> </a>
                                 </div>
                                 <div class="text-center sm:text-right">
-                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $course->title }}</h3>
-                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">{{ $course->description }}</p>
-                                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                            <span class="text-white text-sm font-bold">ا</span>
+                                    <h3 class="inline-flex text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $course->title }}</h3>
+                                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gary-100 text-green-800 dark:bg-gray-900 dark:text-green-200">
+                                        {{$course->grade->name}}
+                                    </span>
+                                    <div class="inline-flex  items-center justify-center sm:justify-start gap-2 mb-2">
+                                        <div class="w-auto px-4 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                            <span class="text-white text-sm font-bold">مدرس : {{  $course->teacher->name ?? 'No teacher assigned' }}</span>
                                         </div>
-                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{  $course->teacher->name ?? 'No teacher assigned' }} </span>
                                     </div>
+                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">{{ $course->description }}</p>
+
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row items-center gap-3">
@@ -282,226 +285,11 @@
                     </div>
                 </div>
                 @endforeach
-                <!-- Course Row 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl transition-all duration-300">
-                    <div class="p-4 sm:p-6">
-                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                                <div class="w-16 h-12 sm:w-20 sm:h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
-                                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                    </svg>
-                                </div>
-                                <div class="text-center sm:text-right">
-                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">تحلیل داده با پایتون</h3>
-                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">یادگیری کامل تحلیل داده، یادگیری ماشین و هوش مصنوعی با زبان پایتون</p>
-                                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center">
-                                            <span class="text-white text-sm font-bold">م</span>
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">دکتر محمدی</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-center gap-3">
-                            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
-                                در حال تدریس
-                            </span>
-                                <div class="flex items-center gap-2">
-                                    <a href="#" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="p-2 sm:p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200" title="حذف">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="p-2 sm:p-3 text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200" title="مشاهده">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">دانشجویان</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                    </svg>
-                                    <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">۸۹</span>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">مدت زمان</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">۳۶ ساعت</span>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">قیمت</div>
-                                <div class="flex flex-col items-center gap-1">
-                                    <div class="text-xs sm:text-sm text-gray-400 line-through">۳,۲۰۰,۰۰۰</div>
-                                    <div class="text-base sm:text-lg font-bold text-green-600">۲,۸۰۰,۰۰۰</div>
-                                </div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">تومان</div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">امتیاز</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <div class="flex text-yellow-400">
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">(۴.۸)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course Row 3 -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl transition-all duration-300">
-                    <div class="p-4 sm:p-6">
-                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                                <div class="w-16 h-12 sm:w-20 sm:h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
-                                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
-                                    </svg>
-                                </div>
-                                <div class="text-center sm:text-right">
-                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">طراحی UI/UX حرفه‌ای</h3>
-                                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">آموزش کامل طراحی رابط کاربری و تجربه کاربری از مبتدی تا پیشرفته</p>
-                                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-                                            <span class="text-white text-sm font-bold">ر</span>
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">مهندس رضایی</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-center gap-3">
-                            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                                پیش‌نویس
-                            </span>
-                                <div class="flex items-center gap-2">
-                                    <button class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="p-2 sm:p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200" title="حذف">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="p-2 sm:p-3 text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200" title="مشاهده">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">دانشجویان</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                    </svg>
-                                    <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">۰</span>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">مدت زمان</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">۱۸ ساعت</span>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">قیمت</div>
-                                <div class="text-base sm:text-lg font-bold text-green-600">۱,۸۰۰,۰۰۰</div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">تومان</div>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">امتیاز</div>
-                                <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <div class="flex text-gray-300">
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
-                                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">(بدون امتیاز)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Pagination -->
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12">
-                <div class="text-sm text-gray-500 dark:text-gray-400 order-2 sm:order-1">
-                    نمایش ۱ تا ۳ از ۲۴ دوره
-                </div>
-                <div class="flex items-center gap-2 order-1 sm:order-2">
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm">
-                        قبلی
-                    </button>
-                    <button class="px-3 py-2 rounded-lg bg-blue-600 text-white font-semibold text-sm">۱</button>
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm">۲</button>
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm">۳</button>
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm">
-                        بعدی
-                    </button>
-                </div>
+               {{ $courses->render() }}
             </div>
         </div>
     </div>

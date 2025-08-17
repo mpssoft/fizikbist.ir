@@ -34,6 +34,7 @@ class SpotPlayerService
             return License::create([
                 'user_id'         => $user->id,
                 'order_id'        => $order->id,
+                'course_id'        => $order->course->id,
                 'spotplayer_id'   => $data['_id'] ?? null,
                 'spotplayer_key'  => $data['key'] ?? null,
                 'spotplayer_url'  => $data['url'] ?? null,
@@ -55,7 +56,7 @@ class SpotPlayerService
     protected function buildLicensePayload($user,  $courseIds): array
     {
         return [
-            'test' => true,
+            'test' => false,
             'course' => [$courseIds],
             'offline' => 30,
             'name' => $user->name ?? 'User',
@@ -83,13 +84,13 @@ class SpotPlayerService
                 ],
             ],
             'device' => [
-                'p0' => 1,
-                'p1' => 1,
-                'p2' => 0,
-                'p3' => 0,
-                'p4' => 0,
-                'p5' => 0,
-                'p6' => 0,
+                'p0' => 1, // All Devices 1-99
+                'p1' => 1, // Windows 0-99
+                'p2' => 0, // MacOS 0-99
+                'p3' => 0, // Ubuntu 0-99
+                'p4' => 0, // Android 0-99
+                'p5' => 0, // IOS 0-99
+                'p6' => 0, // WebApp 0-99
             ]
         ];
     }

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            $table->string('image'); // path to the image
+            $table->string('image')->nullable(
+
+            ); // path to the image
             $table->smallInteger('order')->default(0);
             $table->string('link')->nullable(); // optional URL
             $table->boolean('is_active')->default(true); // show or hide

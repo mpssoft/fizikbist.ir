@@ -14,23 +14,23 @@ class AdminCourseController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
+        $activeCourses = Course::where("status","active")->get();
         $courses = Course::withCount([
             'raters as ratings_count',
-            'students as students_count'
+            'students as students_count',
+
         ])
             ->withAvg('raters', 'course_user.point')
             ->with([
                 'raters' => function($q) use ($user) {
                     $q->where('user_id', $user->id);
                 },
-                'teacher'
+                'teacher','grade'
             ])
             ->paginate(10);
 
 
-
-        return view('admin.courses.index', compact('courses', 'user'));
+        return view('admin.courses.index', compact('courses', 'user','activeCourses'));
     }
 
     public function create()
@@ -50,8 +50,9 @@ class AdminCourseController extends Controller
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
             'status' => 'in:active,in_progress,inactive',
-            'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+            'spotplayer_id' => 'nullable',
+            'time' =>  'nullable',
+            'grade_id'=> 'integer|exists:grades,id'
         ]);
 
 
@@ -85,8 +86,9 @@ class AdminCourseController extends Controller
             'description' => 'nullable|string',
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
-             'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+             'spotplayer_id' => 'nullable',
+            'time' =>  'nullable',
+            'grade_id' =>  'integer|exists:grades,id'
         ]);
 
 
