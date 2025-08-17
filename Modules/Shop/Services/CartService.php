@@ -224,8 +224,8 @@ class CartService
                     $item['discount'] = $discount;
 
                     $find = 1;
-                }else
-                    $item['discount'] = null;
+                }/*else
+                    $item['discount'] = null;*/
                 return $item;
             });
         }
@@ -245,10 +245,10 @@ class CartService
                         $item->discount = $discount;
                         $item->update();
                         $find = 1;
-                    }else{
+                    }/*else{
                         $item->discount = null;
                         $item->update();
-                    }
+                    }*/
            }
             }
         }

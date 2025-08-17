@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Modules\Shop\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
@@ -22,6 +23,8 @@ Route::get('/r',function(){
     echo "<pre>";
     echo Artisan::output();
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

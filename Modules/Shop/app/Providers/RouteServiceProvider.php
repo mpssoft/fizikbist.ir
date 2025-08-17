@@ -24,14 +24,14 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(['web', 'auth', 'admin.auth'])
             ->namespace($this->namespace)
             ->name('shop.admin.')
-            ->group(base_path('Modules/Shop/Routes/admin.php'));
+            ->group(base_path('Modules/Shop/routes/admin.php'));
     }
     /**
      * Define the routes for the application.
      */
     public function map(): void
     {
-        $this->mapApiRoutes();
+        //$this->mapApiRoutes();
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
     }
@@ -43,7 +43,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(): void
     {
-        Route::middleware('web')->group(module_path($this->name, '/routes/web.php'));
+        Route::middleware('web')
+            ->group(base_path('Modules/Shop/routes/web.php'));
     }
 
     /**

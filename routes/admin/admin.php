@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\panel\AdminCourseController;
 use App\Http\Controllers\Admin\panel\AdminPanelController;
 use App\Http\Controllers\Admin\panel\GradeController;
 use Illuminate\Support\Facades\Route;
+use Modules\Shop\Http\Controllers\DiscountController;
 
 Route::get("/",[AdminPanelController::class,'home'])->name('home');
 
