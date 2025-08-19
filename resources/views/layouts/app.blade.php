@@ -53,7 +53,9 @@
 
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
         @stack('scripts')
-
+        @if(!auth()->check())
+            @include('layouts.login-lightbox')
+        @endif
     </body>
 </html>
 @include('sweetalert::alert')

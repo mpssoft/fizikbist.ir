@@ -307,7 +307,7 @@
                 </div>
             @else
                 <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <button onclick="showLogin(); toggleMobileMenu()"
+                    <button onclick="openLightbox()"
                             class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 hover:from-purple-700 hover:via-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center space-x-3 space-x-reverse">
                         <i class="fas fa-sign-in-alt"></i>
                         <span>ورود / ثبت نام</span>

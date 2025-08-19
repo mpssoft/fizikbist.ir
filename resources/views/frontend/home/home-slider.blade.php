@@ -66,7 +66,7 @@
                             <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{{ $slider->title }}</h2>
                             <p class="text-base md:text-lg lg:text-xl mb-6 opacity-90">{{ $slider->subtitle }}</p>
                             @if($slider->link)
-                                <a href="#" class="leading-right bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors duration-300 shadow-lg w-fit">اطلاعات بیشتر</a>
+                                <a href="{{$slider->link}}" class="leading-right bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors duration-300 shadow-lg w-fit">اطلاعات بیشتر</a>
                             @endif
                         </div>
                         <!-- Photo Section (Right) -->

@@ -96,7 +96,7 @@
                                        bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                        focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
                                        focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
-                        <option value="">-- انتخاب نوع --</option>
+                        <option value="1">-- انتخاب نوع --</option>
                         @foreach(App\Models\Grade::all() as $grade)
                             <option value="{{$grade->id}}" {{$grade->id == $course->id ? 'selected':''}}> {{ $grade->name }}</option>
                         @endforeach
