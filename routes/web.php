@@ -24,7 +24,7 @@ Route::get('/r',function(){
     echo Artisan::output();
 });
 
-Route::get('/spot/{order}/{spot}',[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
+//Route::get('/spot/{order}/{spot}',[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,6 +36,9 @@ Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verif
 
 Route::prefix('course')->group(function(){
     Route::get('all',[\App\Http\Controllers\Frontend\CourseController::class,'all'])->name('all.courses');
+});
+Route::prefix('course')->group(function(){
+    Route::get('{gradeName}/{grade}',[\App\Http\Controllers\Frontend\CourseController::class,'gradeCourses'])->name('gradeCourses');
 });
 Route::get('/free/lessons',[\App\Http\Controllers\LessonController::class,'free'])->name('free.lessons');
 Route::get('about',[HomeController::class,'about'])->name('about');

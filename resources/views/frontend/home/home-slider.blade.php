@@ -62,7 +62,7 @@
                     <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full md:pr-30" dir="ltr">
 
                         <!-- Text Section (Left) -->
-                        <div dir="rtl" class="text-right slide-content flex flex-col justify-center p-8 md:p-12  text-white order-2 md:order-1">
+                        <div dir="rtl" class="hidden md:block  text-right slide-content flex flex-col justify-center pt-40  text-white order-2 md:order-1">
                             <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{{ $slider->title }}</h2>
                             <p class="text-base md:text-lg lg:text-xl mb-6 opacity-90">{{ $slider->subtitle }}</p>
                             @if($slider->link)
@@ -70,9 +70,11 @@
                             @endif
                         </div>
                         <!-- Photo Section (Right) -->
-                        <div class="  hidden md:block slide-image  items-center justify-center p-8 md:p-12 order-1 md:order-2">
-                            <div  class=" md:w-full md:h-full rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm shadow-amber-500 border-white/20">
+                        <div class=" slide-image  items-center justify-center p-8 md:p-12 order-1 md:order-2">
+                            <div  class=" md:w-full md:h-full rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm shadow-amber-500 border-white/20">
+                                <a href="{{$slider->link}}" >
                                 <img src="{{$slider->image}}" class="w-full h-full" />
+                                </a>
                             </div>
                         </div>
 
@@ -84,7 +86,7 @@
         </div>
 
         <!-- Navigation Arrows -->
-        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm" onclick="previousSlide()">
+        <button class="absolute left-4 top-1/2  transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm" onclick="previousSlide()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
@@ -97,7 +99,7 @@
         </button>
 
         <!-- Dots Indicator -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex ">
+        <div class="absolute bottom-6  left-1/2 transform -translate-x-1/2 flex ">
 
             @php $index = 0; @endphp
             @foreach($sliders as $s)
@@ -174,7 +176,7 @@
     }
 
     // Auto-play functionality
-    setInterval(nextSlide, 10000);
+    setInterval(nextSlide, 100000);
 
     // Touch/swipe support for mobile
     let startX = 0;

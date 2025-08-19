@@ -19,15 +19,48 @@
             </div>
 
             <!-- Quick Links -->
-            <div>
-                <h3 class="text-lg font-semibold mb-4">دسترسی سریع</h3>
-                <div class="space-y-2">
-                    <a href="#" onclick="showSection('home')" class="block text-gray-300 hover:text-cyan-400 transition">خانه</a>
-                    <a href="#" onclick="showCourses('all')" class="block text-gray-300 hover:text-cyan-400 transition">دوره‌ها</a>
-                    <a href="#" onclick="showCourses('konkur')" class="block text-gray-300 hover:text-cyan-400 transition">کنکور</a>
-                    <a href="https://spotplayer.ir/" target="_blank" class="block text-gray-300 hover:text-cyan-400 transition">دانلود SpotPlayer</a>
+
+            <div >
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="inline-block w-1.5 rounded-full  ml-3 text-cyan-400/80 fas fa-sitemap"></span>
+                    <h3 class=" font-extrabold text-white/90 tracking-tight">دسترسی سریع</h3>
                 </div>
+
+                <nav>
+                    <a href="/" class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
+      <span class="flex items-center gap-3">
+        <i class="fas fa-house text-cyan-300/90 group-hover:text-cyan-200"></i>
+        <span>خانه</span>
+      </span>
+
+                    </a>
+
+                    <a href="{{route('all.courses')}}" class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
+      <span class="flex items-center gap-3">
+        <i class="fas fa-layer-group text-cyan-300/90 group-hover:text-cyan-200"></i>
+        <span>دوره‌ها</span>
+      </span>
+
+                    </a>
+
+                    <a href="{{route('gradeCourses',['gradeName'=>'کنکور',0])}}"  class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
+      <span class="flex items-center gap-3">
+        <i class="fas fa-graduation-cap text-cyan-300/90 group-hover:text-cyan-200"></i>
+        <span>کنکور</span>
+      </span>
+
+                    </a>
+
+                    <a href="https://spotplayer.ir/" target="_blank" class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
+      <span class="flex items-center gap-3">
+        <i class="fas fa-download text-cyan-300/90 group-hover:text-cyan-200"></i>
+        <span>دانلود SpotPlayer</span>
+      </span>
+
+                    </a>
+                </nav>
             </div>
+
 
             <!-- Support -->
             <div>

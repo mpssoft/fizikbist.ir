@@ -22,9 +22,9 @@
                             x-transition
                             class="absolute right-0 mt-6 w-[600px] bg-slate-800 text-white rounded-xl shadow-xl z-50 p-6"
                         >
-                            <div class="flex flex-row-reverse gap-6">
+                            <div class="flex flex-row-reverse ">
                                 <!-- آموزش blocks -->
-                                <div class="w-4/5 space-y-4">
+                                <div class="w-4/5 space-y-4 ">
                                     <div class="grid grid-cols-2 gap-4 text-sm">
                                         <a href="{{route('all.courses')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-cyan-400 text-xl">
@@ -76,11 +76,15 @@
                                 </div>
 
                                 <!-- پایه‌ها -->
-                                <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-600 pr-4 space-y-2 text-sm text-center">
-                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه دهم</a>
-                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه یازدهم</a>
-                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">پایه دوازدهم</a>
-                                    <a href="#" class="block px-3 py-2 rounded hover:bg-slate-700">کنکور</a>
+                                <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-600 ml-2 pl-2 space-y-2 text-sm ">
+                                    @foreach(\App\Models\Grade::all() as $grade)
+
+                                        <a href="{{route('gradeCourses',['gradeName'=>$grade->name,$grade->id])}}" class="flex items-center gap-2  px-3 py-2 rounded hover:bg-slate-700 ">
+
+                                            <i class="fas fa-cubes text-xl text-cyan-300/90 group-hover:text-cyan-200"></i>
+                                            {{ $grade->name }}
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -127,64 +131,97 @@
                 <span class="pointer-events-none absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
             </a>
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse">
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse mt-2">
 
             @if(auth()->check())
                     <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="focus:outline-none ">
-                            <img src="/images/user-avatar-man.jpg" class="w-12 h-12 rounded-full border-2 border-gray-100 mt-2" alt="avatar">
-{{--                               <i class="fas fa-user w-10 h-10" ></i>--}}
+                        <button @click="open = !open" class="focus:outline-none group">
+                            <div class="w-11 h-11 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
+                                <img src="/images/user-avatar-man.jpg" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                                     alt="avatar">
+                            </div>
                         </button>
                         <div
                             x-show="open"
                             @click.away="open = false"
-                            x-transition
-                            class="absolute left-0 mt-2 w-64 max-w-[90vw] bg-slate-800 text-white rounded-xl shadow-lg z-50 p-4 space-y-3"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-95"
+                            class=" absolute left-0 mt-3 w-72 max-w-[90vw] bg-slate-900/90 dark:bg-slate-900/95 text-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.65)] z-50 p-5 backdrop-blur border border-white/10 dark:border-white/5"
                         >
-                            <div class="flex items-center space-x-3 space-x-reverse">
-                                <img src="/images/user-avatar-man.jpg" class="w-12 h-12 rounded-full border-2 border-green-400" alt="avatar">
+                            <!-- User Info Section -->
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5">
+                                    <img src="/images/user-avatar-man.jpg" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                                         alt="avatar">
+                                </div>
                                 <div>
-                                    <p class="font-bold">  {{ auth()->user()->name }}</p>
-                                    <a href="{{ auth()->user()->role == 'user'? route('user.home'):route('admin.home') }}" class="text-sm text-blue-400 hover:underline">مشاهده پنل کاربری</a>
+                                    <p class="font-bold text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                                        {{ auth()->user()->name }}</p>
+                                    @if(auth()->user()->role == 'admin')
+                                        <a href="{{route('admin.home')}}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                                    @else
+                                        <a href="{{route('user.home')}}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                                    @endif
                                 </div>
                             </div>
 
-                            <div class="text-sm mt-2">
+                            <!-- Stats Section -->
+                            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 space-y-2">
                                 <div class="flex justify-between items-center">
-                                    <span>کیف پول</span>
-                                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                                    <span class="text-sm font-medium">کیف پول</span>
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-sm"></div>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span>تجربه کاربری</span>
-                                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                                    <span class="text-sm font-medium">تجربه کاربری</span>
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-green-400 to-green-500 shadow-sm"></div>
                                 </div>
-                                <div class="text-green-400 mt-1">۲۰,۶۸۸ تجربه</div>
+                                <div class="text-green-500 font-bold text-lg">۲۰,۶۸۸ تجربه</div>
                             </div>
 
-                            <hr class="border-slate-600">
+                            <!-- Divider -->
+                            <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                            <nav class="text-sm space-y-2">
-                                <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                                    <i class="fas fa-video text-base"></i><span>دوره ها</span>
+                            <!-- Navigation Menu -->
+                            <nav class="space-y-1">
+                                <a href="#"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">دوره ها</span>
                                 </a>
-                                <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                                    <i class="fas fa-credit-card text-base"></i><span>مالی و اشتراک</span>
+                                <a href="#"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-credit-card text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">مالی و اشتراک</span>
                                 </a>
-                                <a href="#" class="flex items-center space-x-2 space-x-reverse px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                                    <i class="fas fa-question-circle text-base"></i><span>پرسش‌ها</span>
+                                <a href="#"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-question-circle text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">پرسش‌ها</span>
                                 </a>
-                                <a href="#" class="flex items-center justify-between px-4 py-2 rounded hover:bg-slate-200 dark:hover:bg-slate-700">
-                                    <div class="flex items-center space-x-2 space-x-reverse">
-                                        <i class="fas fa-thumbtack text-base rotate-45"></i><span>ماموریت‌ها</span>
+                                <a href="#"
+                                   class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-thumbtack text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
+                                        <span class="font-medium">ماموریت‌ها</span>
                                     </div>
-                                    <span class="bg-yellow-400 text-black rounded-full w-5 h-5 text-xs flex items-center justify-center">۴</span>
+                                    <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>
                                 </a>
                             </nav>
 
+                            <!-- Divider -->
+                            <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                            <hr class="border-slate-600">
+                            <!-- Logout Section -->
                             <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
-                            <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()"  class="block text-center text-red-400 hover:underline">خروج از حساب کاربری</a>
+                            <button onclick="event.preventDefault();document.getElementById('logout-form').submit()"
+                                    class="w-full text-center bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 hover:from-red-100 hover:to-pink-100 dark:hover:from-red-900/30 dark:hover:to-pink-900/30 text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
+                                <i class="fas fa-sign-out-alt ml-2"></i>
+                                خروج از حساب کاربری
+                            </button>
                         </div>
                     </div>
 
@@ -255,35 +292,15 @@
                 </div>
                 </a>
                 <div class="mr-6 space-y-1">
-                    <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                    @foreach(\App\Models\Grade::all() as $grade)
+                    <a href="{{ route('gradeCourses',['gradeName'=>$grade->name,$grade->id]) }}"  class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                         <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
                         </div>
-                        <span class="font-medium">پایه دهم</span>
+                        <span class="font-medium">{{$grade->name}}</span>
                     </a>
-
-                    <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                            <i class="fas fa-user-graduate text-white text-xs"></i>
-                        </div>
-                        <span class="font-medium">پایه یازدهم</span>
-                    </a>
-
-                    <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
-                        <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                            <i class="fas fa-graduation-cap text-white text-xs"></i>
-                        </div>
-                        <span class="font-medium">پایه دوازدهم</span>
-                    </a>
-
-                    <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
-                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                            <i class="fas fa-university text-white text-xs"></i>
-                        </div>
-                        <span class="font-medium">کنکور</span>
-
-                    </a>
-                </div>
+                    @endforeach
+               </div>
             </div>
 
             @if(auth()->check())
@@ -292,7 +309,7 @@
                         <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                             <i class="fas fa-user-cog text-white text-sm"></i>
                         </div>
-                        <span class="font-medium">پنل کاربری</span>
+                        <span class="font-medium dark:text-white">پنل کاربری</span>
                     </a>
                 </div>
             @else

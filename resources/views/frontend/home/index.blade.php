@@ -29,7 +29,7 @@
             <div class="gradient-bg hero-pattern text-white py-20 relative overflow-hidden">
                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div class=" mx-auto  text-center relative z-10">
-                    <h2 class="text-6xl font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200 bg-clip-text text-transparent drop-shadow-2xl">
+                    <h2 class="text-4xl pt-2 font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200 bg-clip-text text-transparent drop-shadow-2xl">
                         آموزش تخصصی فیزیک
                     </h2>
                     @include('frontend.home.home-slider', ['sliders' => $sliders])
@@ -80,6 +80,7 @@
 
 
         <!-- Free Lessons Section -->
+        @if(count($lessons))
         <section class="py-20 bg-gray-200" id="free-courses-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -125,7 +126,7 @@
                 </div>
             </div>
         </section>
-
+        @endif
         <!-- Featured Courses Section -->
         <section class="py-20  dark:bg-gray-900 dark:text-white">
             <div class="container mx-auto px-6">
@@ -177,7 +178,7 @@
         </section>
 
         <!-- Statistics Section -->
-        <section class="py-20 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+       {{-- <section class="py-20 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                     <div>
@@ -203,7 +204,7 @@
                 </div>
             </div>
         </section>
-
+--}}
         <!-- Why Choose Us Section -->
         <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-6">
@@ -324,8 +325,8 @@
                 <h2 class="text-4xl font-bold mb-6">آماده شروع سفر یادگیری خود هستید؟</h2>
                 <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">به هزاران دانشجویی بپیوندید که در حال حاضر با دوره‌های تخصصی ما شغل خود را پیش می‌برند.</p>
                 <div class="space-x-4 space-x-reverse">
-                    <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition duration-300">همین امروز شروع کنید</button>
-                    <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">مرور دوره‌ها</button>
+
+                    <a href="{{route('all.courses')}}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">مرور دوره‌ها</a>
                 </div>
             </div>
         </section>

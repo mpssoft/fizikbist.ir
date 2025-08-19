@@ -43,7 +43,7 @@
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
-                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 backdrop-blur-sm border border-white/20 dark:border-slate-600/20"
+                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-slate-900/90 dark:bg-slate-900/95 text-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.65)] z-50 p-5 backdrop-blur border border-white/10 dark:border-white/5"
             >
                 <!-- User Info Section -->
                 <div class="flex items-center gap-4">
@@ -53,7 +53,11 @@
                     </div>
                     <div>
                         <p class="font-bold text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">محمد احمدی</p>
-                        <a href="#" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                        @if(auth()->user()->role == 'admin')
+                        <a href="{{route('admin.home')}}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                        @else
+                            <a href="{{route('user.home')}}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                        @endif
                     </div>
                 </div>
 
