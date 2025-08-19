@@ -14,7 +14,7 @@
                 @foreach($courses as $course)
                     <!-- Course Card 1 -->
                     <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center " style="background:url('{{$course->cover_image}}');background-size: contain">
+                        <div class="h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center " style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
 
                         </div>
                         <div class="p-6">

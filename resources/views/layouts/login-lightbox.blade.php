@@ -92,11 +92,13 @@
         function openLightbox() {
             document.getElementById('lightboxOverlay').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            toggleMobileMenu();
         }
 
         function closeLightbox() {
             document.getElementById('lightboxOverlay').classList.add('hidden');
             document.body.style.overflow = 'auto';
+
         }
     </script>
 

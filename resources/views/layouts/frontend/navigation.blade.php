@@ -115,23 +115,20 @@
 
 
             </div>
-
+            <div class="flex items-center gap-8">
+            <a href="/cart" type="button" aria-label="Open cart"
+               class=" flex float-left items-center justify-center rounded-full bg-white/80 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 hover:bg-white dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white shadow-sm ring-1 ring-neutral-200/70 dark:ring-neutral-700/60 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-10 h-10">
+                <!-- Cart icon -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
+                    <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
+                </svg>
+                <span class="pointer-events-none absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
+            </a>
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-                <a href="/cart" type="button" aria-label="Open cart"
-                   class="relative inline-flex items-center justify-center rounded-full bg-white/80 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 hover:bg-white dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white shadow-sm ring-1 ring-neutral-200/70 dark:ring-neutral-700/60 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-10 h-10">
-                    <!-- Cart icon -->
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
-                        <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
-                    </svg>
 
-                    <!-- Optional notification dot; show/hide as needed -->
-
-                    <!-- Soft ripple highlight -->
-                    <span class="pointer-events-none absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
-                </a>
             @if(auth()->check())
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="focus:outline-none ">
@@ -207,6 +204,7 @@
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
+        </div>
     </div>
 
     <!-- Beautiful Mobile Menu -->
@@ -215,8 +213,9 @@
         <!-- Header Section -->
         <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 p-6 relative overflow-hidden">
             <div class="absolute inset-0 bg-black/10"></div>
-            <div class="relative z-10">
-                <button onclick="toggleMobileMenu()" class="float-left mb-4 text-white/90 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200">
+            <div class="relative z-10 ">
+
+                <button onclick="toggleMobileMenu()" class=" float-left z-10 text-white/90 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200">
                     <i class="fas fa-times text-xl"></i>
                 </button>
                 <div class="clear-both">
@@ -230,38 +229,37 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
         <!-- Menu Content -->
-        <div class="p-6 space-y-2 overflow-y-auto h-full pb-32">
+        <div class="p-3  overflow-y-auto h-full pb-32">
 
             <!-- Home -->
-            <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
+            <a href="/"  class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                     <i class="fas fa-home text-white text-sm"></i>
                 </div>
-                <span class="font-medium">خانه</span>
+                <span class="font-medium text-white">خانه</span>
             </a>
 
             <!-- Courses Section -->
             <div class="space-y-2">
+                <a href="{{ route('all.courses') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
                     <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
                         <i class="fas fa-book text-white text-sm"></i>
                     </div>
-                    <span class="font-semibold text-lg">دوره‌ها</span>
+                    <span class="font-semibold ">همه دوره‌ها</span>
                 </div>
-
+                </a>
                 <div class="mr-6 space-y-1">
                     <a href="#" onclick="showCourses('grade10'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                         <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
                         </div>
                         <span class="font-medium">پایه دهم</span>
-                        <div class="mr-auto">
-                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
-                        </div>
                     </a>
 
                     <a href="#" onclick="showCourses('grade11'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
@@ -269,9 +267,6 @@
                             <i class="fas fa-user-graduate text-white text-xs"></i>
                         </div>
                         <span class="font-medium">پایه یازدهم</span>
-                        <div class="mr-auto">
-                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
-                        </div>
                     </a>
 
                     <a href="#" onclick="showCourses('grade12'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
@@ -279,9 +274,6 @@
                             <i class="fas fa-graduation-cap text-white text-xs"></i>
                         </div>
                         <span class="font-medium">پایه دوازدهم</span>
-                        <div class="mr-auto">
-                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
-                        </div>
                     </a>
 
                     <a href="#" onclick="showCourses('konkur'); toggleMobileMenu()" class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
@@ -289,9 +281,7 @@
                             <i class="fas fa-university text-white text-xs"></i>
                         </div>
                         <span class="font-medium">کنکور</span>
-                        <div class="mr-auto">
-                            <i class="fas fa-chevron-left text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 text-xs"></i>
-                        </div>
+
                     </a>
                 </div>
             </div>
