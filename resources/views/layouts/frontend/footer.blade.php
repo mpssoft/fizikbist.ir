@@ -1,6 +1,6 @@
-<footer class="bg-gray-900 text-white py-12 shadow-[0_-4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_-4px_12px_rgba(0,0,0,0.4)]">
+<footer class=" shadow-[0_-4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_-4px_12px_rgba(0,0,0,0.4)] py-12 bg-gray-700 dark:bg-slate-900 text-gray-800   dark:!text-white">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-8 text-white">
             <!-- Site Info -->
             <div>
                 <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-4">
@@ -23,7 +23,7 @@
             <div >
                 <div class="flex items-center gap-2 mb-4">
                     <span class="inline-block w-1.5 rounded-full  ml-3 text-cyan-400/80 fas fa-sitemap"></span>
-                    <h3 class=" font-extrabold text-white/90 tracking-tight">دسترسی سریع</h3>
+                    <h3 class=" font-extrabold  tracking-tight ">دسترسی سریع</h3>
                 </div>
 
                 <nav>
@@ -43,7 +43,7 @@
 
                     </a>
 
-                    <a href="{{route('gradeCourses',['gradeName'=>'کنکور',0])}}"  class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
+                    <a href="{{route('gradeCourses',['gradeName'=>'کنکور'])}}"  class="group flex items-center justify-between rounded-xl px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition">
       <span class="flex items-center gap-3">
         <i class="fas fa-graduation-cap text-cyan-300/90 group-hover:text-cyan-200"></i>
         <span>کنکور</span>

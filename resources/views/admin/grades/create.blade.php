@@ -14,7 +14,7 @@
                     </svg>
                     <span>افزودن پایه جدید</span>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">افزودن مقطع جدید</h1>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">افزودن (پایه|مقطع|دسته) جدید</h1>
                 <p class="text-gray-600 dark:text-gray-400 mt-1">مقطع تحصیلی جدید را به سیستم اضافه کنید</p>
             </div>
 
@@ -51,7 +51,7 @@
                     type="text"
                     id="gradeName"
                     name="name"
-                    placeholder="مثال: دهم، یازدهم، دوازدهم"
+                    placeholder="مثال: دهم، یازدهم، دوازدهم، کنکور"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-200"
                     required
                 >

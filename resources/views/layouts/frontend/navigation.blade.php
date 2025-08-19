@@ -1,4 +1,4 @@
-<nav class=" dark:bg-slate-900  shadow-lg sticky top-0 z-50">
+<nav class="     shadow-lg sticky top-0 z-50 bg-gray-600 dark:bg-slate-900 text-gray-900 dark:!text-white ">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center space-x-4 space-x-reverse">
@@ -20,7 +20,7 @@
                             x-show="openMenu === 'courses'"
                             @click.away="openMenu = null"
                             x-transition
-                            class="absolute right-0 mt-6 w-[600px] bg-slate-800 text-white rounded-xl shadow-xl z-50 p-6"
+                            class="absolute right-0 mt-6 w-[600px] bg-slate-800 rounded-xl shadow-xl z-50 p-6"
                         >
                             <div class="flex flex-row-reverse ">
                                 <!-- آموزش blocks -->
@@ -79,7 +79,7 @@
                                 <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-600 ml-2 pl-2 space-y-2 text-sm ">
                                     @foreach(\App\Models\Grade::all() as $grade)
 
-                                        <a href="{{route('gradeCourses',['gradeName'=>$grade->name,$grade->id])}}" class="flex items-center gap-2  px-3 py-2 rounded hover:bg-slate-700 ">
+                                        <a href="{{route('gradeCourses',['gradeName'=>$grade->name])}}" class="flex items-center gap-2  px-3 py-2 rounded hover:bg-slate-700 ">
 
                                             <i class="fas fa-cubes text-xl text-cyan-300/90 group-hover:text-cyan-200"></i>
                                             {{ $grade->name }}
@@ -91,7 +91,7 @@
                     </div>
 
                     <!-- پرسش و پاسخ‌ها -->
-                    <a href="#" class="hover:text-cyan-400">پرسش و پاسخ‌ها</a>
+                    <a href="#" class=" hover:text-cyan-400  ">پرسش و پاسخ‌ها</a>
 
                     <!-- مقالات -->
                     <a href="#" class="hover:text-cyan-400">مقالات</a>
@@ -121,15 +121,19 @@
             </div>
             <div class="flex items-center gap-8">
             <a href="/cart" type="button" aria-label="Open cart"
-               class=" flex float-left items-center justify-center rounded-full bg-white/80 dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 hover:bg-white dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white shadow-sm ring-1 ring-neutral-200/70 dark:ring-neutral-700/60 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-10 h-10">
-                <!-- Cart icon -->
+               class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                     <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
                     <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
                 </svg>
-                <span class="pointer-events-none absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
+                <span class="pointer-events-none  absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
             </a>
+                <!-- Theme Toggle -->
+            {{--<button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
+                <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>
+                <i x-show="dark" class="fas fa-sun text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200"></i>
+            </button>--}}
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6 space-x-reverse mt-2">
 
@@ -293,7 +297,7 @@
                 </a>
                 <div class="mr-6 space-y-1">
                     @foreach(\App\Models\Grade::all() as $grade)
-                    <a href="{{ route('gradeCourses',['gradeName'=>$grade->name,$grade->id]) }}"  class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                    <a href="{{ route('gradeCourses',['gradeName'=>$grade->name]) }}"  class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                         <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
                         </div>

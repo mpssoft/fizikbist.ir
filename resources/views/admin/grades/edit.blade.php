@@ -14,7 +14,7 @@
                     </svg>
                     <span>ویرایش پایه</span>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">ویرایش پایه تحصیلی</h1>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">ویرایش (پایه|مقطع|دسته) </h1>
                 <p class="text-gray-600 dark:text-gray-400 mt-1">اطلاعات پایه تحصیلی را ویرایش کنید</p>
             </div>
 

@@ -38,7 +38,7 @@ Route::prefix('course')->group(function(){
     Route::get('all',[\App\Http\Controllers\Frontend\CourseController::class,'all'])->name('all.courses');
 });
 Route::prefix('course')->group(function(){
-    Route::get('{gradeName}/{grade}',[\App\Http\Controllers\Frontend\CourseController::class,'gradeCourses'])->name('gradeCourses');
+    Route::get('{gradeName}/',[\App\Http\Controllers\Frontend\CourseController::class,'gradeCourses'])->name('gradeCourses');
 });
 Route::get('/free/lessons',[\App\Http\Controllers\LessonController::class,'free'])->name('free.lessons');
 Route::get('about',[HomeController::class,'about'])->name('about');

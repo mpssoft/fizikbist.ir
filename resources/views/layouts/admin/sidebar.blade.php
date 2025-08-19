@@ -22,7 +22,7 @@
 
         <a href="{{route('admin.grades.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-graduation-cap text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>
-            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">مقاطع تحصیلی</span>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">پایه | مقطع | دسته </span>
         </a>
         <a href="{{route('admin.courses.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-book-reader text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>

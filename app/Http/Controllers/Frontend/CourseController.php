@@ -27,11 +27,12 @@ class CourseController extends Controller
         return view('frontend.course.all',compact('courses'));
     }
 
-    public function gradeCourses(string $gradeName,Grade $grade)
+    public function gradeCourses(string $gradeName)
     {
-
-        $courses = Course::where('status','active')
-            ->where('grade_id',$grade->id)
+        $ids = Grade::where('name',$gradeName)->pluck('id');
+        $ids = $ids->toArray();
+        $courses = Course::where('status', 'active')
+            ->whereIn('grade_id', $ids)         // match by grade_id
             ->withCount([
             'raters as ratings_count',
             'students as students_count',

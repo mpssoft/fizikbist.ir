@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             window.tailwind = {
                 config: {
@@ -14,8 +14,6 @@
                 }
             }
         </script>
-        <script src="https://cdn.tailwindcss.com"></script>
-
 
 
 {{--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">--}}
@@ -25,7 +23,7 @@
         @yield('style')
         @stack('styles')
     </head>
-    <body class=" dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" dir="rtl">
+    <body class=" transition-colors duration-1000 bg-white text-black dark:bg-slate-900  dark:text-white" dir="rtl">
         <div class="min-h-screen ">
             @include('layouts.frontend.navigation')
 
