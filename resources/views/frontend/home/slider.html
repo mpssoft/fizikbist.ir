@@ -1,20 +1,26 @@
-<style>
-    .slide { transition: transform 0.6s ease-in-out, opacity 0.6s ease; }
-    .hero-bg { background-size: cover; background-position: center; }
-    .is-active { opacity: 1; }
-    .is-inactive { opacity: 0; }
-</style>
-<section class="relative w-full rounded-3xl overflow-hidden mx-auto md:w-[90%] dark:md:w-[90%]">
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Full-Width Background Slider (1920x450)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slide { transition: transform 0.6s ease-in-out, opacity 0.6s ease; }
+        .hero-bg { background-size: cover; background-position: center; }
+        .is-active { opacity: 1; }
+        .is-inactive { opacity: 0; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-300">
+<section class="relative w-full">
     <!-- Slider height area 1920x450 -->
     <div class="w-full h-[450px] relative overflow-hidden">
         <!-- Slides: place your images via foreach by duplicating this block and changing the style background-image -->
         <!-- Example slide 1 -->
-        <div class="slide absolute inset-0 hero-bg is-active" style="background-image: url('https://fizikbist.ir/images/-5845927777142950445_121.jpg')"></div>
-        <div class="slide absolute inset-0 hero-bg is-active" style="background-image: url('https://fizikbist.ir/images/39d859d1be5fe63d61f7880278b45873.jpg')"></div>
-        <div class="slide absolute inset-0 hero-bg is-active" style="background-image: url('https://parspremium.ir/uploads/image/rootimage/4961/524a26083dbd53fa8ba3d5025c00b740.jpg?w=1400&h=1000&q=90')"></div>
-
+        <div class="slide absolute inset-0 hero-bg is-active" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop');"></div>
         <!-- Example slide 2 -->
-
+        <div class="slide absolute inset-0 hero-bg translate-x-full is-inactive" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1920&auto=format&fit=crop');"></div>
         <!-- Example slide 3 -->
         <div class="slide absolute inset-0 hero-bg translate-x-full is-inactive" style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1920&auto=format&fit=crop');"></div>
 
@@ -36,7 +42,13 @@
             <button class="dot w-3 h-3 rounded-full bg-white/40 transition-all duration-500 hover:scale-110" onclick="goToSlide(2)" aria-label="Slide 3"></button>
         </div>
 
-   </div>
+        <!-- Dark mode toggle -->
+        <button onclick="toggleDarkMode()" class="absolute top-4 end-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 flex items-center gap-2">
+            <svg class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 10-1.414 1.414zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <span class="dark:hidden">Dark</span><span class="hidden dark:block">Light</span>
+        </button>
+    </div>
 </section>
 
 <script>
@@ -119,3 +131,5 @@
     // Init
     applyTransforms();
 </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9720b62781be9938',t:'MTc1NTY4MDU0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
