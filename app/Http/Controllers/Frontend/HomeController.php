@@ -27,6 +27,14 @@ class HomeController extends Controller
 
         return view('frontend.player.play',compact('lesson'));
     }
+    public function playFreeCourse(Course $course)
+    {
+
+        if($course->price >0)
+            return redirect()->route('all.courses')->with(['message'=>'این درس رایگان نیست']);
+        $lessons = $course->lessons()->latest()->get();
+        return view('frontend.player.play-free-course',compact('lessons'));
+    }
 
         public function refreshCookie(Request $request)
     {

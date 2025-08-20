@@ -56,5 +56,6 @@ Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.
 
 // player
 Route::get('/play/{lesson}',[HomeController::class,'play'])->name('play');
+Route::get('/play-course/{course}',[HomeController::class,'playFreeCourse'])->name('playFreeCourse');
 Route::get('/playCourse/{course}',[HomeController::class,'playCourse'])->middleware('auth')->name('playCourse');
 require __DIR__.'/auth.php';

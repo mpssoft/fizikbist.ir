@@ -42,7 +42,7 @@
                                             خرید دوره
                                         </a>
                                     @else
-                                        <a href="#"
+                                        <a href="{{route('playFreeCourse',$course->id)}}"
                                            class="bg-blue-600 float-left text-white px-6 py-2  rounded-lg hover:bg-blue-700 transition duration-300 ">
                                             مرور دوره
                                         </a>
