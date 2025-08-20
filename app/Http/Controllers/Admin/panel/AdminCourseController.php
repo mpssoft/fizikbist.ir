@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\panel;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
+use App\Services\SpotPlayerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -14,23 +15,23 @@ class AdminCourseController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
+        $activeCourses = Course::where("status","active")->get();
         $courses = Course::withCount([
             'raters as ratings_count',
-            'students as students_count'
+            'students as students_count',
+
         ])
             ->withAvg('raters', 'course_user.point')
             ->with([
                 'raters' => function($q) use ($user) {
                     $q->where('user_id', $user->id);
                 },
-                'teacher'
+                'teacher','grade'
             ])
             ->paginate(10);
 
 
-
-        return view('admin.courses.index', compact('courses', 'user'));
+        return view('admin.courses.index', compact('courses', 'user','activeCourses'));
     }
 
     public function create()
@@ -50,8 +51,9 @@ class AdminCourseController extends Controller
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
             'status' => 'in:active,in_progress,inactive',
-            'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+            'spotplayer_id' => 'nullable',
+            'time' =>  'nullable',
+            'grade_id'=> 'nullable|integer|exists:grades,id'
         ]);
 
 
@@ -85,8 +87,10 @@ class AdminCourseController extends Controller
             'description' => 'nullable|string',
             'cover_image' => 'nullable',
             'teacher_id' => 'nullable|exists:users,id',
-             'spotplayer_course_id' => 'nullable',
-            'time' =>  'nullable'
+             'spotplayer_id' => 'nullable',
+            'time' =>  'nullable',
+            'status' => 'in:active,in_progress,inactive',
+            'grade_id' =>  'nullable|integer|exists:grades,id'
         ]);
 
 
@@ -104,7 +108,12 @@ class AdminCourseController extends Controller
         }
 
         $course->delete();
-
         return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully!');
     }
+
+    public function editUserCourseLicense(Request $request,Course $course){
+        $spot = new SpotPlayerService();
+        $spot->editCourseLicenseForUser($course);
+
+}
 }

@@ -21,8 +21,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
-        '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
@@ -34,11 +34,13 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         '7f7ac2ddea9cc3fb4b2cc201d63dbc10' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Log/functions.php',
         '493c6aea52f6009bab023b26c21a386a' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/functions.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '062a54fe8f6f91078b197f2922521dd9' => __DIR__ . '/..' . '/laravel/pint/overrides/Runner/Parallel/ProcessFactory.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
+        'e4e590a9b5afe940db71ee1662c02677' => __DIR__ . '/..' . '/morilog/jalali/src/helpers.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         '9f394da3192a168c4633675768d80428' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/helpers.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -122,11 +124,14 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'M' => 
         array (
+            'Morilog\\Jalali\\' => 15,
             'Monolog\\' => 8,
-            'Modules\\Discount\\Tests\\' => 23,
-            'Modules\\Discount\\Database\\Seeders\\' => 34,
-            'Modules\\Discount\\Database\\Factories\\' => 36,
-            'Modules\\Discount\\' => 17,
+            'Modules\\Shop\\Tests\\' => 19,
+            'Modules\\Shop\\Services\\' => 22,
+            'Modules\\Shop\\Database\\Seeders\\' => 30,
+            'Modules\\Shop\\Database\\Factories\\' => 32,
+            'Modules\\Shop\\' => 13,
+            'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -205,6 +210,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'A' => 
         array (
+            'Assert\\' => 7,
             'Artesaos\\SEOTools\\' => 18,
             'ArchTech\\Enums\\' => 15,
             'App\\' => 4,
@@ -422,25 +428,37 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
+        'Morilog\\Jalali\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/morilog/jalali/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Modules\\Discount\\Tests\\' => 
+        'Modules\\Shop\\Tests\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/tests',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/tests',
         ),
-        'Modules\\Discount\\Database\\Seeders\\' => 
+        'Modules\\Shop\\Services\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/database/seeders',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/Services',
         ),
-        'Modules\\Discount\\Database\\Factories\\' => 
+        'Modules\\Shop\\Database\\Seeders\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/database/factories',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/database/seeders',
         ),
-        'Modules\\Discount\\' => 
+        'Modules\\Shop\\Database\\Factories\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Discount/app',
+            0 => __DIR__ . '/../..' . '/Modules/Shop/database/factories',
+        ),
+        'Modules\\Shop\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Shop/app',
+        ),
+        'Modules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules',
         ),
         'Mockery\\' => 
         array (
@@ -651,6 +669,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
+        'Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
+        ),
         'Artesaos\\SEOTools\\' => 
         array (
             0 => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools',
@@ -713,7 +735,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Alexusmai\\LaravelFileManager\\Traits\\ContentTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/ContentTrait.php',
         'Alexusmai\\LaravelFileManager\\Traits\\PathTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/PathTrait.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminCourseController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\AdminLessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminLessonController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminPanelController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/GradeController.php',
         'App\\Http\\Controllers\\Admin\\panel\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/SliderController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -731,7 +755,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/CourseController.php',
+        'App\\Http\\Controllers\\Frontend\\ContactMessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ContactMessageController.php',
+        'App\\Http\\Controllers\\Frontend\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CourseController.php',
         'App\\Http\\Controllers\\Frontend\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/HomeController.php',
+        'App\\Http\\Controllers\\Frontend\\LessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/LessonController.php',
         'App\\Http\\Controllers\\LessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/LessonController.php',
         'App\\Http\\Controllers\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaymentController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -742,7 +769,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\ActiveCode' => __DIR__ . '/../..' . '/app/Models/ActiveCode.php',
+        'App\\Models\\ContactMessage' => __DIR__ . '/../..' . '/app/Models/ContactMessage.php',
         'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
+        'App\\Models\\Grade' => __DIR__ . '/../..' . '/app/Models/Grade.php',
         'App\\Models\\Lesson' => __DIR__ . '/../..' . '/app/Models/Lesson.php',
         'App\\Models\\License' => __DIR__ . '/../..' . '/app/Models/License.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
@@ -795,6 +824,13 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Artesaos\\SEOTools\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/SEOTools.php',
         'Artesaos\\SEOTools\\Traits\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Traits/SEOTools.php',
         'Artesaos\\SEOTools\\TwitterCards' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/TwitterCards.php',
+        'Assert\\Assert' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/Assert.php',
+        'Assert\\Assertion' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/Assertion.php',
+        'Assert\\AssertionChain' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/AssertionChain.php',
+        'Assert\\AssertionFailedException' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/AssertionFailedException.php',
+        'Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/InvalidArgumentException.php',
+        'Assert\\LazyAssertion' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/LazyAssertion.php',
+        'Assert\\LazyAssertionException' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/LazyAssertionException.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
@@ -4437,13 +4473,17 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
-        'Modules\\Discount\\Database\\Seeders\\DiscountDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Discount/database/seeders/DiscountDatabaseSeeder.php',
-        'Modules\\Discount\\Http\\Controllers\\Admin\\DiscountController' => __DIR__ . '/../..' . '/Modules/Discount/app/Http/Controllers/Admin/DiscountController.php',
-        'Modules\\Discount\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Discount/app/Http/Controllers/DiscountController.php',
-        'Modules\\Discount\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Discount/app/Models/Discount.php',
-        'Modules\\Discount\\Providers\\DiscountServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/DiscountServiceProvider.php',
-        'Modules\\Discount\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/EventServiceProvider.php',
-        'Modules\\Discount\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Discount/app/Providers/RouteServiceProvider.php',
+        'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
+        'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
+        'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',
+        'Modules\\Shop\\Http\\Controllers\\ShopController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/ShopController.php',
+        'Modules\\Shop\\Listeners\\MergeCartAfterLogin' => __DIR__ . '/../..' . '/Modules/Shop/app/Listeners/MergeCartAfterLogin.php',
+        'Modules\\Shop\\Models\\CartItem' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/CartItem.php',
+        'Modules\\Shop\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/Discount.php',
+        'Modules\\Shop\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/EventServiceProvider.php',
+        'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/RouteServiceProvider.php',
+        'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/ShopServiceProvider.php',
+        'Modules\\Shop\\Services\\CartService' => __DIR__ . '/../..' . '/Modules/Shop/Services/CartService.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
@@ -4565,6 +4605,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Monolog\\Test\\MonologTestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/MonologTestCase.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Morilog\\Jalali\\CalendarUtils' => __DIR__ . '/..' . '/morilog/jalali/src/CalendarUtils.php',
+        'Morilog\\Jalali\\Converter' => __DIR__ . '/..' . '/morilog/jalali/src/Converter.php',
+        'Morilog\\Jalali\\Jalalian' => __DIR__ . '/..' . '/morilog/jalali/src/Jalalian.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DirectoryNotFoundException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',

@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Course;
 use App\Models\License;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use function PHPUnit\Framework\isEmpty;
 
 class SpotPlayerService
 {
@@ -16,11 +18,44 @@ class SpotPlayerService
         $this->apiKey = config('services.spotplayer.api_key');
         $this->baseUrl = 'https://panel.spotplayer.ir/license/edit/';
     }
-
-    public function createLicenseForUser($user, $order, $courseIds): ?License
+    public function editCourseLicenseForUser(Course $course)
     {
-        Log::info(" reached createLicenseForUser $user->name  $order->course->title courseIds: $courseIds" );
-        $payload = $this->buildLicensePayload($user, $courseIds);
+        $devices = [
+            'p0' => 1, // All Devices 1-99
+            'p1' => 1, // Windows 0-99
+            'p2' => 1, // MacOS 0-99
+            'p3' => 1, // Ubuntu 0-99
+            'p4' => 1, // Android 0-99
+            'p5' => 1, // IOS 0-99
+            'p6' => 1, // WebApp 0-99
+        ];
+
+        $license = License::where('course_id',$course->id)
+                        ->where('user_id',auth()->user()->id)
+                        ->firstOrFail();
+        $payload = $this->buildLicensePayload(auth()->user(), $license->course_ids,$devices);
+        Log::info(" edit license for auth()->user()->name $course->title   " );
+
+
+        $response = Http::withHeaders([
+            '$API' => $this->apiKey,
+            'Accept' => 'application/json',
+        ])->post($this->baseUrl.$license->spotplayer_key, $payload);
+        Log::info("response from spotplayer: ".$response);
+    }
+    public function createLicenseForUser($user, $order, $courseIds,$model): ?License
+    {
+        Log::info(" reached createLicenseForUser $user->name $model->title   courseIds: $courseIds" );
+        $devices = [
+        'p0' => 1, // All Devices 1-99
+        'p1' => 1, // Windows 0-99
+        'p2' => 1, // MacOS 0-99
+        'p3' => 1, // Ubuntu 0-99
+        'p4' => 1, // Android 0-99
+        'p5' => 1, // IOS 0-99
+        'p6' => 1, // WebApp 0-99
+    ];
+        $payload = $this->buildLicensePayload($user, $courseIds,$devices);
 
         $response = Http::withHeaders([
             '$API' => $this->apiKey,
@@ -30,16 +65,18 @@ class SpotPlayerService
         Log::info("response from spotplayer: ".$response);
         if ($response->successful()) {
             $data = $response->json();
-
+            Log::info('response success ...');
             return License::create([
                 'user_id'         => $user->id,
                 'order_id'        => $order->id,
+                'course_id'        => $model->id,
                 'spotplayer_id'   => $data['_id'] ?? null,
                 'spotplayer_key'  => $data['key'] ?? null,
                 'spotplayer_url'  => $data['url'] ?? null,
                 'course_ids'      => $courseIds,
                 'license_data'    => $data,
             ]);
+
         }
 
         Log::error('SpotPlayer license creation failed', [
@@ -52,7 +89,7 @@ class SpotPlayerService
         return null;
     }
 
-    protected function buildLicensePayload($user,  $courseIds): array
+    protected function buildLicensePayload($user,  $courseIds,$devices): array
     {
         return [
             'test' => true,
@@ -82,15 +119,7 @@ class SpotPlayerService
                     ]
                 ],
             ],
-            'device' => [
-                'p0' => 1,
-                'p1' => 1,
-                'p2' => 0,
-                'p3' => 0,
-                'p4' => 0,
-                'p5' => 0,
-                'p6' => 0,
-            ]
+            'device' => $devices
         ];
     }
 
