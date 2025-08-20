@@ -147,7 +147,7 @@
                     </div>
 
                     <!-- Pricing Section -->
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class=" gap-6">
                         <!-- Regular Price -->
                         <div class="group">
                             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
@@ -173,52 +173,9 @@
                             @enderror
                         </div>
 
-                        <!-- Discount Price -->
-                        <div class="group">
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor"
-                                         viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                    </svg>
-                                    قیمت با تخفیف
-                                </span>
-                            </label>
-                            <input type="text" name="discount_price"
-                                   class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
-                                          bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
-                                          focus:border-orange-500 focus:bg-white dark:focus:bg-gray-600
-                                          focus:ring-4 focus:ring-orange-500/20 transition-all duration-200 format_number"
-                                   value="{{ old('discount_price') }}"
-                                   placeholder="قیمت با تخفیف (اختیاری)">
-                            @error('discount_price')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+
                     </div>
 
-                    <!-- Discount Expiry -->
-                    <div class="group">
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M3 7h18M5 7h14l-1 10a1 1 0 01-1 1H7a1 1 0 01-1-1L5 7z"></path>
-                                </svg>
-                                تاریخ انقضای تخفیف
-                            </span>
-                        </label>
-                        <input type="datetime-local" name="discount_expires_at"
-                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
-                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
-                                      focus:border-red-500 focus:bg-white dark:focus:bg-gray-600
-                                      focus:ring-4 focus:ring-red-500/20 transition-all duration-200"
-                               value="{{ old('discount_expires_at') }}">
-                        @error('discount_expires_at')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
 
                     <!-- Teacher Selection -->
                     <div class="group">

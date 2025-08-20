@@ -20,7 +20,6 @@
                 try {
                     const sp = new SpotPlayer(document.getElementById('player'), '/spotx', false);
                     await sp.Open("{{$license->spotplayer_key}}");
-
                 }
                 catch(ex) {
                     console.log("errrrrroorrrr: "+ex);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\panel;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
+use App\Services\SpotPlayerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -88,6 +89,7 @@ class AdminCourseController extends Controller
             'teacher_id' => 'nullable|exists:users,id',
              'spotplayer_id' => 'nullable',
             'time' =>  'nullable',
+            'status' => 'in:active,in_progress,inactive',
             'grade_id' =>  'nullable|integer|exists:grades,id'
         ]);
 
@@ -108,4 +110,10 @@ class AdminCourseController extends Controller
         $course->delete();
         return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully!');
     }
+
+    public function editUserCourseLicense(Request $request,Course $course){
+        $spot = new SpotPlayerService();
+        $spot->editCourseLicenseForUser($course);
+
+}
 }

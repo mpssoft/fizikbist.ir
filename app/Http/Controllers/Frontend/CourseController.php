@@ -31,7 +31,7 @@ class CourseController extends Controller
     {
         $ids = Grade::where('name',$gradeName)->pluck('id');
         $ids = $ids->toArray();
-        $courses = Course::where('status', 'active')
+        $courses = Course::whereIn('status', ['active','in_progress'])
             ->whereIn('grade_id', $ids)         // match by grade_id
             ->withCount([
             'raters as ratings_count',

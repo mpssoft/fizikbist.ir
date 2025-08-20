@@ -15,3 +15,4 @@ Route::resource('lessons', \App\Http\Controllers\Admin\panel\AdminLessonControll
 Route::resource('grades', GradeController::class);
 
 
+Route::get('edit-license/{course}',[AdminCourseController::class,'editUserCourseLicense'])->name('edit-license');
