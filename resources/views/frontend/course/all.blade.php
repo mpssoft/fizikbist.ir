@@ -33,14 +33,28 @@
                                         <div class="text-lg font-bold text-blue-600">
                                             {{ number_format($course->price) }} تومان
                                         </div>
-                                        <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}"
+                                        {{--<a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}"
                                            class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-wide
                       bg-neutral-900 text-neutral-100 hover:bg-black active:bg-neutral-800
                       shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
                       dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-900">
                                             <i class="fa-solid fa-cart-plus text-neutral-200 group-hover:text-white text-base"></i>
                                             خرید دوره
-                                        </a>
+                                        </a>--}}
+                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" type="button" aria-label="Open cart"
+                                   class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
+                                        <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
+                                    </svg>
+                                    <span class="pointer-events-none  absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
+                                </a>
+                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" type="button" aria-label="Open cart"
+                                   class="w-10 h-10 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
+                                    <img  src="/images/cart-bascket.jpg">
+
+                                </a>
                                     @else
                                         <a href="{{route('playFreeCourse',$course->id)}}"
                                            class="bg-blue-600 float-left text-white px-6 py-2  rounded-lg hover:bg-blue-700 transition duration-300 ">

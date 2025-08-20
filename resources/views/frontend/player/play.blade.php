@@ -28,7 +28,7 @@
                 <!-- Video Player -->
                 {!!  $lesson->video_url !!}
                 <!-- Video Info -->
-                <div class="mt-4 bg-gray-50 dark:bg-aparat-dark rounded-lg p-4 transition-colors duration-300">
+                <div class="mt-4 bg-gray-50 dark:bg-slate-800 rounded-lg p-4 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">{{ $lesson->title }}</h2>
                     <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-3">
                         <span>{{$lesson->view}} بازدید</span>
@@ -60,7 +60,7 @@
                 <div class="space-y-3">
                     @foreach(\App\Models\Lesson::whereNot('id',$lesson->id)->latest()->take(6)->get() as $lesson)
                         <a href="{{route('play',$lesson->id)}}" >
-                        <div class="bg-gray-50  dark:bg-aparat-dark rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                        <div class="bg-gray-50  dark:bg-slate-800 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
                         <div class="flex space-x-3">
                             <div class="w-24 h-16 ml-5 bg-gray-300 dark:bg-gray-700 rounded flex-shrink-0 flex items-center justify-center transition-colors duration-300">
                                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">

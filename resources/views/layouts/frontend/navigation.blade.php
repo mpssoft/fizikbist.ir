@@ -129,13 +129,19 @@
                 </svg>
                 <span class="pointer-events-none  absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
             </a>
+
+                <a href="/cart" type="button" aria-label="Open cart"
+               class="w-9 h-9 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
+               <img  src="/images/cart-bascket.jpg">
+
+            </a>
                 <!-- Theme Toggle -->
             {{--<button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
                 <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>
                 <i x-show="dark" class="fas fa-sun text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200"></i>
             </button>--}}
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse mt-2">
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse ">
 
             @if(auth()->check())
                     <div class="relative" x-data="{ open: false }">
@@ -232,7 +238,7 @@
                 @else
                     <div id="authButtons">
                         <a href="#" onclick="openLightbox()"
-                           class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                           class="btn-primary text-white px-6 py-2  rounded-lg font-medium">
                             ورود / ثبت نام
                         </a>
                     </div>

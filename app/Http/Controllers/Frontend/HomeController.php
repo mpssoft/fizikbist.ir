@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\License;
 use App\Models\Slider;
+use Artesaos\SEOTools\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,10 @@ class HomeController extends Controller
     public function index()
     {
         //auth()->loginUsingId(1);
-
+        $this->seo()
+            ->setTitle("صفحه اصلی")
+            ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
+            ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
         $courses = Course::where('spotplayer_id','!=','')->get();
         $lessons = Lesson::latest()->take(6)->get();
@@ -24,11 +28,19 @@ class HomeController extends Controller
     }
     public function play(Lesson $lesson)
     {
-
+        $this->seo()
+            ->setTitle($lesson->title)
+            ->setDescription($lesson->description)
+            ->addImages($lesson->thumbnail);
         return view('frontend.player.play',compact('lesson'));
     }
     public function playFreeCourse(Course $course)
     {
+        $this->seo()
+            ->setTitle($course->title)
+            ->setDescription($course->description)
+            ->addImages($course->cover_image)
+            ;
 
         if($course->price >0)
             return redirect()->route('all.courses')->with(['message'=>'این درس رایگان نیست']);
@@ -79,14 +91,26 @@ class HomeController extends Controller
 
     public function about()
     {
+        $this->seo()
+            ->setTitle(" درباره ما")
+            ->setDescription("حسین نژاداسد مدرس مجرب فیزیک دبیرستان با سال‌ها تجربه در آمادگی دانش‌آموزان برای کنکور و کسب رتبه‌های برتر در شهرستان سلماس.")
+        ;
         return view('frontend.home.about');
     }
     public function contact()
     {
+        $this->seo()
+            ->setTitle("ارتباط با ما")
+            ->setDescription("برای دریافت مشاوره رایگان، ثبت‌نام در دوره‌ها یا پاسخ به سوالات خود با ما در تماس باشید. ما همیشه آماده کمک به شما هستیم. ")
+        ;
         return view('frontend.home.contact');
     }
     public function faq()
     {
+        $this->seo()
+            ->setTitle(" سوالات متداول ")
+            ->setDescription(" پاسخ سوالات رایج دانش‌آموزان و اولیای محترم درباره دوره‌های فیزیک و آمادگی برای کنکور ")
+        ;
         return view('frontend.home.faq');
     }
 }
