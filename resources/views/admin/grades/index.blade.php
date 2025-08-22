@@ -155,8 +155,8 @@
         function confirmDelete(e) {
             e.preventDefault();
             Swal.fire({
-                title: 'حذف دوره',
-                text: 'آیا مطمئن هستید که می‌خواهید این مقطع را حذف کنید؟',
+                title: 'حذف مقطع/دسته',
+                text: 'آیا مطمئن هستید که می‌خواهید این مقطع/پایه را حذف کنید؟',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor:'red',

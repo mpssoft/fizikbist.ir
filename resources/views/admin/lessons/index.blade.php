@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <!-- Filters and Search -->
+     {{--   <!-- Filters and Search -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
             <div class="p-6">
                 <form method="GET" class="space-y-6">
@@ -207,7 +207,7 @@
                 </form>
             </div>
         </div>
-
+--}}
         <!-- Lessons Table -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <!-- Bulk Actions -->

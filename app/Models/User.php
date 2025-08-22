@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'mobile',
+        'image',
         'two_factor_type',
         'otp',
         'otp_expires_at',

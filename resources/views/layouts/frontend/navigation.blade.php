@@ -131,8 +131,8 @@
             </a>
 
                 <a href="/cart" type="button" aria-label="Open cart"
-               class="w-9 h-9 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
-               <img  src="/images/cart-bascket.jpg">
+               class="w-10 h-10  overflow-hidden  rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
+               <img  src="/images/cart-image-s.jpg" class="w-7">
 
             </a>
                 <!-- Theme Toggle -->
@@ -146,7 +146,7 @@
             @if(auth()->check())
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="focus:outline-none group">
-                            <div class="w-11 h-11 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
+                            <div class="w-11 h-11 mt-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
                                 <img src="/images/user-avatar-man.jpg" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                                      alt="avatar">
                             </div>

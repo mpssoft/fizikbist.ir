@@ -37,7 +37,7 @@
             </div>
 
             <!-- Filters (static) -->
-            <div class="mt-6">
+         {{--   <div class="mt-6">
                 <div class="w-full rounded-2xl border border-gray-200 dark:border-slate-800 bg-white/70 dark:bg-slate-700/60 backdrop-blur p-4 sm:p-5">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div>
@@ -64,7 +64,7 @@
                     </div>
                     <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">این فیلترها صرفاً ظاهری هستند و رفتار تعاملی ندارند.</p>
                 </div>
-            </div>
+            </div>--}}
         </header>
 
         <!-- List header -->

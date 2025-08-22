@@ -1,10 +1,11 @@
-@if($errors->any())
-    <div class="mb-4 rounded-lg bg-red-100 border border-red-400 text-red-700 px-4 py-3" role="alert">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error}}</li>
+
+@if ($errors->any())
+    <div class="mb-6 rounded-xl border border-rose-300/60 bg-rose-50/80 text-rose-700 dark:border-rose-500/40 dark:bg-rose-900/30 dark:text-rose-200 p-4">
+
+        <ul class="list-disc pr-5 text-sm space-y-1">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-
 @endif

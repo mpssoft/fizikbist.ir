@@ -87,17 +87,17 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                     </svg>
                                 </a>
-                                <button onclick="toggleSlider(1)" class="p-2 sm:p-3 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 rounded-xl transition-colors duration-200" title="تغییر وضعیت">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                    </svg>
-                                </button>
-                                <button onclick="deleteSlider(1)" class="p-2 sm:p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200" title="حذف">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                    </svg>
-                                </button>
+
+                                <form action="{{route('admin.sliders.destroy',$slider->id)}}"  onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="delete-{{$slider->id}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"
+                                            class="p-2 rounded-xl  text-rose-700 hover:bg-rose-50
+                   dark:border-rose-600 dark:text-rose-300 dark:hover:bg-rose-800 transition"
+                                            title="حذف">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -157,3 +157,27 @@
     </div>
 
 @endsection
+{{-- SweetAlert Confirmation --}}
+@push('scripts')
+    <script src="/js/modules/sweetalert2.js"></script>
+    <script>
+
+        function confirmDelete(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'حذف اسلاید',
+                text: 'آیا مطمئن هستید که می‌خواهید این اسلاید را حذف کنید؟',
+                icon: 'warning',
+                showCancelButton: true,
+
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'لغو'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    e.target.submit();
+                }
+            });
+            return false;
+        }
+    </script>
+@endpush

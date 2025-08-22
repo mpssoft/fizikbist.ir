@@ -143,6 +143,7 @@
                         </div>
                     </div>
 
+
                     <!-- Video Information Section -->
                     <div class="container mx-auto px-4 py-8">
                         <!-- Video Information Section -->
@@ -154,56 +155,100 @@
                                 اطلاعات ویدیو
                             </h2>
 
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <!-- SpotPlayer Video ID -->
-                                <div>
-                                    <label for="spotplayer_video_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                        <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1-1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3"></path>
-                                        </svg>
-                                        شناسه ویدیو SpotPlayer
-                                    </label>
-                                    <input type="text" id="spotplayer_video_id" name="spotplayer_video_id"
-                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+                            <div class="grid grid-cols-2 lg:grid-cols-2 gap-6">
+
+                                <div class="col-span-1">
+                                    <!-- SpotPlayer Video ID -->
+                                    <div >
+                                        <label for="spotplayer_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1-1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3"></path>
+                                            </svg>
+                                            شناسه ویدیو SpotPlayer
+                                        </label>
+                                        <input type="text" id="spotplayer_id" name="spotplayer_id" value="{{old('spotplayer_id',$lesson->spotplayer_id)}}"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
                                   focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200"
-                                           placeholder="5d2ee35bcddc092a304ae5eb"
-                                    value="{{old('spotplayer_id',$lesson->spotplayer_id)}}">
+                                               placeholder="5d2ee35bcddc092a304ae5eb">
+                                    </div>
+                                    <!-- Duration -->
+                                    <div>
+                                        <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            مدت زمان
+                                        </label>
+                                        <input type="text" id="duration" name="duration" value="{{old('duration',$lesson->duration)}}"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+                                  bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
+                                  focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200"
+                                               placeholder="10:30">
+                                    </div>
                                 </div>
-
                                 <!-- Video URL -->
-                                <div>
+                                <div class="col-span-1">
                                     <label for="video_url" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                                         </svg>
                                         لینک ویدیو (اختیاری)
                                     </label>
-                                    <textarea id="video_url" name="video_url" rows="3"
+                                    <textarea id="video_url" name="video_url" rows="4"
                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
                                   focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200 resize-vertical"
                                               placeholder="https://aparat.com/video.mp4">{{old('video_url',$lesson->video_url)}}</textarea>
                                 </div>
 
-                                <!-- Duration -->
-                                <div>
-                                    <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                        <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        مدت زمان
-                                    </label>
-                                    <input type="text" id="duration" name="duration" value="{{old('duration',$lesson->duration)}}"
-                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
-                                  bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
-                                  focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200"
-                                           placeholder="10:30">
+
+                            </div>
+                            <!-- Cover Image Upload -->
+                            <div class="group mt-2">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                تصویر کاور
+                            </span>
+                                </label>
+                                <!-- Image Upload -->
+                                <div class="space-y-2">
+
+                                    <div id="dropZone"
+                                         class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-purple-500 transition-colors duration-200 cursor-pointer">
+
+                                        <div class="flex items-stretch space-x-2">
+                                            <input type="text" id="image_label" name="thumbnail"
+                                                   class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                  bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                  focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                                   placeholder="Image" value="{{old('thumbnail',$lesson->thumbnail)}}">
+
+                                            <button type="button" id="button-image"
+                                                    class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                   bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
+                   hover:bg-gray-200 dark:hover:bg-gray-700
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                                                Select
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">فرمت‌های مجاز: JPG, PNG, GIF - حداکثر
+                                        حجم: 100K - ابعاد پیشنهادی: 4:3 </p>
                                 </div>
+                                @error('cover_image')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                     <!-- Settings Section -->
                     <div class="border-b border-gray-200 dark:border-gray-700 pb-8">
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
