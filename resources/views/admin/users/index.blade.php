@@ -138,8 +138,8 @@
                             <a href="#" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="لایسنس های کاربر">
                                 <span class="fas fa-id-card  text-blue-600 group-hover:text-blue-600 transition-colors duration-200 w-5"> </span>
                             </a>
-                            <a href="#" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="پیام ها ی کاربر">
-                                <span class="fas fa-envelope text-amber-600   group-hover:text-blue-600 transition-colors duration-200 w-5"> </span>
+                            <a href="{{route('admin.messages.create',$user->id)}}" class="p-2 sm:p-3 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ارسال پیام به کاربر">
+                                <span class="fas fa-paper-plane text-amber-600   group-hover:text-blue-600 transition-colors duration-200 w-5"> </span>
                             </a>
                             <a href="{{route('admin.users.edit',$user->id)}}" class="p-2 sm:p-3 text-green-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors duration-200" title="ویرایش">
                                 <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

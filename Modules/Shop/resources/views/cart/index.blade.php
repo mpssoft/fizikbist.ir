@@ -129,37 +129,44 @@
 
                                                 </div>
                                             </div>
+                                            @if(!is_null($item['discount']))
+                                            @php
+                                                $hasDiscount = true;
+                                                if(!is_array($item['discount']))
+                                                    $discount = collect(json_decode($item['discount']));
+                                                else
+                                                    $discount = collect($item['discount']);
+                                                 $discountCode[] = $discount['code'];
+                                                 $discountPrice[] = $discount['value'];
+                                                 $discountType[] = $discount['type'] == 'percent' ? '%':'تومان';
+                                                if($discount['type'] == 'percent'){
+                                                    $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
+                                                    $sign = "%";
+                                                }
+                                                else{
+                                                    $discounted = $item['price'] - $discount['value'] ;
+                                                    $sign = "تومان";
+                                                    }
+                                                $wholePrice += $item['price'];
+                                                $wholeDiscount += $item['price'] - $discounted;
+                                            @endphp
+                                        @endif
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 transition-colors duration-300">
-                                    10%
+                                    {{$discount['value']??''}}{{$sign??'' }}
                                 </span>
                                         </div>
                                         <div class="flex items-center justify-between">
 
                                             <div class="text-left">
                                                 @if(!is_null($item['discount']))
-                                                    @php
-                                                        $hasDiscount = true;
-                                                        if(!is_array($item['discount']))
-                                                            $discount = collect(json_decode($item['discount']));
-                                                        else
-                                                            $discount = collect($item['discount']);
-                                                         $discountCode[] = $discount['code'];
-                                                         $discountPrice[] = $discount['value'];
-                                                         $discountType[] = $discount['type'] == 'percent' ? '%':'تومان';
-                                                        if($discount['type'] == 'percent')
-                                                            $discounted = $item['price'] - ($item['price'] * ($discount['value']  / 100 ));
-                                                        else
-                                                            $discounted = $item['price'] - $discount['value'] ;
-                                                        $wholePrice += $item['price'];
-                                                        $wholeDiscount += $item['price'] - $discounted;
-                                                    @endphp
 
                                                     <del class="font-semibold text-red-800 dark:text-red-800 transition-colors text-sm  duration-300">
                                                         {{$item['price']}} تومان</del>
                                                     <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">{{$discounted}} تومان</p>
                                                 @else
                                                     @php  $wholePrice += $item['price']; @endphp
-                                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">250,000 تومان</p>
+                                                    <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">
+                                                        {{$item['price']}} تومان</p>
                                                 @endif
 
                                             </div>

@@ -31,7 +31,7 @@
                                 <div class="text-1xl font-bold text-blue-600"> {{ number_format($course->price) }}تومان  </div>
 
 
-                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" aria-label="Add to cart"
+                             {{--   <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" aria-label="Add to cart"
                                    class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-wide
           bg-neutral-900 text-neutral-100 hover:bg-black active:bg-neutral-800
           shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
@@ -39,8 +39,12 @@
                                     <!-- Icon placeholder (use your favorite icon font class here) -->
                                     <i class="fa-solid fa-cart-plus text-neutral-200 group-hover:text-white text-base"></i>
                                     خرید دوره
-                                </a>
+                                </a>--}}
+                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" type="button" aria-label="Open cart"
+                                   class="w-10 h-10  overflow-hidden  rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
+                                    <img  src="/images/cart-image-s.jpg" class="w-7">
 
+                                </a>
 
 
                             </div>

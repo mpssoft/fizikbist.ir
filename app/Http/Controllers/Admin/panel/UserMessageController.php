@@ -26,10 +26,10 @@ class UserMessageController extends Controller
     }
 
     // Show create form
-    public function create()
+    public function create(?User $user=null)
     {
-        $users = User::all();
-        return view('admin.messages.create', compact('users'));
+        //$users = User::all();
+        return view('admin.messages.create',compact('user'));
     }
 
     // Store new message

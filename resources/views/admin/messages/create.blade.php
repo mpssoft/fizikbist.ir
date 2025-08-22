@@ -39,7 +39,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-7">
                             <label for="recipients" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">گیرندگان (ایمیل یا شماره موبایل)</label>
-                            <input id="recipients" name="recipients" type="text" placeholder="example1@mail.com, 09147778844 | *"
+                            <input id="recipients" value="{{$user != null? $user->mobile:''}}" name="recipients" type="text" placeholder="example1@mail.com, 09147778844 | *"
                                    class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
                             <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">برای چند گیرنده از ویرگول استفاده کنید.</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"> [*] ارسال به همه کاربران</p>

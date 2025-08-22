@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\panel\AdminCourseController;
 use App\Http\Controllers\Admin\panel\AdminPanelController;
 use App\Http\Controllers\Admin\panel\GradeController;
+use App\Http\Controllers\Admin\panel\LicenseController;
 use App\Http\Controllers\Admin\panel\UserController;
 use App\Http\Controllers\Admin\panel\UserMessageController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,11 @@ Route::resource('sliders', \App\Http\Controllers\Admin\panel\SliderController::c
 Route::resource('lessons', \App\Http\Controllers\Admin\panel\AdminLessonController::class)->names('lessons');
 Route::resource('grades', GradeController::class);
 Route::resource('users', UserController::class);
+
 Route::resource('messages', UserMessageController::class);
+Route::resource('licenses', LicenseController::class);
+
+Route::get('/messages/create/{user?}', [UserMessageController::class,'create'])->name('messages.create');
 
 
 Route::post('messages/mark-as-read/{message}',[UserMessageController::class,'markAsRead'])->name('messages.mark-as-read');

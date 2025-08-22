@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin\panel;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -54,5 +56,17 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+    }
+    public function showMessages(Message $message)
+    {
+        // $this->authorize('view', $message);
+
+        if (!$message->is_read && $message->receiver_id === Auth::id()) {
+            $message->update(['is_read' => true]);
+        }
+        $message->replies()->where('receiver_id',Auth::id())->update([
+            'is_read'=>1
+        ]);
+        return view('admin.messages.show', compact('message'));
     }
 }
