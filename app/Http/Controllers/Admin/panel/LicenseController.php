@@ -27,6 +27,7 @@ class LicenseController extends Controller
 
     public function store(Request $request)
     {
+
         $data = $request->validate([
             'user_id'        => 'required|exists:users,id',
             'order_id'       => 'required|exists:orders,id',
@@ -38,6 +39,15 @@ class LicenseController extends Controller
             'license_data'   => 'nullable|array',
         ]);
 
+        $order = auth()->user()->orders()->create([
+            'price'=>  Course::where('id',$data['course_id'])->first()->price,
+            'status'=>'paid'
+        ]);
+        $order->payments()->create([
+            'gateway' => 'ثبت از پنل مدیریت',
+            'status' => 'paid',
+        ]);
+        $data['order_id'] = $order->id;
         License::create($data);
 
         return redirect()->route('admin.licenses.index')->with('success', 'License created successfully.');

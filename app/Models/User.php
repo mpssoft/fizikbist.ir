@@ -100,5 +100,8 @@ class User extends Authenticatable
     {
         return $this->morphToMany(Discount::class, 'discountable');
     }
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

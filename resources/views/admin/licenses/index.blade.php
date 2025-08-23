@@ -80,8 +80,8 @@
                     <div class="flex flex-1 ">
                     <!-- User Info -->
                     <div class="flex items-center gap-4 min-w-0 flex-1">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-lg">
-                            علی
+                        <div class="w-12 h-12   rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-lg">
+                           <p class=""> {{$license->user->name[0]}}</p>
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="text-lg font-semibold text-gray-900 dark:text-white">{{$license->user->name}}</div>
@@ -126,15 +126,15 @@
                         <a href="{{route('admin.licenses.show',$license->id)}}" class="p-2.5 rounded-xl border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a href="/admin/licenses/1/edit" class="p-2.5 rounded-xl border-2 border-blue-200 text-blue-700 hover:bg-blue-50 transition">
+                        <a href="{{route('admin.licenses.edit',$license->id)}}" class="p-2.5 rounded-xl border-2 border-blue-200 text-blue-700 hover:bg-blue-50 transition">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <form method="POST" action="/admin/licenses/1/refresh" class="inline">
+                       {{-- <form method="POST" action="/admin/licenses/1/refresh" class="inline">
                             <button type="submit" class="p-2.5 rounded-xl border-2 border-green-200 text-green-700 hover:bg-green-50 transition">
                                 <i class="fas fa-sync-alt"></i>
                             </button>
-                        </form>
-                        <form method="POST" action="/admin/licenses/1/delete" class="inline">
+                        </form>--}}
+                        <form action="{{ route('admin.licenses.destroy',$license->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$license->id}}">@csrf @method('delete')
                             <button type="submit" class="p-2.5 rounded-xl border-2 border-rose-200 text-rose-700 hover:bg-rose-50 transition">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -153,4 +153,29 @@
     </div>
 </div>
 </div>
+
+{{-- SweetAlert Confirmation --}}
+@push('scripts')
+    <script src="/js/modules/sweetalert2.js"></script>
+    <script>
+
+        function confirmDelete(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'حذف لایسنس',
+                text: 'آیا مطمئن هستید که می‌خواهید این لایسنس را حذف کنید؟',
+                icon: 'warning',
+                showCancelButton: true,
+
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'لغو'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    e.target.submit();
+                }
+            });
+            return false;
+        }
+    </script>
+@endpush
 @endsection

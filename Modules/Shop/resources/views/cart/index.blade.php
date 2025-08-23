@@ -152,7 +152,9 @@
                                             @endphp
                                         @endif
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 transition-colors duration-300">
-                                    {{$discount['value']??''}}{{$sign??'' }}
+                                      @if(!is_null($item['discount']))
+                                                {{$discount['value']??''}}{{$sign??'' }}
+                                          @endif
                                 </span>
                                         </div>
                                         <div class="flex items-center justify-between">
