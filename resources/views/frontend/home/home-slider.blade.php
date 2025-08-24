@@ -71,11 +71,11 @@
                                 @endif
                             </div>
                             <!-- Photo Section (Right) -->
-                            <div class="slide-image flex items-center justify-center p-8 md:p-12 order-1 md:order-2 z-20">
-                                <div class="w-full  md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
-                                    <a href="{{$slider->link}}" >
-                                        {{--<img src="{{$slider->image}}" class="w-full h-full object-cover" />--}}
-                                        <img src="{{$slider->image}}" class=" w-full md:w-[520px] md:h-[390px]" />
+
+                            <div class="slide-image flex items-center justify-center p-8 md:p-12 order-1 md:order-2 z-20 slide-enter-right">
+                                <div class="w-full max-w-[520px] md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
+                                    <a href="{{$slider->link}}"  class="block w-full h-full">
+                                        <img src="{{$slider->image}}" class="w-full h-full md:w-[520px] md:h-[390px] object-cover">
                                     </a>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
     }
 
     // Auto-play functionality
-    setInterval(nextSlide, 10000);
+    setInterval(nextSlide, 100000);
 
     // Touch/swipe support for mobile
     let startX = 0;
