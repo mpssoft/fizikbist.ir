@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        auth()->loginUsingId(1);
+        auth()->loginUsingId(4);
         $this->seo()
             ->setTitle("صفحه اصلی")
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
@@ -45,6 +45,17 @@ class HomeController extends Controller
         if($course->price >0)
             return redirect()->route('all.courses')->with(['message'=>'این درس رایگان نیست']);
         $lessons = $course->lessons()->latest()->get();
+        if(auth()->check()){
+
+            $userCourse = auth()->user()->courses()->syncWithoutDetaching([
+                $course->id => [
+                    'enrolled_at' => now(),
+                    'point' => 10,
+                ],
+            ]);
+
+
+        }
         return view('frontend.player.play-free-course',compact('lessons'));
     }
 

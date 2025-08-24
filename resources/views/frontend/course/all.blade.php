@@ -12,64 +12,148 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($courses as $course)
-                    <!-- Course Card 1 -->
-                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center " style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
 
-                        </div>
-                        <div class="relative p-6 flex flex-col h-64 bg-gray-100">
-                            {{-- <div class="flex items-center justify-between mb-3">
-                                 <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">برنامه‌نویسی</span>
-                                 <div class="flex items-center text-yellow-500">
-                                     <span class="text-sm font-medium">۴.۸</span>
-                                     <span class="mr-1">⭐</span>
-                                 </div>
-                             </div>--}}
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $course->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $course->description }}</p>
-                            <div class="relative p-6 flex flex-col h-80 bg-gray-100 rounded-lg ">
-                        <div class="absolute bottom-4 left-5 right-5 flex justify-between items-center">
-                                    @if($course->price > 0)
-                                        <div class="text-lg font-bold text-blue-600">
-                                            {{ number_format($course->price) }} تومان
+                    <div class="max-w-sm mx-auto ">
+                        <div class="course-card flex flex-col min-h-[600px] min-w-[400px] group bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border border-gray-100 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1">
+                            <!-- Course Image -->
+                            <div class="relative h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center overflow-hidden" style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
+                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                                <!-- Course Badge -->
+
+                                @if($course->price==0)
+                                <div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-medium">
+                                   رایگان
+                                </div>
+                                    @endif
+                            </div>
+
+                            <!-- Course Content -->
+                            <div class="p-6 bg-white dark:bg-slate-800 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-slate-200 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                                    {{$course->title}}
+                                </h3>
+
+                                <!-- Course Stats -->
+                                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500 dark:text-slate-400">
+                                    <div class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span>{{$course->time}} ساعت</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>{{count($course->lessons)}} ویدیو</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                        <span>{{count($course->students)}} دانش‌آموز</span>
+                                    </div>
+                                </div>
+
+                                <!-- Course Description -->
+                                <p class="text-gray-600 dark:text-slate-400 mb-6 leading-relaxed   truncate">
+                                    {{$course->description}}
+                                        </p>
+                                <div class="flex-1"></div>
+
+                                <div class=" items-center justify-between  ">
+                                    @if($course->price==0)
+                                        <!-- Action Buttons -->
+                                        <div class="flex justify-between items-center" id="free-course">
+                                            <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2">
+                                                <span>مرور دوره</span>
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                                </svg>
+                                            </a>
+
+                                       {{--     <!-- Rating -->
+                                            <div class="flex items-center gap-1">
+                                                <div class="flex text-yellow-400">
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                </div>
+                                                <span class="text-sm text-gray-600 dark:text-slate-400 mr-1">۴.۸</span>
+                                            </div>--}}
                                         </div>
-                                        {{--<a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}"
-                                           class="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-wide
-                      bg-neutral-900 text-neutral-100 hover:bg-black active:bg-neutral-800
-                      shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
-                      dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-900">
-                                            <i class="fa-solid fa-cart-plus text-neutral-200 group-hover:text-white text-base"></i>
-                                            خرید دوره
-                                        </a>--}}
-                              {{--  <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" type="button" aria-label="Open cart"
-                                   class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
-                                        <circle cx="17" cy="20" r="1.6" fill="currentColor"/>
-                                    </svg>
-                                    <span class="pointer-events-none  absolute inset-0 rounded-full bg-neutral-900/0 hover:bg-neutral-900/5 dark:bg-white/0 dark:hover:bg-white/5 transition-colors"></span>
-                                </a>--}}
-
-                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" type="button" aria-label="Open cart"
-                                   class="w-10 h-10  overflow-hidden  rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
-                                    <img  src="/images/cart-image-s.jpg" class="w-7">
-
-                                </a>
                                     @else
-                                        <a href="{{route('playFreeCourse',$course->id)}}"
-                                           class="bg-blue-600 float-left text-white px-6 py-2  rounded-lg hover:bg-blue-700 transition duration-300 ">
-                                            مرور دوره
-                                        </a>
+                                        <!-- Paid Course Actions -->
+                                        <div class="" id="paid-course">
+                                            <div class="flex items-center justify-between mb-4">
+                                                <div class="text-right">
+                                                    <div class="text-2xl font-bold text-gray-800 dark:text-slate-200">۲۵۰,۰۰۰ تومان</div>
+                                                    <div class="text-sm text-gray-500 dark:text-slate-400 line-through">۳۵۰,۰۰۰ تومان</div>
+                                                </div>
+                                                <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
+                                                    ۲۹% تخفیف
+                                                </div>
+                                            </div>
+
+                                            <div class="flex gap-3">
+                                                <button onclick="addToCart()" class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                                                    </svg>
+                                                    <span>افزودن به سبد</span>
+                                                </button>
+
+                                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2">
+                                                    <span>خرید فوری</span>
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+
+                                      {{--      <!-- Rating for paid course -->
+                                            <div class="flex items-center justify-center gap-1 mt-4 pt-4 border-t border-gray-200 dark:border-slate-700">
+                                                <div class="flex text-yellow-400">
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                </div>
+                                                <span class="text-sm text-gray-600 dark:text-slate-400 mr-1">۴.۸ (۱۲۳ نظر)</span>
+                                            </div>
+                                      --}}  </div>
                                     @endif
                                 </div>
                             </div>
+                    </div>
 
-                        </div>
+
                     </div>
                 @endforeach
 
-            </div>
 
         </div>
     </section>

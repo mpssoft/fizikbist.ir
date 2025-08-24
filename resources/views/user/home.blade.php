@@ -67,8 +67,8 @@
                 <button @click="activeTab = 'current'"
                         :class="activeTab === 'current' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20'"
                         class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-play-circle ml-2"></i>
-                    دوره جاری
+                    <i class="fas fa-book-atlas ml-2"></i>
+                    همه دوره ها
                 </button>
                 <button @click="activeTab = 'purchased'"
                         :class="activeTab === 'purchased' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20'"
@@ -76,18 +76,7 @@
                     <i class="fas fa-shopping-cart ml-2"></i>
                     خریداری شده
                 </button>
-                <button @click="activeTab = 'completed'"
-                        :class="activeTab === 'completed' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-check-circle ml-2"></i>
-                    گذرانده شده
-                </button>
-                <button @click="activeTab = 'inactive'"
-                        :class="activeTab === 'inactive' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-gray-50 hover:to-slate-50 dark:hover:from-gray-900/20 dark:hover:to-slate-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-pause-circle ml-2"></i>
-                    غیرفعال
-                </button>
+
             </div>
         </section>
 

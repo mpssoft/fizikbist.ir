@@ -28,11 +28,11 @@
 <body class="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
 <div class="flex min-h-screen">
     <!-- Sidebar -->
-@include('layouts.admin.sidebar')
+@include('layouts.user.sidebar')
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
         <!-- Top Navbar -->
-        @include('layouts.admin.navbar')
+        @include('layouts.user.navbar')
         <div class="content">
             @yield('content')
         </div>

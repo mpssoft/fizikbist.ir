@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/",[UserPanelController::class,'home'])->name('home');
 
-Route::get('/courses',[\App\Http\Controllers\User\panel\UserCourseController::class,'courses'])->name('courses');
+Route::get('courses/',[\App\Http\Controllers\User\panel\UserCourseController::class,'courses'])->name('courses.index');
 Route::middleware(['auth'])->group(function(){
     Route::get('/checkout', [PaymentController::class, 'createOrder'])->name('cart.checkout');
     Route::get('/payment/zarinpalCallback',[PaymentController::class,'zarinpalCallback'])->name('payment.zarinpalCallback');

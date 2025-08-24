@@ -20,7 +20,7 @@
     @endpush
 @endonce
 @section('content')
-
+    @if(count($lessons)>0)
     <div class="max-w-7xl mx-auto px-4 py-6">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Main Video Section -->
@@ -80,5 +80,45 @@
             </div>
         </div>
     </div>
+    @else
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Alert Center</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+                body {
+                    font-family: 'Vazirmatn', sans-serif;
+                }
+            </style>
+        </head>
+        <body class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 min-h-screen">
 
-@endsection
+        <div class="w-full flex items-center justify-center p-4" style="min-height: 600px;">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 w-full text-center" style="min-width: 500px; max-width: 600px;">
+                <!-- Video Icon -->
+                <div class="mx-auto w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+
+                <!-- Alert Message -->
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">هیچ ویدیویی یافت نشد</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">فیلمی برای این دوره یافت نشد</p>
+
+                <!-- Action Button -->
+                <a href="{{route('all.courses')}}" class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm">
+                    بازگشت به دوره‌ها
+                </a>
+            </div>
+        </div>
+
+        <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973b55bb30a007e5',t:'MTc1NTk1OTcxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        </html>
+
+    @endif
+        @endsection
