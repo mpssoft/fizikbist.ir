@@ -14,7 +14,7 @@
                 @foreach($courses as $course)
 
                     <div class="max-w-sm mx-auto ">
-                        <div class="course-card flex flex-col min-h-[600px] min-w-[400px] group bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border border-gray-100 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1">
+                        <div class="course-card flex flex-col min-h-[560px] min-w-[400px] group bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border border-gray-100 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1">
                             <!-- Course Image -->
                             <div class="relative h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center overflow-hidden" style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <!-- Course Description -->
-                                <p class="text-gray-600 dark:text-slate-400 mb-6 leading-relaxed   truncate">
+                                <p class="text-gray-600 dark:text-slate-400 mb-6 leading-relaxed   line-clamp-2">
                                     {{$course->description}}
                                         </p>
                                 <div class="flex-1"></div>
@@ -65,7 +65,7 @@
                                     @if($course->price==0)
                                         <!-- Action Buttons -->
                                         <div class="flex justify-between items-center" id="free-course">
-                                            <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2">
+                                            <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r flex from-blue-400 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105  items-center gap-2">
                                                 <span>مرور دوره</span>
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -99,27 +99,35 @@
                                         <div class="" id="paid-course">
                                             <div class="flex items-center justify-between mb-4">
                                                 <div class="text-right">
-                                                    <div class="text-2xl font-bold text-gray-800 dark:text-slate-200">۲۵۰,۰۰۰ تومان</div>
-                                                    <div class="text-sm text-gray-500 dark:text-slate-400 line-through">۳۵۰,۰۰۰ تومان</div>
+
+                                                    @if(!is_null($course->discounts->first()))
+                                                        @php
+                                                            $disValue = $course->discounts->first()->value;
+                                                            $disType = $course->discounts->first()->type;
+                                                            if($disType == 'percent'){
+                                                                $dis  = $course->price * ($disValue/100);
+                                                            }else{
+                                                                $dis = $course->price - $disValue;
+                                                            }
+                                                         @endphp
+                                                    <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price-$dis)}} تومان</div>
+                                                    <div class="text-sm text-gray-500 dark:text-slate-400 line-through">{{number_format($course->price)}} تومان</div>
+                                                    @else
+                                                        <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price)}} تومان</div>
+                                                    @endif
                                                 </div>
+                                                @if(!is_null($course->discounts->first()))
                                                 <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
-                                                    ۲۹% تخفیف
+                                                    {{$course->discounts->first()->value}}% تخفیف
                                                 </div>
+                                                @endif
                                             </div>
 
                                             <div class="flex gap-3">
-                                                <button onclick="addToCart()" class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-                                                    </svg>
-                                                    <span>افزودن به سبد</span>
-                                                </button>
+                                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" class=" bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
 
-                                                <a href="{{route('shop.cart.add',['model'=>'course','id'=>$course->id])}}" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2">
-                                                    <span>خرید فوری</span>
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                                    </svg>
+                                                    <i class="fas fa-cart-arrow-down"></i>
+                                                    <span>افزودن به سبد</span>
                                                 </a>
                                             </div>
 
@@ -129,7 +137,7 @@
                                                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
                                                         <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                                                     </svg>
-                                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                    <svg class="w-4 h-4 fill-curren" tviewBox="0 0 20 20">
                                                         <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                                                     </svg>
                                                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">

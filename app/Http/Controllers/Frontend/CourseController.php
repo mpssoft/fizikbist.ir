@@ -19,7 +19,8 @@ class CourseController extends Controller
         ])
             ->withAvg('raters', 'course_user.point')
             ->with([
-                'teacher'
+                'teacher',
+                'discounts'
             ])
             ->paginate(10);
 

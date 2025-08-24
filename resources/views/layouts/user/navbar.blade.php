@@ -8,7 +8,7 @@
     </div>
 
     <div class="hidden sm:block text-sm md:text-lg font-bold truncate bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
-        <span class="text-2xl">👋</span> محمد عزیز؛ خوش اومدی
+         {{Auth::user()->name}} عزیز؛ خوش اومدی
     </div>
 
     <div class="flex items-center gap-3">

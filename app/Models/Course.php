@@ -64,7 +64,10 @@ class Course extends Model
 
     public function discounts()
     {
-        return $this->morphToMany(Discount::class, 'discountable');
+        return $this->morphToMany(Discount::class, 'discountable')
+            ->where('is_active', 1)
+            ->whereDate('start_at', '<=', now())
+            ->whereDate('end_at', '>=', now());
     }
 
     public function orderItems()

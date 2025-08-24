@@ -72,9 +72,10 @@
                             </div>
                             <!-- Photo Section (Right) -->
                             <div class="slide-image flex items-center justify-center p-8 md:p-12 order-1 md:order-2 z-20">
-                                <div class="w-full h-full md:w-full md:h-full rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
+                                <div class="w-full  md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
                                     <a href="{{$slider->link}}" >
-                                        <img src="{{$slider->image}}" class="w-full h-full object-cover" />
+                                        {{--<img src="{{$slider->image}}" class="w-full h-full object-cover" />--}}
+                                        <img src="{{$slider->image}}" class=" w-full md:w-[520px] md:h-[390px]" />
                                     </a>
                                 </div>
                             </div>

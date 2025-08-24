@@ -99,13 +99,11 @@
                     <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200">{{ $course->title }}</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">{{ $course->description }}</p>
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">۲۰٪</span>
-                        </div>
-                        <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 hover:scale-105">
+                        @if($course->price ==0)
+                        <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 hover:scale-105">
                             ادامه
-                        </button>
+                        </a>
+                            @endif
                     </div>
                 </div>
             </div>
