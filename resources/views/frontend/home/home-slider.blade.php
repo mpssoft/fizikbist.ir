@@ -73,9 +73,9 @@
                             <!-- Photo Section (Right) -->
 
                             <div class="slide-image flex items-center justify-center p-8 md:p-12 order-1 md:order-2 z-20 slide-enter-right">
-                                <div class="w-full max-w-[520px] md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
+                                <div class="w-[520px] max-w-[520px] md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm border border-white/30 dark:border-slate-600/30">
                                     <a href="{{$slider->link}}"  class="block w-full h-full">
-                                        <img src="{{$slider->image}}" class="w-full h-full md:w-[520px] md:h-[390px] object-cover">
+                                        <img src="{{$slider->image}}" class="w-[520px] h-full md:w-[520px] md:h-[390px] object-cover">
                                     </a>
                                 </div>
                             </div>

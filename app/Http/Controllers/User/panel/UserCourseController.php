@@ -31,7 +31,8 @@ class UserCourseController extends Controller
 
     public function boughtCourses()
     {
-        $courses = auth()->user()->courses()->where('price','>',0);
-        return view('user.courses.bought',compact('courses'));
+        $licenses = auth()->user()->licenses()->get();
+
+        return view('user.courses.bought',compact('licenses'));
     }
 }

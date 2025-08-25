@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex items-center gap-3">
-        <!-- Notification Bell -->
+       {{-- <!-- Notification Bell -->
         <button class="w-10 h-10 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 hover:from-orange-200 hover:to-orange-300 dark:hover:from-orange-800/40 dark:hover:to-orange-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
             <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors duration-200"></i>
         </button>
@@ -21,7 +21,7 @@
         <button class="w-10 h-10 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 hover:from-green-200 hover:to-green-300 dark:hover:from-green-800/40 dark:hover:to-green-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
             <i class="fas fa-lock text-green-500 group-hover:text-green-600 transition-colors duration-200"></i>
         </button>
-
+--}}
         <!-- Theme Toggle -->
         <button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
             <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>
@@ -52,56 +52,58 @@
                              alt="avatar">
                     </div>
                     <div>
-                        <p class="font-bold text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">محمد احمدی</p>
+                        <p class="font-bold text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">{{auth()->user()->name}} </p>
                         <a href="#" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
                     </div>
                 </div>
 
-                <!-- Stats Section -->
-                <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm font-medium">کیف پول</span>
-                        <div class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-sm"></div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm font-medium">تجربه کاربری</span>
-                        <div class="w-3 h-3 rounded-full bg-gradient-to-r from-green-400 to-green-500 shadow-sm"></div>
-                    </div>
-                    <div class="text-green-500 font-bold text-lg">۲۰,۶۸۸ تجربه</div>
-                </div>
-
+                {{--     <!-- Stats Section -->
+                     <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 space-y-2">
+                         <div class="flex justify-between items-center">
+                             <span class="text-sm font-medium">کیف پول</span>
+                             <div class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-sm"></div>
+                         </div>
+                         <div class="flex justify-between items-center">
+                             <span class="text-sm font-medium">تجربه کاربری</span>
+                             <div class="w-3 h-3 rounded-full bg-gradient-to-r from-green-400 to-green-500 shadow-sm"></div>
+                         </div>
+                         <div class="text-green-500 font-bold text-lg">۲۰,۶۸۸ تجربه</div>
+                     </div>
+     --}}
                 <!-- Divider -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                <!-- Navigation Menu -->
-                <nav class="space-y-1">
-                    <a href="#"
-                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
-                        <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                        <span class="font-medium">دوره ها</span>
-                    </a>
-                    <a href="#"
-                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
-                        <i class="fas fa-credit-card text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
-                        <span class="font-medium">مالی و اشتراک</span>
-                    </a>
-                    <a href="#"
-                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                        <i class="fas fa-question-circle text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                        <span class="font-medium">پرسش‌ها</span>
-                    </a>
-                    <a href="#"
-                       class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-thumbtack text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
-                            <span class="font-medium">ماموریت‌ها</span>
-                        </div>
-                        <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>
-                    </a>
-                </nav>
+                {{--
+                                <!-- Navigation Menu -->
+                                <nav class="space-y-1">
+                                    <a href="#"
+                                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                        <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
+                                        <span class="font-medium">دوره ها</span>
+                                    </a>
+                                    <a href="#"
+                                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                        <i class="fas fa-credit-card text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
+                                        <span class="font-medium">مالی و اشتراک</span>
+                                    </a>
+                                    <a href="#"
+                                       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                        <i class="fas fa-question-circle text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
+                                        <span class="font-medium">پرسش‌ها</span>
+                                    </a>
+                                    <a href="#"
+                                       class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-thumbtack text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
+                                            <span class="font-medium">ماموریت‌ها</span>
+                                        </div>
+                                        <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>
+                                    </a>
+                                </nav>
 
-                <!-- Divider -->
-                <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+                                <!-- Divider -->
+                                <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+                --}}
 
                 <!-- Logout Section -->
                 <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>

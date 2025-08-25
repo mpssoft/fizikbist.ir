@@ -26,21 +26,15 @@
                 <!-- Stats -->
                 <div class="grid grid-cols-3 gap-4">
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">12</div>
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">{{count($licenses)}}</div>
                         <div class="text-xs text-gray-500 dark:text-gray-400">کل دوره‌ها</div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">8</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">فعال</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">4</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">تکمیل شده</div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+{{--
 
     <!-- Filters and Search -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 p-6">
@@ -80,43 +74,45 @@
             </div>
         </div>
     </div>
+--}}
 
     <!-- Courses Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="coursesGrid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6" id="coursesGrid">
+
+        @foreach($licenses as $license)
         <!-- Course Card 1 - Active -->
         <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden"
-             data-status="active" data-category="programming" data-title="دوره پایتون پیشرفته" data-instructor="احمد محمدی">
+             data-status="active" data-category="programming" data-title="{{$license->course->title}}" data-instructor="{{$license->course->teacher->name}}">
             <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                    <i class="fab fa-python text-white text-6xl"></i>
-                </div>
+                <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ">
+                                    </div>
                 <div class="absolute top-4 right-4">
             <span class="px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
-              فعال
+              {{$license->course->status=='active'?'فعال':''}}
             </span>
                 </div>
                 <div class="absolute top-4 left-4">
             <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              برنامه‌نویسی
+              {{$license->course->grade->name}}
             </span>
                 </div>
             </div>
 
             <div class="p-6 space-y-4">
                 <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">دوره پایتون پیشرفته</h3>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{$license->course->title}}</h3>
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <i class="fas fa-user text-xs"></i>
-                        <span>احمد محمدی</span>
-                        <div class="flex items-center gap-1 mr-auto">
+                        <span>{{$license->course->teacher->name}}</span>
+                        {{--<div class="flex items-center gap-1 mr-auto">
                             <i class="fas fa-star text-yellow-400 text-xs"></i>
                             <span>4.8</span>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
 
                 <!-- Progress -->
-                <div class="space-y-2">
+             {{--   <div class="space-y-2">
                     <div class="flex items-center justify-between text-sm">
                         <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
                         <span class="font-medium text-gray-900 dark:text-white">65%</span>
@@ -124,412 +120,31 @@
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div class="progress-bar bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" style="width: 65%"></div>
                     </div>
-                </div>
+                </div>--}}
 
                 <!-- Purchase Info -->
                 <div class="space-y-2">
                     <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۳/۰۵/۱۵</span>
-                        <span class="font-medium">۲,۵۰۰,۰۰۰ ت</span>
+                        <span>خرید: {{$license->created_at}}</span>
+                        <span class="font-medium">{{number_format($license->order->price)}} ت</span>
                     </div>
                     <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2024-001</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-PY-001</span>
+                        <span>شماره تراکنش: </span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">{{$license->order->payments()->first()->transaction_id}}</span>
                     </div>
                 </div>
 
                 <!-- Actions -->
                 <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700 transition">
-                            ادامه یادگیری
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-PY-001')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
+                    <button onclick="showLicense('l{{$license->order->payments()->first()->id}}')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
                         <i class="fas fa-key ml-2"></i>
                         نمایش مجوز
                     </button>
                 </div>
             </div>
         </div>
+        @endforeach
 
-        <!-- Course Card 2 - Completed -->
-        <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden"
-             data-status="completed" data-category="programming" data-title="دوره جاوااسکریپت مقدماتی" data-instructor="سارا احمدی">
-            <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
-                    <i class="fab fa-js-square text-white text-6xl"></i>
-                </div>
-                <div class="absolute top-4 right-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              تکمیل شده
-            </span>
-                </div>
-                <div class="absolute top-4 left-4">
-            <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              برنامه‌نویسی
-            </span>
-                </div>
-                <div class="absolute bottom-4 right-4">
-                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
-                        <i class="fas fa-check text-white text-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">دوره جاوااسکریپت مقدماتی</h3>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <i class="fas fa-user text-xs"></i>
-                        <span>سارا احمدی</span>
-                        <div class="flex items-center gap-1 mr-auto">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <span>4.9</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
-                        <span class="font-medium text-emerald-600 dark:text-emerald-400">100%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="progress-bar bg-gradient-to-r from-emerald-500 to-teal-600 h-2 rounded-full" style="width: 100%"></div>
-                    </div>
-                </div>
-
-                <!-- Purchase Info -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۳/۰۳/۱۰</span>
-                        <span class="font-medium">۱,۸۰۰,۰۰۰ ت</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2024-002</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-JS-002</span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium hover:from-emerald-700 hover:to-teal-700 transition">
-                            دریافت گواهی
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-JS-002')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
-                        <i class="fas fa-key ml-2"></i>
-                        نمایش مجوز
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 3 - Active -->
-        <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden"
-             data-status="active" data-category="design" data-title="طراحی UI/UX حرفه‌ای" data-instructor="مریم کریمی">
-            <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center">
-                    <i class="fas fa-palette text-white text-6xl"></i>
-                </div>
-                <div class="absolute top-4 right-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
-              فعال
-            </span>
-                </div>
-                <div class="absolute top-4 left-4">
-            <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              طراحی
-            </span>
-                </div>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">طراحی UI/UX حرفه‌ای</h3>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <i class="fas fa-user text-xs"></i>
-                        <span>مریم کریمی</span>
-                        <div class="flex items-center gap-1 mr-auto">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
-                        <span class="font-medium text-gray-900 dark:text-white">30%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="progress-bar bg-gradient-to-r from-pink-500 to-rose-600 h-2 rounded-full" style="width: 30%"></div>
-                    </div>
-                </div>
-
-                <!-- Purchase Info -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۳/۰۶/۰۱</span>
-                        <span class="font-medium">۳,۲۰۰,۰۰۰ ت</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2024-003</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-UX-003</span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-medium hover:from-pink-700 hover:to-rose-700 transition">
-                            ادامه یادگیری
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-UX-003')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
-                        <i class="fas fa-key ml-2"></i>
-                        نمایش مجوز
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 4 - Expired -->
-        <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden opacity-75"
-             data-status="expired" data-category="marketing" data-title="بازاریابی دیجیتال" data-instructor="علی رضایی">
-            <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-gray-500 to-gray-600 flex items-center justify-center">
-                    <i class="fas fa-bullhorn text-white text-6xl"></i>
-                </div>
-                <div class="absolute top-4 right-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-              منقضی شده
-            </span>
-                </div>
-                <div class="absolute top-4 left-4">
-            <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              بازاریابی
-            </span>
-                </div>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">بازاریابی دیجیتال</h3>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <i class="fas fa-user text-xs"></i>
-                        <span>علی رضایی</span>
-                        <div class="flex items-center gap-1 mr-auto">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
-                        <span class="font-medium text-gray-900 dark:text-white">45%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="progress-bar bg-gradient-to-r from-gray-500 to-gray-600 h-2 rounded-full" style="width: 45%"></div>
-                    </div>
-                </div>
-
-                <!-- Purchase Info -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۲/۱۲/۰۵</span>
-                        <span class="font-medium">۲,۰۰۰,۰۰۰ ت</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2023-004</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-MK-004</span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-medium hover:from-amber-700 hover:to-orange-700 transition">
-                            تمدید دسترسی
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-MK-004')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
-                        <i class="fas fa-key ml-2"></i>
-                        نمایش مجوز
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 5 - Active -->
-        <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden"
-             data-status="active" data-category="programming" data-title="دوره React و Redux" data-instructor="حسن محمدی">
-            <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                    <i class="fab fa-react text-white text-6xl"></i>
-                </div>
-                <div class="absolute top-4 right-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
-              فعال
-            </span>
-                </div>
-                <div class="absolute top-4 left-4">
-            <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              برنامه‌نویسی
-            </span>
-                </div>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">دوره React و Redux</h3>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <i class="fas fa-user text-xs"></i>
-                        <span>حسن محمدی</span>
-                        <div class="flex items-center gap-1 mr-auto">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <span>4.9</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
-                        <span class="font-medium text-gray-900 dark:text-white">15%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="progress-bar bg-gradient-to-r from-cyan-500 to-blue-600 h-2 rounded-full" style="width: 15%"></div>
-                    </div>
-                </div>
-
-                <!-- Purchase Info -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۳/۰۶/۲۰</span>
-                        <span class="font-medium">۲,۸۰۰,۰۰۰ ت</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2024-005</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-RC-005</span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium hover:from-cyan-700 hover:to-blue-700 transition">
-                            ادامه یادگیری
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-RC-005')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
-                        <i class="fas fa-key ml-2"></i>
-                        نمایش مجوز
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 6 - Completed -->
-        <div class="course-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden"
-             data-status="completed" data-category="business" data-title="مدیریت کسب و کار" data-instructor="فاطمه احمدی">
-            <div class="relative">
-                <div class="w-full h-48 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
-                    <i class="fas fa-chart-line text-white text-6xl"></i>
-                </div>
-                <div class="absolute top-4 right-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              تکمیل شده
-            </span>
-                </div>
-                <div class="absolute top-4 left-4">
-            <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white/90 text-gray-800">
-              کسب و کار
-            </span>
-                </div>
-                <div class="absolute bottom-4 right-4">
-                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
-                        <i class="fas fa-check text-white text-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">مدیریت کسب و کار</h3>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <i class="fas fa-user text-xs"></i>
-                        <span>فاطمه احمدی</span>
-                        <div class="flex items-center gap-1 mr-auto">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <span>4.8</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-gray-600 dark:text-gray-400">پیشرفت</span>
-                        <span class="font-medium text-emerald-600 dark:text-emerald-400">100%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="progress-bar bg-gradient-to-r from-emerald-500 to-teal-600 h-2 rounded-full" style="width: 100%"></div>
-                    </div>
-                </div>
-
-                <!-- Purchase Info -->
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>خرید: ۱۴۰۳/۰۲/۱۵</span>
-                        <span class="font-medium">۳,۵۰۰,۰۰۰ ت</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-                        <span>شماره سفارش: #ORD-2024-006</span>
-                        <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 font-mono">LIC-BZ-006</span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-2">
-                    <div class="flex gap-2">
-                        <button class="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium hover:from-emerald-700 hover:to-teal-700 transition">
-                            دریافت گواهی
-                        </button>
-                        <button class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    <button onclick="showLicense('LIC-BZ-006')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
-                        <i class="fas fa-key ml-2"></i>
-                        نمایش مجوز
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Empty State (Hidden by default) -->
@@ -640,33 +255,18 @@
     function showLicense(licenseId) {
         // Sample license data - in real app, fetch from API
         const licenseData = {
-            'LIC-PY-001': {
-                key: 'key_abc123xyz789def456uvw012ghi345jkl678mno901pqr234stu567vwx890',
-                course: 'دوره پایتون پیشرفته',
-                user: 'علی احمدی',
-                issueDate: '۱۴۰۳/۰۵/۱۵',
-                expiryDate: '۱۴۰۴/۰۵/۱۵',
+            @foreach($licenses as $license)
+            'l{{$license->order->payments()->first()->id}}': {
+                key: '{{$license->spotplayer_key}}',
+                course: '{{$license->course->title}}',
+                user: '{{$license->user->name}}',
+                issueDate: '{{$license->created_at}}',
                 status: 'فعال'
             },
-            'LIC-JS-002': {
-                key: 'key_def456ghi789jkl012mno345pqr678stu901vwx234yza567bcd890efg123',
-                course: 'دوره جاوااسکریپت مقدماتی',
-                user: 'علی احمدی',
-                issueDate: '۱۴۰۳/۰۳/۱۰',
-                expiryDate: '۱۴۰۴/۰۳/۱۰',
-                status: 'فعال'
-            }
+            @endforeach
         };
 
-        const license = licenseData[licenseId] || {
-            key: 'key_sample123456789abcdefghijklmnopqrstuvwxyz0123456789abcdef',
-            course: 'دوره نمونه',
-            user: 'علی احمدی',
-            issueDate: '۱۴۰۳/۰۶/۰۱',
-            expiryDate: '۱۴۰۴/۰۶/۰۱',
-            status: 'فعال'
-        };
-
+        const license = licenseData[licenseId] ;
         // Create modal
         const modal = document.createElement('div');
         modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50';
@@ -717,10 +317,7 @@
                   <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">تاریخ صدور</div>
                   <div class="font-medium text-gray-900 dark:text-white">${license.issueDate}</div>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                  <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">تاریخ انقضا</div>
-                  <div class="font-medium text-gray-900 dark:text-white">${license.expiryDate}</div>
-                </div>
+
               </div>
 
               <!-- Status -->
