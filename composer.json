@@ -10,6 +10,7 @@
         "ext-soap": "*",
         "alexusmai/laravel-file-manager": "^3.3",
         "artesaos/seotools": "^1.3",
+        "intervention/image": "^3.11",
         "laravel-lang/lang": "^15.22",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",

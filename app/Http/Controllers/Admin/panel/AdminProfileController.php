@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\User\panel;
+namespace App\Http\Controllers\Admin\panel;
 
 use App\Http\Controllers\Controller;
 use App\Traits\HandlesUserImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
-class UserProfileController extends Controller
+
+class AdminProfileController extends Controller
 {
     use HandlesUserImages;
     public function edit()
     {
         $user = Auth::user();
-        return view('user.profile.edit',compact('user'));
+        return view('admin.profile.edit',compact('user'));
     }
 
     public function update(Request $request)

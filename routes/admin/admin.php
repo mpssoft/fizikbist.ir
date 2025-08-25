@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\panel\AdminCourseController;
 use App\Http\Controllers\Admin\panel\AdminPanelController;
+use App\Http\Controllers\Admin\panel\AdminProfileController;
 use App\Http\Controllers\Admin\panel\GradeController;
 use App\Http\Controllers\Admin\panel\LicenseController;
 use App\Http\Controllers\Admin\panel\UserController;
@@ -28,6 +29,8 @@ Route::post('messages/mark-as-read/{message}',[UserMessageController::class,'mar
 Route::post('/messages/{id}/reply', [UserMessageController::class, 'reply'])->name('messages.reply');
 Route::post('/messages/send', [UserMessageController::class, 'send'])->name('messages.send');
 
+Route::get('/edit',[AdminProfileController::class,'edit'])->name('profile.edit');
+Route::put('/update',[AdminProfileController::class,'update'])->name('profile.update');
 
 
 Route::get('edit-license/{course}',[AdminCourseController::class,'editUserCourseLicense'])->name('edit-license');

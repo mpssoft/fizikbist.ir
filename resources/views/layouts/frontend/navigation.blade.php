@@ -141,6 +141,7 @@
                 <i x-show="dark" class="fas fa-sun text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200"></i>
             </button>--}}
             <!-- Desktop Menu -->
+                @if(auth()->check())
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="focus:outline-none group mt-2">
                         <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
@@ -187,33 +188,63 @@
                         <!-- Divider -->
                         <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                                        <!-- Navigation Menu -->
-                                        <nav class="space-y-1">
-                                            <a href="{{auth()->user()->role}}/courses"
-                                               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
-                                                <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                                                <span class="font-medium">دوره ها</span>
-                                            </a>
-                                            <a href="{{auth()->user()->role}}/messages"
-                                               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
-                                                <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
-                                                <span class="font-medium">پیام ها</span>
-                                            </a>
-                                            <a href="{{route('user.courses.bought')}}"
-                                               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                                                <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                                                <span class="font-medium">خرید ها</span>
-                                            </a>
-                                            <a href="{{route('user.edit.profile')}}"
-                                               class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
-                                                <div class="flex items-center gap-3">
-                                                    <i class="fas fa-user-edit text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
-                                                    <span class="font-medium">ویرایش پروفایل</span>
-                                                </div>
-                                                {{--<span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>--}}
-                                            </a>
-                                        </nav>
+                                       @if(auth()->user()->role =='user')
+                            <!-- Navigation Menu -->
+                            <nav class="space-y-1">
+                                <a href="{{route('user.courses.index')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">دوره ها</span>
+                                </a>
+                                <a href="{{route('user.messages.index')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">پیام ها</span>
+                                </a>
+                                <a href="{{route('user.courses.bought')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">خرید ها</span>
+                                </a>
+                                <a href="{{route('user.profile.edit')}}"
+                                   class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-user-edit text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
+                                        <span class="font-medium">ویرایش پروفایل</span>
+                                    </div>
+                                    {{--<span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>--}}
+                                </a>
+                            </nav>
 
+                        @else
+                            <!-- Navigation Menu -->
+                            <nav class="space-y-1">
+                                <a href="{{route('admin.courses.index')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">دوره ها</span>
+                                </a>
+                                <a href="{{route('admin.messages.index')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">پیام ها</span>
+                                </a>
+                                <a href="{{route('admin.licenses.index')}}"
+                                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium"> مدیریت لایسنس ها</span>
+                                </a>
+                                <a href="{{route('admin.profile.edit')}}"
+                                   class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-user-edit text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
+                                        <span class="font-medium">ویرایش پروفایل</span>
+                                    </div>
+                                    {{--<span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>--}}
+                                </a>
+                            </nav>
+
+                        @endif
                                         <!-- Divider -->
                                         <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
@@ -227,6 +258,14 @@
                     </div>
                 </div>
 
+                @else
+                    <div id="authButtons">
+                        <a href="#" onclick="openLightbox()"
+                           class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                            ورود / ثبت نام
+                        </a>
+                    </div>
+                @endif
             <!-- Mobile Menu Button -->
             <button class="md:hidden" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars text-xl"></i>

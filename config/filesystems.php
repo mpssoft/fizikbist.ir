@@ -30,7 +30,12 @@ return [
 
     'disks' => [
 // images folder in public path
-        'images' => [
+        'users' => [
+            'driver' => 'local',
+            'root' => base_path('public_html/images/users'),
+            'url' => '/images/users',
+            'visibility' => 'public'
+        ],'images' => [
             'driver' => 'local',
             'root' => base_path('public_html/images'),
             'url' => '/images',

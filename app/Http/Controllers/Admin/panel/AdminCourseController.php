@@ -14,6 +14,7 @@ class AdminCourseController extends Controller
 {
     public function index(Request $request)
     {
+
         $user = Auth::user();
         $activeCourses = Course::where("status","active")->get();
         $courses = Course::withCount([

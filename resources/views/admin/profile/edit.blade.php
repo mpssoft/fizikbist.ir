@@ -1,4 +1,4 @@
-@extends('layouts.user.master')
+@extends('layouts.admin.master')
 
 @section('content')
 <div class="bg-gradient-to-br from-indigo-50 to-sky-50 dark:from-gray-900 dark:to-slate-900 min-h-screen py-8 px-4">
@@ -28,7 +28,7 @@
     @include('layouts.errors')
     <!-- Profile Form -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden">
-        <form id="profileForm" class="p-8 space-y-8" method="post" action="{{route('user.profile.update')}}" enctype="multipart/form-data">
+        <form id="profileForm" class="p-8 space-y-8" method="post" action="{{route('admin.profile.update')}}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <!-- Profile Photo Section -->
