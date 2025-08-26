@@ -4,6 +4,7 @@ namespace App\Notifications\Channels;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class MelipayamakChannel
 {
@@ -12,27 +13,21 @@ class MelipayamakChannel
         if (!method_exists($notification, 'toMeliPayamakSms')) {
             return;
         }
-
-        $messageData = $notification->toMeliPayamakSms();
-
-        $username    = config('melipayamak.username');
-        $password    = config('melipayamak.password');
-        $bodyId = $messageData['bodyId'];
-        $to          = $messageData['to']; // returns mobile number
-        $text   = $messageData['otpCode']; // array of variables
+        Log::info("reched sms send ..");
+        $messageData = $notification->toMeliPayamakSms($notifiable);
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json'
         ])->post('https://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber', [
-            'username'    => $username,
-            'password'    => $password,
-            'text'   =>     $text,
-            'to'          => $to,
-            'bodyId'      => $bodyId,
+            'username'    => config('melipayamak.username'),
+            'password'    => config('melipayamak.password'),
+            'text'   =>     $messageData['text'],
+            'to'          => $messageData['to'],
+            'bodyId'      => $messageData['bodyId'],
         ]);
+        log::info($response);
+                // Optional: handle response/log errors
 
-        // Optional: handle response/log errors
-
-        return $response->json();
+        return $response;
     }
 }

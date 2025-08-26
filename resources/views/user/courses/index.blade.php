@@ -82,7 +82,5 @@
             }
         </script>
     @endpush
-    @if(session()->has('licenses'))
-        @include('layouts.license-modal') ;
-    @endif
+
 @endsection

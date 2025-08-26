@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use AllowDynamicProperties;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\NotifyUserLicense;
+use App\Notifications\SendOtpSms;
 use App\Services\SpotPlayerService;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +17,7 @@ use Modules\Shop\Models\CartItem;
 
 
 
-class PaymentController extends Controller
+#[AllowDynamicProperties] class PaymentController extends Controller
 {
 
     // STEP 1: Create an order (user clicks "buy course")
@@ -24,7 +28,7 @@ class PaymentController extends Controller
 
         if ($cart->isEmpty()) {
             alert('سبد خرید خالی است', 'هیچ آیتمی برای پرداخت وجود ندارد', 'toast');
-            return redirect()->route('cart.index');
+            return redirect()->route('shop.cart.index');
         }
 
         // Check for already purchased courses
@@ -120,7 +124,7 @@ class PaymentController extends Controller
 
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
-            return redirect()->route('cart.index');
+            return redirect()->route('shop.cart.index');
         }
 
         return $response->redirect();
@@ -171,10 +175,8 @@ class PaymentController extends Controller
         //alert('', 'پرداخت موفق', 'toast');
         // clear cart items
 
-        CartItem::where('user_id', auth()->id())->delete();
-        Cookie::queue(Cookie::forget('shop_cart'));
 
-        return redirect(route('user.courses'));
+
 }
 
 // STEP 2: Simulate payment success
@@ -186,7 +188,7 @@ class PaymentController extends Controller
             $order->load('items.item'); // eager load order items + related models
             $user = auth()->user();
             Log::info("Reached paymentSuccess for order {$order->id}");
-
+            $licenses=[];
             foreach ($order->items as $item) {
                 $model = $item->item; // e.g., Course, Product, etc.
                 Log::info("model  is: ". $model->title);
@@ -204,9 +206,25 @@ class PaymentController extends Controller
             }
 
             DB::commit();
+            $this->licenses = $licenses ;
 
-            return redirect()->route('admin.courses.index')
-                ->with(['success'=>'Payment successful. Your items are unlocked!','licenses'=>$licenses]);
+            CartItem::where('user_id', auth()->id())->delete();
+            Cookie::queue(Cookie::forget('shop_cart'));
+            // send sms
+            // ارسال پیامک
+
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile,$licenses[0]['course']));
+
+            if ($response['StrRetStatus'] == "Ok") {
+                return redirect(route('user.courses.bought'))->with(['licenses'=>$this->licenses]);
+            } else {
+                return redirect(route('user.courses'))->with([
+                    'status' => $response['StrRetStatus'],
+                    'code' => $response['RetStatus'],
+                    'message' => 'خطا هنگام ارسال کد'
+                ]);
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Payment error', [
@@ -216,8 +234,6 @@ class PaymentController extends Controller
             return back()->with('error', 'Payment processed but license generation failed.');
         }
     }
-
-
 
     protected function generateLicense($user, Order $order, $model, SpotPlayerService $spotPlayer)
     {

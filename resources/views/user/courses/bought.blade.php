@@ -136,7 +136,7 @@
 
                 <!-- Actions -->
                 <div class="space-y-2">
-                    <button onclick="showLicense('l{{$license->order->payments()->first()->id}}')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
+                    <button onclick="showLicense('l{{$license->id}}')" class="w-full px-4 py-2 rounded-xl border-2 border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition">
                         <i class="fas fa-key ml-2"></i>
                         نمایش مجوز
                     </button>
@@ -157,9 +157,13 @@
     </div>
 </div>
 </div>
+@if(session()->has('licenses'))
+    @include('layouts.license-modal') ;
+@endif
 @endsection
 <script>
     // Search and Filter functionality
+/*
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
         const statusFilter = document.getElementById('statusFilter');
@@ -234,7 +238,7 @@
             });
         }, 500);
     });
-
+*/
     // Course actions
     function continueLearning(courseId) {
         console.log('Continue learning course:', courseId);
@@ -256,7 +260,7 @@
         // Sample license data - in real app, fetch from API
         const licenseData = {
             @foreach($licenses as $license)
-            'l{{$license->order->payments()->first()->id}}': {
+            'l{{$license->id}}': {
                 key: '{{$license->spotplayer_key}}',
                 course: '{{$license->course->title}}',
                 user: '{{$license->user->name}}',

@@ -30,7 +30,7 @@
         <div class="relative" x-data="{ open: false }">
             <button @click="open = !open" class="focus:outline-none group mt-2">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
-                    <img src="/images/user-avatar-man.jpg" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                    <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                          alt="avatar">
                 </div>
             </button>
@@ -48,7 +48,7 @@
                 <!-- User Info Section -->
                 <div class="flex items-center gap-4">
                     <div class="w-14 h-14 rounded-full bg-gradient-to-r  from-pink-400 to-purple-500 p-0.5">
-                        <img src="/images/user-avatar-man.jpg" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                        <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                              alt="avatar">
                     </div>
                     <div>
