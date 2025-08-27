@@ -131,6 +131,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Shop\\Database\\Seeders\\' => 30,
             'Modules\\Shop\\Database\\Factories\\' => 32,
             'Modules\\Shop\\' => 13,
+            'Modules\\Conversation\\Tests\\' => 27,
+            'Modules\\Conversation\\Database\\Seeders\\' => 38,
+            'Modules\\Conversation\\Database\\Factories\\' => 40,
+            'Modules\\Conversation\\' => 21,
             'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
@@ -456,6 +460,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/../..' . '/Modules/Shop/app',
         ),
+        'Modules\\Conversation\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Conversation/tests',
+        ),
+        'Modules\\Conversation\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders',
+        ),
+        'Modules\\Conversation\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Conversation/database/factories',
+        ),
+        'Modules\\Conversation\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Conversation/app',
+        ),
         'Modules\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules',
@@ -737,6 +757,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\Admin\\panel\\AdminCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminCourseController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminLessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminLessonController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminPanelController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\AdminProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminProfileController.php',
         'App\\Http\\Controllers\\Admin\\panel\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/GradeController.php',
         'App\\Http\\Controllers\\Admin\\panel\\LicenseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/LicenseController.php',
         'App\\Http\\Controllers\\Admin\\panel\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/SliderController.php',
@@ -766,6 +787,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaymentController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\User\\ActiveCode' => __DIR__ . '/../..' . '/app/Http/Controllers/User/ActiveCode.php',
+        'App\\Http\\Controllers\\User\\ChatController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/ChatController.php',
         'App\\Http\\Controllers\\User\\panel\\UserCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/panel/UserCourseController.php',
         'App\\Http\\Controllers\\User\\panel\\UserMessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/panel/UserMessageController.php',
         'App\\Http\\Controllers\\User\\panel\\UserPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/panel/UserPanelController.php',
@@ -790,10 +812,12 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Notifications\\Channels\\MelipayamakChannel' => __DIR__ . '/../..' . '/app/Notifications/Channels/MelipayamakChannel.php',
         'App\\Notifications\\Channels\\RayganSmsChannel' => __DIR__ . '/../..' . '/app/Notifications/Channels/RayganSmsChannel.php',
         'App\\Notifications\\LoginToWebsite' => __DIR__ . '/../..' . '/app/Notifications/LoginToWebsite.php',
+        'App\\Notifications\\NotifyUserLicense' => __DIR__ . '/../..' . '/app/Notifications/NotifyUserLicense.php',
         'App\\Notifications\\SendOtpSms' => __DIR__ . '/../..' . '/app/Notifications/SendOtpSms.php',
         'App\\Notifications\\VerifyEmail' => __DIR__ . '/../..' . '/app/Notifications/VerifyEmail.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Services\\SpotPlayerService' => __DIR__ . '/../..' . '/app/Services/SpotPlayerService.php',
+        'App\\Traits\\HandlesUserImages' => __DIR__ . '/../..' . '/app/Traits/HandlesUserImages.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'ArchTech\\Enums\\Comparable' => __DIR__ . '/..' . '/archtechx/enums/src/Comparable.php',
@@ -4480,6 +4504,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
+        'Modules\\Conversation\\Database\\Seeders\\ConversationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders/ConversationDatabaseSeeder.php',
+        'Modules\\Conversation\\Http\\Controllers\\ConversationController' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Controllers/ConversationController.php',
+        'Modules\\Conversation\\Providers\\ConversationServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/ConversationServiceProvider.php',
+        'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/EventServiceProvider.php',
+        'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
         'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
         'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',

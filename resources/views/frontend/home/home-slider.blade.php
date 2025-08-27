@@ -48,7 +48,7 @@
 
     <!-- Slider Container -->
 
-    <div class="mt-10 mb-10 relative bg-gradient-to-br from-white/10 via-white/5 to-transparent dark:from-slate-800/20 dark:via-slate-900/10 dark:to-transparent backdrop-blur-md border border-white/30 dark:border-slate-600/30 rounded-3xl shadow-xl overflow-hidden transition-colors duration-300">
+    <div class="mt-10 mb-10 relative bg-gradient-to-br from-white/10 via-white/5 to-transparent dark:from-slate-800/20 dark:via-slate-900/10 dark:to-transparent backdrop-blur-md  border border-white/30 dark:border-slate-600/30 rounded-3xl shadow-xl overflow-hidden transition-colors duration-300">
         <!-- Slides Wrapper -->
         <div class="relative h-96 md:h-[500px] overflow-hidden ">
             <!-- Slide 1 -->

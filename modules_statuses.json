@@ -1,5 +1,6 @@
 {
     "Discount": true,
     "Cart": true,
-    "Shop": true
+    "Shop": true,
+    "Conversation": true
 }
