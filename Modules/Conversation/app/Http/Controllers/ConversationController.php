@@ -42,7 +42,7 @@ class ConversationController extends Controller
             'user_id' => auth()->id(), // who sends
             'body' => $request->body,
             'seen' => 0,
-            'parent_id' => $request->parent_id ?? null,
+            'parent_id' => $request->parentId ?? null,
         ]);
 
         return $this->fetchUnseen($request);
@@ -54,7 +54,7 @@ class ConversationController extends Controller
         $lastId = $request->get('lastId', 0);
 
         $messages = Conversation::where('id', '>', $lastId)
-            ->get();
+            ->with('parent','user')->get();
 
         return response()->json($messages);
     }

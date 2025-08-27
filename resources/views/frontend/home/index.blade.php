@@ -427,7 +427,7 @@
         </section>
 
         <!-- Call to Action Section -->
-        <section class="h-[70vh] md:h-[100vh] py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white tv-optimized-text-shadow">
+        <section class=" py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white tv-optimized-text-shadow">
             <div class="container mx-auto px-6 text-center pt-20">
                 <h2 class="text-4xl font-bold mb-6">آماده شروع سفر یادگیری خود هستید؟</h2>
                 <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">به هزاران دانشجویی بپیوندید که در حال حاضر با دوره‌های تخصصی ما شغل خود را پیش می‌برند.</p>

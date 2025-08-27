@@ -39,6 +39,7 @@ return [
             'driver' => 'local',
             'root' => base_path('public_html/images'),
             'url' => '/images',
+            'visibility' => 'public'
         ],
         'local' => [
             'driver' => 'local',

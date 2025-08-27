@@ -21,6 +21,7 @@ class Conversation extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Conversation::class, 'parent_id');
+        return $this->belongsTo(Conversation::class, 'parent_id')
+            ->with('user');
     }
 }
