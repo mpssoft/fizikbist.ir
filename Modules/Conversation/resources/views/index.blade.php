@@ -1,5 +1,4 @@
-
-    @extends('layouts.user.master')
+@extends(auth()->user()->role === 'admin' ? 'layouts.admin.master' : 'layouts.user.master')
 
 
 @section('content')
@@ -243,8 +242,7 @@
         const messageText = messageInput.value.trim();
 
         if (!messageText) return;
-        if(replyingTo)
-            alert(replyingTo.parentId);
+
         $.ajax({
             url: "{{ route('conversation.send') }}",
             type: "POST",
@@ -355,7 +353,7 @@
                             <span class="text-xs text-gray-500 dark:text-gray-400">${getTime()}</span>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-600 rounded-lg p-3 mb-2 border-r-4 border-blue-500">
-                            <div class="text-xs text-blue-600 dark:text-blue-300 mb-1">پاسخ به کاربر ${message.parent?message.parent.user.name:''}:</div>
+                            <div class="text-xs text-blue-600 dark:text-blue-300 mb-1">پاسخ به  ${message.parent?message.parent.user.name:''}:</div>
                             <div class="text-sm text-blue-700 dark:text-blue-200">${message.parent?message.parent.body : ''}</div>
                         </div>
                         <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl rounded-tr-sm p-4">
@@ -382,7 +380,7 @@
                             <span class="text-sm font-medium text-gray-900 dark:text-white">شما</span>
                         </div>
                         <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-3 mb-2 border-r-4 border-gray-400">
-                            <div class="text-xs text-blue-600 dark:text-blue-300 mb-1">پاسخ به کاربر ${message.parent?message.parent.user.name:''}:</div>
+                            <div class="text-xs text-blue-600 dark:text-blue-300 mb-1">پاسخ به  ${message.parent?message.parent.user.name:''}:</div>
                             <div class="text-sm text-blue-700 dark:text-blue-200">${message.parent?message.parent.body : ''}</div>
                         </div>
                         <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl rounded-tl-sm p-4">
