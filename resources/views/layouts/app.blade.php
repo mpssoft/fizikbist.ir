@@ -14,11 +14,43 @@
                 }
             }
         </script>
-
-
-{{--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">--}}
-        <link href="/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
         <link href="/css/fizik_styles.css" rel="stylesheet">
+        <style>
+            /* ✅ Blur utility (enabled by default) */
+            .with-blur {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+            .hero-pattern {
+                background-image:
+                    radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(131, 56, 236, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, rgba(58, 134, 255, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(6, 255, 165, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(255, 190, 11, 0.3) 0%, transparent 50%);
+            }
+
+            /* ✅ Disable blur on TV/extra large screens */
+            @media screen and (min-width: 1920px) {
+                .with-blur {
+                    backdrop-filter: none !important;
+                    -webkit-backdrop-filter: none !important;
+                    background-color: rgba(0, 0, 0, 0.3); /* fallback */
+                }
+                .tv-optimized-text-shadow {
+                    filter: none !important;
+                    text-shadow: none !important;
+                }
+
+                .hero-pattern {
+                    background-image:
+                        radial-gradient(circle at 30% 30%, rgba(255, 0, 110, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(131, 56, 236, 0.2) 0%, transparent 50%);
+                }
+            }
+
+        </style>
+        <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css"/>
         <!-- Scripts -->
         @yield('style')
         @stack('styles')

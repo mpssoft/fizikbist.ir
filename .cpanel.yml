@@ -1,7 +1,7 @@
 ---
 deployment:
   branches:
-    - payment
+    - slider
   tasks:
     # Set paths
     - export REPODIR=/home3/hrbldaru/repositories/fizikbist.ir

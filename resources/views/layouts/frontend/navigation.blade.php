@@ -146,7 +146,7 @@
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 scale-100"
                         x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 backdrop-blur-sm border border-white/20 dark:border-slate-600/20"
+                        class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 with-blur border border-white/20 dark:border-slate-600/20"
                     >
                         <!-- User Info Section -->
                         <div class="flex items-center gap-4">
@@ -264,7 +264,7 @@
     </div>
 
     <!-- Beautiful Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl z-50 md:hidden border-l border-gray-200 dark:border-gray-700">
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white/95 dark:bg-gray-900/95 with-blur shadow-2xl z-50 md:hidden border-l border-gray-200 dark:border-gray-700">
 
         <!-- Header Section -->
         <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 p-6 relative overflow-hidden">

@@ -37,10 +37,10 @@
             <i class="fas fa-envelope text-teal-500 group-hover:text-teal-600 transition-colors duration-200 w-5"></i>
             <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"> پیام ها</span>
         </a>
-        <a href="{{route('conversation.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+        {{--<a href="{{route('conversation.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-comment text-teal-500 group-hover:text-teal-600 transition-colors duration-200 w-5"></i>
             <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">  بحث و گفتگو</span>
-        </a>
+        </a>--}}
         <a href="{{route('user.profile.edit')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-user-edit text-orange-600 group-hover:text-teal-600 transition-colors duration-200 w-5"></i>
             <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"> ویرایش پروفایل</span>
