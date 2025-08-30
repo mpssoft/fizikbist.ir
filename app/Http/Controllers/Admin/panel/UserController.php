@@ -33,6 +33,7 @@ class UserController extends Controller
     // Update user
     public function update(Request $request, User $user)
     {
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
 
@@ -68,5 +69,17 @@ class UserController extends Controller
             'is_read'=>1
         ]);
         return view('admin.messages.show', compact('message'));
+    }
+
+    public function search(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'query' => 'required'
+            ]
+        );
+        $users = User::where('name', 'like', "%{$data['query']}%")->get();
+
+        return response()->json(['users'=>$users]);
     }
 }

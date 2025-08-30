@@ -29,6 +29,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.auth' => \App\Http\Middleware\AdminAuthenticateMiddleware::class,
         ]);
     })
+    ->withCommands([
+        \App\Console\Commands\SmsQueueRun::class,
+
+
+    ])
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

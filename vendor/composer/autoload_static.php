@@ -46,6 +46,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '02b00debec4c095ff10b1c4b849dad3b' => __DIR__ . '/..' . '/pishran/zarinpal/src/helpers.php',
         '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
+        'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -126,6 +127,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             'Morilog\\Jalali\\' => 15,
             'Monolog\\' => 8,
+            'Modules\\Sms\\Tests\\' => 18,
+            'Modules\\Sms\\Database\\Seeders\\' => 29,
+            'Modules\\Sms\\Database\\Factories\\' => 31,
+            'Modules\\Sms\\' => 12,
             'Modules\\Shop\\Tests\\' => 19,
             'Modules\\Shop\\Services\\' => 22,
             'Modules\\Shop\\Database\\Seeders\\' => 30,
@@ -439,6 +444,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Modules\\Sms\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Sms/tests',
+        ),
+        'Modules\\Sms\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Sms/database/seeders',
+        ),
+        'Modules\\Sms\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Sms/database/factories',
+        ),
+        'Modules\\Sms\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Sms/app',
         ),
         'Modules\\Shop\\Tests\\' => 
         array (
@@ -754,11 +775,14 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Alexusmai\\LaravelFileManager\\Traits\\CheckTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/CheckTrait.php',
         'Alexusmai\\LaravelFileManager\\Traits\\ContentTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/ContentTrait.php',
         'Alexusmai\\LaravelFileManager\\Traits\\PathTrait' => __DIR__ . '/..' . '/alexusmai/laravel-file-manager/src/Traits/PathTrait.php',
+        'App\\Console\\Commands\\SmsQueueRun' => __DIR__ . '/../..' . '/app/Console/Commands/SmsQueueRun.php',
+        'App\\Helpers\\DeviceHelper' => __DIR__ . '/../..' . '/app/Helpers/DeviceHelper.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminCourseController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminLessonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminLessonController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminPanelController.php',
         'App\\Http\\Controllers\\Admin\\panel\\AdminProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/AdminProfileController.php',
         'App\\Http\\Controllers\\Admin\\panel\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/GradeController.php',
+        'App\\Http\\Controllers\\Admin\\panel\\GroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/GroupController.php',
         'App\\Http\\Controllers\\Admin\\panel\\LicenseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/LicenseController.php',
         'App\\Http\\Controllers\\Admin\\panel\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/SliderController.php',
         'App\\Http\\Controllers\\Admin\\panel\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/panel/UserController.php',
@@ -799,6 +823,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Models\\ContactMessage' => __DIR__ . '/../..' . '/app/Models/ContactMessage.php',
         'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
         'App\\Models\\Grade' => __DIR__ . '/../..' . '/app/Models/Grade.php',
+        'App\\Models\\Group' => __DIR__ . '/../..' . '/app/Models/Group.php',
         'App\\Models\\Lesson' => __DIR__ . '/../..' . '/app/Models/Lesson.php',
         'App\\Models\\License' => __DIR__ . '/../..' . '/app/Models/License.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
@@ -4506,6 +4531,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
         'Modules\\Conversation\\Database\\Seeders\\ConversationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders/ConversationDatabaseSeeder.php',
         'Modules\\Conversation\\Http\\Controllers\\ConversationController' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Controllers/ConversationController.php',
+        'Modules\\Conversation\\Http\\Requests\\ConversationRequest' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Requests/ConversationRequest.php',
+        'Modules\\Conversation\\Models\\Conversation' => __DIR__ . '/../..' . '/Modules/Conversation/app/Models/Conversation.php',
         'Modules\\Conversation\\Providers\\ConversationServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/ConversationServiceProvider.php',
         'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/EventServiceProvider.php',
         'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/RouteServiceProvider.php',
@@ -4520,6 +4547,19 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/ShopServiceProvider.php',
         'Modules\\Shop\\Services\\CartService' => __DIR__ . '/../..' . '/Modules/Shop/Services/CartService.php',
+        'Modules\\Sms\\Channels\\MelipayamakChannel' => __DIR__ . '/../..' . '/Modules/Sms/Channels/MelipayamakChannel.php',
+        'Modules\\Sms\\Database\\Seeders\\SmsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Sms/database/seeders/SmsDatabaseSeeder.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\MessageTemplateController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/MessageTemplateController.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/SmsController.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsQueueController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/SmsQueueController.php',
+        'Modules\\Sms\\Jobs\\SendSmsJob' => __DIR__ . '/../..' . '/Modules/Sms/app/Jobs/SendSmsJob.php',
+        'Modules\\Sms\\Models\\MessageTemplate' => __DIR__ . '/../..' . '/Modules/Sms/app/Models/MessageTemplate.php',
+        'Modules\\Sms\\Models\\SmsQueue' => __DIR__ . '/../..' . '/Modules/Sms/app/Models/SmsQueue.php',
+        'Modules\\Sms\\Notifications\\SendSmsNotification' => __DIR__ . '/../..' . '/Modules/Sms/app/Notifications/SendSmsNotification.php',
+        'Modules\\Sms\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/EventServiceProvider.php',
+        'Modules\\Sms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/RouteServiceProvider.php',
+        'Modules\\Sms\\Providers\\SmsServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/SmsServiceProvider.php',
+        'Modules\\Sms\\Services\\SmsService' => __DIR__ . '/../..' . '/Modules/Sms/app/Services/SmsService.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',

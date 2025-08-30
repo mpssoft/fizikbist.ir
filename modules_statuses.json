@@ -2,5 +2,6 @@
     "Discount": true,
     "Cart": true,
     "Shop": true,
-    "Conversation": true
+    "Conversation": true,
+    "Sms": true
 }

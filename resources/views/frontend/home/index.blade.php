@@ -26,21 +26,41 @@
         <!-- Home Section -->
         <section id="homeSection" class="section">
             <!-- Hero Section -->
-            <div class="gradient-bg hero-pattern text-white py-20 relative overflow-hidden">
+            <div class="{{is_tv()?'bg-gray-300 dark:bg-slate-800':'gradient-bg hero-pattern'}} text-white py-20 relative overflow-hidden">
                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div class=" mx-auto  text-center relative z-10">
-                    <h2 class="text-4xl pt-2 font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200 bg-clip-text text-transparent drop-shadow-2xl tv-optimized-text-shadow">
-                        آموزش تخصصی فیزیک
-                    </h2>
+
+                    @if(is_tv())
+                        <h2 class="text-4xl pt-2 font-bold mb-8 text-gray-800 dark:text-white">
+                            آموزش تخصصی فیزیک
+                        </h2>
+                        @include('frontend.home.home-slider-tv', ['sliders' => $sliders])
+                    @else
+                        <h2 class="text-4xl pt-2 font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200  text-transparent bg-clip-text drop-shadow-2xl tv-optimized-text-shadow">
+                            آموزش تخصصی فیزیک
+                        </h2>
                     @include('frontend.home.home-slider', ['sliders' => $sliders])
+
+                    @endif
                     <p class="text-2xl mb-10 opacity-95 font-medium drop-shadow-lg">
                         با استاد حسین نژاداسد و روش‌های نوین تدریس
                     </p>
-                    <a href="#free-courses-section"
+                        @if(is_tv())
+
+                            <a href="#free-courses-section"
+                               class="bg-blue-600 dark:bg-blue-500 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-300 shadow-lg">
+                                <i class="fas fa-rocket mr-3"></i>
+                                شروع یادگیری
+                            </a>
+@else
+                            <a href="#free-courses-section"
                             class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50 tv-optimized-text-shadow">
                         <i class="fas fa-rocket mr-3"></i>
                         شروع یادگیری
                     </a>
+                        @endif
+
+
                 </div>
             </div>
 
