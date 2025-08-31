@@ -28,15 +28,18 @@
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
-<div class="flex min-h-screen">
+<div class="flex min-h-screen max-w-[2620px] mx-auto">
     <!-- Sidebar -->
-@include('layouts.admin.sidebar')
+
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
         <!-- Top Navbar -->
         @include('layouts.admin.navbar')
-        <div class="content">
+        <div class="flex">
+        @include('layouts.admin.sidebar')
+        <div class="content md:w-[80%] ">
             @yield('content')
+        </div>
         </div>
     </div>
 </div>

@@ -1,16 +1,31 @@
 <!-- Beautiful Header -->
-<header class="flex justify-between items-center px-6 py-4 bg-gradient-to-l from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.4)] sticky top-0 z-30 backdrop-blur-sm">
+
+<header class="flex w-full justify-between items-center px-6 py-4  bg-gradient-to-l from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.4)] sticky top-0 z-50 backdrop-blur-sm">
     <!-- Toggle Button (Mobile) -->
-    <div class="md:hidden">
+
+    <div class="md:hidden ">
         <button @click="sidebarOpen = !sidebarOpen; toggleButton = true" class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105">
             <i class="fas fa-bars text-sm"></i>
         </button>
     </div>
 
-    <div class="hidden sm:block text-sm md:text-lg font-bold truncate bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
-        <span class="text-2xl">👋</span> محمد عزیز؛ خوش اومدی
+    <!-- Branding section - hidden on small screens, visible on medium+ -->
+    <div class="flex items-center gap-20">
+    <div class="hidden md:flex items-center ">
+        <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
+            <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
+                <i class="fas fa-atom drop-shadow-sm"></i>
+                فیزیک بیست
+            </a>
+        </div>
     </div>
 
+
+
+    <div class="hidden text-gray-500 dark:text-gray-300 sm:block  text-sm  float-right md:text-lg  truncate    ">
+        <span class="">👋</span> محمد عزیز؛ خوش اومدی
+    </div>
+    </div>
     <div class="flex items-center gap-3">
         <!-- Notification Bell -->
         <button class="w-10 h-10 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 hover:from-orange-200 hover:to-orange-300 dark:hover:from-orange-800/40 dark:hover:to-orange-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
@@ -143,5 +158,6 @@
             </div>
         </div>
     </div>
+
 </header>
 
