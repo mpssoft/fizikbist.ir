@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('description')->nullable();
 
             // State of the job
-            $table->enum('state', ['init','pending', 'running', 'stopped', 'cancelled'])->default('init');
-
+            $table->enum('state', ['init','pending', 'running','completed', 'stopped', 'cancelled'])->default('init');
+            $table->integer('processed_count')->default(0);
             // Scheduled time
             $table->dateTime('scheduled_at')->nullable();
 

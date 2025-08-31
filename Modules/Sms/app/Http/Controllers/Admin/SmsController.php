@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Modules\Sms\Models\SmsQueue;
 use Modules\Sms\Services\SmsService;
 
@@ -29,9 +31,9 @@ class SmsController extends Controller
             $user = User::findOrFail($smsQueue->user_id);
             $bodyId = $smsQueue->message_template->bodyId;
             $text = "2345";
-            $this->sms->sendToUser($user, $text,$bodyId);
+            $this->sms->sendToUser($user, $text,$bodyId,$smsQueue->id,1);
             toast('صف با موفقیت شروع شد','success','top-end');
-            //Artisan::call('sms:queue-run');
+            $this->runQueue();
             return back()->with(['status' => 'queued for user']);
 
         }elseif($smsQueue->type == 'all'){
@@ -40,9 +42,9 @@ class SmsController extends Controller
 
             $bodyId = $smsQueue->message_template->bodyId;
             $text = "2345";
-            $this->sms->sendToMany($users,$text,$bodyId);
+            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue->id,count($users));
             toast('صف با موفقیت شروع شد','success','top-end');
-            //Artisan::call('sms:queue-run');
+            $this->runQueue();
             return back()->with(['status' => 'queued for user']);
 
         }else{
@@ -51,9 +53,9 @@ class SmsController extends Controller
 
             $bodyId = $smsQueue->message_template->bodyId;
             $text = "2345";
-            $this->sms->sendToMany($users,$text,$bodyId);
+            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue->id,count($users));
             toast('صف با موفقیت شروع شد','success','top-end');
-            //Artisan::call('sms:queue-run');
+            $this->runQueue();
             return back()->with(['status' => 'queued for user']);
 
         }
@@ -70,5 +72,28 @@ class SmsController extends Controller
         ]);
 
         return back();
+    }
+
+    public function runQueue()
+    {
+        $lock = Cache::lock('sms-queue-run-lock', 3600);
+
+        if (!$lock->get()) {
+            Log::info('Another process is already running.');
+            return;
+        }
+
+        try {
+
+            // Step 2: Run the queue worker to process jobs in background
+            if (app('queue')->size('sms') > 0) {
+                Artisan::call('queue:work', [
+                    '--queue' => 'sms',
+                    '--stop-when-empty' => true,
+                ]);
+            }
+        } finally {
+            $lock->release();
+        }
     }
 }

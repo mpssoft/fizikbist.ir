@@ -159,7 +159,7 @@
                                 ویرایش
                             </a>
 
-                        @elseif($queue->state == 'pending')
+                        @elseif($queue->state == 'pending' || $queue->state == 'completed')
                         <form method="POST" action="{{route('admin.sms_queue.start',$queue->id)}}" class="inline">
                             @csrf
                             <button type="submit" class="px-3 py-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-800 transition text-sm">

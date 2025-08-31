@@ -30,6 +30,11 @@ class MelipayamakChannel
 
         Log::info($response);
 
+        if (isset($response['RetStatus']) && $response['RetStatus'] != 1) {
+            // Throw an exception so Laravel treats this as a failed job
+            throw new \Exception("SMS failed: " . json_encode($response));
+        }
+
         return $response;
     }
 }

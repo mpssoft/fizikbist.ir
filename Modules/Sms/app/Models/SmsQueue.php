@@ -17,6 +17,7 @@ class SmsQueue extends Model
         'user_id',
         'message_template_id',
         'message',
+        'processed_count',
         'description',
         'state',
         'scheduled_at',

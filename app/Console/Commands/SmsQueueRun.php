@@ -46,7 +46,7 @@ class SmsQueueRun extends Command
 
         do {
             $queues = SmsQueue::where('state', 'pending')
-                ->where('schedule_at', '<=', now())
+                ->where('scheduled_at', '<=', now())
                 ->limit($batchSize)
                 ->get();
 
@@ -56,7 +56,7 @@ class SmsQueueRun extends Command
                     $user = User::findOrFail($queue->user_id);
                     $bodyId = $queue->message_template->bodyId;
                     $text = "2345";
-                    $this->sms->sendToUser($user, $text,$bodyId);
+                    $this->sms->sendToUser($user, $text,$bodyId,$queue->id,1);
 
                     //Artisan::call('sms:queue-run');
                     //return back()->with(['status' => 'queued for user']);
@@ -67,7 +67,7 @@ class SmsQueueRun extends Command
 
                     $bodyId = $queue->message_template->bodyId;
                     $text = "2345";
-                    $this->sms->sendToMany($users,$text,$bodyId);
+                    $this->sms->sendToMany($users,$text,$bodyId,$queue->id,count($users));
 
                     //Artisan::call('sms:queue-run');
                     //return back()->with(['status' => 'queued for user']);
@@ -78,7 +78,7 @@ class SmsQueueRun extends Command
 
                     $bodyId = $queue->message_template->bodyId;
                     $text = "2345";
-                    $this->sms->sendToMany($users,$text,$bodyId);
+                    $this->sms->sendToMany($users,$text,$bodyId,$queue->id,count($users));
 
                     //Artisan::call('sms:queue-run');
                     //return back()->with(['status' => 'queued for user']);
