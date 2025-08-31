@@ -35,7 +35,7 @@
 
                     <!-- Action Buttons -->
                     <div class="flex items-center gap-4">
-                        <a href="/admin/sliders/create"
+                        <a href="{{route('admin.sliders.create')}}"
                            class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600
                                   text-white font-semibold rounded-xl shadow-lg hover:from-green-700 hover:to-blue-700
                                   hover:shadow-xl hover:scale-105 transition-all duration-200">
@@ -44,11 +44,7 @@
                             </svg>
                             اسلایدر جدید
                         </a>
-                        <button class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -133,14 +129,7 @@
                             </div>
                         </div>
 
-                        <div class="text-center">
-                            <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">وضعیت</div>
-                            <div class="flex items-center justify-center">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                    نمایش
-                                </span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

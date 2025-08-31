@@ -44,11 +44,7 @@
                             </svg>
                             ایجاد درس جدید
                         </a>
-                        <button class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -211,45 +207,13 @@
         <!-- Lessons Table -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <!-- Bulk Actions -->
-            <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-                <form method="POST" action="/admin/lessons/bulk-action" class="flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <input type="checkbox" id="select_all"
-                               class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2">
-                        <label for="select_all" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            انتخاب همه
-                        </label>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">
-                            (۰ مورد انتخاب شده)
-                        </span>
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <select name="bulk_action"
-                                class="px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600
-                                       bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
-                            <option value="">عملیات گروهی</option>
-                            <option value="publish">انتشار</option>
-                            <option value="draft">تبدیل به پیش‌نویس</option>
-                            <option value="delete">حذف</option>
-                        </select>
-                        <button type="submit"
-                                class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700
-                                       focus:ring-2 focus:ring-blue-500 transition-colors duration-200">
-                            اعمال
-                        </button>
-                    </div>
-                </form>
-            </div>
 
             <!-- Table -->
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
-                        <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            <input type="checkbox" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
-                        </th>
+
                         <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             درس
                         </th>
@@ -259,14 +223,11 @@
                         <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             ترتیب
                         </th>
-                        <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            آمار
-                        </th>
-                        <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             وضعیت
                         </th>
                         <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            تاریخ
+                            تاریخ ایجاد
                         </th>
                         <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             عملیات
@@ -276,10 +237,6 @@
                     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($lessons as $lesson)
                         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <input type="checkbox" name="lesson_ids[]" value="1"
-                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
-                        </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-4">
                                 <img src="{{ $lesson->thumbnail }}"
@@ -304,24 +261,6 @@
                             {{ $lesson->order }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900 dark:text-white">
-                                <div class="flex items-center gap-3">
-                                        <span class="flex items-center gap-1">
-                                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            </svg>
-                                            {{ $lesson->view }}
-                                        </span>
-                                    <span class="flex items-center gap-1">
-                                            <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                            </svg>
-                                            {{ $lesson->like }}
-                                        </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                                     {{$lesson->status == 'published' ? 'منتشر شده':'پیش نویس'}}
                                 </span>
@@ -330,31 +269,17 @@
                             {{ $lesson->updated_at }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-4">
                                 <a href="{{route('admin.lessons.edit',$lesson->id)}}"
-                                   class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                   class="p-4 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                     </svg>
                                 </a>
-                               {{-- <a href="/lessons/1" target="_blank"
-                                   class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                    </svg>
-                                </a>--}}
-                               {{-- <form method="POST" action="/admin/lessons/1/duplicate" class="inline">
-                                    <button type="submit" class="text-purple-600 hover:text-purple-900 dark:text-purple-400 dark:hover:text-purple-300">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                        </svg>
-                                    </button>
-                                </form>--}}
                                 <form method="POST" action="{{route('admin.lessons.destroy',$lesson->id)}}" onsubmit="event.preventDefault();confirmDelete(event);" class="inline">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                                    <button type="submit" class="p-4 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                                            >
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>

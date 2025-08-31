@@ -95,7 +95,36 @@
                            این متن صرفا نمایشی  است و متن اصلی در ملی پیامک باید ایجاد شود
                         </div>
                     </div>
+                    <!-- Quick Variables -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-magic text-indigo-500 ml-2"></i>
+                            متغیرهای سریع
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                            <button type="button" onclick="insertVariable('name')"
+                                    class="variable-tag px-3 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition text-sm font-medium">
+                                <i class="fas fa-user ml-1"></i>
+                                {name}
+                            </button>
+                            <button type="button" onclick="insertVariable('mobile')"
+                                    class="variable-tag px-3 py-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-800 transition text-sm font-medium">
+                                <i class="fas fa-phone ml-1"></i>
+                                {mobile}
+                            </button>
+                            <button type="button" onclick="insertVariable('email')"
+                                    class="variable-tag px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-800 transition text-sm font-medium">
+                                <i class="fas fa-envelope ml-1"></i>
+                                {email}
+                            </button>
+                            <button type="button" onclick="insertVariable('text')"
+                                    class="variable-tag px-3 py-2 bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-lg hover:bg-orange-200 dark:hover:bg-orange-800 transition text-sm font-medium">
+                                <i class="fas fa-key ml-1"></i>
+                                {text}
+                            </button>
 
+                        </div>
+                    </div>
                                    </div>
 
 
@@ -119,4 +148,82 @@
 
 </div>
 
+<!-- Custom Variable Modal -->
+<div id="customVariableModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">افزودن متغیر سفارشی</h3>
+            <button onclick="closeCustomVariableModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">نام متغیر</label>
+                <input type="text" id="customVariableName"
+                       class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                       placeholder="مثال: order_id">
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="closeCustomVariableModal()"
+                        class="flex-1 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                    انصراف
+                </button>
+                <button onclick="addCustomVariable()"
+                        class="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                    افزودن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
+@push('scripts')
+    <script >
+        // Insert variable into message
+        function insertVariable(variable) {
+            const messageContent = document.getElementById('messageContent');
+            const cursorPos = messageContent.selectionStart;
+            const textBefore = messageContent.value.substring(0, cursorPos);
+            const textAfter = messageContent.value.substring(messageContent.selectionEnd);
+
+            messageContent.value = textBefore + `{${variable}}` + textAfter;
+            messageContent.focus();
+            messageContent.setSelectionRange(cursorPos + variable.length + 2, cursorPos + variable.length + 2);
+
+            updateCharacterCount();
+            updatePreview();
+        }
+        // Custom variable modal
+        function showCustomVariableModal() {
+            document.getElementById('customVariableModal').classList.remove('hidden');
+            document.getElementById('customVariableName').focus();
+        }
+
+        function closeCustomVariableModal() {
+            document.getElementById('customVariableModal').classList.add('hidden');
+            document.getElementById('customVariableName').value = '';
+        }
+
+        function addCustomVariable() {
+            const variableName = document.getElementById('customVariableName').value.trim();
+
+            if (!variableName) {
+                alert('لطفاً نام متغیر را وارد کنید');
+                return;
+            }
+
+            if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(variableName)) {
+                alert('نام متغیر باید با حرف یا _ شروع شود و فقط شامل حروف، اعداد و _ باشد');
+                return;
+            }
+
+            insertVariable(variableName);
+            closeCustomVariableModal();
+        }
+
+    </script>
+@endpush

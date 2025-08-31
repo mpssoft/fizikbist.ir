@@ -14,7 +14,15 @@
                     </svg>
                     <span>ویرایش پایه</span>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">ویرایش (پایه|مقطع|دسته) </h1>
+                <div class="flex">
+                    <div class="w-10  h-10 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center ml-4">
+                        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">ویرایش (پایه|مقطع|دسته) </h1>
+                </div>
                 <p class="text-gray-600 dark:text-gray-400 mt-1">اطلاعات پایه تحصیلی را ویرایش کنید</p>
             </div>
 
@@ -28,11 +36,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <div class="flex items-center">
-                <div class="w-10 h-10 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                </div>
+
                 <div>
                     <h2 class="text-xl font-semibold text-gray-900 dark:text-white">ویرایش اطلاعات پایه تحصیلی</h2>
                     <p class="text-sm text-gray-600 dark:text-gray-400">فیلدهای مشخص شده با * اجباری هستند</p>

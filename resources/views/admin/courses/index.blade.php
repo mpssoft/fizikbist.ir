@@ -46,11 +46,7 @@
                                 </svg>
                                 دوره جدید
                             </a>
-                            <button class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-gray-600 dark:text-gray-300">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                </svg>
-                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -146,23 +142,16 @@
                                         </button>
                                     </form>
 
-                                    <button class="p-2 sm:p-3 text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200" title="مشاهده">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
                             <div class="text-center">
-                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">دانشجویان</div>
+                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">دانش آموزان</div>
                                 <div class="flex items-center justify-center gap-1 sm:gap-2">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                    </svg>
+                                   <span class="fas fa-users w-7 h-7 flex  items-center"></span>
                                     <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">{{ $course->students_count }}</span>
                                 </div>
                             </div>
@@ -183,7 +172,7 @@
                                 <div class="text-xs text-gray-500 dark:text-gray-400">تومان</div>
                             </div>
 
-                            <div class="text-center">
+                           {{-- <div class="text-center">
                                 <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">امتیاز</div>
                                 <div class="flex items-center justify-center gap-1 sm:gap-2">
                                     <div class="flex text-yellow-400">
@@ -198,17 +187,17 @@
                                             <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">امتیاز</div>
                                             <div class="flex items-center justify-center gap-1 sm:gap-2">
                                                 <div class="flex text-yellow-400">
-                                                    {{-- full stars --}}
+                                                    --}}{{-- full stars --}}{{--
                                                     @for ($i = 0; $i < $fullStars; $i++)
                                                         <i class="fas fa-star"></i>
                                                     @endfor
 
-                                                    {{-- half star --}}
+                                                    --}}{{-- half star --}}{{--
                                                     @if ($halfStar)
                                                         <i class="fas fa-star-half-alt"></i>
                                                     @endif
 
-                                                    {{-- empty stars --}}
+                                                    --}}{{-- empty stars --}}{{--
                                                     @for ($i = 0; $i < $emptyStars; $i++)
                                                         <i class="far fa-star"></i>
                                                     @endfor
@@ -223,7 +212,7 @@
         </span>
 
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>

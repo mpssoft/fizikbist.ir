@@ -56,7 +56,7 @@ class SmsQueueRun extends Command
                     $user = User::findOrFail($queue->user_id);
                     $bodyId = $queue->message_template->bodyId;
                     $text = "2345";
-                    $this->sms->sendToUser($user, $text,$bodyId,$queue->id,1);
+                    $this->sms->sendToUser($user, $text,$bodyId,$queue,1);
 
                     //Artisan::call('sms:queue-run');
                     //return back()->with(['status' => 'queued for user']);
@@ -67,7 +67,7 @@ class SmsQueueRun extends Command
 
                     $bodyId = $queue->message_template->bodyId;
                     $text = "2345";
-                    $this->sms->sendToMany($users,$text,$bodyId,$queue->id,count($users));
+                    $this->sms->sendToMany($users,$text,$bodyId,$queue,count($users));
 
                     //Artisan::call('sms:queue-run');
                     //return back()->with(['status' => 'queued for user']);

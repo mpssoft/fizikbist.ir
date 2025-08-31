@@ -25,7 +25,9 @@ class MessageTemplateController extends Controller
             'message' => 'nullable|string',
             'bodyId' => 'required|integer',
         ]);
-
+       /* preg_match_all('/{([\w\.]+)}/', $validated['message'], $matches);
+        $placeholders = $matches[1]; // only inside content without {}
+        dd(implode(";",$placeholders));*/
         MessageTemplate::create($validated);
 
         return redirect()->route('admin.message_templates.index');

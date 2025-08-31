@@ -14,9 +14,9 @@ class MelipayamakChannel
             return;
         }
 
-        Log::info("Reached SMS send ..");
 
         $messageData = $notification->toMeliPayamakSms($notifiable);
+        Log::info("Reached SMS send ..text=".$messageData['text']);
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json'

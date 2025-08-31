@@ -131,7 +131,7 @@
                             <select id="role" name="role"
                                     class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="admin" {{$user->role=='admin'?'selected':''}}>مدیر</option>
-                                <option value="student" {{$user->role !='admin'?'selected':''}}>دانش آموز</option>
+                                <option value="user" {{$user->role !='admin'?'selected':''}}>دانش آموز</option>
                             </select>
                         </div>
 

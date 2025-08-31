@@ -40,9 +40,10 @@ class SmsController extends Controller
 
             $users = User::all()->except(auth()->user()->id);
 
+
             $bodyId = $smsQueue->message_template->bodyId;
             $text = "2345";
-            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue->id,count($users));
+            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue,count($users));
             toast('صف با موفقیت شروع شد','success','top-end');
             $this->runQueue();
             return back()->with(['status' => 'queued for user']);
@@ -53,7 +54,7 @@ class SmsController extends Controller
 
             $bodyId = $smsQueue->message_template->bodyId;
             $text = "2345";
-            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue->id,count($users));
+            $this->sms->sendToMany($users,$text,$bodyId,$smsQueue,count($users));
             toast('صف با موفقیت شروع شد','success','top-end');
             $this->runQueue();
             return back()->with(['status' => 'queued for user']);
