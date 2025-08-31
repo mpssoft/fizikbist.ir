@@ -35,7 +35,7 @@
     <div class="flex-1 flex flex-col">
         <!-- Top Navbar -->
         @include('layouts.admin.navbar')
-        <div class="flex">
+        <div class="flex h-full">
         @include('layouts.admin.sidebar')
         <div class="content w-full md:w-[80%] ">
             @yield('content')
