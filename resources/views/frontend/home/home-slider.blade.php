@@ -240,20 +240,7 @@
     // Initialize
     initializeDarkMode();
     updateSlider();
-    $(document).on('click', '.slider-link', function (e) {
-        let sliderId = $(this).data('id');
 
-        $.ajax({
-            url: '/sliders/' + sliderId + '/click',
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}'
-            },
-            success: function (response) {
-                console.log("Clicks updated:", response.clicks);
-            }
-        });
-    });
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
