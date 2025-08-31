@@ -26,6 +26,8 @@ class SliderController extends Controller
             'link' => 'nullable',
             'image' => 'nullable',
             'order' => 'numeric',
+            'button_text' => 'nullable',
+
         ]);
 
         $data['is_active'] = $request->has('is_active')? true:false;
@@ -48,6 +50,7 @@ class SliderController extends Controller
             'link' => 'nullable',
             'image' => 'nullable',
             'order' => 'numeric',
+            'button_text' => 'nullable',
         ]);
 
         $data['is_active'] = $request->has('is_active')? true:false;
@@ -63,4 +66,10 @@ class SliderController extends Controller
         return redirect()->route('admin.sliders.index')->with('success', 'اسلایدر حذف شد.');
     }
 
+    public function click(Slider $slider)
+    {
+
+        $slider->increment('clicks');
+
+    }
 }

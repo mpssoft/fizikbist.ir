@@ -115,7 +115,7 @@
                                 <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
-                                <span class="text-sm sm:text-base font-medium text-gray-900 dark:text-white">۱۴۰۲/۰۸/۱۵</span>
+                                <span class="text-sm sm:text-base font-medium text-gray-900 dark:text-white">{{\Morilog\Jalali\Jalalian::forge($slider->created_at)->ago()}}</span>
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@
                                 <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
                                 </svg>
-                                <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">۲,۳۴۷</span>
+                                <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">{{number_format($slider->clicks)}}</span>
                             </div>
                         </div>
 

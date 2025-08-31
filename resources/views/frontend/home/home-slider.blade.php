@@ -74,7 +74,7 @@
                                 <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">{{ $slider->title }}</h2>
                                 <p class="text-base md:text-lg lg:text-xl mb-6 opacity-90 drop-shadow-md">{{ $slider->subtitle }}</p>
                                 @if($slider->link)
-                                    <a href="{{$slider->link}}" class="leading-right bg-white/90 dark:bg-slate-800/90 text-blue-600 dark:text-blue-400 px-6 py-3 rounded-full font-semibold hover:bg-white dark:hover:bg-slate-700 transition-colors duration-300 shadow-lg with-blur w-fit">اطلاعات بیشتر</a>
+                                    <a href="{{$slider->link}}" data-id="{{$slider->id}}" class="slider-link leading-right bg-white/90 dark:bg-slate-800/90 text-blue-600 dark:text-blue-400 px-6 py-3 rounded-full font-semibold hover:bg-white dark:hover:bg-slate-700 transition-colors duration-300 shadow-lg with-blur w-fit">اطلاعات بیشتر</a>
                                 @endif
                             </div>
 
@@ -82,7 +82,7 @@
                             <div class="slide-image flex items-center justify-center p-8 md:p-12 order-1 md:order-2 z-20 slide-enter-right">
                                 <div class="w-[520px] max-w-[520px] md:w-[520px] md:h-[390px] rounded-2xl overflow-hidden shadow-2xl
                                             bg-white/20 dark:bg-slate-800/20 with-blur border border-white/30 dark:border-slate-600/30">
-                                    <a href="{{$slider->link}}"  class="block w-full h-full">
+                                    <a href="{{$slider->link}}" data-id="{{$slider->id}}"  class=" slider-link block w-full h-full">
                                         <img src="{{$slider->image}}" class="w-[520px] h-full md:w-[520px] md:h-[390px] object-cover">
                                     </a>
                                 </div>
@@ -240,4 +240,41 @@
     // Initialize
     initializeDarkMode();
     updateSlider();
+    $(document).on('click', '.slider-link', function (e) {
+        let sliderId = $(this).data('id');
+
+        $.ajax({
+            url: '/sliders/' + sliderId + '/click',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+                console.log("Clicks updated:", response.clicks);
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".slider-link").forEach(function (link) {
+            link.addEventListener("click", function (e) {
+                let sliderId = this.dataset.id;
+
+                fetch(`/slider/click/${sliderId}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({})
+                })
+                    .then(response => response.json())
+                    .then(data => {
+
+                    })
+                    .catch(error => console.error("Error:", error));
+            });
+        });
+    });
 </script>

@@ -1,7 +1,7 @@
 <?php
 
 
-
+use App\Http\Controllers\Admin\panel\SliderController;
 use App\Http\Controllers\Auth\OtpLoginController;
 use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
 
@@ -58,4 +58,7 @@ Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.
 Route::get('/play/{lesson}',[HomeController::class,'play'])->name('play');
 Route::get('/play-course/{course}',[HomeController::class,'playFreeCourse'])->name('playFreeCourse');
 Route::get('/playCourse/{course}',[HomeController::class,'playCourse'])->middleware('auth')->name('playCourse');
+// click slider increament
+Route::post('slider/click/{slider}',[SliderController::class,'click'])->name('slider.click');
+
 require __DIR__.'/auth.php';

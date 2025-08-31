@@ -12,6 +12,10 @@ class Slider extends Model
         'image',
         'link',
         'is_active',
-        'order'
+        'order',
+        'button_text',
+        'clicks',
     ];
+
+
 }
