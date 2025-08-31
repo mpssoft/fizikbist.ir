@@ -128,21 +128,19 @@
         <!-- Form Actions -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 px-8 py-6">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                <div class="text-sm text-gray-600 dark:text-gray-300">
-                    <i class="fas fa-info-circle ml-1"></i>
-                    مجوز پس از ایجاد به SpotPlayer ارسال خواهد شد
-                </div>
+
                 <div class="flex items-center gap-3">
-                    <a href="/admin/licenses"
-                       class="px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                        لغو
-                    </a>
                     <button type="submit"
                             class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                             id="submit-btn" >
                         <i class="fas fa-plus ml-2"></i>
                         ایجاد مجوز
                     </button>
+                    <a href="/admin/licenses"
+                       class="px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        لغو
+                    </a>
+
                 </div>
             </div>
         </div>

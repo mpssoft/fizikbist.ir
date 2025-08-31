@@ -71,7 +71,7 @@
                             <span class="text-white text-sm font-bold">#{{$queue->bodyId}}</span>
                         </div>
                         <div    >
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{$queue->message_template->name}}</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{$queue->message_template->name ?? 'الگویی برای این صف وجود ندارد'}}</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">{{$queue->description}}</p>
                         </div>
                     </div>
@@ -106,8 +106,8 @@
 
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
                         <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">قالب پیام</div>
-                        <div class="text-sm font-medium text-gray-900 dark:text-white">{{$queue->message_template->name}}</div>
-                        <div class="text-xs text-gray-600 dark:text-gray-400">bodyId: {{$queue->message_template->bodyId}}</div>
+                        <div class="text-sm font-medium text-gray-900 dark:text-white">{{$queue->message_template->name ?? 'الگو حذف شده/وجود ندارد'}}</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-400">bodyId: {{$queue->message_template->bodyId ?? 'الگو حذف شده/وجود ندارد'}}</div>
                     </div>
 
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
@@ -126,7 +126,7 @@
                 <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
                     <div class="text-xs text-blue-600 dark:text-blue-400 mb-2">محتوای پیام:</div>
                     <div class="text-sm text-gray-900 dark:text-white">
-                        {{$queue->message ?? $queue->message_template->message}}
+                        {{$queue->message ?? $queue->message_template->message ?? 'الگو حذف شده/وجود ندارد'}}
                     </div>
                 </div>
 
@@ -137,7 +137,7 @@
 
                     <div class="flex items-center gap-2">
 
-                        @if($queue->state == 'init')
+                        @if($queue->state == 'init' && isset($queue->message_template->id))
                             <form method="POST" action="{{route('admin.sms_queue.ready',$queue->id)}}" class="inline">
                                 @csrf
                                 <button type="submit" class="px-3 py-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-800 transition text-sm">
@@ -159,7 +159,7 @@
                                 ویرایش
                             </a>
 
-                        @elseif($queue->state == 'pending' || $queue->state == 'completed')
+                        @elseif($queue->state == 'pending' || $queue->state == 'completed' && isset($queue->message_template->id))
                         <form method="POST" action="{{route('admin.sms_queue.start',$queue->id)}}" class="inline">
                             @csrf
                             <button type="submit" class="px-3 py-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-800 transition text-sm">
@@ -181,7 +181,7 @@
                                 </button>
                             </form>
 
-                        @elseif($queue->state == 'running')
+                        @elseif($queue->state == 'running' && isset($queue->message_template->id))
                             <form method="POST" action="/admin/message-queues/1/stop" class="inline">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="px-3 py-2 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-800 transition text-sm">
@@ -196,7 +196,7 @@
                                 مشاهده
                             </button>
                         </form>
-                        @elseif($queue->state == 'cancelled' || $queue->state == 'stopped')
+                        @elseif($queue->state == 'cancelled' || $queue->state == 'stopped' && isset($queue->message_template->id))
                             <form method="GET" action="/admin/message-queues/3" class="inline">
                                 <button type="submit" class="px-3 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition text-sm">
                                     <i class="fas fa-eye ml-1"></i>
@@ -220,6 +220,21 @@
                                     حذف
                                 </button>
                             </form>
+
+                        @else
+                            <a href="{{route('admin.sms_queues.edit',$queue->id)}}" class="px-3 py-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-yellow-800 transition text-sm">
+                                <i class="fas fa-edit ml-1"></i>
+                                ویرایش
+                            </a>
+                            <form method="POST" action="/admin/message-queues/3/delete" class="inline">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="px-3 py-2 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-800 transition text-sm">
+                                    <i class="fas fa-trash ml-1"></i>
+                                    حذف
+                                </button>
+                            </form>
+
                         @endif
 
 

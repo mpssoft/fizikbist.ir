@@ -154,10 +154,10 @@
                         <i class="fas fa-list text-xs text-indigo-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">مشاهده همه</span>
                     </a>
-                    <a href="{{route('admin.users.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                   {{-- <a href="{{route('admin.users.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
                         <i class="fas fa-plus text-xs text-indigo-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">ایجاد کاربر جدید</span>
-                    </a>
+                    </a>--}}
                     <a href="{{route('admin.groups.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
                         <i class="fas fa-users text-xs text-indigo-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">گروه ها</span>
@@ -231,10 +231,7 @@
                         <i class="fas fa-list text-xs text-cyan-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400">مشاهده همه</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-cyan-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400">ایجاد سوال جدید</span>
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -274,12 +271,7 @@
 
     </nav>
 
-    <!-- Footer Section -->
-    <div class="absolute bottom-0 lefthover-0 right-0 p-4 bg-gradient-to-t from-gray-50 to-transparent dark:from-slate-800 dark:to-transparent">
-        <div class="text-center text-xs text-gray-500 dark:text-gray-400">
-            <p>نسخه 2.0.1</p>
-        </div>
-    </div>
+
 </aside>
 
 <script>
