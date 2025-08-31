@@ -2,10 +2,10 @@
 
 
 @section('content')
-<div class="bg-gradient-to-br from-slate-100 to-slate-200 dark:from-gray-900 dark:to-slate-900">
-<div class="max-w-6xl mx-auto p-4 chat-container">
+<div class=" bg-gradient-to-br from-slate-100 to-slate-200 dark:from-gray-900 dark:to-slate-900 ">
+<div class="w-full max-w-6xl mx-auto md:p-4 chat-container">
     <!-- Chat Header -->
-    <div class="bg-white dark:bg-gray-800 rounded-t-2xl shadow-lg border-b border-gray-200 dark:border-gray-700 p-6">
+    <div class="bg-white dark:bg-gray-800 md:rounded-t-2xl shadow-lg border-b border-gray-200 dark:border-gray-700 p-6">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -157,7 +157,7 @@
             <div id="replyContent" class="text-sm text-gray-700 dark:text-gray-200"></div>
 
     <!-- Message Input -->
-    <div class="bg-white dark:bg-gray-800 rounded-b-2xl shadow-lg border-t border-gray-200 dark:border-gray-700 p-6">
+    <div class="bg-white dark:bg-gray-800 md:rounded-b-2xl shadow-lg border-t border-gray-200 dark:border-gray-700 p-6">
         <div class="flex items-end gap-4">
            {{-- <button class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
                 <i class="fas fa-paperclip"></i>
