@@ -37,7 +37,7 @@
         @include('layouts.admin.navbar')
         <div class="flex">
         @include('layouts.admin.sidebar')
-        <div class="content md:w-[80%] ">
+        <div class="content w-full md:w-[80%] ">
             @yield('content')
         </div>
         </div>

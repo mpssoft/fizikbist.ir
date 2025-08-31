@@ -2,8 +2,8 @@
 
 
 @section('content')
-<div class=" bg-gradient-to-br from-slate-100 to-slate-200 dark:from-gray-900 dark:to-slate-900 ">
-<div class="w-full max-w-6xl mx-auto md:p-4 chat-container">
+<div class=" bg-gradient-to-br h-full from-slate-100 to-slate-200 dark:from-gray-900 dark:to-slate-900 ">
+<div class="w-full h-full flex flex-col max-w-6xl mx-auto md:p-4 chat-container">
     <!-- Chat Header -->
     <div class="bg-white dark:bg-gray-800 md:rounded-t-2xl shadow-lg border-b border-gray-200 dark:border-gray-700 p-6">
         <div class="flex items-center justify-between">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Messages Container -->
-    <div class="bg-white dark:bg-gray-800 messages-container overflow-y-auto p-6 space-y-6" id="messagesContainer">
+    <div class="bg-white flex-1 dark:bg-gray-800 messages-container overflow-y-auto p-6 space-y-6" id="messagesContainer">
 
 
         @foreach($conversations as $message )
