@@ -8,11 +8,11 @@
         <!-- Cart Item 1 -->
         <div class="cart-item flex items-center gap-3 p-3 border border-gray-600 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
             <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-shopping-bag text-white text-lg"></i>
+                <i class="fas fa-shopping-bag  text-lg"></i>
 
             </div>
             <div class="flex-1 min-w-0">
-                <h4 class="font-medium text-sm text-gray-800 dark:text-gray-100 truncate">{{$item['model']['title']}}</h4>
+                <h4 class="font-medium text-sm truncate">{{$item['model']['title']}}</h4>
                 @if(!is_null($item['discount']))
                     @php
 
@@ -34,7 +34,7 @@
                     @endphp
 
                     <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs line-through text-gray-400">{{number_format($item['price'])}} </span>
+                    <span class="text-xs line-through dark:text-gray-400">{{number_format($item['price'])}} </span>
                     <span class="text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full">
 
                             {{$discount['type'] == 'percent' ? $discount['value'].'٪':$discount['value'].' تومان '}}

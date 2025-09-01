@@ -50,7 +50,7 @@
 
     <!-- Slider Container -->
     <div class="mt-10 mb-10 relative bg-gradient-to-br from-white/10 via-white/5 to-transparent
-                dark:from-slate-800/20 dark:via-slate-900/10 dark:to-transparent
+                dark:!from-slate-800/20 dark:!via-slate-900/10 dark:!to-transparent
                 with-blur border border-white/30 dark:border-slate-600/30
                 rounded-3xl shadow-xl overflow-hidden transition-colors duration-300">
 
@@ -64,7 +64,7 @@
                         <!-- Background -->
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-pink-500/10
                                     dark:from-purple-800/20 dark:via-blue-900/10 dark:to-pink-800/20 with-blur"></div>
-                        <div class="absolute inset-0 bg-black bg-opacity-10 dark:bg-opacity-20"></div>
+                        <div class="absolute inset-0 bg-gray-600 bg-opacity-10 dark:bg-opacity-20"></div>
 
                         <!-- Content Grid -->
                         <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full md:pr-30" dir="ltr">

@@ -32,7 +32,7 @@
             @foreach($courses as $course)
                 <div class="group bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-2 border border-white/20 dark:border-slate-600/20 overflow-hidden">
                     <div class="relative">
-                        <div style="background:url('{{$course->cover_image}}') ;background-size: contain " class="w-full h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                        <div style="background:url('{{$course->cover_image}}') ;background-size: 100% " class="w-full h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
                             <i class="fas fa-search text-white text-4xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                             <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">

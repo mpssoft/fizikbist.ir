@@ -14,6 +14,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         {!! SEO::generate() !!}
         <script src="https://cdn.tailwindcss.com"></script>
+
         <script>
             window.tailwind = {
                 config: {
@@ -257,7 +258,6 @@
             </script>
         @endif
     <script>
-
             function fetchCart() {
                 fetch("{{ route('shop.cart.items') }}")
                     .then(res => res.text()) // 👈 since response is HTML
@@ -266,15 +266,9 @@
                         $("#itemsCount").html($("#count").val());
                     });
             }
-
             $(document).ready(function(){
             fetchCart();
-
-
         });
-
-
-
             function addToCart(model,id)
             {
                 let btn = document.getElementById('btn-'+id);

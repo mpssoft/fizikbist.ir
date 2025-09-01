@@ -23,14 +23,6 @@
     </script>
 
 
-    <style>
-        body {
-            font-family: sans-serif, 'Vazirmatn';
-        }
-        body.sidebar-open {
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
 <div class="flex min-h-screen max-w-[2620px] mx-auto">
