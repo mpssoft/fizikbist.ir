@@ -17,4 +17,5 @@ Route::prefix('cart')->name('shop.cart.')->group(function () {
     Route::post('/apply-discount', [CartController::class, 'applyDiscount'])->name('applyDiscount');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
     Route::post('/place-order', [CartController::class, 'placeOrder'])->name('placeOrder');
+    Route::get('/items',[CartController::class,'cartItems'])->name('items');
 });

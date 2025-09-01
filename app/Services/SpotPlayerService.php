@@ -92,7 +92,7 @@ class SpotPlayerService
     protected function buildLicensePayload($user,  $courseIds,$devices): array
     {
         return [
-            'test' => true,
+            'test' => false,
             'course' => [$courseIds],
             'offline' => 30,
             'name' => $user->name ?? 'User',

@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" x-data="{ sidebarOpen: false, dark: true ,toggleButton: false}" :class="{ 'dark': dark }">
+<html lang="fa" dir="rtl"
+
+      x-data="{  dark: localStorage.getItem('dark')
+          ? localStorage.getItem('dark') === 'true'
+          : true , sidebarOpen: false ,toggleButton: false }"
+      x-init="$watch('dark', value => localStorage.setItem('dark', value))"
+      :class="{ 'dark': dark, 'transition-colors duration-300': true }"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

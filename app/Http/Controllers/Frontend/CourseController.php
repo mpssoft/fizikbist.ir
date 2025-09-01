@@ -24,7 +24,7 @@ class CourseController extends Controller
             ])
             ->paginate(10);
 
-        dd($courses);
+
         return view('frontend.course.all',compact('courses'));
     }
 

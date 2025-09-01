@@ -271,10 +271,10 @@
                                         کد تخفیف
                                     </h3>
                                     <div class="flex space-x-3 space-x-reverse">
-                                        <form action="{{route('shop.cart.applyDiscount')}}" method="post" class="w-full flex space-x-3 space-x-reverse">
+                                        <form action="{{route('shop.cart.applyDiscount')}}" method="post" class="w-full flex flex-col md:flex-row space-x-3 space-x-reverse">
                                             @csrf
-                                            <input type="text" name="code" placeholder="کد تخفیف خود را وارد کنید" class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-400 placeholder-gray-500 dark:placeholder-gray-400">
-                                            <button class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
+                                            <input type="text" name="code" placeholder="کد تخفیف خود را وارد کنید" class="flex-1 mb-2 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-400 placeholder-gray-500 dark:placeholder-gray-400">
+                                            <button class="px-10 h-12 py-0  bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
                                                 اعمال
                                             </button>
                                         </form>
@@ -301,10 +301,7 @@
                                             <span>تخفیف:</span>
                                             <span>{{ number_format($wholeDiscount) }} تومان</span>
                                         </div>
-                                        <div class="flex justify-between text-gray-600 dark:text-gray-300">
-                                            <span>هزینه ارسال:</span>
-                                            <span class="text-green-500">رایگان</span>
-                                        </div>
+
                                         <hr class="border-gray-200 dark:border-gray-600">
                                         <div class="flex justify-between text-lg font-bold text-gray-800 dark:text-gray-100">
                                             <span>مبلغ نهایی:</span>
@@ -317,6 +314,10 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
                                         </svg>
                                         ادامه به پرداخت
+                                    </a>
+                                    <a href="{{route('all.courses')}}" class="mt-5 w-full bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-950 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
+                                        <span class="fas fa-plus ml-3"> </span>
+                                        افزودن محصولات بیشتر
                                     </a>
 
                                     <div class="mt-4 text-center">

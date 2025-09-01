@@ -269,8 +269,8 @@ class CartService
         $cart = $cart->map(function ($item) use ($discounts) {
             foreach ($discounts as $discount) {
                 if (
-                    $discount->applies_to === $item['type'] &&
-                    ($discount->item_id === null || $discount->item_id == $item['id'])
+                    $discount->applies_to === $item['item_type'] &&
+                    ($discount->item_id === null || $discount->item_id == $item['item_id'])
                 ) {
                     $item['discount'] = $discount->type === 'percent'
                         ? ($discount->value . '%')

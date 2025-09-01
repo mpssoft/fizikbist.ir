@@ -145,7 +145,7 @@
                                 لینک اسلایدر
                             </label>
                         <div class="relative">
-                            <input type="url" id="link" name="link" value="{{old('link')}}"
+                            <input type="url" dir="ltr" id="link" name="link" value="{{old('link')}}"
                                    class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600

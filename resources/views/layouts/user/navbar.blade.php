@@ -28,7 +28,7 @@
             <i x-show="dark" class="fas fa-sun text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200"></i>
         </button>
         <div class="relative" x-data="{ open: false }">
-            <button @click="open = !open" class="focus:outline-none group mt-2">
+            <button @mouseenter="open = !open" class="focus:outline-none group mt-2">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
                     <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                          alt="avatar">
@@ -37,6 +37,7 @@
             <div
                 x-show="open"
                 @click.away="open = false"
+                @mouseleave="open = false"
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="opacity-0 scale-95"
                 x-transition:enter-end="opacity-100 scale-100"

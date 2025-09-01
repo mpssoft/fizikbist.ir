@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{dark: true}" :class="{ 'dark': dark, 'transition-colors duration-300': true }">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+
+      x-data="{ dark: localStorage.getItem('dark')
+          ? localStorage.getItem('dark') === 'true'
+          : true , cart: false , open: false }"
+      x-init="$watch('dark', value => localStorage.setItem('dark', value))"
+      :class="{ 'dark': dark, 'transition-colors duration-300': true }"
+>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +87,7 @@
         </div>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="/js/jquery/jquery.min.js"> </script>
-
+        <script src="/js/modules/sweetalert2.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
         @stack('scripts')
         @if(!auth()->check())
@@ -246,8 +253,150 @@
                     });
 
                 });
+
             </script>
         @endif
+    <script>
+
+            function fetchCart() {
+                fetch("{{ route('shop.cart.items') }}")
+                    .then(res => res.text()) // 👈 since response is HTML
+                    .then(html => {
+                        document.getElementById('cartItems').innerHTML = html;
+                        $("#itemsCount").html($("#count").val());
+                    });
+            }
+
+            $(document).ready(function(){
+            fetchCart();
+
+
+        });
+
+
+
+            function addToCart(model,id)
+            {
+                let btn = document.getElementById('btn-'+id);
+                let spinner = btn.querySelector('.spinner-'+id);
+
+                spinner.classList.remove('hidden');
+
+
+                url = "/cart/add/"+model+"/"+id;
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (window.location.pathname === "/cart") {
+                        window.location.reload();
+                    }
+                    if (data.success) {
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+
+                        fetchCart();
+                        $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
+
+                    } else {
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Something went wrong!",
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    }
+                })
+                .catch((data) => {
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: "Server error!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                })
+                .finally(() => spinner.classList.add('hidden'));
+        }
+            function removeItem(model,id)
+            {
+                url = "/cart/remove/";
+                $("#spin-"+id).removeClass('hidden');
+                fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ _method: 'DELETE', type: model ,id : id})
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (window.location.pathname === "/cart") {
+                        window.location.reload();
+                    }
+                    if (data.success) {
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                        fetchCart();
+                        $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
+                    } else {
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Something went wrong!",
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    }
+                })
+                .catch((data) => {
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: "Server error!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }).finally(()=>{
+                    $("#spin-"+id).addClass('hidden');
+                })
+                ;
+        }
+
+        </script>
     </body>
 </html>
 @include('sweetalert::alert')

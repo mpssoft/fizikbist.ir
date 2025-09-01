@@ -13,12 +13,13 @@
 
                     <!-- دوره‌های آموزشی -->
                     <div class="relative">
-                        <button @click="openMenu = openMenu === 'courses' ? null : 'courses'" class="flex items-center gap-1">
+                        <button @mouseenter="openMenu = openMenu === 'courses' ? null : 'courses'" class="flex items-center gap-1">
                             دوره‌های آموزشی <i class="fas fa-chevron-down text-xs mt-0.5"></i>
                         </button>
                         <div
                             x-show="openMenu === 'courses'"
                             @click.away="openMenu = null"
+                            @mouseleave="openMenu = null"
                             x-transition
                             class="absolute right-0 mt-6 w-[600px] bg-slate-800 rounded-xl shadow-xl z-50 p-6"
                         >
@@ -91,21 +92,19 @@
                     </div>
 
                     <!-- پرسش و پاسخ‌ها -->
-                    <a href="#" class=" hover:text-cyan-400  ">پرسش و پاسخ‌ها</a>
-
-                    <!-- مقالات -->
-                    <a href="#" class="hover:text-cyan-400">مقالات</a>
+                    <a href="{{route('conversation.index')}}" class=" hover:text-cyan-400  ">پرسش و پاسخ‌ها</a>
 
 
 
                     <!-- لینک‌های مفید -->
                     <div class="relative">
-                        <button @click="openMenu = openMenu === 'links' ? null : 'links'" class="flex items-center gap-1">
+                        <button @mouseenter="openMenu = openMenu === 'links' ? null : 'links'" class="flex items-center gap-1">
                             لینک‌های مفید <i class="fas fa-chevron-down text-xs mt-0.5"></i>
                         </button>
                         <div
                             x-show="openMenu === 'links'"
                             @click.away="openMenu = null"
+                            @mouseleave="openMenu = null"
                             x-transition
                             class="absolute right-0 p-4 mt-6 w-62 whitespace-nowrap w bg-slate-800 text-white rounded-lg shadow-lg z-50 py-2"
                         >
@@ -119,27 +118,50 @@
 
 
             </div>
-            <div class="flex items-center gap-8">
+            <div class="flex items-center gap-8 " >
+                <div class="relative">
 
-                <a href="/cart" type="button" aria-label="Open cart"
-               class="w-10 h-10  overflow-hidden  rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">                <!-- Cart icon -->
-               <img  src="/images/cart-image-s.jpg" class="w-7">
+                    <a href="/cart" type="button" aria-label="Open cart" @mouseenter="cart = true; open = false" class="relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">
+                        <!-- Cart icon -->
+                        <img src="/images/cart-image-s.jpg" class="w-7">
+                        <!-- Item count circle -->
+                        <span id="itemsCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"></span>
+                    </a>
 
-            </a>
+                    <div
+                        x-show="cart"
+                        @click.away="cart = false"
+                        @mouseleave="cart = false"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-white/20 dark:border-slate-600/20"
+                        id="cartItems"
+                    >
 
+
+                    </div>
+
+                </div>
             <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 space-x-reverse ">
                 @if(auth()->check())
-                <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="focus:outline-none group mt-2">
+                <div class="relative" >
+                    <button @mouseenter="open = !open ; cart = false" class="flex items-center focus:outline-none group mt-2">
+                        <span class="text-xs text-gray-200 ml-3">{{auth()->user()->name}}</span>
                         <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
                             <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                                  alt="avatar">
                         </div>
+
                     </button>
                     <div
                         x-show="open"
                         @click.away="open = false"
+                        @mouseleave="open = false"
                         x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="opacity-0 scale-95"
                         x-transition:enter-end="opacity-100 scale-100"

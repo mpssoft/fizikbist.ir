@@ -66,7 +66,11 @@ class CartController extends Controller
 
         $this->cartService->addItem($type, $id, 1, $price);
 
-        return redirect('/cart');
+        return response()->json([
+            'success' => true,
+            'count' => count($this->cartService->getCart()),
+            'message' => 'به سبد خرید اضافه شد',
+        ]);
     }
 
     /**
@@ -80,11 +84,14 @@ class CartController extends Controller
         ]);
 
         $this->cartService->removeItem($request->type, $request->id);
-
-        return redirect('/cart')->with([
-            'success' => true,
-            'message' => 'محصول از سبد حذف شد'
-        ]);
+        if ($request->isJson()) {
+            return response()->json([
+                'success' => true,
+                'count' => count($this->cartService->getCart()),
+                'message' => 'محصول از سبد حذف شد'
+            ]);
+        }
+        return back();
     }
     public function removeDiscount(Request $request)
     {
@@ -132,5 +139,24 @@ class CartController extends Controller
             'success' => true,
             'message' => 'تخفیف‌های خودکار اعمال شد'
         ]);
+    }
+
+    public function cartItems()
+    {
+        $cart = $this->cartService->getCart();
+        $count = count($cart);
+        $cart =  collect($cart)->map(function ($item) {
+
+            if (isset($item['item_type'], $item['item_id'])) {
+                $modelClass = $item['item_type'];
+
+                if (class_exists($modelClass)) {
+                    $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
+                }
+            }
+            return $item;
+        });
+        return view('shop::cart.cart-items', compact('cart','count'));
+
     }
 }
