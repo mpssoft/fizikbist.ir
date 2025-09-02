@@ -64,12 +64,12 @@ class CartController extends Controller
         $id    = $item->id;
         $price = $item->price ?? 0;
 
-        $this->cartService->addItem($type, $id, 1, $price);
+        $msg = $this->cartService->addItem($type, $id, 1, $price);
 
         return response()->json([
             'success' => true,
             'count' => count($this->cartService->getCart()),
-            'message' => 'به سبد خرید اضافه شد',
+            'message' => $msg,
         ]);
     }
 

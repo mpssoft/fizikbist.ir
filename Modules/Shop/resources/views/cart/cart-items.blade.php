@@ -52,7 +52,7 @@
 
             <button onclick="removeItem('{{addslashes($item['item_type'])}}',{{$item['item_id']}})" class="text-red-400 hover:text-red-600 transition-colors flex-shrink-0" >
                 <i class="fas fa-trash text-base"></i>
-                <i id="spin-{{$item['item_id']}}" class=" hidden fas fa-spinner fa-spin-pulse"></i>
+                <i id="spin-{{$item['item_id']}}" class=" !hidden fas fa-spinner fa-spin-pulse"></i>
             </button>
 
         </div>

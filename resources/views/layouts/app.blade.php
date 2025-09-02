@@ -332,8 +332,21 @@
         }
             function removeItem(model,id)
             {
+
+                Swal.fire({
+                    title: 'حذف !',
+                    text: 'آیا این آیتم از سبد خرید حذف شود؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+
+                    confirmButtonText: 'بله، حذف کن',
+                    cancelButtonText: 'لغو'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
                 url = "/cart/remove/";
-                $("#spin-"+id).removeClass('hidden');
+                $("#spin-"+id).removeClass('!hidden');
+
                 fetch(url, {
                 method: "DELETE",
                 headers: {
@@ -384,9 +397,11 @@
                         timer: 3000
                     });
                 }).finally(()=>{
-                    $("#spin-"+id).addClass('hidden');
-                })
-                ;
+                    $("#spin-"+id).addClass('!hidden');
+                });
+
+                    }
+                });
         }
 
         </script>
