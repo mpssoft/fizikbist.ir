@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="flex items-center gap-1">
                                         <span class="fas fa-eye"> </span>
-                                        <span>{{$lesson->view}} تماشا </span>
+                                        <span>{{$lesson->view}} بازدید </span>
                                     </div>
                                     {{--<div class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

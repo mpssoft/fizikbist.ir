@@ -33,6 +33,7 @@ class HomeController extends Controller
             ->setTitle($lesson->title)
             ->setDescription($lesson->description)
             ->addImages($lesson->thumbnail);
+        $lesson->increment('view');
         return view('frontend.player.play',compact('lesson'));
     }
     public function playFreeCourse(Course $course)
