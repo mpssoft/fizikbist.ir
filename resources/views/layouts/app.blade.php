@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 
-      x-data="{ dark: localStorage.getItem('dark')
-          ? localStorage.getItem('dark') === 'true'
-          : true , cart: false , open: false }"
+      x-data="{ dark: (localStorage.getItem('dark') ?? 'true') === 'true', cart: false, open: false }"
       x-init="$watch('dark', value => localStorage.setItem('dark', value))"
       :class="{ 'dark': dark, 'transition-colors duration-300': true }"
 >
@@ -336,7 +334,7 @@
                 url = "/cart/remove/";
                 $("#spin-"+id).removeClass('hidden');
                 fetch(url, {
-                method: "POST",
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
