@@ -54,9 +54,7 @@
 
                 <div class="space-y-4">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-lg">
-                            علی
-                        </div>
+
                         <div>
                             <div class="text-lg font-semibold text-gray-900 dark:text-white">{{$license->user->name}}</div>
                             <div class="text-sm text-gray-500 dark:text-gray-400 ltr:font-mono">{{$license->user->mobile}}</div>
@@ -92,7 +90,7 @@
                 <div class="space-y-4">
                     <div class="rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-gray-50/50 dark:bg-gray-900/30">
                         <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">شماره سفارش</div>
-                        <div class="text-lg font-semibold text-gray-900 dark:text-white">{{$license->order->payments()->where('status','paid')->first()->transaction_id}}</div>
+                        <div class="text-lg font-semibold text-gray-900 dark:text-white">{{$license->order->payments()->where('status','paid')->first()->transaction_id ?? ""}}</div>
                     </div>
 
                     <div class="space-y-3 text-sm">
@@ -110,7 +108,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600 dark:text-gray-300">روش پرداخت:</span>
-                            <span class="text-gray-900 dark:text-white">{{$license->order->payments()->where('status','paid')->first()->gateway}} </span>
+                            <span class="text-gray-900 dark:text-white">{{$license->order->payments()->where('status','paid')->first()->gateway ?? ""}} </span>
                         </div>
                     </div>
                 </div>

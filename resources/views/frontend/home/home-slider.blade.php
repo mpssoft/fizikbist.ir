@@ -245,23 +245,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".slider-link").forEach(function (link) {
-            link.addEventListener("click", function (e) {
+            link.addEventListener("click", function () {
                 let sliderId = this.dataset.id;
 
-                fetch(`/slider/click/${sliderId}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify({})
-                })
-                    .then(response => response.json())
-                    .then(data => {
+                // sendBeacon requires a Blob or FormData
+                const data = new FormData();
+                data.append('_token', "{{ csrf_token() }}");
 
-                    })
-                    .catch(error => console.error("Error:", error));
+                navigator.sendBeacon(`/slider/click/${sliderId}`, data);
+                // navigation will continue normally
             });
         });
     });
+
 </script>
