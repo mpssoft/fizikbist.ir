@@ -8,6 +8,7 @@ use App\Models\Lesson;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Modules\File\Models\File;
 
 class Discount extends Model
 {
@@ -35,6 +36,10 @@ class Discount extends Model
     {
         return $this->morphedByMany(Lesson::class, 'discountable');
     }
+    public function files()
+    {
+        return $this->morphedByMany(File::class, 'discountable');
+    }
     public function users()
     {
         return $this->morphedByMany(User::class,'discountable');
@@ -48,7 +53,8 @@ class Discount extends Model
     {
         return collect()
             ->merge($this->courses)
-            ->merge($this->lessons);
+            ->merge($this->lessons)
+            ->merge($this->files);
 
     }
 

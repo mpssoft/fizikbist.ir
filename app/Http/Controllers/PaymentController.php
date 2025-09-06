@@ -13,8 +13,9 @@ use App\Services\SpotPlayerService;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Modules\File\Models\File;
 use Modules\Shop\Models\CartItem;
-
+use function PHPUnit\Framework\isEmpty;
 
 
 #[AllowDynamicProperties] class PaymentController extends Controller
@@ -79,19 +80,6 @@ use Modules\Shop\Models\CartItem;
             'price'   => $totalPrice,
         ]);
 
-// Create the Order
-        $order = Order::create([
-            'user_id' => $user->id,
-            'status'  => 'pending',
-            'price'   => $totalPrice,
-        ]);
-
-        // Create the Order
-        $order = Order::create([
-            'user_id' => $user->id,
-            'status' => 'pending',
-            'price' => $totalPrice
-        ]);
 
         // Create OrderItems
         foreach ($cart as $cartItem) {
@@ -168,13 +156,23 @@ use Modules\Shop\Models\CartItem;
             'status' => 'paid',
         ]);
 
-        // payment success so request license fro spotplayer
-        //$this->paymentSuccess(request('order_id'), new SpotPlayerService());
+        // if item hase file
         $this->paymentSuccess($payment->order, new SpotPlayerService());
 
         //alert('', 'پرداخت موفق', 'toast');
         // clear cart items
 
+        if($this->file && !is_null($this->licenses))
+        {
+            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
+        }elseif($this->file) {
+            return redirect(route('user.files.index'))->with([
+                'file' => true,
+                'message' => 'پرداخت برای فایل های مورد نظر با موفقیت انجام شد.'
+            ]);
+        }else{
+            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
+        }
 
 
 }
@@ -189,6 +187,7 @@ use Modules\Shop\Models\CartItem;
             $user = auth()->user();
             Log::info("Reached paymentSuccess for order {$order->id}");
             $licenses=[];
+            $this->file = false;
             foreach ($order->items as $item) {
                 $model = $item->item; // e.g., Course, Product, etc.
                 Log::info("model  is: ". $model->title);
@@ -196,6 +195,10 @@ use Modules\Shop\Models\CartItem;
                 if ($model instanceof \App\Models\Course) {
                     $user->courses()->syncWithoutDetaching([$model->id]);
                     Log::info("Attached course {$model->id} to user {$user->id}");
+                }elseif($model instanceof File) {
+                    $user->files()->syncWithoutDetaching([$model->id]);
+                    $this->file = true;
+                    Log::info("Attached files {$model->id} to user {$user->id}");
                 }
 
                 // Generate SpotPlayer license if available
@@ -212,17 +215,31 @@ use Modules\Shop\Models\CartItem;
             Cookie::queue(Cookie::forget('shop_cart'));
             // send sms
             // ارسال پیامک
+            if(!is_null($licenses)) {
+                $channel = new MelipayamakChannel();
+                $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course']));
 
-            $channel = new MelipayamakChannel();
-            $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile,$licenses[0]['course']));
+                if ($response['StrRetStatus'] == "Ok") {
+                    if($this->file) {
+                        alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
+                        Log::info('File + licence');
 
-            if ($response['StrRetStatus'] == "Ok") {
-                return redirect(route('user.courses.bought'))->with(['licenses'=>$this->licenses]);
-            } else {
-                return redirect(route('user.courses'))->with([
-                    'status' => $response['StrRetStatus'],
-                    'code' => $response['RetStatus'],
-                    'message' => 'خطا هنگام ارسال کد'
+                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
+
+                    }else
+                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
+                } else {
+                    return redirect(route('user.courses'))->with([
+                        'status' => $response['StrRetStatus'],
+                        'code' => $response['RetStatus'],
+                        'message' => 'خطا هنگام ارسال کد'
+                    ]);
+                }
+            }elseif($this->file){
+                alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
+                return redirect(route('user.files.index'))->with([
+                    'file' => true,
+                    'message' => 'پرداخت برای فایل های مورد نظر یا موفقیت انجام شد.'
                 ]);
             }
         } catch (\Exception $e) {

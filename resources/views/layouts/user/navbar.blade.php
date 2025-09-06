@@ -22,6 +22,33 @@
             <i class="fas fa-lock text-green-500 group-hover:text-green-600 transition-colors duration-200"></i>
         </button>
 --}}
+        <div class="relative">
+
+            <a href="/cart" type="button" aria-label="Open cart" @mouseenter="cart = true; open = false" class="relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">
+                <!-- Cart icon -->
+                <img src="/images/cart-image-s.jpg" class="w-7">
+                <!-- Item count circle -->
+                <span id="itemsCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"></span>
+            </a>
+
+            <div
+                x-show="cart"
+                @click.away="cart = false"
+                @mouseleave="cart = false"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
+                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-white/20 dark:border-slate-600/20"
+                id="cartItems"
+            >
+
+
+            </div>
+
+        </div>
         <!-- Theme Toggle -->
         <button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
             <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>

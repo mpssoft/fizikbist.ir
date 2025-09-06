@@ -13,12 +13,12 @@
                 @foreach($courses as $course)
                     <div class="course-card flex flex-1 w-full flex-col min-h-[560px]  group bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden border border-gray-100 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1">
                         <!-- Course Image -->
-                        <div class="relative h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center overflow-hidden" style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
+                        <div class="relative h-60 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center overflow-hidden tv-optimized-text-shadow" style="background:url('{{$course->cover_image}}');background-size: 100% 100%">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                             <!-- Course Badge -->
 
                             @if($course->price==0)
-                                <div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-medium">
+                                <div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 with-blur text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-medium">
                                     رایگان
                                 </div>
                             @endif
@@ -62,7 +62,7 @@
                                 @if($course->price==0)
                                     <!-- Action Buttons -->
                                     <div class="flex justify-between items-center" id="free-course">
-                                        <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r flex from-blue-400 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105  items-center gap-2">
+                                        <a href="{{route('playFreeCourse',$course->id)}}" class="bg-gradient-to-r flex from-blue-400 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105  items-center gap-2 tv-optimized-text-shadow">
                                             <span>مرور دوره</span>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -114,8 +114,16 @@
                                                 @endif
                                             </div>
                                             @if(!is_null($course->discounts->first()))
-                                                <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
-                                                    {{$course->discounts->first()->value}}% تخفیف
+                                                <div class="flex flex-col py-3 gap-2">
+                                                    <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
+                                                        {{$course->discounts->first()->value}}% تخفیف
+                                                    </div>
+                                                    <!-- Countdown -->
+                                                    <div  class="bg-red-600 dark:bg-red-500 text-white  px-2 py-1 rounded flex items-center gap-1 shadow-lg w-fit"
+                                                          data-expire="{{ $course->discounts->first()->end_at }}"
+                                                          id="countdown-{{ $course->id }}">
+                                                        Loading timer...
+                                                    </div>
                                                 </div>
                                             @endif
                                         </div>

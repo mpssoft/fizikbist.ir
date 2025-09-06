@@ -3,5 +3,7 @@
     "Cart": true,
     "Shop": true,
     "Conversation": true,
-    "Sms": true
+    "Sms": true,
+    "Blog": false,
+    "File": true
 }

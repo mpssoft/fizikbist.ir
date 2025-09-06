@@ -22,6 +22,7 @@ class UserCourseController extends Controller
                 $courses = auth()->user()->courses()->where('price','>',0)->paginate(10);
         }else {
                 $courses = auth()->user()->courses()->paginate(10);
+                request()->merge(['user'=>1]);
         }
 
 

@@ -160,6 +160,20 @@
 @if(session()->has('licenses'))
     @include('layouts.license-modal') ;
 @endif
+ @if(session()->has('file'))
+     <script src="/js/modules/sweetalert2.js" ></script>
+    <script>
+        Swal.fire({
+            title: 'پرداخت موفق',
+            text: 'پرداخت برای فایل های مورد نظر یا موفقیت انجام شد.',
+            icon: 'success',
+            showConfirmButton:true,
+            confirmButtonText: 'ok',
+            cancelButtonText: 'لغو'
+        })
+    </script>
+@endif
+
 @endsection
 <script>
     // Search and Filter functionality

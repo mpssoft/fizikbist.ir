@@ -3,7 +3,7 @@
 
       x-data="{  dark: localStorage.getItem('dark')
           ? localStorage.getItem('dark') === 'true'
-          : true , sidebarOpen: false ,toggleButton: false }"
+          : true , sidebarOpen: false ,toggleButton: false ,cart: false }"
       x-init="$watch('dark', value => localStorage.setItem('dark', value))"
       :class="{ 'dark': dark, 'transition-colors duration-300': true }"
 >
@@ -100,6 +100,191 @@
 @yield('script')
 
 @stack('scripts')
+<script>
+    function fetchCart() {
+        fetch("{{ route('shop.cart.items') }}")
+            .then(res => res.text()) // 👈 since response is HTML
+            .then(html => {
+                document.getElementById('cartItems').innerHTML = html;
+                $("#itemsCount").html($("#count").val());
+            });
+    }
+    $(document).ready(function(){
+        fetchCart();
+    });
+
+    function addToCart(model,id) {
+        let btn = document.getElementById('btn-' + id);
+        let spinner = btn.querySelector('.spinner-' + id);
+
+        spinner.classList.remove('hidden');
+
+
+        url = "/cart/add/" + model + "/" + id;
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (window.location.pathname === "/cart") {
+                    window.location.reload();
+                }
+                if (data.success) {
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    fetchCart();
+                    $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
+
+                } else {
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: data.message ?? "Something went wrong!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            })
+            .catch((data) => {
+
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "Server error!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            })
+            .finally(() => spinner.classList.add('hidden'));
+    }
+    function removeItem(model,id)
+    {
+
+        Swal.fire({
+            title: 'حذف !',
+            text: 'آیا این آیتم از سبد خرید حذف شود؟',
+            icon: 'warning',
+            showCancelButton: true,
+
+            confirmButtonText: 'بله، حذف کن',
+            cancelButtonText: 'لغو'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                url = "/cart/remove/";
+                $("#spin-"+id).removeClass('!hidden');
+
+                fetch(url, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({ _method: 'DELETE', type: model ,id : id})
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (window.location.pathname === "/cart") {
+                            window.location.reload();
+                        }
+                        if (data.success) {
+
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true
+                            });
+                            fetchCart();
+                            $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
+                        } else {
+
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'error',
+                                title: "Something went wrong!",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                        }
+                    })
+                    .catch((data) => {
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: "Server error!",
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    }).finally(()=>{
+                    $("#spin-"+id).addClass('!hidden');
+                });
+
+            }
+        });
+    }
+
+</script>
+<script>
+    document.querySelectorAll('[data-expire]').forEach(function (el) {
+        let expireDate = new Date(el.getAttribute('data-expire')).getTime();
+
+        let timer = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = expireDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                el.innerHTML = "Expired";
+                el.classList.remove("text-red-600");
+                el.classList.add("text-gray-500");
+                return;
+            }
+
+            let days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Pad single digits with leading zeros
+            hours   = hours.toString().padStart(2, '0');
+            minutes = minutes.toString().padStart(2, '0');
+            seconds = seconds.toString().padStart(2, '0');
+
+            el.innerHTML = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            el.innerHTML = `
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${days}روز</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${hours}ساعت</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${minutes}</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${seconds}</span>
+                `;
+        }, 1000);
+    });
+</script>
 
 </body>
 </html>

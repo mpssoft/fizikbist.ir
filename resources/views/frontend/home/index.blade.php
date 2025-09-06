@@ -333,8 +333,16 @@
                                                     @endif
                                                 </div>
                                                 @if(!is_null($course->discounts->first()))
+                                                    <div class="flex flex-col py-3 gap-2">
                                                     <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
                                                         {{$course->discounts->first()->value}}% تخفیف
+                                                    </div>
+                                                    <!-- Countdown -->
+                                                    <div  class="bg-red-600 dark:bg-red-500 text-white  px-2 py-1 rounded flex items-center gap-1 shadow-lg w-fit"
+                                                        data-expire="{{ $course->discounts->first()->end_at }}"
+                                                        id="countdown-{{ $course->id }}">
+                                                        Loading timer...
+                                                    </div>
                                                     </div>
                                                 @endif
                                             </div>

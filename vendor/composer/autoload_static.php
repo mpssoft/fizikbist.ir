@@ -136,10 +136,18 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Shop\\Database\\Seeders\\' => 30,
             'Modules\\Shop\\Database\\Factories\\' => 32,
             'Modules\\Shop\\' => 13,
+            'Modules\\File\\Tests\\' => 19,
+            'Modules\\File\\Database\\Seeders\\' => 30,
+            'Modules\\File\\Database\\Factories\\' => 32,
+            'Modules\\File\\' => 13,
             'Modules\\Conversation\\Tests\\' => 27,
             'Modules\\Conversation\\Database\\Seeders\\' => 38,
             'Modules\\Conversation\\Database\\Factories\\' => 40,
             'Modules\\Conversation\\' => 21,
+            'Modules\\Blog\\Tests\\' => 19,
+            'Modules\\Blog\\Database\\Seeders\\' => 30,
+            'Modules\\Blog\\Database\\Factories\\' => 32,
+            'Modules\\Blog\\' => 13,
             'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
@@ -481,6 +489,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/../..' . '/Modules/Shop/app',
         ),
+        'Modules\\File\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/File/tests',
+        ),
+        'Modules\\File\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/File/database/seeders',
+        ),
+        'Modules\\File\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/File/database/factories',
+        ),
+        'Modules\\File\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/File/app',
+        ),
         'Modules\\Conversation\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Conversation/tests',
@@ -496,6 +520,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Conversation\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Conversation/app',
+        ),
+        'Modules\\Blog\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Blog/tests',
+        ),
+        'Modules\\Blog\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Blog/database/seeders',
+        ),
+        'Modules\\Blog\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Blog/database/factories',
+        ),
+        'Modules\\Blog\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Blog/app',
         ),
         'Modules\\' => 
         array (
@@ -4529,6 +4569,13 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
+        'Modules\\Blog\\Database\\Seeders\\BlogDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Blog/database/seeders/BlogDatabaseSeeder.php',
+        'Modules\\Blog\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Admin/BlogController.php',
+        'Modules\\Blog\\Http\\Controllers\\Frontend\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Frontend/BlogController.php',
+        'Modules\\Blog\\Models\\Blog' => __DIR__ . '/../..' . '/Modules/Blog/app/Models/Blog.php',
+        'Modules\\Blog\\Providers\\BlogServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/BlogServiceProvider.php',
+        'Modules\\Blog\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/EventServiceProvider.php',
+        'Modules\\Blog\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/RouteServiceProvider.php',
         'Modules\\Conversation\\Database\\Seeders\\ConversationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders/ConversationDatabaseSeeder.php',
         'Modules\\Conversation\\Http\\Controllers\\ConversationController' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Controllers/ConversationController.php',
         'Modules\\Conversation\\Http\\Requests\\ConversationRequest' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Requests/ConversationRequest.php',
@@ -4536,6 +4583,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Conversation\\Providers\\ConversationServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/ConversationServiceProvider.php',
         'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/EventServiceProvider.php',
         'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/RouteServiceProvider.php',
+        'Modules\\File\\Database\\Seeders\\FileDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/File/database/seeders/FileDatabaseSeeder.php',
+        'Modules\\File\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/FileController.php',
+        'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/EventServiceProvider.php',
+        'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
+        'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
         'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
         'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',

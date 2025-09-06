@@ -311,7 +311,7 @@
                             toast: true,
                             position: 'top-end',
                             icon: 'error',
-                            title: "Something went wrong!",
+                            title:data.message ?? "Something went wrong!",
                             showConfirmButton: false,
                             timer: 3000
                         });
@@ -405,6 +405,44 @@
         }
 
         </script>
+        <script>
+            document.querySelectorAll('[data-expire]').forEach(function (el) {
+                let expireDate = new Date(el.getAttribute('data-expire')).getTime();
+
+                let timer = setInterval(function () {
+                    let now = new Date().getTime();
+                    let distance = expireDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(timer);
+                        el.innerHTML = "Expired";
+                        el.classList.remove("text-red-600");
+                        el.classList.add("text-gray-500");
+                        return;
+                    }
+
+                    let days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    let hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Pad single digits with leading zeros
+                    hours   = hours.toString().padStart(2, '0');
+                    minutes = minutes.toString().padStart(2, '0');
+                    seconds = seconds.toString().padStart(2, '0');
+
+                    el.innerHTML = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
+                    el.innerHTML = `
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${days}روز</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${hours}ساعت</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${minutes}</span>
+                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${seconds}</span>
+                `;
+                }, 1000);
+            });
+        </script>
+
+
     </body>
 </html>
 @include('sweetalert::alert')
