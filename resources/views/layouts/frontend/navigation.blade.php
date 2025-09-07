@@ -36,22 +36,13 @@
                                                 <p class="text-xs text-gray-300 mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
                                             </div>
                                         </a>
-                                        {{--<a href="{{route('files')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('files')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-green-400 text-xl">
                                                 <i class="fas fa-file-archive"></i>
                                             </div>
                                             <div>
                                                 <p class="font-bold"> دانلود ها</p>
                                                 <p class="text-xs text-gray-300 mt-1">فایل ها و جزوات آموزشی </p>
-                                            </div>
-                                        </a>--}}
-                                        <a href="{{route('user.home')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
-                                            <div class="text-green-400 text-xl">
-                                                <i class="fas fa-chart-line"></i>
-                                            </div>
-                                            <div>
-                                                <p class="font-bold">پیشرفت من</p>
-                                                <p class="text-xs text-gray-300 mt-1">مسیر پیشرفت آموزشی شما</p>
                                             </div>
                                         </a>
                                         <a href="{{route('free.lessons')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
@@ -63,6 +54,15 @@
                                                 <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
                                             </div>
                                         </a>
+                                       {{-- <a href="{{route('user.home')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-green-400 text-xl">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold">پیشرفت من</p>
+                                                <p class="text-xs text-gray-300 mt-1">مسیر پیشرفت آموزشی شما</p>
+                                            </div>
+                                        </a>--}}
                                         {{-- <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                              <div class="text-yellow-400 text-xl">
                                                  <i class="fas fa-certificate"></i>

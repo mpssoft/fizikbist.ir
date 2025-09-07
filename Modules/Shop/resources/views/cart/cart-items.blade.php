@@ -40,13 +40,13 @@
                             {{$discount['type'] == 'percent' ? $discount['value'].'٪':$discount['value'].' تومان '}}
                          </span>
                 </div>
-                    <p class="font-bold text-sm text-purple-400">{{number_format($discounted) }} تومان</p>
+                    <p class="font-bold  text-purple-400">{{number_format($discounted) }} تومان</p>
                 @else
                     @php
                         $wholePrice += $item['price'];
 
      @endphp
-                <p class="font-bold text-sm text-purple-400">{{number_format($item['price'])}}  تومان</p>
+                <p class="font-bold text-purple-400">{{number_format($item['price'])}}  تومان</p>
                     @endif
             </div>
 
@@ -70,7 +70,7 @@
         </div>
         <div class="flex justify-between items-center">
             <span class="font-bold text-sm dark:text-gray-100">مجموع کل:</span>
-            <span id="total" class="font-bold text-base text-purple-300">{{ number_format($wholePrice) }} تومان</span>
+            <span id="total" class="font-bold text-base text-purple-300 text-lg">{{ number_format($wholePrice) }} تومان</span>
         </div>
     </div>
 

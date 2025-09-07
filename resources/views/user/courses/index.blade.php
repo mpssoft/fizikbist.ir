@@ -76,7 +76,7 @@
                             {{$course->description}}
                         </p>
                         <div class="flex-1"></div>
-                        @if(!in_array($course->id,auth()->user()->courses()->get()->pluck('id')->toArray()))
+
                         <div class=" items-center justify-between  ">
                             @if($course->price==0)
                                 <!-- Action Buttons -->
@@ -112,9 +112,9 @@
                                 </div>
                             @else
                                 <!-- Paid Course Actions -->
-                                <div class="" id="paid-course">
-                                    <div class="flex items-center justify-between mb-4">
-                                        <div class="text-right">
+                                <div class=" " id="paid-course">
+                                    <div class="flex items-center border-2 p-3 border-gray-700 rounded-2xl justify-between mb-4">
+                                        <div class="text-right justify-end">
 
                                             @if(!is_null($course->discounts->first()))
                                                 @php
@@ -126,21 +126,21 @@
                                                         $dis = $course->price - $disValue;
                                                     }
                                                 @endphp
-                                                <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price-$dis)}} تومان</div>
                                                 <div class="text-sm text-gray-500 dark:text-slate-400 line-through">{{number_format($course->price)}} تومان</div>
+                                                <div class="  font-bold text-gray-800 dark:text-slate-200 text-xl ">{{number_format($course->price-$dis)}} تومان</div>
+
                                             @else
-                                                <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price)}} تومان</div>
+                                                <div class=" font-bold text-gray-800 dark:text-slate-200 text-xl">{{number_format($course->price)}} تومان</div>
                                             @endif
                                         </div>
                                         @if(!is_null($course->discounts->first()))
                                             <div class="flex flex-col py-3 gap-2">
-                                                <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
+                                                <div class="bg-red-100 dark:bg-red-900/30 text-red-600 text-center dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
                                                     {{$course->discounts->first()->value}}% تخفیف
                                                 </div>
                                                 <!-- Countdown -->
-                                                <div  class="bg-red-600 dark:bg-red-500 text-white  px-2 py-1 rounded flex items-center gap-1 shadow-lg w-fit"
-                                                      data-expire="{{ $course->discounts->first()->end_at }}"
-                                                      id="countdown-{{ $course->id }}">
+                                                <div class="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-white px-2 py-2 pb-1 rounded-xl flex items-center gap-3 shadow-2xl w-fit "                                                        data-expire="{{ $course->discounts->first()->end_at }}"
+                                                     id="countdown-{{ $course->id }}">
                                                     Loading timer...
                                                 </div>
                                             </div>
@@ -180,18 +180,6 @@
                                     --}}  </div>
                             @endif
                         </div>
-                        @else
-                            <!-- Beautiful Persian Button -->
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer flex items-center gap-3 font-medium">
-                                <!-- Checkmark Icon -->
-                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-
-                                <!-- Persian Text -->
-                                <span class="text-sm font-semibold" dir="rtl">دوره خریده شده</span>
-                            </div>
-                        @endif
                     </div>
                 </div>
             @endforeach

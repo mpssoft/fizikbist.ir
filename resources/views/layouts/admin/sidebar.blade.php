@@ -116,7 +116,7 @@
             </div>
         </div>
 
-    {{--    <!-- مدیریت فایل ها -->
+        <!-- مدیریت فایل ها -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
                 <div class="flex items-center gap-3">
@@ -137,7 +137,7 @@
                     </a>
                 </div>
             </div>
-        </div>--}}
+        </div>
     {{--    <!-- ترفند ها -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">

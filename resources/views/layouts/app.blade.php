@@ -433,10 +433,22 @@
 
                     el.innerHTML = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
                     el.innerHTML = `
-                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${days}روز</span>
-                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${hours}ساعت</span>
-                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${minutes}</span>
-                    <span class="bg-white/20 px-1.5 py-0.5 rounded ">${seconds}</span>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${days.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">روز</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${hours.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">ساعت</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${minutes.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">دقیقه</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 overflow-hidden w-[40px] dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${seconds.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">ثانیه</div>
+                    </div>
                 `;
                 }, 1000);
             });
@@ -445,6 +457,7 @@
 
     </body>
 </html>
+
 @include('sweetalert::alert')
 @yield('script')
 

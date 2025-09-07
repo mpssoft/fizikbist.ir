@@ -1,5 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
-* { font-family: 'Vazirmatn', sans-serif; }
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src:url('/fonts/vazirmatn-v33.003/misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Regular.woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    font-family: 'Vazirmatn', sans-serif;
+    font-feature-settings: "locl";
+}
+html, body {
+    font-family: 'Vazirmatn', sans-serif;
+    direction: rtl;
+    /* force browser to use Persian digit glyphs if supported */
+    font-feature-settings: "locl" 1;
+}
+
+:lang(fa) {
+    font-family: 'Vazirmatn', sans-serif;
+    font-feature-settings: "locl" 1;
+}
 
 .gradient-bg {
     background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);

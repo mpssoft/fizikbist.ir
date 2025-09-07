@@ -22,7 +22,7 @@ class HomeController extends Controller
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
             ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
-        $courses = Course::where('spotplayer_id','!=','')->get();
+        $courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
         $lessons = Lesson::latest()->take(6)->get();
 
         return view('frontend.home.index',compact('sliders','courses','lessons'));

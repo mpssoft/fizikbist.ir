@@ -241,7 +241,7 @@
                                         رایگان
                                     </div>
                                 @endif
-                            </div>
+                                                           </div>
 
                             <!-- Course Content -->
                             <div class="p-6 bg-white dark:bg-slate-800 flex-1 flex flex-col">
@@ -312,9 +312,9 @@
                                         </div>
                                     @else
                                         <!-- Paid Course Actions -->
-                                        <div class="" id="paid-course">
-                                            <div class="flex items-center justify-between mb-4">
-                                                <div class="text-right">
+                                        <div class=" " id="paid-course">
+                                            <div class="flex items-center border-2 p-3 border-gray-700 rounded-2xl justify-between mb-4">
+                                                <div class="text-right justify-end">
 
                                                     @if(!is_null($course->discounts->first()))
                                                         @php
@@ -326,20 +326,20 @@
                                                                 $dis = $course->price - $disValue;
                                                             }
                                                         @endphp
-                                                        <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price-$dis)}} تومان</div>
                                                         <div class="text-sm text-gray-500 dark:text-slate-400 line-through">{{number_format($course->price)}} تومان</div>
+                                                        <div class="  font-bold text-gray-800 dark:text-slate-200 text-xl ">{{number_format($course->price-$dis)}} تومان</div>
+
                                                     @else
-                                                        <div class=" font-bold text-gray-800 dark:text-slate-200">{{number_format($course->price)}} تومان</div>
+                                                        <div class=" font-bold text-gray-800 dark:text-slate-200 text-xl">{{number_format($course->price)}} تومان</div>
                                                     @endif
                                                 </div>
                                                 @if(!is_null($course->discounts->first()))
                                                     <div class="flex flex-col py-3 gap-2">
-                                                    <div class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
+                                                    <div class="bg-red-100 dark:bg-red-900/30 text-red-600 text-center dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
                                                         {{$course->discounts->first()->value}}% تخفیف
                                                     </div>
                                                     <!-- Countdown -->
-                                                    <div  class="bg-red-600 dark:bg-red-500 text-white  px-2 py-1 rounded flex items-center gap-1 shadow-lg w-fit"
-                                                        data-expire="{{ $course->discounts->first()->end_at }}"
+                                                        <div class="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-white px-2 py-2 pb-1 rounded-xl flex items-center gap-3 shadow-2xl w-fit "                                                        data-expire="{{ $course->discounts->first()->end_at }}"
                                                         id="countdown-{{ $course->id }}">
                                                         Loading timer...
                                                     </div>
