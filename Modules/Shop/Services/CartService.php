@@ -99,7 +99,7 @@ class CartService
     {
         if (Auth::check()) {
             $cart = Auth::user()->cartItems()->get()->toArray();
-            //$this->autoApplyDiscounts($cart);
+           // $this->autoApplyDiscounts($cart);
 
             $cart = collect($cart)->map(function ($item) {
                 if (isset($item['item_type'], $item['item_id'])) {
@@ -116,7 +116,7 @@ class CartService
             return $cart;
         } else {
             $cart = json_decode(Cookie::get($this->cookieName, '[]'), true) ?: [];
-            //$this->autoApplyDiscounts($cart);
+           // $this->autoApplyDiscounts($cart);
 
             // key the cart by type-id
             $cart = collect($cart)->keyBy(function ($item) {
@@ -304,16 +304,19 @@ class CartService
                 ->where('item_type', $item['item_type'])
                 ->where('item_id', $item['item_id'])
                 ->first();
-
+            $discount = $this->getDiscountForItem($item['item_type'], $item['item_id']);
             if ($existing) {
                 $existing->qty += $item['qty'];
+                $existing->discount = $discount ?? null ;
                 $existing->save();
             } else {
+
                 $user->cartItems()->create([
                     'item_type'    => $item['item_type'],
                     'item_id' => $item['item_id'],
                     'qty'     => $item['qty'],
-                    'price'   => $item['price'] ?? 0
+                    'price'   => $item['price'] ?? 0,
+                    'discount' => $discount ?? null
                 ]);
             }
         }

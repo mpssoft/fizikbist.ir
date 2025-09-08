@@ -119,7 +119,7 @@
                         >
 
                             <a href="{{route('faq')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
-                            <a href="{{route('termsOfService')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700"> شرایط و ظوابط استفاده</a>
+                            <a href="{{route('termsOfService')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700"> شرایط و ضوابط استفاده</a>
                             <a href="{{route('about')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
                             <a href="{{route('contact')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
                         </div>
