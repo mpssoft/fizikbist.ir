@@ -182,6 +182,28 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                <!-- Language Selection -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <span class="fas fa-language"> </span>
+                                زبان
+                            </span>
+                    </label>
+                    <select name="lang"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                       focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
+                        <option value="">-- انتخاب زبان --</option>
+                        <option value="tr" {{$course->lang == 'tr'? 'selected':''}}>ترکی</option>
+                        <option value="fa" {{$course->lang == 'fa'? 'selected':''}}>فارسی</option>
+
+                    </select>
+                    @error('lang')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
                     <!-- Status  -->
 

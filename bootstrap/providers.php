@@ -7,5 +7,5 @@ return [
     Modules\Shop\Providers\EventServiceProvider::class,
     Modules\Conversation\Providers\RouteServiceProvider::class,
     Modules\Sms\Providers\RouteServiceProvider::class,
-
+    Modules\File\Providers\RouteServiceProvider::class,
 ];

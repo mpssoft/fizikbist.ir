@@ -98,7 +98,7 @@
         <!-- Navigation Arrows -->
         <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-slate-800/30 hover:bg-white/30
                        dark:hover:bg-slate-700/40 text-white p-3 rounded-full transition-all duration-300 with-blur
-                       border border-white/20 dark:border-slate-600/30 z-30" onclick="previousSlide()">
+                       border border-white/20 dark:border-slate-600/30 z-30" onclick="nextSlide()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
@@ -106,7 +106,7 @@
 
         <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-slate-800/30 hover:bg-white/30
                        dark:hover:bg-slate-700/40 text-white p-3 rounded-full transition-all duration-300 with-blur
-                       border border-white/20 dark:border-slate-600/30 z-30" onclick="nextSlide()">
+                       border border-white/20 dark:border-slate-600/30 z-30" onclick="previousSlide()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
@@ -193,11 +193,15 @@
     let startX = 0;
     let endX = 0;
 
-    document.querySelector('.slide').addEventListener('touchstart', (e) => {
+
+    // Use the wrapper instead of a single slide
+    const sliderWrapper = document.querySelector('.relative.h-96');
+
+    sliderWrapper.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
     });
 
-    document.querySelector('.slide').addEventListener('touchend', (e) => {
+    sliderWrapper.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].clientX;
         handleSwipe();
     });
@@ -213,7 +217,12 @@
                 previousSlide();
             }
         }
+
+        // reset for the next gesture
+        startX = 0;
+        endX = 0;
     }
+
 
     // Dark mode toggle functionality
     function toggleDarkMode() {

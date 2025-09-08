@@ -45,6 +45,7 @@ Route::get('about',[HomeController::class,'about'])->name('about');
 Route::get('contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
 Route::get('ask',[HomeController::class,'faq'])->name('faq');
+Route::get('terms-of-service',[HomeController::class,'termsOfService'])->name('termsOfService');
 
 
 

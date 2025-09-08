@@ -241,14 +241,17 @@
                                         رایگان
                                     </div>
                                 @endif
+
                                                            </div>
 
                             <!-- Course Content -->
-                            <div class="p-6 bg-white dark:bg-slate-800 flex-1 flex flex-col">
+                            <div class="p-6 relative bg-white dark:bg-slate-800 flex-1 flex flex-col">
                                 <h3 class="text-xl font-bold text-gray-800 dark:text-slate-200 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                                     {{$course->title}}
                                 </h3>
-
+                                <div class="absolute top-4 left-0 bg-white/90  {{$course->lang == 'fa'? 'dark:bg-amber-400':'dark:bg-sky-500'}}  text-white   rounded-r-full px-3 py-1 dark:shadow-black dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)] border-2 border-gray-100 border-l-0  text-xl ">
+                                    {{ $course->lang == 'tr' ? 'زبان ترکی':'زبان فارسی' }}
+                                </div>
                                 <!-- Course Stats -->
                                 <div class="flex items-center gap-4 mb-4 text-sm text-gray-500 dark:text-slate-400">
                                     <div class="flex items-center gap-1">

@@ -119,6 +119,7 @@
                         >
 
                             <a href="{{route('faq')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
+                            <a href="{{route('termsOfService')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700"> شرایط و ظوابط استفاده</a>
                             <a href="{{route('about')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
                             <a href="{{route('contact')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
                         </div>
@@ -353,8 +354,17 @@
                     @endforeach
                 </div>
             </div>
+            <a href="{{ route('files') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
+                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-file-archive text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold "> فایل و جزوه آموزشی </span>
+                </div>
+            </a>
 
-            @if(auth()->check())
+
+        @if(auth()->check())
                 <div id="mobileUserPanelLink" class="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
                         <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">

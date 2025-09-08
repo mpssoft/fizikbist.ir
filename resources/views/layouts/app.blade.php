@@ -57,166 +57,189 @@
                 function showMobileSection(){
                     $('#mobileSection').fadeIn();
                     $('#otpCodeBox').fadeOut();
+                    clearInterval(timerInterval);
+                    $('#timerBox').addClass('hidden');
+                    $('#sendOtpBtn').prop('disabled', false);
+                    $('#otpCodeBox').addClass('hidden');
 
+                    $('#sendOtpBtn .spinner').addClass('hidden');
+                    $('#sendOtpBtn').text('ارسال کد تایید');
+
+                    otpPhase = false;
+                    $('.otp-digit').val('');
                 }
                 let resendTimer = 30;
                 let timerInterval;
 
-                $(document).ready(function () {
+
+
+                    $(document).ready(function () {
                     let otpPhase = false;
                     let otpAttempts = 0;
                     const MAX_ATTEMPTS = 3;
                     $('#otpForm').on('submit', function (e) {
-                        e.preventDefault();
+                    e.preventDefault();
 
-                        const mobile = $('#mobile').val();
-                        const otp = $('.otp-digit').map((i, el) => el.value).get().join('');
-                        const token = $('input[name="_token"]').val();
-                        const remember = $('#remember').is(':checked');
+                    const mobile = $('#mobile').val();
+                    const otp = $('.otp-digit').map((i, el) => el.value).get().join('');
+                    const token = $('input[name="_token"]').val();
+                    const remember = $('#remember').is(':checked');
 
-                        $('#errorBox').addClass('hidden').text('');
-                        $('#sendOtpBtn').prop('disabled', true);
-                        $('#sendOtpBtn .spinner').removeClass('hidden');
+                    $('#errorBox').addClass('hidden').text('');
+                    $('#sendOtpBtn').prop('disabled', true);
+                    $('#sendOtpBtn .spinner').removeClass('hidden');
 
-                        if (!otpPhase) {
-                            // Step 1: Send OTP to mobile
-                            $.ajax({
-                                url: '{{ route('otp.send') }}',
-                                type: 'POST',
-                                data: {
-                                    _token: token,
-                                    mobile: mobile
-                                },
-                                success: function (response) {
-                                    if (response.status === 'ok') {
-                                        $('#otpCodeBox').removeClass('hidden');
-                                        $('#timerBox').removeClass('hidden');
-                                        $('#sendOtpBtn .spinner').addClass('hidden');
-                                        $('#sendOtpBtn').text('ورود').prop('disabled', false);
+                    if (!otpPhase) {
+                    // Step 1: Send OTP to mobile
+                    $.ajax({
+                    url: '{{ route('otp.send') }}',
+                    type: 'POST',
+                    data: {
+                    _token: token,
+                    mobile: mobile
+                },
+                    success: function (response) {
+                    if (response.status === 'ok') {
+                    $('#otpCodeBox').removeClass('hidden');
+                    $('#otpCodeBox').fadeIn();
+                    $('#timerBox').removeClass('hidden');
+                    $('#sendOtpBtn .spinner').addClass('hidden');
+                    $('#sendOtpBtn').text('ورود').prop('disabled', false);
 
-                                        startTimer();
-                                        otpPhase = true;
-                                        $('.otp-digit').val('');
-                                        $('.otp-digit').first().focus();
-                                    } else {
-                                        showError('ارسال کد با خطا مواجه شد');
-                                        $('#sendOtpBtn').prop('disabled', false);
-                                        $('#sendOtpBtn .spinner').addClass('hidden');
-                                    }
-                                },
+                    startTimer();
+                    otpPhase = true;
+                    $('.otp-digit').val('');
+                    $('.otp-digit').first().focus();
+                } else {
+                    showError('ارسال کد با خطا مواجه شد');
+                    $('#sendOtpBtn').prop('disabled', false);
+                    $('#sendOtpBtn .spinner').addClass('hidden');
+                }
+                },
 
-                                error: function (xhr) {
-                                    let message = 'خطایی رخ داده است';
-                                    if (xhr.responseJSON?.message) message = xhr.responseJSON.message;
-                                    showError(message);
-                                    $('#sendOtpBtn').prop('disabled', false);
-                                    $('#sendOtpBtn .spinner').addClass('hidden');
-                                }
-                            });
-                        } else {
-                            // Step 2: Verify OTP
-                            $.ajax({
-                                url: '{{ route('otp.verify') }}',
-                                type: 'POST',
-                                data: {
-                                    _token: token,
-                                    mobile: mobile,
-                                    otp: otp,
-                                    remember: remember ? 1 : 0
-                                },
-                                success: function (response) {
-                                    if (response.status === 'ok') {
-                                        $('#timerBox').addClass('hidden'); // ✅ hide timer
+                    error: function (xhr) {
+                    let message = 'خطایی رخ داده است';
+                    if (xhr.responseJSON?.message) message = xhr.responseJSON.message;
+                    showError(message);
+                    $('#sendOtpBtn').prop('disabled', false);
+                    $('#sendOtpBtn .spinner').addClass('hidden');
 
-                                        if (response.role == 'user')
-                                            window.location.href = '{{ route('user.home') }}'; // ✅ redirect
-                                        else
-                                            window.location.href = '{{ route('admin.home') }}'; // ✅ redirect
 
-                                        otpAttempts = 0;
-                                    } else {
-                                        otpAttempts++;
+                }
+                });
+                } else {
+                    // Step 2: Verify OTP
+                    $.ajax({
+                    url: '{{ route('otp.verify') }}',
+                    type: 'POST',
+                    data: {
+                    _token: token,
+                    mobile: mobile,
+                    otp: otp,
+                    remember: remember ? 1 : 0
+                },
+                    success: function (response) {
+                    if (response.status === 'ok') {
+                    $('#timerBox').addClass('hidden'); // ✅ hide timer
 
-                                        if (otpAttempts >= MAX_ATTEMPTS) {
-                                            // hide OTP input
-                                            $('#otpCodeBox').addClass('hidden');
-                                            $('#timerBox').addClass('hidden');
+                    if (response.role == 'user')
+                    window.location.href = '{{ route('user.home') }}'; // ✅ redirect
+                    else
+                    window.location.href = '{{ route('admin.home') }}'; // ✅ redirect
 
-                                            // clear digit inputs
-                                            $('.otp-digit').val('');
+                    otpAttempts = 0;
+                } else {
+                    otpAttempts++;
 
-                                            // reset OTP phase
-                                            otpPhase = false;
+                    if (otpAttempts >= MAX_ATTEMPTS) {
+                    // hide OTP input
+                    $('#otpCodeBox').addClass('hidden');
+                    $('#timerBox').addClass('hidden');
 
-                                            // show message and reset button text
-                                            showError('تعداد تلاش‌های شما به پایان رسید. لطفاً شماره موبایل را دوباره وارد کنید.');
-                                            $('#sendOtpBtn .btn-text').text('ارسال کد تأیید');
-                                        } else {
-                                            showError(response.message || 'کد وارد شده اشتباه است');
-                                        }
+                    // clear digit inputs
+                    $('.otp-digit').val('');
 
-                                        $('#sendOtpBtn .spinner').addClass('hidden');
-                                        $('#sendOtpBtn').prop('disabled', false);
+                    // reset OTP phase
+                    otpPhase = false;
 
-                                    }
-                                },
+                    // show message and reset button text
+                    showError('تعداد تلاش‌های شما به پایان رسید. لطفاً شماره موبایل را دوباره وارد کنید.');
+                    $('#sendOtpBtn .btn-text').text('ارسال کد تأیید');
+                } else {
+                    showError(response.message || 'کد وارد شده اشتباه است');
+                }
 
-                                error: function (xhr) {
-                                    showError('خطا در بررسی کد تأیید');
-                                    $('#sendOtpBtn').prop('disabled', false);
-                                }
-                            });
-                        }
-                    });
+                    $('#sendOtpBtn .spinner').addClass('hidden');
+                    $('#sendOtpBtn').prop('disabled', false);
+
+                }
+                },
+
+                    error: function (xhr) {
+                    showError('خطا در بررسی کد تأیید');
+                    $('#sendOtpBtn').prop('disabled', false);
+                }
+                });
+                }
+                });
 
                     function showError(message) {
-                        $('#errorBox').removeClass('hidden').text(message);
-                    }
+                    $('#errorBox').removeClass('hidden').text(message);
+                }
 
                     function startTimer() {
-                        let seconds = 120;
-                        $('#timerBox').removeClass('hidden');
-                        $('#timer').text(seconds);
+                    let seconds = 120;
+                    $('#timerBox').removeClass('hidden');
+                    $('#timer').text(seconds);
 
-                        const timerInterval = setInterval(function () {
-                            seconds--;
-                            $('#timer').text(seconds);
+                    const timerInterval = setInterval(function () {
+                    seconds--;
+                    $('#timer').text(seconds);
 
-                            if (seconds <= 0) {
-                                clearInterval(timerInterval);
-                                $('#timerBox').addClass('hidden');
-                                $('#sendOtpBtn').prop('disabled', false);
-                            }
-                        }, 1000);
-                    }
+                    if (seconds <= 0) {
+                    clearInterval(timerInterval);
+                    $('#timerBox').addClass('hidden');
+                    $('#sendOtpBtn').prop('disabled', false);
+                    $('#otpCodeBox').addClass('hidden');
+
+                    $('#sendOtpBtn .spinner').addClass('hidden');
+                    $('#sendOtpBtn').text('ارسال کد تایید');
+
+                    otpPhase = false;
+                    $('.otp-digit').val('');
+
+                }
+                }, 1000);
+                }
 
                     // Handle OTP auto-focus and submission
                     $(document).on('input', '.otp-digit', function () {
-                        const inputs = $('.otp-digit');
-                        const index = inputs.index(this);
+                    const inputs = $('.otp-digit');
+                    const index = inputs.index(this);
 
-                        // Move to next input if value entered
-                        if (this.value.length === 1 && index < inputs.length - 1) {
-                            inputs.eq(index + 1).focus();
-                        }
+                    // Move to next input if value entered
+                    if (this.value.length === 1 && index < inputs.length - 1) {
+                    inputs.eq(index + 1).focus();
+                }
 
-                        // Move to previous if backspace
-                        if (this.value.length === 0 && index > 0) {
-                            inputs.eq(index - 1).focus();
-                        }
+                    // Move to previous if backspace
+                    if (this.value.length === 0 && index > 0) {
+                    inputs.eq(index - 1).focus();
+                }
 
-                        // If all filled, auto-submit
-                        const otp = inputs.map((i, el) => el.value).get().join('');
-                        if (otp.length === 4) {
-                            $('#otpForm').trigger('submit');
-                        }
-                    });
+                    // If all filled, auto-submit
+                    const otp = inputs.map((i, el) => el.value).get().join('');
+                    if (otp.length === 4) {
+                    $('#otpForm').trigger('submit');
+                }
+                });
 
                 });
 
+
             </script>
         @endif
-        <link href="/css/fizik_styles.css" rel="stylesheet">
+        <link href="/css/fizik_styles.css?n=1" rel="stylesheet">
         <style>
             /* ✅ Blur utility (enabled by default) */
             .with-blur {
@@ -434,20 +457,21 @@
                     el.innerHTML = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
                     el.innerHTML = `
                     <div class="text-center">
-                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${days.toString().padStart(2, '0')}</div>
-                        <div class="text-xs opacity-80">روز</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${hours.toString().padStart(2, '0')}</div>
-                        <div class="text-xs opacity-80">ساعت</div>
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 overflow-hidden w-[40px] dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${seconds.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">ثانیه</div>
                     </div>
                     <div class="text-center">
                         <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${minutes.toString().padStart(2, '0')}</div>
                         <div class="text-xs opacity-80">دقیقه</div>
                     </div>
                     <div class="text-center">
-                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 overflow-hidden w-[40px] dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${seconds.toString().padStart(2, '0')}</div>
-                        <div class="text-xs opacity-80">ثانیه</div>
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${hours.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">ساعت</div>
+                    </div>
+
+                   <div class="text-center">
+                        <div class="bg-gradient-to-br from-slate-200/30 to-slate-300/10 dark:from-slate-400/30 dark:to-slate-500/10 backdrop-blur-sm border border-slate-300/20 dark:border-slate-400/20 px-3 py-2 rounded-lg  font-bold mb-1 shadow-lg">${days.toString().padStart(2, '0')}</div>
+                        <div class="text-xs opacity-80">روز</div>
                     </div>
                 `;
                 }, 1000);

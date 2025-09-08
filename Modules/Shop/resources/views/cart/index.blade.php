@@ -39,6 +39,7 @@
                                     <tr class="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-200">
                                         <th class="py-4 px-6 text-right font-medium">نوع محصول</th>
                                         <th class="py-4 px-6 text-right font-medium">قیمت</th>
+                                        <th class="py-4 px-6 text-right font-medium">زبان</th>
                                         <th class="py-4 px-6 text-right font-medium">تخفیف</th>
                                         <th class="py-4 px-6 text-right font-medium">عملیات</th>
                                     </tr>
@@ -85,6 +86,7 @@
                                                     <span class="font-semibold text-gray-800 dark:text-gray-100">{{number_format($item['price'])}} تومان</span>
                                                 @endif
                                             </td>
+                                            <td class="py-4 px-6"> {{$item['model']->lang == 'tr' ? 'زبان ترکی':'زبان فارسی'}}</td>
                                             <td class="py-4 px-6">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
                                               @if(!is_null($item['discount']))
@@ -158,12 +160,12 @@
                                                 @if(!is_null($item['discount']))
 
                                                     <del class="font-semibold text-red-800 dark:text-red-800 transition-colors text-sm  duration-300">
-                                                        {{$item['price']}} تومان</del>
+                                                        {{number_format($item['price'])}} تومان</del>
                                                     <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">{{$discounted}} تومان</p>
                                                 @else
                                                     @php  $wholePrice += $item['price']; @endphp
                                                     <p class="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">
-                                                        {{$item['price']}} تومان</p>
+                                                        {{number_format($item['price'])}} تومان</p>
                                                 @endif
 
                                             </div>
@@ -182,7 +184,8 @@
 
                         <!-- Order Summary -->
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            <div class="lg:col-span-2">
+
+                            <div class="lg:col-span-1">
                                 <!-- Coupon Section -->
                                 <!-- Alerts (validation errors) -->
                                 @if(session('result'))
@@ -226,7 +229,7 @@
 
                                                         $discounts = array_map(null,$discountCode,$discountPrice,$discountType);
 
-                                                     @endphp
+                                                    @endphp
                                                     @foreach($discounts as [$code,$price,$type])
                                                         <p class="mt-1 text-sm text-green-700 dark:text-green-300 inline-flex">
                                                             کد: <span class="font-bold tracking-wide text-green-900 dark:text-green-100">{{$code ?? ''}}</span>
@@ -261,7 +264,7 @@
                                         کد تخفیف
                                     </h3>
                                     <div class="flex space-x-3 space-x-reverse">
-                                        <form action="{{route('shop.cart.applyDiscount')}}" method="post" class="w-full flex flex-col md:flex-row space-x-3 space-x-reverse">
+                                        <form action="{{route('shop.cart.applyDiscount')}}" method="post" class="w-full flex flex-col  space-x-3 space-x-reverse">
                                             @csrf
                                             <input type="text" name="code" placeholder="کد تخفیف خود را وارد کنید" class="flex-1 mb-2 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-400 placeholder-gray-500 dark:placeholder-gray-400">
                                             <button class="px-10 h-12 py-0  bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
@@ -271,9 +274,8 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Order Summary Card -->
-                            <div class="lg:col-span-1">
+                            <div class="lg:col-span-2">
                                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sticky top-8">
                                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
                                         <svg class="w-5 h-5 ml-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -298,12 +300,19 @@
                                             <span class="text-blue-600 dark:text-blue-400">{{ number_format($wholePrice-$wholeDiscount) }} تومان</span>
                                         </div>
                                     </div>
-
-                                    <a href="{{route('user.cart.checkout')}}" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
+                                    <button
+                                        id="paymentButton"
+                                        disabled
+                                        class="w-full bg-gray-400 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 cursor-not-allowed opacity-50"
+                                    >
+                                        <i class="fas fa-lock ml-2"></i>
+                                        ابتدا شرایط و ضوابط را بپذیرید
+                                    </button>
+                                    <a id="enabledPaymentButton" href="{{route('user.cart.checkout')}}" class="hidden w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
                                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
                                         </svg>
-                                        ادامه به پرداخت
+                                        ادامه  پرداخت
                                     </a>
                                     <a href="{{route('all.courses')}}" class="mt-5 w-full bg-gradient-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-950 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
                                         <span class="fas fa-plus ml-3"> </span>
@@ -320,7 +329,119 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        <!-- Terms of Service Section -->
+                        <div class="mb-8 mt-8">
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                                <i class="fas fa-file-contract ml-2"></i>
+                                شرایط و ضوابط
+                            </h2>
+
+                            <!-- Terms Container -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg">
+                                <!-- Terms Header -->
+                                <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4 border-b border-gray-200 dark:border-gray-600">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900 dark:text-white">قوانین و مقررات فیزیک بیست</h3>
+                                        <button id="toggleTerms" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                                            <i class="fas fa-chevron-down" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Terms Content (Collapsible) -->
+                                <div id="termsContent" class="hidden">
+                                    <div class="p-6 max-h-96 overflow-y-auto">
+
+                                        <!-- Key Terms Summary -->
+                                        <div class="space-y-6">
+
+                                            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                                                <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                                                    <i class="fas fa-info-circle ml-2"></i>
+                                                    نکات مهم
+                                                </h4>
+                                                <ul class="space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                                                    <li class="flex items-start gap-2">
+                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
+                                                        <span>دسترسی نامحدود به دوره‌های خریداری شده</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
+                                                        <span>امکان بازگشت وجه تا ۴۸ ساعت پس از خرید</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
+                                                        <span>پشتیبانی فنی و آموزشی رایگان</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۱. استفاده از محتوای آموزشی</h4>
+                                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
+                                                    محتوای آموزشی شامل ویدیوها، جزوات و فایل‌های تمرینی صرفاً برای استفاده شخصی شما در نظر گرفته شده است. اشتراک‌گذاری، کپی‌برداری یا توزیع این محتوا ممنوع است.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۲. حقوق مالکیت معنوی</h4>
+                                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
+                                                    تمامی محتویات تحت حمایت قوانین کپی‌رایت قرار دارند. نقض این حقوق منجر به پیگرد قانونی خواهد شد.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۳. سیاست بازگشت وجه</h4>
+                                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
+                                                    در صورت عدم رضایت، می‌توانید تا ۴۸ ساعت پس از خرید درخواست بازگشت وجه دهید. پس از این مدت، بازگشت وجه تنها در موارد خاص امکان‌پذیر است.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۴. پشتیبانی و خدمات</h4>
+                                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
+                                                    تیم پشتیبانی ما از طریق شماره ۰۹۱۴۱۸۷۹۷۶۷ آماده پاسخگویی به سوالات فنی و آموزشی شما است.
+                                                </p>
+                                            </div>
+
+                                            <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                                                <div class="flex items-start gap-3">
+                                                    <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
+                                                    <div>
+                                                        <h5 class="font-semibold text-yellow-800 dark:text-yellow-200 mb-1">توجه مهم</h5>
+                                                        <p class="text-yellow-700 dark:text-yellow-300 text-sm">
+                                                            با تکمیل خرید، شما تأیید می‌کنید که تمامی شرایط و ضوابط را مطالعه کرده و با آن‌ها موافق هستید.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Terms Acceptance Checkbox -->
+                            <div class="mt-6">
+                                <label class="flex items-start gap-3 cursor-pointer group">
+                                    <input
+                                        type="checkbox"
+                                        id="acceptTerms"
+                                        class="mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    >
+                                    <div class="text-sm">
+                  <span class="text-gray-700 dark:text-gray-300">
+                    شرایط و ضوابط استفاده از سایت فیزیک بیست را مطالعه کرده و با آن‌ها
+                  </span>
+                                        <span class="font-semibold text-blue-600 dark:text-blue-400">موافق هستم</span>
+                                        <span class="text-red-500">*</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                 @else
                     <!-- Empty Cart State -->
@@ -343,3 +464,68 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+
+    <script>
+        // Terms toggle functionality
+        const toggleTerms = document.getElementById('toggleTerms');
+        const termsContent = document.getElementById('termsContent');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        toggleTerms.addEventListener('click', function() {
+            if (termsContent.classList.contains('hidden')) {
+                termsContent.classList.remove('hidden');
+                toggleIcon.classList.remove('fa-chevron-down');
+                toggleIcon.classList.add('fa-chevron-up');
+            } else {
+                termsContent.classList.add('hidden');
+                toggleIcon.classList.remove('fa-chevron-up');
+                toggleIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // Terms acceptance and payment button functionality
+        const acceptTerms = document.getElementById('acceptTerms');
+        const paymentButton = document.getElementById('paymentButton');
+        const enabledPaymentButton = document.getElementById('enabledPaymentButton');
+
+        acceptTerms.addEventListener('change', function() {
+            if (this.checked) {
+                // Hide disabled button, show enabled button
+                paymentButton.classList.add('hidden');
+                enabledPaymentButton.classList.remove('hidden');
+            } else {
+                // Show disabled button, hide enabled button
+                paymentButton.classList.remove('hidden');
+                enabledPaymentButton.classList.add('hidden');
+            }
+        });
+
+        // Payment button click handler
+        enabledPaymentButton.addEventListener('click', function() {
+            // Show loading state
+            this.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>در حال پردازش...';
+            this.disabled = true;
+
+            // Simulate payment processing
+            setTimeout(function() {
+                document.getElementById('successModal').classList.remove('hidden');
+                enabledPaymentButton.innerHTML = '<i class="fas fa-credit-card ml-2"></i>پرداخت ۴۰۳,۲۰۰ تومان';
+                enabledPaymentButton.disabled = false;
+            }, 2000);
+        });
+
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessModal();
+            }
+        });
+    </script>
+
+@endpush

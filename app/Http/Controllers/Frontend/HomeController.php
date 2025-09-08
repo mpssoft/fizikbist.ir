@@ -126,4 +126,12 @@ class HomeController extends Controller
         ;
         return view('frontend.home.faq');
     }
+    public function termsOfService()
+    {
+        $this->seo()
+            ->setTitle("  شرایط و ظوابط استفاده ")
+            ->setDescription(" قوانین و مقررات استفاده از سایت فیزیک بیست ")
+        ;
+        return view('frontend.home.terms-of-service');
+    }
 }

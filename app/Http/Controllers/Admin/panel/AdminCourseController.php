@@ -54,7 +54,8 @@ class AdminCourseController extends Controller
             'status' => 'in:active,in_progress,inactive',
             'spotplayer_id' => 'nullable',
             'time' =>  'nullable',
-            'grade_id'=> 'nullable|integer|exists:grades,id'
+            'grade_id'=> 'nullable|integer|exists:grades,id',
+            'lang'=> 'nullable|string'
         ]);
 
 
@@ -91,7 +92,8 @@ class AdminCourseController extends Controller
              'spotplayer_id' => 'nullable',
             'time' =>  'nullable',
             'status' => 'in:active,in_progress,inactive',
-            'grade_id' =>  'nullable|integer|exists:grades,id'
+            'grade_id' =>  'nullable|integer|exists:grades,id',
+            'lang'=> 'nullable|string'
         ]);
 
 

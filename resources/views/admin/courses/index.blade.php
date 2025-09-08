@@ -171,6 +171,11 @@
                                 <div class="text-base sm:text-lg font-bold text-green-600">{{ number_format($course->price) }}</div>
                                 <div class="text-xs text-gray-500 dark:text-gray-400">تومان</div>
                             </div>
+                            <div class="text-center">
+                                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">زبان </div>
+                                <div class="text-base sm:text-lg font-bold text-green-600">{{ $course->lang == 'tr'? 'ترکی':'فارسی' }}</div>
+
+                            </div>
 
                            {{-- <div class="text-center">
                                 <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">امتیاز</div>
