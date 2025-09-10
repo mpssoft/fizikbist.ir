@@ -244,7 +244,7 @@
 
             </script>
         @endif
-        <link href="/css/fizik_styles.css?n=1" rel="stylesheet">
+        <link href="/css/fizik_styles.css?n=2" rel="stylesheet">
         <style>
             /* ✅ Blur utility (enabled by default) */
             .with-blur {
