@@ -27,6 +27,13 @@ class FileController extends Controller
         if ($file->state !== 'active') {
             abort(403, 'This file is not active.');
         }
+
+        $path = storage_path('app/private/files/' . basename($file->file_path));
+
+        if (!file_exists($path)) {
+            abort(404, 'The requested file does not exist.');
+        }
+
         // Case 1: Free file
         if ($file->access_type === 'free') {
             $file->increment('downloads');

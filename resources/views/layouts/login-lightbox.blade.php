@@ -38,7 +38,7 @@
                     </div>
                     <!-- OTP Code Input (hidden initially) -->
                     <div id="otpCodeBox" class="hidden">
-                        <a onclick="event.preventDefault();showMobileSection()" class="btn-danger">تغییر شماره</a>
+                        <a onclick="event.preventDefault();showMobileSection()" >تغییر شماره</a>
                         <label class="block text-gray-300 text-sm font-medium mb-2">
                             <i class="fas fa-key mr-2"></i> کد تأیید
                         </label>

@@ -19,6 +19,7 @@
                 </div>
 
                 @if( count($cart))
+
                     <!-- Sample Cart Data -->
                     <div id="cart-content">
                         <!-- Cart Items -->

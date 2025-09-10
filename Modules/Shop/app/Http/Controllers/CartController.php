@@ -35,10 +35,17 @@ class CartController extends Controller
 
                 if (class_exists($modelClass)) {
                     $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
-                }
+                    // If model not found → return null
+                    if (!$item['model']) {
+                        $this->cartService->removeItem($item['item_type'], $item['item_id']);
+                        return null;
+
+                    }
+                }else
+                    return null;
             }
             return $item;
-        });
+        })->filter();
         //dd($cart);
         return view('shop::cart.index', compact('cart'));
     }
@@ -154,10 +161,17 @@ class CartController extends Controller
 
                 if (class_exists($modelClass)) {
                     $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
-                }
+                    // If model not found → return null
+                    if (!$item['model']) {
+                        $this->cartService->removeItem($item['item_type'], $item['item_id']);
+                        return null;
+                    }
+
+                }else
+                    return null;
             }
             return $item;
-        });
+        })->filter();
         return view('shop::cart.cart-items', compact('cart','count'));
 
     }
