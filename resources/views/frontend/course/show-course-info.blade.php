@@ -8,7 +8,7 @@
 
 <!-- Course Header -->
 <div class="max-w-6xl mx-auto px-8 py-12">
-    <div class="bg-gradient-to-r from-slate-700 rounded-2xl to-slate-800 text-white  shadow-xl p-8">
+    <div class="md:bg-gradient-to-r md:from-slate-700 rounded-2xl md:to-slate-800 text-white  shadow-xl md:p-8">
         <div class="grid md:grid-cols-7 gap-6 items-center">
 
 
@@ -181,7 +181,7 @@
 </div>
 
 <!-- Course Content -->
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+<div class="max-w-6xl mx-auto px-8 lg:px-8 pb-10">
     <div class="grid lg:grid-cols-3 gap-8">
 
         <!-- Main Content -->
@@ -225,36 +225,7 @@
     </div>
 </div>
 
-<!-- Fixed Purchase Bar (Mobile) -->
-<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 lg:hidden z-50">
-    <div class="flex items-center justify-between">
-        <div>
-            @if($course->discount_price && $course->discount_expires_at && $course->discount_expires_at > now())
-                <div class="flex items-center gap-2">
-                    <span class="text-lg font-bold text-green-600">{{ number_format($course->discount_price) }} تومان</span>
-                    <span class="text-sm line-through text-gray-500">{{ number_format($course->price) }}</span>
-                </div>
-                <div class="text-xs text-red-600">تا {{ $course->discount_expires_at->diffForHumans() }}</div>
-            @else
-                <div class="flex items-center gap-2">
-                    @if($course->price == 0)
-                        <span class="text-lg font-bold text-green-600">رایگان</span>
-                    @else
-                        <span class="text-lg font-bold text-green-600">{{ number_format($course->price) }} تومان</span>
-                    @endif
-                </div>
-            @endif
-        </div>
-        <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-bold transition-colors">
-            <i class="fas fa-shopping-cart ml-1"></i>
-            @if($course->price == 0)
-                دریافت رایگان
-            @else
-                خرید دوره
-            @endif
-        </button>
-    </div>
-</div>
+
 </div>
 
 @endsection
