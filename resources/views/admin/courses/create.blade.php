@@ -377,6 +377,82 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                    <!-- Video -->
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                ویدیوی معرفی دوره
+                            </span>
+                        </label>
+                        <textarea name="video" rows="5"
+                                  class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                         bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                         focus:border-teal-500 focus:bg-white dark:focus:bg-gray-600
+                                         focus:ring-4 focus:ring-teal-500/20 transition-all duration-200
+                                         placeholder-gray-400 dark:placeholder-gray-500 resize-none"
+                                  placeholder="از آیارات کد iframe استفاده شود">{{ old('video') }}</textarea>
+                        @error('video')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+  <!-- Long  text -->
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                توضیح محتویات
+                            </span>
+                        </label>
+                        <!-- TinyMCE Content Editor -->
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای درس</h2>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                                    <i class="fas fa-paragraph ml-2 text-purple-600"></i>
+                                    شرح کامل درس *
+                                </label>
+
+                                <!-- TinyMCE Editor -->
+                                <textarea id="content" name="content" class="tinymce-editor">
+            <p>شرح کامل و سرفصل های درس را اینجا بنویسید...</p>
+            <p><br></p>
+            <p><strong>مثال:</strong></p>
+            <ol>
+              <li>فصل اول: ...</li>
+              <li>فصل دوم: ...</li>
+              <li>فصل سوم: ...</li>
+            </ol>
+            <p><br></p>
+            <p><strong>نکته مهم:</strong> ...</p>
+          </textarea>
+
+                                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
+                                </div>
+                            </div>
+                        </div>
+
+                        @error('content')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <!-- Submit Button -->
                     <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
@@ -417,3 +493,70 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script src="https://cdn.tiny.cloud/1/w3a0jbe7otjk2v0hpupwsufnua8a8h4up9wv5hba11rp46er/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        // Initialize TinyMCE with Laravel File Manager
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 400,
+            language: 'fa',
+            directionality: 'rtl',
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount', 'emoticons'
+            ],
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | link image media | table | emoticons | code fullscreen preview',
+            content_style: 'body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; direction: rtl; text-align: right; }',
+
+            // Laravel File Manager Integration
+            file_picker_callback (callback, value, meta) {
+                let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
+                let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight
+
+                tinymce.activeEditor.windowManager.openUrl({
+                    url : '/file-manager/tinymce5',
+                    title : 'Laravel File manager',
+                    width : x * 0.8,
+                    height : y * 0.8,
+                    onMessage: (api, message) => {
+                        callback(message.content, { text: message.text })
+                    }
+                })
+            },
+
+            // Additional settings
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            branding: false,
+            menubar: false,
+            statusbar: true,
+            resize: true,
+
+            // Image settings
+            image_advtab: true,
+            image_caption: true,
+            image_title: true,
+
+            // Table settings
+            table_default_attributes: {
+                'class': 'table table-bordered'
+            },
+            table_default_styles: {
+                'border-collapse': 'collapse',
+                'width': '100%'
+            },
+
+            // Setup callback
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
+        });
+    </script>
+
+@endpush

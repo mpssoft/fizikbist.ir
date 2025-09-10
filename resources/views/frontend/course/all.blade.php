@@ -132,13 +132,19 @@
                                             @endif
                                         </div>
 
-                                        <div class="flex gap-3">
+                                        <div class="flex justify-between gap-3">
                                             <button id="btn-{{$course->id}}" onclick="addToCart('course','{{$course->id}}')" class=" bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 dark:from-green-500 dark:to-green-600 dark:hover:from-green-600 dark:hover:to-green-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
 
                                                 <i class="fas fa-cart-arrow-down"></i>
                                                 <span>افزودن به سبد</span>
                                                 <span class="spinner-{{$course->id}}  hidden"><i class="fas fa-spinner fa-spin-pulse"></i></span>
                                             </button>
+                                            <a href="{{route('show.course',$course->id)}}"  class=" bg-gradient-to-r from-blue-600 to-blue-700 hover:from-green-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
+
+                                                <i class="fas fa-circle-info"></i>
+                                                <span>  اطلاعات بیشتر </span>
+
+                                            </a>
                                         </div>
 
                                         {{--      <!-- Rating for paid course -->

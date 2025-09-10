@@ -36,6 +36,7 @@ Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verif
 
 Route::prefix('course')->group(function(){
     Route::get('all',[\App\Http\Controllers\Frontend\CourseController::class,'all'])->name('all.courses');
+    Route::get('show/{course}',[\App\Http\Controllers\Frontend\CourseController::class,'showCourse'])->name('show.course');
 });
 Route::prefix('course')->group(function(){
     Route::get('{gradeName}/',[\App\Http\Controllers\Frontend\CourseController::class,'gradeCourses'])->name('gradeCourses');

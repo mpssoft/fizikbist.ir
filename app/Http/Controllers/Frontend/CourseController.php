@@ -48,4 +48,9 @@ class CourseController extends Controller
 
         return view('frontend.course.grade-courses',compact('courses'));
     }
+
+    public function showCourse(Course $course)
+    {
+        return view('frontend.course.show-course-info',compact('course'));
+    }
 }

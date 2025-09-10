@@ -16,14 +16,41 @@
 
                 </div>
             </div>
-{{--            <div class="flex items-center gap-3">
-                <button class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
-                    <i class="fas fa-search"></i>
-                </button>
-                <button class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
-                    <i class="fas fa-cog"></i>
-                </button>
-            </div>--}}
+            <div class="flex items-center gap-3">
+                <div class="relative" x-data="{ showMenu: false }">
+                    <button
+                        @mouseenter="showMenu = true"
+                        @mouseleave="showMenu = false"
+                        class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                    >
+                        <i class="fas fa-cog"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div
+                        x-show="showMenu"
+                        @mouseenter="showMenu = true"
+                        @mouseleave="showMenu = false"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform scale-95"
+                        x-transition:enter-end="opacity-100 transform scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 transform scale-100"
+                        x-transition:leave-end="opacity-0 transform scale-95"
+                        class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50"
+                        style="display: none;"
+                    >
+                        <button
+                            @click="clearConversation()"
+                            class="w-full text-right px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-3"
+                        >
+                            <i class="fas fa-trash-alt text-red-500"></i>
+                            <span>پاک کردن همه</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -240,7 +267,7 @@
 
         const messageInput = document.getElementById('messageInput');
         const messageText = messageInput.value.trim();
-
+        const messagesContainer = document.getElementById('messagesContainer')
         if (!messageText) return;
 
         $.ajax({
@@ -254,7 +281,7 @@
             },
             success: function (msg) {
 
-                msg = JSON.stringify(msg);
+                //msg = JSON.stringify(msg);
 
                 renderMessages(msg)
 //                lastMessageId = msg.id;
@@ -292,7 +319,8 @@
 
 
         function renderMessages(messages) {
-            const messagesContainer = document.getElementById('messagesContainer');
+
+
         messages.forEach(message => {
         let html = "";
 
@@ -434,5 +462,77 @@
         return `${hours}:${minutes}`;
     }
 
+</script>
+<script src="/js/modules/sweetalert2.js"></script>
+<script>
+    // Clear conversation function
+    function clearConversation() {
+        Swal.fire({
+            title: 'پاک کردن همه مکالمات',
+            text: 'آیا مطمئن هستید که می‌خواهید تمام مکالمات را پاک کنید؟ این عمل قابل بازگشت نیست.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'بله، پاک کن',
+            cancelButtonText: 'انصراف',
+            reverseButtons: true,
+            customClass: {
+                popup: 'rtl-popup'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Show loading
+                Swal.fire({
+                    title: 'در حال پاک کردن...',
+                    text: 'لطفاً صبر کنید',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                // Send request to clear conversation
+                fetch('/conversation/clear', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            Swal.fire({
+                                title: 'موفق!',
+                                text: 'تمام مکالمات با موفقیت پاک شدند.',
+                                icon: 'success',
+                                confirmButtonText: 'متوجه شدم',
+                                customClass: {
+                                    popup: 'rtl-popup'
+                                }
+                            });
+                            lastMessageId  = 0;
+                            messagesContainer.innerHTML = "";
+                        } else {
+                            throw new Error('خطا در پاک کردن مکالمات'+JSON.stringify(response) );
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'خطا!',
+                            text:  'مشکلی در پاک کردن مکالمات رخ داد. لطفاً دوباره تلاش کنید.'+error,
+                            icon: 'error',
+                            confirmButtonText: 'متوجه شدم',
+                            customClass: {
+                                popup: 'rtl-popup'
+                            }
+                        });
+                    });
+            }
+        });
+    }
 </script>
 

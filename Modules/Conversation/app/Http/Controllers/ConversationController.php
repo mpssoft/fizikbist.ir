@@ -59,4 +59,9 @@ class ConversationController extends Controller
         return response()->json($messages);
     }
 
+    public function clear()
+    {
+        Conversation::truncate();
+        return response()->json(['ok'=> true,'message'=>'مکالمات با موفقیت پاک شد']);
+    }
 }

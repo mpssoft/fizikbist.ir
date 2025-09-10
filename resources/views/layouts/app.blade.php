@@ -12,11 +12,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         {!! SEO::generate() !!}
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Typography plugin CSS (jsDelivr) -->
 
         <script>
             window.tailwind = {
                 config: {
+
                     darkMode: 'class',
+                    theme: {
+                        extend: {},
+                    },
                 }
             }
         </script>
@@ -273,6 +278,12 @@
                         radial-gradient(circle at 70% 30%, rgba(131, 56, 236, 0.2) 0%, transparent 50%);
                 }
             }
+
+             .prose ul { list-style-type: disc; padding-left: 1.5rem; }
+            .prose ol { list-style-type: decimal; padding-left: 1.5rem; }
+            .prose p  { margin-top: 1em; margin-bottom: 1em; line-height: 1.7; }
+            .prose h1 { font-size: 2em; font-weight: bold; margin: 1em 0; }
+            .prose h2 { font-size: 1.5em; font-weight: bold; margin: 1em 0; }
 
         </style>
         <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css"/>
