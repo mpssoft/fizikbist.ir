@@ -23,7 +23,7 @@
     </script>
 @endpush
 @section('content')
-    <div class="max-w-4xl mx-auto mt-5">
+    <div class="container max-w-7xl mx-auto px-4 py-6" x-data>
         <!-- Header Section -->
         <div
             class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mb-5">
@@ -72,13 +72,7 @@
                                       d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
                         </div>
-                        <a href="/admin/courses"
-                           class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                            </svg>
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -87,7 +81,7 @@
         <!-- Main Form Container -->
         <div
             class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div class="p-8">
+            <div class="p-4">
                 <form method="POST" action="{{route('admin.courses.store')}}" onsubmit="removeCamas()"
                       enctype="multipart/form-data" class="space-y-8">
                     @csrf
@@ -305,15 +299,15 @@
                             <div id="dropZone"
                                  class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-purple-500 transition-colors duration-200 cursor-pointer">
 
-                                <div class="flex items-stretch space-x-2">
+                                <div class="flex items-stretch space-x-2 gap-2">
                                     <input type="text" id="image_label" name="cover_image"
-                                           class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                                           class="flex-1 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600
                   bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                            placeholder="Image">
 
                                     <button type="button" id="button-image"
-                                            class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                                            class=" py-2 rounded-md border  border-gray-300 dark:border-gray-600
                    bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
                    hover:bg-gray-200 dark:hover:bg-gray-700
                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
@@ -485,12 +479,7 @@
             </div>
         </div>
 
-        <!-- Footer Info -->
-        <div class="text-center mt-8">
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-                پس از ایجاد، می‌توانید محتوای دوره را اضافه کنید
-            </p>
-        </div>
+
     </div>
 @endsection
 @push('scripts')
