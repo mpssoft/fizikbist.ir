@@ -494,7 +494,8 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/w3a0jbe7otjk2v0hpupwsufnua8a8h4up9wv5hba11rp46er/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
 
     <script>
         // Initialize TinyMCE with Laravel File Manager

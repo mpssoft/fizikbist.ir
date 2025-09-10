@@ -355,29 +355,7 @@
                                 <div id="termsContent" class="hidden">
                                     <div class="p-6 max-h-96 overflow-y-auto">
 
-                                        <!-- Key Terms Summary -->
-                                        <div class="space-y-6">
 
-                                            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                                                <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                                                    <i class="fas fa-info-circle ml-2"></i>
-                                                    نکات مهم
-                                                </h4>
-                                                <ul class="space-y-2 text-sm text-blue-700 dark:text-blue-300">
-                                                    <li class="flex items-start gap-2">
-                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
-                                                        <span>دسترسی نامحدود به دوره‌های خریداری شده</span>
-                                                    </li>
-                                                    <li class="flex items-start gap-2">
-                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
-                                                        <span>امکان بازگشت وجه تا ۴۸ ساعت پس از خرید</span>
-                                                    </li>
-                                                    <li class="flex items-start gap-2">
-                                                        <i class="fas fa-check text-green-500 text-xs mt-1"></i>
-                                                        <span>پشتیبانی فنی و آموزشی رایگان</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
 
                                             <div>
                                                 <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۱. استفاده از محتوای آموزشی</h4>
@@ -393,12 +371,6 @@
                                                 </p>
                                             </div>
 
-                                            <div>
-                                                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۳. سیاست بازگشت وجه</h4>
-                                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
-                                                    در صورت عدم رضایت، می‌توانید تا ۴۸ ساعت پس از خرید درخواست بازگشت وجه دهید. پس از این مدت، بازگشت وجه تنها در موارد خاص امکان‌پذیر است.
-                                                </p>
-                                            </div>
 
                                             <div>
                                                 <h4 class="font-semibold text-gray-900 dark:text-white mb-3">۴. پشتیبانی و خدمات</h4>

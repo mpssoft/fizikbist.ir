@@ -31,19 +31,19 @@
                 <div class=" mx-auto  text-center relative z-10">
 
                     @if(is_tv())
-                        <h2 class="text-4xl pt-2 font-bold mb-8 text-gray-800 dark:text-white">
-                            آموزش تخصصی فیزیک
-                        </h2>
+                        <h1 style="font-family:'Vazirmatn-bold' !important;" class="text-4xl pt-2 font-bold mb-8 text-gray-800 dark:text-white">
+                            آموزش مفهومی فیزیک
+                        </h1>
                         @include('frontend.home.home-slider-tv', ['sliders' => $sliders])
                     @else
-                        <h2 class="text-4xl pt-2 font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200  text-transparent bg-clip-text drop-shadow-2xl tv-optimized-text-shadow">
-                            آموزش تخصصی فیزیک
-                        </h2>
+                        <h1 style="font-family:'Vazirmatn-bold' !important;" class=" text-4xl pt-2 font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200  text-transparent bg-clip-text  drop-shadow-[2px_2px_10px_black] dark:drop-shadow-[2px_2px_7px_violet] tv-optimized-text-shadow">
+                            آموزش مفهومی فیزیک
+                        </h1>
                     @include('frontend.home.home-slider', ['sliders' => $sliders])
 
                     @endif
                     <p class="text-2xl mb-10 opacity-95 font-medium drop-shadow-lg">
-                        با استاد حسین نژاداسد و روش‌های نوین تدریس
+                        با استاد حسین نژاداسد
                     </p>
                         @if(is_tv())
 
@@ -226,7 +226,7 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold dark:text-white mb-4">دوره‌های محبوب</h2>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">محبوب‌ترین دوره‌های ما را کشف کنید که برای کمک به تسلط بر مهارت‌های جدید و پیشرفت شغلی شما طراحی شده‌اند.</p>
+
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @foreach($courses as $course)
