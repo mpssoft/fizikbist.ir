@@ -5,5 +5,6 @@
     "Conversation": true,
     "Sms": true,
     "Blog": false,
-    "File": true
+    "File": true,
+    "Splash": true
 }

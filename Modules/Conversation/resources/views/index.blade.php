@@ -17,6 +17,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
+                @if(auth()->user()->role == 'admin')
                 <div class="relative" x-data="{ showMenu: false }">
                     <button
                         @mouseenter="showMenu = true"
@@ -49,6 +50,7 @@
                         </button>
                     </div>
                 </div>
+                    @endif
             </div>
 
         </div>
@@ -464,6 +466,7 @@
 
 </script>
 <script src="/js/modules/sweetalert2.js"></script>
+@if(auth()->user()->role == 'admin')
 <script>
     // Clear conversation function
     function clearConversation() {
@@ -535,4 +538,5 @@
         });
     }
 </script>
+    @endif
 

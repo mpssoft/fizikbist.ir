@@ -1,0 +1,11 @@
+{
+    "name": "Splash",
+    "alias": "splash",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Splash\\Providers\\SplashServiceProvider"
+    ],
+    "files": []
+}

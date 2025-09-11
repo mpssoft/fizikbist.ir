@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/splash",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Splash\\": "app/",
+            "Modules\\Splash\\Database\\Factories\\": "database/factories/",
+            "Modules\\Splash\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Splash\\Tests\\": "tests/"
+        }
+    }
+}

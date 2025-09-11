@@ -127,6 +127,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             'Morilog\\Jalali\\' => 15,
             'Monolog\\' => 8,
+            'Modules\\Splash\\Tests\\' => 21,
+            'Modules\\Splash\\Database\\Seeders\\' => 32,
+            'Modules\\Splash\\Database\\Factories\\' => 34,
+            'Modules\\Splash\\' => 15,
             'Modules\\Sms\\Tests\\' => 18,
             'Modules\\Sms\\Database\\Seeders\\' => 29,
             'Modules\\Sms\\Database\\Factories\\' => 31,
@@ -452,6 +456,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Modules\\Splash\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Splash/tests',
+        ),
+        'Modules\\Splash\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Splash/database/seeders',
+        ),
+        'Modules\\Splash\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Splash/database/factories',
+        ),
+        'Modules\\Splash\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Splash/app',
         ),
         'Modules\\Sms\\Tests\\' => 
         array (
@@ -4584,7 +4604,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/EventServiceProvider.php',
         'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/RouteServiceProvider.php',
         'Modules\\File\\Database\\Seeders\\FileDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/File/database/seeders/FileDatabaseSeeder.php',
-        'Modules\\File\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/FileController.php',
+        'Modules\\File\\Http\\Controllers\\Admin\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/Admin/FileController.php',
+        'Modules\\File\\Http\\Controllers\\Frontend\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/Frontend/FileController.php',
+        'Modules\\File\\Http\\Controllers\\User\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/User/FileController.php',
+        'Modules\\File\\Models\\File' => __DIR__ . '/../..' . '/Modules/File/app/Models/File.php',
         'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/EventServiceProvider.php',
         'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
         'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
@@ -4612,6 +4635,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Sms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/RouteServiceProvider.php',
         'Modules\\Sms\\Providers\\SmsServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/SmsServiceProvider.php',
         'Modules\\Sms\\Services\\SmsService' => __DIR__ . '/../..' . '/Modules/Sms/app/Services/SmsService.php',
+        'Modules\\Splash\\Database\\Seeders\\SplashDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Splash/database/seeders/SplashDatabaseSeeder.php',
+        'Modules\\Splash\\Http\\Controllers\\SplashController' => __DIR__ . '/../..' . '/Modules/Splash/app/Http/Controllers/SplashController.php',
+        'Modules\\Splash\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/EventServiceProvider.php',
+        'Modules\\Splash\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/RouteServiceProvider.php',
+        'Modules\\Splash\\Providers\\SplashServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/SplashServiceProvider.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',

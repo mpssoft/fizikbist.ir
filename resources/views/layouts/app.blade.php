@@ -290,7 +290,42 @@
         <!-- Scripts -->
         @yield('style')
         @stack('styles')
-    <script>
+
+
+
+        <!-- Splash Overlay -->
+        <div id="splashOverlay" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
+
+
+
+            <div class="relative z-10 flex items-center justify-center min-h-full px-4"
+
+            >
+                <!-- Wrap card and close for proper positioning -->
+                <div class="relative w-full max-w-2xl">
+                    <!-- Card with only image, fully clickable -->
+                    <div id="splashCard" class="w-full rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transform transition-all duration-300 scale-95 opacity-0">
+                        <a id="splashLink" href="#" target="_blank" rel="noopener">
+                            <img id="splashImage"
+                                 src=""
+                                 alt="Splash"
+                                 class="w-full h-full object-cover"
+                                 >
+                        </a>
+                    </div>
+
+                    <!-- Close button near image box top-left -->
+                    <button id="closeSplash"
+                            class="absolute z-20 -top-3 -left-3 bg-white  text-red-600 hover:text-xl
+                       rounded-full w-10 h-10 flex items-center justify-center shadow-lg ring-1 ring-slate-200 dark:ring-slate-700 transition">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
             function fetchCart() {
                 fetch("{{ route('shop.cart.items') }}")
                     .then(res => res.text()) // 👈 since response is HTML
@@ -489,6 +524,86 @@
             });
         </script>
 
+
+        <script>
+            const STORAGE_KEY = 'splash_id';
+
+            function revealSplash() {
+                const overlay = document.getElementById('splashOverlay');
+                const card = document.getElementById('splashCard');
+                overlay.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    card.classList.remove('scale-95', 'opacity-0');
+                    card.classList.add('scale-100', 'opacity-100');
+                });
+            }
+
+            function hideSplash() {
+                const overlay = document.getElementById('splashOverlay');
+                const card = document.getElementById('splashCard');
+                card.classList.add('scale-95', 'opacity-0');
+                card.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 200);
+            }
+
+            async function fetchSplash() {
+                try {
+
+                    const res = await fetch('/get-splash', { headers: { 'X-Requested-With': 'XMLHttpRequest' }});
+                    if (!res.ok) return;
+
+                    const data = await res.json();
+                    // Expected shape: { id, title, message, image }
+                    if (!data || !data.splash.id) return;
+
+                    // Populate content
+                    const imgEl = document.getElementById('splashImage');
+                    const linkEl = document.getElementById('splashLink');
+
+                    if (data.splash.image) {
+                        imgEl.src = data.splash.image;
+                        imgEl.alt = data.splash.title || 'Splash';
+                    } else {
+                        imgEl.src = '';
+                        imgEl.alt = 'تصویر در دسترس نیست';
+                    }
+
+                    if (data.splash.link && typeof data.splash.link === 'string') {
+                        linkEl.href = data.splash.link;
+                    } else {
+                        linkEl.removeAttribute('href');
+                    }
+                    const existingId = localStorage.getItem(STORAGE_KEY);
+                    if (existingId == data.splash.id ) return; // Already shown; do not show again
+
+                    // Store id to prevent future displays
+                    localStorage.setItem(STORAGE_KEY, String(data.splash.id));
+
+                    // Show splash
+                    revealSplash();
+                } catch (e) {
+                    // Silently fail; don't block the page
+                    // console.warn('Splash fetch failed', e);
+                }
+            }
+
+            // Close handlers
+            document.addEventListener('DOMContentLoaded', () => {
+                fetchSplash();
+
+                document.getElementById('closeSplash').addEventListener('click', hideSplash);
+
+                // Click outside to close
+                document.getElementById('splashOverlay').addEventListener('click', (e) => {
+                    if (e.target.id === 'splashOverlay') hideSplash();
+                });
+
+                // ESC to close
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') hideSplash();
+                });
+            });
+        </script>
 
     </body>
 </html>
