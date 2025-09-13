@@ -71,7 +71,12 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                             </svg>
                                         </a>
+                                        <a href="{{route('show.course',$course->id)}}"  class=" bg-gradient-to-r from-blue-600 to-blue-700 hover:from-green-700 hover:to-blue-800 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
 
+                                            <i class="fas fa-circle-info"></i>
+                                            <span>  اطلاعات بیشتر </span>
+
+                                        </a>
                                         {{--     <!-- Rating -->
                                              <div class="flex items-center gap-1">
                                                  <div class="flex text-yellow-400">
@@ -100,7 +105,7 @@
                                         <div class="flex items-center border-2 p-3 border-gray-700 rounded-2xl justify-between mb-4">
                                             <div class="text-right justify-end">
 
-                                                @if(!is_null($course->discounts->first()))
+                                                @if(!is_null($course->discounts->where('start_at','>',now())->where('end_at','<',now())->where('is_active',1)->first()))
                                                     @php
                                                         $disValue = $course->discounts->first()->value;
                                                         $disType = $course->discounts->first()->type;
@@ -117,7 +122,7 @@
                                                     <div class=" font-bold text-gray-800 dark:text-slate-200 text-xl">{{number_format($course->price)}} تومان</div>
                                                 @endif
                                             </div>
-                                            @if(!is_null($course->discounts->first()))
+                                            @if(!is_null($course->discounts->where('start_at','>',now())->where('end_at','<',now())->where('is_active',1)->first()))
                                                 <div class="flex flex-col py-3 gap-2">
                                                     <div class="bg-red-100 dark:bg-red-900/30 text-red-600 text-center dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
                                                         {{$course->discounts->first()->value}}% تخفیف

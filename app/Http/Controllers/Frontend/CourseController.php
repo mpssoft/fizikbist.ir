@@ -11,6 +11,10 @@ class CourseController extends Controller
 {
     public function all(Request $request, Course $course)
     {
+        $this->seo()
+            ->setTitle("دوره های آموزشی دروس فیزیک")
+            ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
+        ;
         $activeCourses = Course::where("status","active")->get();
         $courses = Course::where('status','active')->withCount([
             'raters as ratings_count',
@@ -30,6 +34,10 @@ class CourseController extends Controller
 
     public function gradeCourses(string $gradeName)
     {
+        $this->seo()
+            ->setTitle("دوره های آموزشی فیزیک ".$gradeName)
+            ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
+        ;
         $ids = Grade::where('name',$gradeName)->pluck('id');
         $ids = $ids->toArray();
         $courses = Course::whereIn('status', ['active','in_progress'])
@@ -51,6 +59,10 @@ class CourseController extends Controller
 
     public function showCourse(Course $course)
     {
+        $this->seo()
+            ->setTitle($course->title)
+            ->setDescription($course->description)
+        ;
         return view('frontend.course.show-course-info',compact('course'));
     }
 }

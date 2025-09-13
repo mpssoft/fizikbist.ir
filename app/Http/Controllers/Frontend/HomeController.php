@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         //auth()->loginUsingId(1);
         $this->seo()
-            ->setTitle("صفحه اصلی")
+            ->setTitle("آموزش به زبان شما!")
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
             ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
