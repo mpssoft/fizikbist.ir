@@ -130,7 +130,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 mb-8" id="tricks-grid">
         @foreach($blogs as $blog)
         <!-- Trick Card 1 -->
-        <div class="trick-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden card-hover" data-category="technology" data-status="published" data-featured="true">
+        <div class="trick-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden " data-category="technology" data-status="published" data-featured="true">
             <div class="relative" style="background: url('{{$blog->cover_image}}')">
                 <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
                     <i class="fas fa-laptop-code text-white text-4xl"></i>

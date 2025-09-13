@@ -110,7 +110,7 @@
                                 <div class="flex items-center border-2 p-3 dark:bg-gray-800 border-gray-700 rounded-2xl justify-between mb-4">
                                     <div class="text-right justify-end">
 
-                                        @if(!is_null($course->discounts->where('start_at','>',now())->where('end_at','<',now())->where('is_active',1)->first()))
+                                        @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))
                                             @php
                                                 $disValue = $course->discounts->first()->value;
                                                 $disType = $course->discounts->first()->type;

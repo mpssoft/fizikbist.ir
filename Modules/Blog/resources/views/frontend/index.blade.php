@@ -45,7 +45,7 @@
 
             @foreach($blogs as $blog)
             <!-- Featured Trick 1 -->
-            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden card-hover">
+            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden ">
                 <div class="relative">
                     <div style="background:url('{{$blog->cover_image}}');background-size: 100%" class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
                         <i class="fas fa-shield-alt text-white text-4xl"></i>
@@ -107,7 +107,7 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
 
-            <a href="/tricks?category=technology" class="group bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=technology" class="group bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-laptop-code text-white text-2xl"></i>
                 </div>
@@ -115,7 +115,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">47 ترفند</p>
             </a>
 
-            <a href="/tricks?category=cooking" class="group bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=cooking" class="group bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-utensils text-white text-2xl"></i>
                 </div>
@@ -123,7 +123,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">63 ترفند</p>
             </a>
 
-            <a href="/tricks?category=health" class="group bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=health" class="group bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-heart text-white text-2xl"></i>
                 </div>
@@ -131,7 +131,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">38 ترفند</p>
             </a>
 
-            <a href="/tricks?category=home" class="group bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=home" class="group bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-home text-white text-2xl"></i>
                 </div>
@@ -139,7 +139,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">52 ترفند</p>
             </a>
 
-            <a href="/tricks?category=financial" class="group bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=financial" class="group bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-coins text-white text-2xl"></i>
                 </div>
@@ -147,7 +147,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">29 ترفند</p>
             </a>
 
-            <a href="/tricks?category=lifestyle" class="group bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 p-6 rounded-2xl text-center hover:shadow-lg transition card-hover">
+            <a href="/tricks?category=lifestyle" class="group bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
                 <div class="w-16 h-16 bg-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
                     <i class="fas fa-star text-white text-2xl"></i>
                 </div>
@@ -175,7 +175,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <!-- Recent Trick 1 -->
-            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden card-hover">
+            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden ">
                 <div class="md:flex">
                     <div class="md:w-1/3">
                         <div class="h-48 md:h-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
@@ -207,7 +207,7 @@
             </article>
 
             <!-- Recent Trick 2 -->
-            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden card-hover">
+            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden ">
                 <div class="md:flex">
                     <div class="md:w-1/3">
                         <div class="h-48 md:h-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">

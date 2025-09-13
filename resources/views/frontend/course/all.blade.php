@@ -106,7 +106,7 @@
                                         <div class="flex items-center border-2 p-3 border-gray-700 rounded-2xl justify-between mb-4">
                                             <div class="text-right justify-end">
 
-                                                @if(!is_null($course->discounts->where('start_at','>',now())->where('end_at','<',now())->where('is_active',1)->first()))
+                                                @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))
                                                     @php
                                                         $disValue = $course->discounts->first()->value;
                                                         $disType = $course->discounts->first()->type;
@@ -123,7 +123,7 @@
                                                     <div class=" font-bold text-gray-800 dark:text-slate-200 text-xl">{{number_format($course->price)}} تومان</div>
                                                 @endif
                                             </div>
-                                            @if(!is_null($course->discounts->where('start_at','>',now())->where('end_at','<',now())->where('is_active',1)->first()))
+                                            @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))
                                                 <div class="flex flex-col py-3 gap-2">
                                                     <div class="bg-red-100 dark:bg-red-900/30 text-red-600 text-center dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
                                                         {{$course->discounts->first()->value}}% تخفیف
