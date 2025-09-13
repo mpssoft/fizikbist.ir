@@ -36,7 +36,10 @@ class FileController extends Controller
 
         // Case 1: Free file
         if ($file->access_type === 'free') {
-            $file->increment('downloads');
+            if (!request()->headers->has('range')) {
+                // only increment if this is NOT a range request
+                $file->increment('downloads');
+            }
             return response()->download(
                 storage_path('app/private/files/' . basename($file->file_path)),
                 $file->title . '.' . $file->file_type
@@ -45,7 +48,10 @@ class FileController extends Controller
 
         // Case 2: Paid file
         if ($user && $user->files->contains($file->id)) {
-            $file->increment('downloads');
+            if (!request()->headers->has('range')) {
+                // only increment if this is NOT a range request
+                $file->increment('downloads');
+            }
             return response()->download(
                 storage_path('app/private/files/' . basename($file->file_path)),
                 $file->title . '.' . $file->file_type
