@@ -22,7 +22,7 @@
 @endsection
 @section("content")
         <!-- Hero Slider Section -->
-
+        @include('frontend.home.home-video')
         <!-- Home Section -->
         <section id="homeSection" class="section">
             <!-- Hero Section -->
