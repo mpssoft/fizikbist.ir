@@ -9,4 +9,5 @@ return [
     Modules\Sms\Providers\RouteServiceProvider::class,
     Modules\File\Providers\RouteServiceProvider::class,
     Modules\Splash\Providers\RouteServiceProvider::class,
+    Modules\Motion\Providers\RouteServiceProvider::class,
 ];

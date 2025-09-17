@@ -6,5 +6,6 @@
     "Sms": true,
     "Blog": false,
     "File": true,
-    "Splash": true
+    "Splash": true,
+    "Motion": true
 }

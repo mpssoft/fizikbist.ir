@@ -187,7 +187,7 @@
     }
 
     // Auto-play functionality
-    setInterval(nextSlide, 100000);
+    setInterval(nextSlide, 5000);
 
     // Touch/swipe support for mobile
     let startX = 0;

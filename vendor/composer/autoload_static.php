@@ -140,6 +140,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Shop\\Database\\Seeders\\' => 30,
             'Modules\\Shop\\Database\\Factories\\' => 32,
             'Modules\\Shop\\' => 13,
+            'Modules\\Motion\\Tests\\' => 21,
+            'Modules\\Motion\\Database\\Seeders\\' => 32,
+            'Modules\\Motion\\Database\\Factories\\' => 34,
+            'Modules\\Motion\\' => 15,
             'Modules\\File\\Tests\\' => 19,
             'Modules\\File\\Database\\Seeders\\' => 30,
             'Modules\\File\\Database\\Factories\\' => 32,
@@ -508,6 +512,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Shop\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Shop/app',
+        ),
+        'Modules\\Motion\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Motion/tests',
+        ),
+        'Modules\\Motion\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Motion/database/seeders',
+        ),
+        'Modules\\Motion\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Motion/database/factories',
+        ),
+        'Modules\\Motion\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Motion/app',
         ),
         'Modules\\File\\Tests\\' => 
         array (
@@ -4611,6 +4631,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/EventServiceProvider.php',
         'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
         'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
+        'Modules\\Motion\\Database\\Seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
+        'Modules\\Motion\\Http\\Controllers\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/MotionController.php',
+        'Modules\\Motion\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/EventServiceProvider.php',
+        'Modules\\Motion\\Providers\\MotionServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/MotionServiceProvider.php',
+        'Modules\\Motion\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
         'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
         'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',
@@ -4637,6 +4662,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Sms\\Services\\SmsService' => __DIR__ . '/../..' . '/Modules/Sms/app/Services/SmsService.php',
         'Modules\\Splash\\Database\\Seeders\\SplashDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Splash/database/seeders/SplashDatabaseSeeder.php',
         'Modules\\Splash\\Http\\Controllers\\SplashController' => __DIR__ . '/../..' . '/Modules/Splash/app/Http/Controllers/SplashController.php',
+        'Modules\\Splash\\Models\\Splash' => __DIR__ . '/../..' . '/Modules/Splash/app/Models/Splash.php',
         'Modules\\Splash\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/EventServiceProvider.php',
         'Modules\\Splash\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/RouteServiceProvider.php',
         'Modules\\Splash\\Providers\\SplashServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/SplashServiceProvider.php',

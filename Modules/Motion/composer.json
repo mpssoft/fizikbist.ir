@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/motion",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Motion\\": "app/",
+            "Modules\\Motion\\Database\\Factories\\": "database/factories/",
+            "Modules\\Motion\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Motion\\Tests\\": "tests/"
+        }
+    }
+}
