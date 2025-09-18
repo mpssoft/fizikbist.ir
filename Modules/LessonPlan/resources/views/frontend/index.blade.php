@@ -7,18 +7,6 @@
 <!-- Full-width Header (kept) -->
 <header class="relative w-full min-h-[420px] flex items-center justify-center text-white overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-indigo-700 via-sky-600 to-fuchsia-600"></div>
-    <div class="absolute inset-0 opacity-15 pointer-events-none">
-        <svg viewBox="0 0 100 100" class="w-full h-full" preserveAspectRatio="none">
-            <defs>
-                <pattern id="p-dots" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <circle cx="1.5" cy="1.5" r="1.2" fill="white"></circle>
-                </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#p-dots)"></rect>
-        </svg>
-    </div>
-    <div class="absolute -top-10 -right-10 w-48 h-48 rounded-3xl bg-white/10 blur-2xl"></div>
-    <div class="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
 
     <div class="relative z-10 text-center px-6">
         <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center shadow-lg ring-1 ring-white/20">
@@ -35,7 +23,7 @@
         <svg viewBox="0 0 1440 60" class="w-full h-full" preserveAspectRatio="none">
             <path fill="currentColor" d="M0,20 C240,60 480,0 720,30 C960,60 1200,10 1440,40 L1440,60 L0,60 Z" opacity="0.25"></path>
             <path fill="currentColor" d="M0,30 C240,60 480,10 720,40 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" opacity="0.35"></path>
-            <path fill="currentColor" d="M0,40 C240,60 480,20 720,50 C960,60 1200,10 1440,20 L1440,60 L0,60 Z"></path>
+            <path fill="#04091b" d="M0,40 C240,60 480,20 720,50 C960,60 1200,10 1440,20 L1440,60 L0,60 Z"></path>
         </svg>
     </div>
 </header>
