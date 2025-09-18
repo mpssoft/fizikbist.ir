@@ -54,15 +54,15 @@
                                                 <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
                                             </div>
                                         </a>
-                                       {{-- <a href="{{route('user.home')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
-                                            <div class="text-green-400 text-xl">
-                                                <i class="fas fa-chart-line"></i>
+                                        <a href="{{route('lesson-plan')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                            <div class="text-yellow-400 text-xl">
+                                                <i class="fas fa-file-alt"></i>
                                             </div>
                                             <div>
-                                                <p class="font-bold">پیشرفت من</p>
-                                                <p class="text-xs text-gray-300 mt-1">مسیر پیشرفت آموزشی شما</p>
+                                                <p class="font-bold"> درخواست درسنامه</p>
+                                                <p class="text-xs text-gray-300 mt-1">ایجاد درس بر اساس نیاز شما</p>
                                             </div>
-                                        </a>--}}
+                                        </a>
                                         {{-- <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                              <div class="text-yellow-400 text-xl">
                                                  <i class="fas fa-certificate"></i>

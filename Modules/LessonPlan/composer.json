@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/lessonplan",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\LessonPlan\\": "app/",
+            "Modules\\LessonPlan\\Database\\Factories\\": "database/factories/",
+            "Modules\\LessonPlan\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\LessonPlan\\Tests\\": "tests/"
+        }
+    }
+}

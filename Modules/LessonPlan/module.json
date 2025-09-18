@@ -1,0 +1,11 @@
+{
+    "name": "LessonPlan",
+    "alias": "lessonplan",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider"
+    ],
+    "files": []
+}

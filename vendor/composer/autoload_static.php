@@ -144,6 +144,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Motion\\Database\\Seeders\\' => 32,
             'Modules\\Motion\\Database\\Factories\\' => 34,
             'Modules\\Motion\\' => 15,
+            'Modules\\LessonPlan\\Tests\\' => 25,
+            'Modules\\LessonPlan\\Database\\Seeders\\' => 36,
+            'Modules\\LessonPlan\\Database\\Factories\\' => 38,
+            'Modules\\LessonPlan\\' => 19,
             'Modules\\File\\Tests\\' => 19,
             'Modules\\File\\Database\\Seeders\\' => 30,
             'Modules\\File\\Database\\Factories\\' => 32,
@@ -528,6 +532,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Motion\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Motion/app',
+        ),
+        'Modules\\LessonPlan\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/tests',
+        ),
+        'Modules\\LessonPlan\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders',
+        ),
+        'Modules\\LessonPlan\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/database/factories',
+        ),
+        'Modules\\LessonPlan\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/app',
         ),
         'Modules\\File\\Tests\\' => 
         array (
@@ -4631,8 +4651,14 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/EventServiceProvider.php',
         'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
         'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
+        'Modules\\LessonPlan\\Database\\Seeders\\LessonPlanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders/LessonPlanDatabaseSeeder.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/LessonPlanController.php',
+        'Modules\\LessonPlan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/EventServiceProvider.php',
+        'Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/LessonPlanServiceProvider.php',
+        'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/RouteServiceProvider.php',
         'Modules\\Motion\\Database\\Seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
-        'Modules\\Motion\\Http\\Controllers\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/MotionController.php',
+        'Modules\\Motion\\Http\\Controllers\\Admin\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/Admin/MotionController.php',
+        'Modules\\Motion\\Models\\Motion' => __DIR__ . '/../..' . '/Modules/Motion/app/Models/Motion.php',
         'Modules\\Motion\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/EventServiceProvider.php',
         'Modules\\Motion\\Providers\\MotionServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/MotionServiceProvider.php',
         'Modules\\Motion\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/RouteServiceProvider.php',

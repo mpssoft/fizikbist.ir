@@ -7,5 +7,6 @@
     "Blog": false,
     "File": true,
     "Splash": true,
-    "Motion": true
+    "Motion": true,
+    "LessonPlan": true
 }
