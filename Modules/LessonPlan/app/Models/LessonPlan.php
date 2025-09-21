@@ -2,9 +2,13 @@
 
 namespace Modules\LessonPlan\Models;
 
+use App\Models\Lesson;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\File\Models\File;
 
 class LessonPlan extends Model
 {
@@ -14,7 +18,10 @@ class LessonPlan extends Model
         'user_id',
         'grade_id',
         'title',
+        'price',
         'description',
+        'admin_description',
+        'delivery_time',
         'status',
     ];
 
@@ -23,13 +30,31 @@ class LessonPlan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function receipt()
+    public function orderItems()
     {
-        return $this->hasOne(Receipt::class);
+        return $this->morphMany(OrderItem::class,'item');
+    }
+    // LessonPlan.php
+
+// All lessons attached
+    public function lessons()
+    {
+        return $this->morphedByMany(Lesson::class, 'item', 'lesson_plan_items', 'lesson_plan_id', 'item_id');
     }
 
-    public function lesson()
+// All files attached
+    public function files()
     {
-        return $this->hasOne(Lesson::class);
+        return $this->morphedByMany(File::class, 'item', 'lesson_plan_items', 'lesson_plan_id', 'item_id');
     }
+
+// Optional: generic items
+    public function items()
+    {
+        return collect()
+            ->merge($this->lessons)
+            ->merge($this->files);
+
+    }
+
 }

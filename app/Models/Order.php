@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\LessonPlan\Models\LessonPlan;
 
 class Order extends Model
 {
@@ -21,5 +22,10 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function lessonPlan()
+    {
+        return $this->belongsTo(LessonPlan::class);
     }
 }

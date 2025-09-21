@@ -92,6 +92,29 @@
                 </div>
             </div>
         </div>
+        <!-- درس نامه ها -->
+        <div class="treeview-item">
+            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-file-archive text-pink-500 group-hover:text-pink-600 transition-colors duration-200 w-5"></i>
+                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">درسنامه ها</span>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
+            </button>
+            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="mr-8 mt-2 space-y-1">
+                    <a href="{{route('admin.lessonplans.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-list text-xs text-green-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">مشاهده همه</span>
+                    </a>
+                    <a href="{{route('admin.lessonplans.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-plus text-xs text-green-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">ایجاد درسنامه جدید</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <!-- موشن گرافیک -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">

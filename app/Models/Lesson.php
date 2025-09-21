@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\Discount;
 
 class Lesson extends Model
@@ -40,4 +41,11 @@ class Lesson extends Model
     {
         return $this->morphToMany(OrderItem::class,'item');
     }
+
+    public function lessonPlans()
+    {
+        return $this->morphToMany(LessonPlan::class, 'item', 'lesson_plan_items', 'item_id', 'lesson_plan_id')
+            ->withTimestamps();
+    }
+
 }

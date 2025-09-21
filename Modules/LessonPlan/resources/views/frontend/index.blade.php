@@ -71,7 +71,7 @@
                         <span class="text-xs px-2 py-1 rounded-lg bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-200">فرم</span>
                     </div>
                     <h3 class="mt-2 font-extrabold text-lg">ارسال درخواست درسنامه</h3>
-                    <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">پرکردن فرم با موضوع، سطح و مهلت پیشنهادی.</p>
+                    <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">پرکردن فرم با موضوع، سطح/پایه تحصیلی.</p>
                 </li>
 
                 <!-- Step 2 -->
@@ -154,7 +154,7 @@
             </div>
 @else
             <!-- Actual form (hidden when not logged in) -->
-            <form id="theForm" action="#" method="post" class="grid grid-cols-1 gap-5">
+            <form id="lessonPlanForm" action="#" method="post" class="grid grid-cols-1 gap-5" >
                 <div class="grid sm:grid-cols-2 gap-5">
                     <div>
                         <label class="block font-semibold mb-2" for="name">نام و نام خانوادگی</label>
@@ -172,12 +172,12 @@
                 <div class="grid sm:grid-cols-2 gap-5">
                     <div>
                         <label class="block font-semibold mb-2" for="subject">درس و مبحث</label>
-                        <input id="subject" name="subject" type="text" required placeholder="مثلاً: فیزیک، حرکت‌شناسی"
+                        <input id="subject" name="title" type="text" required placeholder="مثلاً: فیزیک، حرکت‌شناسی"
                                class="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 px-4 py-3">
                     </div>
                     <div>
                         <label class="block font-semibold mb-2" for="level">پایه/سطح</label>
-                        <select id="level" name="level"
+                        <select id="level" name="grade_id"
                                 class="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 px-4 py-3">
                            @foreach(\App\Models\Grade::all() as $grade)
                                 <option value="{{$grade->id}}">{{$grade->name}}</option>
@@ -185,7 +185,6 @@
                         </select>
                     </div>
                 </div>
-
 
 
                 <div>
@@ -196,14 +195,32 @@
 
 
                 <div class="flex items-center gap-3 pt-2">
-                    <button type="submit" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition">
+                    <button id="btn-send" type="submit" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition">
                         <span class="fas fa-check"></span>
                         ارسال درخواست
+                        <span class=" fas fa-spin fa-spinner !hidden"></span>
                     </button>
 
                 </div>
             </form>
+                <div id="message-box" class="hidden rounded-xl border border-green-300 dark:border-green-800 bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-200 p-4 flex items-center justify-between">
+                <div  class="flex items-center gap-3 ">
+                    <span class="w-8 h-8 rounded-lg bg-green-200/70 dark:bg-green-800/60 text-green-900 dark:text-green-100 flex items-center justify-center font-bold fas fa-check pt-2 pr-2"></span>
+                    <div class="space-y-0.5">
 
+                        <div class="text-xs text-green-700/90 dark:text-green-300/80" id="message">برای ارسال درخواست، ابتدا وارد حساب شوید.</div>
+                    </div>
+                </div>
+                </div>
+                <div id="error-messages" class="hidden rounded-xl border border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-900/20 text-rose-900 dark:text-rose-200 p-4 flex items-center justify-between">
+                <div  class="flex items-center gap-3 ">
+                    <span class="w-8 h-8 rounded-lg bg-rose-200/70 dark:bg-rose-800/60 text-rose-900 dark:text-rose-100 flex items-center justify-center font-bold fas fa-check pt-2 pr-2"></span>
+                    <div class="space-y-0.5">
+
+                        <div class="text-xs text-rose-700/90 dark:text-rose-300/80" id="error-message">برای ارسال درخواست، ابتدا وارد حساب شوید.</div>
+                    </div>
+                </div>
+                </div>
     @endif
         </div>
     </section>
@@ -211,3 +228,72 @@
 
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('lessonPlanForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // stop normal form submit
+
+            let formData = new FormData(this);
+
+            let btnsend = document.getElementById('btn-send');
+            let spinner = btnsend.querySelector('.fa-spin');
+            document.getElementById('error-messages').classList.add('hidden')
+            spinner.classList.remove('!hidden');
+            try {
+                let response = await fetch('/lesson-plan/create', {
+                    method: 'POST',
+                    headers: {
+                        //"Content-Type": "application/json",   // tell Laravel it's JSON
+                        "Accept": "application/json",         // expect JSON response
+                        'X-CSRF-TOKEN':  "{{ csrf_token() }}"
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    let errorData = await response.json();
+                    const errors = errorData.errors; // Object: { title: [...], description: [...] }
+
+                    // Get the container
+                    const container = document.getElementById('error-messages');
+                    const messageDiv = container.querySelector('#error-message');
+
+                    // Clear previous messages
+                    messageDiv.innerHTML = '';
+
+                    // Combine all error messages into a single string
+                    const allMessages = [];
+                    for (let field in errors) {
+                        errors[field].forEach(msg => allMessages.push(msg));
+                    }
+
+                    // Insert messages into the container
+                    messageDiv.innerHTML = allMessages.join('<br>');
+
+                    // Show the container
+                    container.classList.remove('hidden');
+                    spinner.classList.add('!hidden')
+                    return; // stop further processing
+                }
+                let data = await response.json();
+
+                if (data.ok) {
+                        document.getElementById('message-box').classList.remove('hidden');
+                        document.getElementById('lessonPlanForm').classList.add('hidden');
+                        document.getElementById('message').textContent = data.message ;
+                    spinner.classList.add('!hidden');
+
+                } else {
+                    alert("Error: " + data.message);
+                    spinner.classList.add('!hidden');
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                spinner.classList.add('!hidden');
+            }
+        });
+
+
+    </script>
+@endpush

@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(base_path('Modules/File/resources/views'), 'file');
         $this->loadViewsFrom(base_path('Modules/Splash/resources/views'), 'splash');
         $this->loadViewsFrom(base_path('Modules/Motion/resources/views'), 'motion');
-        $this->loadViewsFrom(base_path('Modules/LessonPlan/resources/views'), 'lesson_plan');
+        $this->loadViewsFrom(base_path('Modules/LessonPlan/resources/views'), 'lessonplan');
         Notification::extend('raygansms', function ($app) {
             return new RayganSmsChannel();
         });

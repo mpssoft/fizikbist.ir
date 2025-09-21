@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Modules\File\Models\File;
+use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
 use Modules\Shop\Models\Discount;
 
@@ -113,5 +114,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(File::class, 'file_user')
             ->withTimestamps();
+    }
+    public function lessonPlans()
+    {
+        return $this->hasMany(LessonPlan::class);
     }
 }

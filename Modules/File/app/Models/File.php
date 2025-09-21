@@ -3,6 +3,7 @@
 namespace Modules\File\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\LessonPlan\Models\LessonPlan;
 
 class File extends Model
 {
@@ -22,6 +23,11 @@ class File extends Model
     public function users()
     {
         return $this->belongsToMany(\App\Models\User::class, 'file_user')
+            ->withTimestamps();
+    }
+    public function lessonPlans()
+    {
+        return $this->morphToMany(LessonPlan::class, 'item', 'lesson_plan_items', 'item_id', 'lesson_plan_id')
             ->withTimestamps();
     }
 
