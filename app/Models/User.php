@@ -115,7 +115,7 @@ class User extends Authenticatable
         return $this->belongsToMany(File::class, 'file_user')
             ->withTimestamps();
     }
-    public function lessonPlans()
+    public function lessonplans()
     {
         return $this->hasMany(LessonPlan::class);
     }

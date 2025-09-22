@@ -337,7 +337,7 @@
             $(document).ready(function(){
             fetchCart();
         });
-            function addToCart(model,id)
+            function addToCart(model,id,cart=false)
             {
                 let btn = document.getElementById('btn-'+id);
                 let spinner = btn.querySelector('.spinner-'+id);
@@ -358,6 +358,9 @@
                 .then(data => {
                     if (window.location.pathname === "/cart") {
                         window.location.reload();
+                    }
+                    if (cart) {
+                        window.location.href = "/cart";
                     }
                     if (data.success) {
 

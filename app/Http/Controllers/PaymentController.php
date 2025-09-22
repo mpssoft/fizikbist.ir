@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\LessonPlanPaidNotification;
 use App\Notifications\NotifyUserLicense;
 use App\Notifications\SendOtpSms;
 use App\Services\SpotPlayerService;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\File\Models\File;
+use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
 use function PHPUnit\Framework\isEmpty;
 
@@ -55,10 +57,7 @@ use function PHPUnit\Framework\isEmpty;
             return redirect()->route('shop.cart.index');
         }
 
-        // Calculate total price
-        //$totalPrice = $cart->sum(fn($item) => $item['price'] ?? 0);
-        // Calculate total price with discounts
-        // Calculate total price with discounts
+
         $totalPrice = $cart->sum(function ($item) {
             $i = json_decode($item->discount,true);
             $price = $item['price'] ?? 0;
@@ -168,7 +167,12 @@ use function PHPUnit\Framework\isEmpty;
         }elseif($this->file) {
             return redirect(route('user.files.index'))->with([
                 'file' => true,
-                'message' => 'پرداخت برای فایل های مورد نظر با موفقیت انجام شد.'
+                'message' => 'پرداخت با موفقیت انجام شد.'
+            ]);
+        }elseif($this->lessonplan) {
+            return redirect(route('user.lessonplans.index'))->with([
+                'lessonplan' => true,
+                'message' => 'پرداخت با موفقیت انجام شد.'
             ]);
         }else{
             return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
@@ -188,17 +192,19 @@ use function PHPUnit\Framework\isEmpty;
             Log::info("Reached paymentSuccess for order {$order->id}");
             $licenses=[];
             $this->file = false;
+            $this->lessonplan = false;
             foreach ($order->items as $item) {
                 $model = $item->item; // e.g., Course, Product, etc.
                 Log::info("model  is: ". $model->title);
                 // Attach course to user
                 if ($model instanceof \App\Models\Course) {
                     $user->courses()->syncWithoutDetaching([$model->id]);
-                    Log::info("Attached course {$model->id} to user {$user->id}");
-                }elseif($model instanceof File) {
-                    $user->files()->syncWithoutDetaching([$model->id]);
-                    $this->file = true;
-                    Log::info("Attached files {$model->id} to user {$user->id}");
+                    //Log::info("Attached course {$model->id} to user {$user->id}");
+                }elseif($model instanceof LessonPlan) {
+                    $model->update([
+                        'status' => 'paid'
+                    ]);
+                    $this->lessonplan = true;
                 }
 
                 // Generate SpotPlayer license if available
@@ -214,10 +220,12 @@ use function PHPUnit\Framework\isEmpty;
             CartItem::where('user_id', auth()->id())->delete();
             Cookie::queue(Cookie::forget('shop_cart'));
             // send sms
-            // ارسال پیامک
-            if(!is_null($licenses)) {
+              // ارسال پیامک
+
+            if (!empty($licenses)) {
+
                 $channel = new MelipayamakChannel();
-                $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course']));
+                $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course'] ?? 'درس مورد نظر'));
 
                 if ($response['StrRetStatus'] == "Ok") {
                     if($this->file) {
@@ -240,6 +248,17 @@ use function PHPUnit\Framework\isEmpty;
                 return redirect(route('user.files.index'))->with([
                     'file' => true,
                     'message' => 'پرداخت برای فایل های مورد نظر یا موفقیت انجام شد.'
+                ]);
+            }elseif($this->lessonplan){
+                Log::info('got lesson class: ');
+                $model = $order->items()->first()->item_type;
+                $lessonplan = $model::find($order->items()->first()->item_id);
+
+                $channel = new MelipayamakChannel();
+                $response = $channel->send(auth()->user(), new LessonPlanPaidNotification(auth()->user()->mobile, $lessonplan->title));
+                return redirect(route('user.lessonplans.index'))->with([
+                    'lessonplan' => true,
+                    'message' => 'پرداخت با موفقیت انجام شد.'
                 ]);
             }
         } catch (\Exception $e) {

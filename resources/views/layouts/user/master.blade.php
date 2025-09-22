@@ -116,7 +116,7 @@
         fetchCart();
     });
 
-    function addToCart(model,id) {
+    function addToCart(model,id,cart) {
         let btn = document.getElementById('btn-' + id);
         let spinner = btn.querySelector('.spinner-' + id);
 
@@ -134,6 +134,9 @@
         })
             .then(res => res.json())
             .then(data => {
+                if(cart){
+                    window.location.href = "/cart";
+                }
                 if (window.location.pathname === "/cart") {
                     window.location.reload();
                 }
@@ -170,7 +173,7 @@
                     toast: true,
                     position: 'top-end',
                     icon: 'error',
-                    title: "Server error!",
+                    title: "Server error!" + data,
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -300,6 +303,8 @@
                 `;
         }, 1000);
     });
+
+
 </script>
 
 </body>

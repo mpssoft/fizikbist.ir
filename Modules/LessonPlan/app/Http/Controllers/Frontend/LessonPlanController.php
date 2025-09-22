@@ -14,6 +14,8 @@ class LessonPlanController extends Controller
      */
     public function index()
     {
+        if(!Auth::check())
+            session(['url.intended' => url()->previous()]);
         return view('lessonplan::frontend.index');
     }
 
@@ -39,7 +41,7 @@ class LessonPlanController extends Controller
 
         // TODO inform admin with sms/email
 
-        return response()->json(['ok'=>true,'message'=>'درخواست درسنامه با موفقیت ثبت شد. بزودی از طرف فیزیک بیست با شما تماس گرفته خواهد شد. بسیار تشکر از اعتماد شما به فیزیک بیست']);
+        return response()->json(['ok'=>true,'message'=>'درخواست درسنامه با موفقیت ثبت شد. برای پیگیری از پنل کاربری بخش درسنامه های می توانید اقدام کنید. بسیار تشکر از اعتماد شما به فیزیک بیست.']);
     }
 
 }

@@ -28,6 +28,7 @@
     <!-- Home Section -->
     <section id="homeSection" class="section">
         <!-- Hero Section -->
+        <!-- Hero Section -->
         <div
             class="{{is_tv()?'bg-gray-300 dark:bg-slate-800':'gradient-bg hero-pattern'}} text-white py-20 relative overflow-hidden">
             <div class="absolute inset-0 bg-black bg-opacity-20"></div>

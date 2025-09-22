@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Modules\File\Models\File;
+use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Services\CartService;
 use Modules\Shop\Models\Discount;
 
@@ -60,6 +61,7 @@ class CartController extends Controller
             'course'  => Course::class,
             'lesson'  => Lesson::class,
             'file'  => File::class,
+            'lessonplan'  => LessonPlan::class,
         ];
 
         if (!isset($modelClasses[$model])) {

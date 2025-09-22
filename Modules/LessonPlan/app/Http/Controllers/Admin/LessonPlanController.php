@@ -4,6 +4,10 @@ namespace Modules\LessonPlan\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
+use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\LessonPlanAcceptedNotification;
+use App\Notifications\LessonPlanPaidNotification;
+use App\Notifications\LessonPlanReadyNotification;
 use Illuminate\Http\Request;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
@@ -63,7 +67,15 @@ class LessonPlanController extends Controller
             'status'      => 'nullable|in:pending,accepted,rejected,paid,in_progress,ready',
             'admin_description' => 'nullable|string',
         ]);
-
+        if($validated['status'] == 'ready'){
+            // inform user with sms
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new LessonPlanReadyNotification(auth()->user()->mobile, $lessonPlan->title));
+        }elseif($validated['status'] == 'accepted'){
+            // inform user with sms
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new LessonPlanAcceptedNotification(auth()->user()->mobile, $lessonPlan->title));
+        }
         // Update the lesson plan
         $lessonplan->update($validated);
 
@@ -93,7 +105,15 @@ class LessonPlanController extends Controller
         $validated = $request->validate([
             'status'=> 'required|in:pending,accepted,rejected,paid,in_progress,ready'
         ]);
-
+        if($validated['status'] == 'ready'){
+            // inform user with sms
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new LessonPlanReadyNotification(auth()->user()->mobile, $lessonPlan->title));
+        }elseif($validated['status'] == 'accepted'){
+            // inform user with sms
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new LessonPlanAcceptedNotification(auth()->user()->mobile, $lessonPlan->title));
+        }
         $lessonPlan->update($validated);
         return redirect()->route('admin.lessonplans.index');
     }

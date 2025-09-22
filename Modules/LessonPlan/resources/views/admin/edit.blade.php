@@ -153,7 +153,7 @@
                     <div class="space-y-3" id="currentFiles">
                         <ul id="attached-items">
                             @foreach($lessonplan->items() as $item)
-                                <li data-id="{{ $item->id }}" data-type="{{ class_basename($item) }}" data-title="{{ class_basename($item->title) }}"
+                                <li data-id="{{ $item->id }}" data-type="{{ class_basename($item) }}" data-title="{{ $item->title }}"
                                     class="flex items-center mb-2 justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
                                 >
 

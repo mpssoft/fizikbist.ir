@@ -109,7 +109,7 @@
                                 <span class="w-2 h-2 rounded-full bg-amber-500"></span>
                                 <span class="text-slate-600 dark:text-slate-400">وضعیت:</span>
                                 @php
-                                $pay = ['pending' => ' در انتظار بررسی','accepted'=>'تایید اولیه','rejected'=>'رد شده','in_progress'=>'در حال آماده سازی','ready'=>'آمارده ارائه ','paid'=>'پرداخت شده']
+                                $pay = ['pending' => ' در انتظار بررسی','accepted'=>'تایید اولیه','rejected'=>'رد شده','in_progress'=>'در حال آماده سازی','ready'=>' تحویل شده ','paid'=>'پرداخت شده']
                              @endphp
                                 <span class="font-medium text-amber-600">{{$pay[$lp->status]}}</span>
                             </div>
@@ -177,12 +177,12 @@
                                 <a href="{{route('admin.lessonplans.edit',$lp->id)}}#add-file" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium transition">افزودن فایل/درس</a>
                             @elseif($lp->status == 'in_progress')
                                 <a href="{{route('admin.lessonplans.edit',$lp->id)}}#add-file" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium transition">افزودن فایل/درس</a>
+
                                 <form method="post" action="{{route('admin.lessonplans.changeStatus',['lessonPlan'=>$lp->id,'status'=>'ready'])}}">
                                     @method('put')
                                     @csrf
-                                    <button class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition">تحویل به کاربر</button>
+                                    <button class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition">تحویل و اطلاع به کاربر</button>
                                 </form>
-
                             @elseif($lp->status == 'rejected')
                                 <form method="post" action="{{route('admin.lessonplans.changeStatus',['lessonPlan'=>$lp->id,'status'=>'accepted'])}}">
                                     @method('put')

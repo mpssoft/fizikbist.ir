@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\File\Models\File;
+use Modules\Shop\Models\Discount;
 
 class LessonPlan extends Model
 {
@@ -56,5 +57,8 @@ class LessonPlan extends Model
             ->merge($this->files);
 
     }
-
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
+    }
 }
