@@ -26,7 +26,8 @@ class Course extends Model
         'teacher_id',
         'grade_id',
         'spotplayer_id',
-        'lang'
+        'lang',
+        'tags',
     ];
 
     // The teacher of this course (one teacher per course)

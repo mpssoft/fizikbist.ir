@@ -47,7 +47,7 @@ class LessonPlanAcceptedNotification extends Notification
     {
         return [
             'to' => $this->mobile,
-            'bodyId' => 371275,
+            'bodyId' => 371312,
             'text' => "$notifiable->name;$this->lessonplan"
         ];
     }

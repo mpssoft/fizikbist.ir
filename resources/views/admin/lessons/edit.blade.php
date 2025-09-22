@@ -312,66 +312,7 @@
                         </div>
                     </div>
 
-                {{--    <!-- Statistics Section (Read-only) -->
-                    <div class="border-b border-gray-200 dark:border-gray-700 pb-8">
-                        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                            آمار درس
-                        </h2>
 
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm text-blue-600 dark:text-blue-400">تعداد بازدید</p>
-                                        <p class="text-2xl font-bold text-blue-900 dark:text-blue-100">{{number_format($lesson->view ?? 0)}}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm text-red-600 dark:text-red-400">تعداد لایک</p>
-                                        <p class="text-2xl font-bold text-red-900 dark:text-red-100">{{number_format($lesson->like ?? 0)}}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm text-green-600 dark:text-green-400">نظرات</p>
-                                        <p class="text-2xl font-bold text-green-900 dark:text-green-100">{{number_format($lesson->comments ?? 0)}}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm text-purple-600 dark:text-purple-400">میانگین تماشا</p>
-                                        <p class="text-2xl font-bold text-purple-900 dark:text-purple-100">{{$lesson->avg_watch_time ?? 0}} دقیقه</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
---}}
                     <!-- Form Actions -->
                     <div class="flex items-center justify-between pt-6">
                         <div class="flex items-center gap-4">

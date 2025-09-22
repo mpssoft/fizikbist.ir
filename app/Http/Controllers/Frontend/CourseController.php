@@ -13,6 +13,7 @@ class CourseController extends Controller
     {
         $this->seo()
             ->setTitle("دوره های آموزشی دروس فیزیک")
+
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
         ;
         $activeCourses = Course::where("status","active")->get();
@@ -61,6 +62,7 @@ class CourseController extends Controller
     {
         $this->seo()
             ->setTitle($course->title)
+            ->metatags()->setKeywords($course->tags)
             ->setDescription($course->description)
         ;
         return view('frontend.course.show-course-info',compact('course'));

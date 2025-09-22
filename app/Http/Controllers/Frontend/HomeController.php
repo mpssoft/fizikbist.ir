@@ -32,7 +32,9 @@ class HomeController extends Controller
         $this->seo()
             ->setTitle($lesson->title)
             ->setDescription($lesson->description)
-            ->addImages($lesson->thumbnail);
+            ->addImages($lesson->thumbnail)
+            ->metatags()->setKeywords($lesson->tags)
+        ;
         $lesson->increment('view');
         return view('frontend.player.play',compact('lesson'));
     }
