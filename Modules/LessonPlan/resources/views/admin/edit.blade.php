@@ -169,7 +169,7 @@
                     <!-- Search Input -->
                     <input type="text" id="search-item"
                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                           placeholder="Search Lessons or Files..."
+                           placeholder="جستجوی درس یا فایل ..."
                            autocomplete="off"
                            autocapitalize="off"
                            spellcheck="false"

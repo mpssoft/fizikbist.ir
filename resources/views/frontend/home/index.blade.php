@@ -287,7 +287,7 @@
                                 {{$course->title}}
                             </h3>
                             <div
-                                class="absolute top-4 left-0 bg-white/90  {{$course->lang == 'fa'? 'dark:bg-amber-400':'dark:bg-sky-500'}}  text-white   rounded-r-full px-3 py-1 dark:shadow-black dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)] border-2 border-gray-100 border-l-0  text-xl ">
+                                class="absolute top-14 left-0 bg-white/90  {{$course->lang == 'fa'? 'dark:bg-amber-400':'dark:bg-sky-500'}}  text-white   rounded-r-full px-3 py-1 dark:shadow-black dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)] border-2 border-gray-100 border-l-0  text-xl ">
                                 {{ $course->lang == 'tr' ? 'زبان ترکی':'زبان فارسی' }}
                             </div>
                             <!-- Course Stats -->
@@ -365,52 +365,52 @@
                                 @else
                                     <!-- Paid Course Actions -->
                                     <div class=" " id="paid-course">
-                                        <div
-                                            class="flex items-center border-2 p-3 border-gray-700 rounded-2xl justify-between mb-4">
-                                            <div class="text-right justify-end">
-
-                                                @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))
-                                                    @php
-                                                        $disValue = $course->discounts->first()->value;
-                                                        $disType = $course->discounts->first()->type;
-                                                        if($disType == 'percent'){
-                                                            $dis  = $course->price * ($disValue/100);
-                                                        }else{
-                                                            $dis = $course->price - $disValue;
-                                                        }
-                                                    @endphp
-                                                    <div
-                                                        class="text-sm text-gray-500 dark:text-slate-400 line-through">{{number_format($course->price)}}
-                                                        تومان
-                                                    </div>
-                                                    <div
-                                                        class="  font-bold text-gray-800 dark:text-slate-200 text-xl ">{{number_format($course->price-$dis)}}
-                                                        تومان
-                                                    </div>
-
-                                                @else
-                                                    <div
-                                                        class=" font-bold text-gray-800 dark:text-slate-200 text-xl">{{number_format($course->price)}}
-                                                        تومان
-                                                    </div>
-                                                @endif
-                                            </div>
+                                        <!-- Price and Discount Section -->
+                                        <div class="flex items-center justify-between mb-6 border-2 border-gray-600 p-5 rounded-2xl">
+                                            <div class="flex flex-col  w-full">
                                             @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))
-                                                <div class="flex flex-col py-3 gap-2">
-                                                    <div
-                                                        class="bg-red-100 dark:bg-red-900/30 text-red-600 text-center dark:text-red-400 px-2 py-1 rounded-lg text-sm font-medium">
-                                                        {{$course->discounts->first()->value}}% تخفیف
+                                                @php
+                                                    $disValue = $course->discounts->first()->value;
+                                                    $disType = $course->discounts->first()->type;
+                                                    if($disType == 'percent'){
+                                                    $dis  = $course->price * ($disValue/100);
+                                                    }else{
+                                                    $dis = $course->price - $disValue;
+                                                    }
+                                                @endphp
+                                                <div class="flex justify-between  items-center">
+                                                <div class="flex flex-col text-right">
+                                                    <div class="text-center text-sm text-gray-500 dark:text-slate-400 line-through mb-1">
+                                                        {{number_format($course->price)}} تومان
                                                     </div>
-                                                    <!-- Countdown -->
-                                                    <div
-                                                        class="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-white px-2 py-2 pb-1 rounded-xl flex items-center gap-3 shadow-2xl w-fit "
-                                                        data-expire="{{ $course->discounts->first()->end_at }}"
-                                                        id="countdown-{{ $course->id }}">
-                                                        Loading timer...
+                                                    <div class="font-bold text-gray-800 dark:text-slate-200 text-2xl">
+                                                        {{number_format($course->price-$dis)}} تومان
                                                     </div>
                                                 </div>
+                                                <!-- Discount Badge -->
+                                                <div class="flex bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-4 py-2 rounded-xl text-lg font-bold shadow-sm">
+                                                    {{$course->discounts->first()->value}}%  تخفیف
+                                                </div>
+                                                </div>
+                                                <!-- Countdown -->
+                                                <div
+                                                    class="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 justify-center mt-5 text-white p-4 rounded-xl  flex items-center gap-3 shadow-2xl w-full "
+                                                    data-expire="{{ $course->discounts->first()->end_at }}"
+                                                    id="countdown-{{ $course->id }}">
+                                                    Loading timer...
+                                                </div>
+                                            @else
+                                                <!-- Price Section -->
+                                                <div class="text-right">
+                                                    <div class="font-bold text-gray-800 dark:text-slate-200 text-2xl">
+                                                        {{number_format($course->price)}} تومان
+                                                    </div>
+                                                </div>
+
                                             @endif
+                                            </div>
                                         </div>
+
 
                                         <div class="flex justify-between gap-3">
                                             <button id="btn-{{$course->id}}"

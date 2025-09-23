@@ -116,7 +116,7 @@
                             <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-slate-400"></span>
                                 <span class="text-slate-600 dark:text-slate-400">هزینه:</span>
-                                <span class="text-xs ">{{$lp->price == 0 ? 'تعیین نشده':number_format($lp->price)}}</span>
+                                <span class="text-xs ">{{$lp->price == 0 ? 'تعیین نشده':number_format($lp->price). ' تومان '}} </span>
                             </div>
                         </div>
                     </div>

@@ -67,15 +67,15 @@ class LessonPlanController extends Controller
             'status'      => 'nullable|in:pending,accepted,rejected,paid,in_progress,ready',
             'admin_description' => 'nullable|string',
         ]);
-        if($validated['status'] == 'ready'){
+        /*if($validated['status'] == 'ready'){
             // inform user with sms
             $channel = new MelipayamakChannel();
-            $response = $channel->send(auth()->user(), new LessonPlanReadyNotification(auth()->user()->mobile, $lessonplan->title));
+            $response = $channel->send(auth()->user(), new LessonPlanReadyNotification($lessonplan->user->mobile, $lessonplan->title));
         }elseif($validated['status'] == 'accepted'){
             // inform user with sms
             $channel = new MelipayamakChannel();
-            $response = $channel->send(auth()->user(), new LessonPlanAcceptedNotification(auth()->user()->mobile, $lessonplan->title));
-        }
+            $response = $channel->send(auth()->user(), new LessonPlanAcceptedNotification($lessonplan->user->mobile, $lessonplan->title));
+        }*/
         // Update the lesson plan
         $lessonplan->update($validated);
 
