@@ -72,35 +72,48 @@
 
         <!-- Teacher Introduction -->
         <div class="  max-w-7xl mx-auto px-4 py-16">
-            <div class="dark:bg-slate-400 rounded-2xl shadow-xl p-8 md:p-12">
+            <!-- Teacher Introduction Section -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors duration-300">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Content Section -->
                     <div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">معرفی استاد</h2>
-                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 transition-colors duration-300">
+                            معرفی استاد
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6 transition-colors duration-300">
                             استاد حسین نژاداسد با بیش از ۱۰ سال تجربه در تدریس فیزیک و تخصص در روش‌های نوین آموزش،
                             آماده است تا شما را در مسیر تسلط بر فیزیک و کسب نتایج عالی در کنکور همراهی کند.
                         </p>
                         <div class="space-y-3">
                             <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 ml-3"></i>
-                                <span>کارشناسی ارشد فیزیک</span>
+                                <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                                <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">کارشناسی ارشد فیزیک</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 ml-3"></i>
-                                <span>بیش از ۱۰ سال تجربه تدریس</span>
+                                <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                                <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">بیش از ۱۰ سال تجربه تدریس</span>
                             </div>
+
                         </div>
                     </div>
+
+                    <!-- Profile Section -->
                     <div class="text-center">
-                        <div
-                            class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white text-6xl tv-optimized-text-shadow">
+                        <div class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 via-blue-500 to-indigo-600 dark:from-purple-500 dark:via-blue-600 dark:to-indigo-700 rounded-full flex items-center justify-center text-white text-6xl tv-optimized-text-shadow shadow-2xl transition-all duration-300 hover:scale-105">
                             <i class="fas fa-user-tie"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mt-4 text-gray-800">استاد حسین نژاداسد</h3>
-                        <p class="text-gray-600">دبیر فیزیک</p>
+                        <h3 class="text-xl font-semibold mt-6 text-gray-800 dark:text-white transition-colors duration-300">
+                            استاد حسین نژاداسد
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 transition-colors duration-300 mb-4">
+                            دبیر فیزیک
+                        </p>
+
+
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
