@@ -19,9 +19,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/r',function(){
-    Artisan::call('route:list');
-    echo "<pre>";
-    echo Artisan::output();
+    //Artisan::call('route:list');
+    //echo "<pre>";
+   // echo Artisan::output();
 });
 
 Route::get('/spot/{order}/{spot}',[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);

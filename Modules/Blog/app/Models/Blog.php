@@ -24,6 +24,10 @@ class Blog extends Model
         'tags',
         'status',
     ];
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'blog_category', 'blog_id', 'category_id');
+    }
 
     // protected static function newFactory(): BlogFactory
     // {

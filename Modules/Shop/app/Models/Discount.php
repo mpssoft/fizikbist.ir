@@ -41,6 +41,7 @@ class Discount extends Model
     {
         return $this->morphedByMany(File::class, 'discountable');
     }
+
     public function users()
     {
         return $this->morphedByMany(User::class,'discountable');

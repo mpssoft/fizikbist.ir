@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:page="https://fizikbist.ir/sitemap/page">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://fizikbist.ir/</loc>
+        <page:title>فیزیک بیست – آموزش به زبان شما</page:title>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/homepage-main.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <!-- Courses Overview -->
+    <url>
+        <loc>https://fizikbist.ir/course/all</loc>
+        <page:title>دوره‌های آموزشی</page:title>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <!-- Course Pages -->
+    <url>
+        <loc>https://fizikbist.ir/course/tadakhol-11-tr</loc>
+        <page:title>تداخل یازدهم (زبان ترکی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/tadakhol11.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/tadakhol-10-tr</loc>
+        <page:title>تداخل دهم (زبان ترکی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/tadakhol10.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/physics-11-free-tr</loc>
+        <page:title>آموزش‌های رایگان فیزیک یازدهم (زبان ترکی)</page:title>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/free11.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/physics-12-free-tr</loc>
+        <page:title>آموزش‌های رایگان فیزیک دوازدهم (زبان ترکی)</page:title>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/free12.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/lab1-fa</loc>
+        <page:title>آزمایشگاه علوم تجربی 1 (فارسی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/lab1.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/lab2-fa</loc>
+        <page:title>آزمایشگاه علوم تجربی 2 (فارسی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/lab2.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/physics-10-tr</loc>
+        <page:title>آموزش مفهومی فیزیک دهم (زبان ترکی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/phy10tr.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/course/physics-10-fa</loc>
+        <page:title>آموزش کامل و مفهومی فیزیک دهم (فارسی)</page:title>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/courses/phy10fa.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <!-- Free Lessons / Videos -->
+    <url>
+        <loc>https://fizikbist.ir/video/lab2-lesson1</loc>
+        <page:title>درس‌های رایگان – آزمایشگاه علوم تجربی 2</page:title>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/videos/lab2-lesson1.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/video/physics11-activity1-9</loc>
+        <page:title>پاسخ فعالیت ۱-۹ فیزیک یازدهم (ترکی)</page:title>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/videos/phy11-1-9.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/video/physics10-exercise1-1</loc>
+        <page:title>تمرین ۱-۱ فیزیک دهم (ترکی)</page:title>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/videos/phy10-1-1.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <!-- About -->
+    <url>
+        <loc>https://fizikbist.ir/about</loc>
+        <page:title>معرفی استاد حسین نژاداسد</page:title>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://fizikbist.ir/assets/about/teacher.jpg</image:loc>
+        </image:image>
+    </url>
+
+    <!-- User Account -->
+    <url>
+        <loc>https://fizikbist.ir/login</loc>
+        <page:title>ورود به حساب کاربری</page:title>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/register</loc>
+        <page:title>ثبت نام</page:title>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://fizikbist.ir/dashboard</loc>
+        <page:title>پنل کاربری</page:title>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- FAQ -->
+    <url>
+        <loc>https://fizikbist.ir/faq</loc>
+        <page:title>پرسش و پاسخ‌ها</page:title>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Useful Links -->
+    <url>
+        <loc>https://fizikbist.ir/links</loc>
+        <page:title>لینک‌های مفید</page:title>
+        <priority>0.4</priority>
+    </url>
+
+</urlset>

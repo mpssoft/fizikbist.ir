@@ -335,7 +335,7 @@
 
             <!-- Courses Section -->
             <div class="space-y-2">
-                <a href="{{ route('all.courses') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                <a href="{{ route('all.courses',['p'=>'همه دوره های آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                     <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
                         <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
                             <i class="fas fa-book text-white text-sm"></i>
@@ -354,7 +354,7 @@
                     @endforeach
                 </div>
             </div>
-            <a href="{{ route('files') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+            <a href="{{ route('files',['p'=>'فایل و جزوه آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
                     <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
                         <i class="fas fa-file-archive text-white text-sm"></i>

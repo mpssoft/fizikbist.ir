@@ -11,4 +11,5 @@ return [
     Modules\Splash\Providers\RouteServiceProvider::class,
     Modules\Motion\Providers\RouteServiceProvider::class,
     Modules\LessonPlan\Providers\RouteServiceProvider::class,
+    Modules\Blog\Providers\RouteServiceProvider::class,
 ];

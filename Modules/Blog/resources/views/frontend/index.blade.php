@@ -10,19 +10,19 @@
             <i class="fas fa-magic text-6xl text-white mb-6 opacity-80"></i>
         </div>
         <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-            خانه ترفندهای کاربردی
+            خانه مقالات کاربردی
         </h1>
         <p class="text-xl md:text-2xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
-            مجموعه‌ای از بهترین ترفندهای زندگی، تکنولوژی، آشپزی و سلامت برای بهبود کیفیت زندگی شما
+            مجموعه‌ای از بهترین مقالات زندگی، تکنولوژی، آشپزی و سلامت برای بهبود کیفیت زندگی شما
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#tricks" class="px-8 py-4 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition font-medium text-lg">
                 <i class="fas fa-arrow-down ml-2"></i>
-                مشاهده ترفندها
+                مشاهده مقالات
             </a>
             <a href="/tricks/create" class="px-8 py-4 bg-white/20 text-white border-2 border-white rounded-lg hover:bg-white/30 transition font-medium text-lg">
                 <i class="fas fa-plus ml-2"></i>
-                اضافه کردن ترفند
+                اضافه کردن مقاله
             </a>
         </div>
     </div>
@@ -34,10 +34,10 @@
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 <i class="fas fa-star text-yellow-500 ml-3"></i>
-                آخرین ترفندها
+                آخرین مقالات
             </h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                محبوب‌ترین و کاربردی‌ترین ترفندهایی در فیزیک بیست بیابید
+                محبوب‌ترین و کاربردی‌ترین مقالاتی در فیزیک بیست بیابید
             </p>
         </div>
 
@@ -73,8 +73,8 @@
                             ۲ روز پیش
                         </div>
                     </div>--}}
-                    <a href="" class="block w-full text-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
-                        مطالعه ترفند
+                    <a href="{{route('article.show',$blog->id)}}" class="block w-full text-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
+                        مطالعه مقاله
                         <i class="fas fa-arrow-left mr-2"></i>
                     </a>
                 </div>
@@ -85,7 +85,7 @@
 
         <div class="text-center">
             <a href="/tricks" class="inline-flex items-center px-8 py-3 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition font-medium">
-                مشاهده همه ترفندها
+                مشاهده همه مقالات
                 <i class="fas fa-arrow-left mr-3"></i>
             </a>
         </div>
@@ -101,7 +101,7 @@
                 دسته‌بندی‌ها
             </h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                ترفندها را بر اساس موضوع مورد علاقه‌تان کشف کنید
+                مقالات را بر اساس موضوع مورد علاقه‌تان کشف کنید
             </p>
         </div>
 
@@ -112,7 +112,7 @@
                     <i class="fas fa-laptop-code text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">تکنولوژی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">47 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">47 مقاله</p>
             </a>
 
             <a href="/tricks?category=cooking" class="group bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
@@ -120,7 +120,7 @@
                     <i class="fas fa-utensils text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">آشپزی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">63 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">63 مقاله</p>
             </a>
 
             <a href="/tricks?category=health" class="group bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
@@ -128,7 +128,7 @@
                     <i class="fas fa-heart text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">سلامت</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">38 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">38 مقاله</p>
             </a>
 
             <a href="/tricks?category=home" class="group bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
@@ -136,7 +136,7 @@
                     <i class="fas fa-home text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">خانه‌داری</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">52 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">52 مقاله</p>
             </a>
 
             <a href="/tricks?category=financial" class="group bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
@@ -144,7 +144,7 @@
                     <i class="fas fa-coins text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">مالی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">29 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">29 مقاله</p>
             </a>
 
             <a href="/tricks?category=lifestyle" class="group bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
@@ -152,7 +152,7 @@
                     <i class="fas fa-star text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white mb-2">سبک زندگی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">18 ترفند</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">18 مقاله</p>
             </a>
 
         </div>
@@ -165,10 +165,10 @@
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 <i class="fas fa-clock text-green-600 ml-3"></i>
-                جدیدترین ترفندها
+                جدیدترین مقالات
             </h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                آخرین ترفندهایی که به مجموعه ما اضافه شده‌اند
+                آخرین مقالاتی که به مجموعه ما اضافه شده‌اند
             </p>
         </div>
 
@@ -223,7 +223,7 @@
                             روش‌های ساده صرفه‌جویی در خرید
                         </h3>
                         <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
-                            ترفندهای هوشمندانه برای کاهش هزینه‌های خرید و صرفه‌جویی در بودجه خانواده.
+                            مقالات هوشمندانه برای کاهش هزینه‌های خرید و صرفه‌جویی در بودجه خانواده.
                         </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3 text-sm text-gray-500">
@@ -242,7 +242,7 @@
 
         <div class="text-center mt-8">
             <a href="/tricks?sort=newest" class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
-                مشاهده همه ترفندهای جدید
+                مشاهده همه مقالات جدید
                 <i class="fas fa-arrow-left mr-3"></i>
             </a>
         </div>

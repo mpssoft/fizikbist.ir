@@ -25,7 +25,17 @@
                 }
             }
         </script>
+        @if(app()->environment('production'))
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1M36R2K4HQ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
+            gtag('config', 'G-1M36R2K4HQ');
+        </script>
+            @endif
     </head>
     <body class=" transition-colors duration-1000 bg-white text-black dark:bg-slate-900  dark:text-white" dir="rtl">
         <div class="min-h-screen ">

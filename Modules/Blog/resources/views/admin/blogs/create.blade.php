@@ -13,8 +13,8 @@
                 </button>
             </form>
             <div>
-                <h1 class="text-3xl font-bold">افزودن ترفند جدید</h1>
-                <p class="text-lg opacity-90">ترفند کاربردی خود را با ویرایشگر پیشرفته بسازید</p>
+                <h1 class="text-3xl font-bold">افزودن مقاله جدید</h1>
+                <p class="text-lg opacity-90">مقاله کاربردی خود را با ویرایشگر پیشرفته بسازید</p>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <div class="form-group mb-5">
                 <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     <i class="fas fa-heading ml-2 text-purple-600"></i>
-                    عنوان ترفند *
+                    عنوان مقاله *
                 </label>
                 <input type="text"
                        id="title"
@@ -80,7 +80,7 @@
                           maxlength="200"
                           rows="3"
                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
-                          placeholder="توضیح کوتاهی از ترفند که در کارت نمایش داده می‌شود..."></textarea>
+                          placeholder="توضیح کوتاهی از مقاله که در کارت نمایش داده می‌شود..."></textarea>
                 <div class="char-counter mt-1" id="description-counter">0/200 کاراکتر</div>
             </div>
 
@@ -92,7 +92,7 @@
                 <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
                     <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای ترفند</h2>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای مقاله</h2>
                 <div class="mr-auto">
                     <span class="text-sm text-gray-500 dark:text-gray-400">ویرایشگر پیشرفته TinyMCE</span>
                 </div>
@@ -101,12 +101,12 @@
             <div class="form-group">
                 <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     <i class="fas fa-paragraph ml-2 text-purple-600"></i>
-                    شرح کامل ترفند *
+                    شرح کامل مقاله *
                 </label>
 
                 <!-- TinyMCE Editor -->
                 <textarea id="content" name="content" class="tinymce-editor">
-            <p>شرح کامل و مرحله به مرحله ترفند را اینجا بنویسید...</p>
+            <p>شرح کامل و مرحله به مرحله مقاله را اینجا بنویسید...</p>
             <p><br></p>
             <p><strong>مثال:</strong></p>
             <ol>
@@ -137,7 +137,7 @@
             <div class="form-group">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     <i class="fas fa-camera ml-2 text-purple-600"></i>
-                    تصویر اصلی ترفند
+                    تصویر اصلی مقاله
                 </label>
 
                 <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
@@ -171,7 +171,7 @@
 
                 <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                     <i class="fas fa-lightbulb ml-1"></i>
-                    این تصویر در کارت ترفند و صفحه جزئیات نمایش داده می‌شود. برای تصاویر داخل متن از ویرایشگر استفاده کنید.
+                    این تصویر در کارت مقاله و صفحه جزئیات نمایش داده می‌شود. برای تصاویر داخل متن از ویرایشگر استفاده کنید.
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@
 
                 <button type="submit"  class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition font-medium shadow-lg">
                     <i class="fas fa-paper-plane ml-2"></i>
-                    انتشار ترفند
+                    انتشار مقاله
                 </button>
 
             </div>
@@ -251,7 +251,7 @@
 </div>
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/w3a0jbe7otjk2v0hpupwsufnua8a8h4up9wv5hba11rp46er/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
         // Initialize TinyMCE with Laravel File Manager
@@ -428,7 +428,7 @@
 
             if (title.length > 100) {
                 e.preventDefault();
-                alert('عنوان ترفند نباید بیش از ۱۰۰ کاراکتر باشد.');
+                alert('عنوان مقاله نباید بیش از ۱۰۰ کاراکتر باشد.');
                 return false;
             }
 

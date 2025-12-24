@@ -8,16 +8,16 @@
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h1 class="text-3xl font-bold mb-2">فهرست ترفندها</h1>
-                <p class="text-lg opacity-90">مجموعه کامل ترفندهای کاربردی و مفید</p>
+                <h1 class="text-3xl font-bold mb-2">فهرست مقالات</h1>
+                <p class="text-lg opacity-90">مجموعه کامل مقالات کاربردی و مفید</p>
             </div>
             <div class="flex items-center gap-3">
                 <div class="bg-white/20 px-4 py-2 rounded-lg">
-                    <span class="text-sm">مجموع: <span class="font-bold">{{count($blogs)}}</span> ترفند</span>
+                    <span class="text-sm">مجموع: <span class="font-bold">{{count($blogs)}}</span> مقاله</span>
                 </div>
                 <a href="{{route('admin.blogs.create')}}" class="bg-white text-purple-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition font-medium">
                     <i class="fas fa-plus ml-2"></i>
-                    افزودن ترفند جدید
+                    افزودن مقاله جدید
                 </a>
             </div>
         </div>
@@ -187,7 +187,7 @@
     <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-md w-full mx-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">عملیات گروهی</h3>
         <p class="text-gray-600 dark:text-gray-400 mb-6">
-            <span id="selected-count">0</span> ترفند انتخاب شده است. چه کاری می‌خواهید انجام دهید؟
+            <span id="selected-count">0</span> مقاله انتخاب شده است. چه کاری می‌خواهید انجام دهید؟
         </p>
         <div class="flex items-center gap-3">
             <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
@@ -451,8 +451,8 @@
     function confirmDelete(e) {
         e.preventDefault();
         Swal.fire({
-            title: 'حذف ترفند',
-            text: 'آیا مطمئن هستید که می‌خواهید این ترفند را حذف کنید؟',
+            title: 'حذف مقاله',
+            text: 'آیا مطمئن هستید که می‌خواهید این مقاله را حذف کنید؟',
             icon: 'warning',
             showCancelButton: true,
 

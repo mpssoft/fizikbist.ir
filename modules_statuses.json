@@ -4,7 +4,7 @@
     "Shop": true,
     "Conversation": true,
     "Sms": true,
-    "Blog": false,
+    "Blog": true,
     "File": true,
     "Splash": true,
     "Motion": true,
