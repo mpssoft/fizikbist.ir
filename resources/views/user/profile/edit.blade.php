@@ -101,16 +101,16 @@
                         شماره موبایل قابل تغییر نیست
                     </div>
                 </div>
-{{--
+
                 <!-- Additional Info -->
                 <div class="form-field space-y-2">
                     <label for="bio" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <i class="fas fa-info-circle text-indigo-500 ml-2"></i>
                         درباره من (اختیاری)
                     </label>
-                    <textarea id="bio" name="bio" rows="3" placeholder="چند کلمه درباره خودتان بنویسید..."
-                              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none">توسعه‌دهنده نرم‌افزار با علاقه به یادگیری تکنولوژی‌های جدید</textarea>
-                </div>--}}
+                    <textarea id="bio" name="about" rows="3" placeholder="چند کلمه درباره خودتان بنویسید..."
+                              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none">{{auth()->user()->about}}</textarea>
+                </div>
             </div>
 
             <!-- Account Settings -->

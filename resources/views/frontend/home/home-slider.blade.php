@@ -46,7 +46,7 @@
 
 </style>
 
-<div class="container mx-auto px-4 max-w-4xl">
+<div class="container mx-auto px-4 max-w-7xl">
 
     <!-- Slider Container -->
     <div class="mt-10 mb-10 relative bg-gradient-to-br from-white/10 via-white/5 to-transparent
@@ -71,7 +71,7 @@
 
                             <!-- Text Section (Left) -->
                             <div dir="rtl" class="hidden md:flex text-right slide-content flex-col justify-center px-8 text-white order-2 md:order-1 z-20">
-                                <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">{{ $slider->title }}</h2>
+                                <h2 class=" text-2xl font-bold mb-4 leading-tight drop-shadow-lg">{{ $slider->title }}</h2>
                                 <p class="text-base md:text-lg lg:text-xl mb-6 opacity-90 drop-shadow-md">{{ $slider->subtitle }}</p>
                                 @if($slider->link)
                                     <a href="{{$slider->link}}" data-id="{{$slider->id}}" class="slider-link leading-right bg-white/90 dark:bg-slate-800/90 text-blue-600 dark:text-blue-400 px-6 py-3 rounded-full font-semibold hover:bg-white dark:hover:bg-slate-700 transition-colors duration-300 shadow-lg with-blur w-fit"> {{$slider->button_text ?? "اطلاعات بیشتر"}}</a>

@@ -4,11 +4,11 @@
 @section('content')
 
 
-<div class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+<div class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
 <!-- Course Header -->
 <div class="max-w-6xl mx-auto px-8 py-12">
-    <div class="md:bg-gradient-to-r md:from-slate-700 rounded-2xl md:to-slate-800 text-white  shadow-xl md:p-8">
+    <div class="bg-white dark:bg-gradient-to-r border border-gray-200  dark:from-slate-700 rounded-2xl dark:to-slate-800 text-white  shadow dark:shadow-xl md:p-8">
         <div class="grid md:grid-cols-7 gap-6 items-center">
 
 
@@ -21,10 +21,10 @@
                 <!-- Course Image -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
                     <div class="relative">
-                        <img src="{{ $course->cover_image }}"
+                        <img src="{{ asset($course->cover_image) }}"
                              alt="{{ $course->title }}"
                              class="w-full h-full object-cover transition-all duration-300 hover:scale-105"
-                             onerror="this.src='https://via.placeholder.com/400x250/4F46E5/FFFFFF?text=دوره+فیزیک'; this.alt='تصویر در دسترس نیست';">
+                            >
 
                         <!-- Image Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -37,7 +37,7 @@
                 @endif
             </div>
             <!-- Course Info -->
-            <div class="md:col-span-3 p-5  border border-gray-600 rounded-2xl bg-slate-700">
+            <div class="md:col-span-3 p-5 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-600 rounded-2xl bg-white dark:bg-slate-700">
                 <div class="flex items-center justify-between">
                     <h1 class="text-2xl font-bold mb-4">{{ $course->title ?? 'دوره جامع فیزیک پایه دهم' }}</h1>
                     <div class="flex items-center gap-2 mb-4">
@@ -107,7 +107,7 @@
                         @else
                             <!-- Paid Course Actions -->
                             <div class="flex-1" id="paid-course">
-                                <div class="flex items-center border-2 p-3 dark:bg-gray-800 border-gray-700 rounded-2xl justify-between mb-4">
+                                <div class="flex items-center border-2 p-3 dark:bg-gray-800 border-gray-200 rounded-2xl justify-between mb-4">
                                     <div class="text-right justify-end">
 
                                         @if(!is_null($course->discounts->where('start_at','<',now())->where('end_at','>',now())->where('is_active',1)->first()))

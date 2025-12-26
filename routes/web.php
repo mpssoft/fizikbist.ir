@@ -34,11 +34,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'twoFactorAuthForm'])->name('twoFactorAuthForm');
 Route::post('/auth/twoFactorAuth',[TwoFactorAuthenticateController::class,'verifyToken'])->name('auth.verifyToken');
 
-Route::prefix('course')->group(function(){
+Route::middleware('info')->prefix('course')->group(function(){
     Route::get('all',[\App\Http\Controllers\Frontend\CourseController::class,'all'])->name('all.courses');
     Route::get('show/{course}',[\App\Http\Controllers\Frontend\CourseController::class,'showCourse'])->name('show.course');
 });
-Route::prefix('course')->group(function(){
+Route::middleware('info')->prefix('course')->group(function(){
     Route::get('{gradeName}/',[\App\Http\Controllers\Frontend\CourseController::class,'gradeCourses'])->name('gradeCourses');
 });
 Route::get('/free/lessons',[\App\Http\Controllers\LessonController::class,'free'])->name('free.lessons');

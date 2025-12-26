@@ -24,6 +24,7 @@ class UserProfileController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // optional photo
+            'about' => 'nullable', // optional photo
         ]);
         if(isset($request->email)){
             $email = $request->validate([

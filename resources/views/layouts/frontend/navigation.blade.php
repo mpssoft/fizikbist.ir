@@ -1,4 +1,4 @@
-<nav class="     shadow-lg sticky top-0 z-50 bg-gray-600 dark:bg-slate-900 text-gray-900 dark:!text-white ">
+<nav class="shadow-lg sticky top-0 z-50 bg-white dark:bg-slate-900 text-gray-900 dark:!text-white ">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center space-x-4 space-x-reverse">
@@ -21,57 +21,58 @@
                             @click.away="openMenu = null"
                             @mouseleave="openMenu = null"
                             x-transition
-                            class="absolute right-0 mt-6 w-[600px] bg-slate-800 rounded-xl shadow-xl z-50 p-6"
+
+                            class="absolute right-0 mt-6 w-[600px]  bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-6 space-y-2 with-blur border border-white/20 dark:border-slate-600/20"
                         >
                             <div class="flex flex-row-reverse ">
                                 <!-- آموزش blocks -->
                                 <div class="w-4/5 space-y-4 ">
                                     <div class="grid grid-cols-2 gap-4 text-sm">
-                                        <a href="{{route('all.courses')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('all.courses')}}" class="flex items-start space-x-2 space-x-reverse  hover:bg-slate-300 dark:hover:bg-slate-700 p-3 rounded-lg transition hover:-translate-x-1">
                                             <div class="text-cyan-400 text-xl">
                                                 <i class="fas fa-graduation-cap"></i>
                                             </div>
                                             <div>
                                                 <p class="font-bold">دوره‌های آموزشی</p>
-                                                <p class="text-xs text-gray-300 mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
+                                                <p class="text-xs text-gray-600 dark:text-gray-300   mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
                                             </div>
                                         </a>
-                                        <a href="{{route('files')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('files')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-300 dark:hover:bg-slate-700 p-3 rounded-lg transition hover:-translate-x-1">
                                             <div class="text-green-400 text-xl">
                                                 <i class="fas fa-file-archive"></i>
                                             </div>
                                             <div>
                                                 <p class="font-bold"> دانلود ها</p>
-                                                <p class="text-xs text-gray-300 mt-1">فایل ها و جزوات آموزشی </p>
+                                                <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">فایل ها و جزوات آموزشی </p>
                                             </div>
                                         </a>
-                                        <a href="{{route('free.lessons')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('free.lessons')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-300 dark:hover:bg-slate-700 p-3 rounded-lg transition hover:-translate-x-1">
                                             <div class="text-pink-400 text-xl">
                                                 <i class="fas fa-gift"></i>
                                             </div>
                                             <div>
                                                 <p class="font-bold">درس های رایگان</p>
-                                                <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
+                                                <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
                                             </div>
                                         </a>
-                                        <a href="{{route('lesson-plan')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                        <a href="{{route('lesson-plan')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-300 dark:hover:bg-slate-700 p-3 rounded-lg transition hover:-translate-x-1">
                                             <div class="text-yellow-400 text-xl">
                                                 <i class="fas fa-file-alt"></i>
                                             </div>
                                             <div>
                                                 <p class="font-bold"> درخواست درسنامه</p>
-                                                <p class="text-xs text-gray-300 mt-1">ایجاد درس بر اساس نیاز شما</p>
+                                                <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">ایجاد درس بر اساس نیاز شما</p>
                                             </div>
                                         </a>
-                                        {{-- <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
-                                             <div class="text-yellow-400 text-xl">
-                                                 <i class="fas fa-certificate"></i>
+                                         <a href="/articles" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-300 dark:hover:bg-slate-700 p-3 rounded-lg transition hover:-translate-x-1">
+                                             <div class="text-purple-400 text-xl">
+                                                 <i class="fas fa-newspaper"></i>
                                              </div>
                                              <div>
-                                                 <p class="font-bold">آزمون پایان دوره</p>
-                                                 <p class="text-xs text-gray-300 mt-1">برگزاری آزمون های دوره</p>
+                                                 <p class="font-bold">مقالات</p>
+                                                 <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">هر روز فقط یک مقاله </p>
                                              </div>
-                                         </a>--}}
+                                         </a>
                                     </div>
                                     {{-- <hr class="border-slate-600">
                                      <div>
@@ -86,10 +87,10 @@
                                 </div>
 
                                 <!-- پایه‌ها -->
-                                <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-600 ml-2 pl-2 space-y-2 text-sm ">
+                                <div class="text-right min-w-[180px] whitespace-nowrap border-l border-slate-200 dark:border-slate-600 ml-2 pl-2 space-y-2 text-sm ">
                                     @foreach(\App\Models\Grade::all() as $grade)
 
-                                        <a href="{{route('gradeCourses',['gradeName'=>$grade->name])}}" class="flex items-center gap-2  px-3 py-2 rounded hover:bg-slate-700 ">
+                                        <a href="{{route('gradeCourses',['gradeName'=>$grade->name])}}" class="flex items-center gap-2  px-3 py-2 rounded hover:bg-slate-300 dark:hover:bg-slate-700 transition hover:-translate-x-1">
 
                                             <i class="fas fa-cubes text-xl text-cyan-300/90 group-hover:text-cyan-200"></i>
                                             {{ $grade->name }}
@@ -110,18 +111,39 @@
                         <button @mouseenter="openMenu = openMenu === 'links' ? null : 'links'" class="flex items-center gap-1">
                             لینک‌های مفید <i class="fas fa-chevron-down text-xs mt-0.5"></i>
                         </button>
-                        <div
-                            x-show="openMenu === 'links'"
-                            @click.away="openMenu = null"
-                            @mouseleave="openMenu = null"
-                            x-transition
-                            class="absolute right-0 p-4 mt-6 w-62 whitespace-nowrap w bg-slate-800 text-white rounded-lg shadow-lg z-50 py-2"
-                        >
 
-                            <a href="{{route('faq')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">سوالات متداول</a>
-                            <a href="{{route('termsOfService')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700"> شرایط و ضوابط استفاده</a>
-                            <a href="{{route('about')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">درباره ما </a>
-                            <a href="{{route('contact')}}" class="block px-4 h-16 pt-6 py-2 hover:bg-slate-700">ارتباط با پشتیبانی</a>
+                        <!-- Dropdown menu -->
+                        <div     x-show="openMenu === 'links'"
+                                 @click.away="openMenu = null"
+                                 @mouseleave="openMenu = null"
+                                 x-transition
+                                 class="absolute right-0 mt-6 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-white/20 dark:border-slate-600/20">
+                            <nav class="space-y-1">
+                                <!-- Divider -->
+                                <div class="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent"></div>
+                                <a href="/about" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-info-circle text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">درباره فیزیک بیست</span>
+                                </a>
+
+                                <a href="/ask" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-question-circle text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">سوالات متداول </span>
+                                </a>
+                                <a href="/terms-of-service" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-list-check text-red-600 group-hover:text-red-700 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">شرایط و ضوابط استفاده  </span>
+                                </a>
+                                <a href="/contact" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-envelope text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                                        <span class="font-medium">تماس با ما</span>
+                                    </div>
+                                </a>
+                            </nav>
+
+                            <!-- Divider -->
+                            <div class="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent"></div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +170,7 @@
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 scale-100"
                         x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-white/20 dark:border-slate-600/20"
+                        class="absolute left-0 mt-4 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-white/20 dark:border-slate-600/20"
                         id="cartItems"
                     >
 
@@ -161,8 +183,8 @@
                 <div class="hidden md:flex items-center space-x-6 space-x-reverse ">
                     @if(auth()->check())
                         <div class="relative" >
-                            <button @mouseenter="open = !open ; cart = false" class="flex items-center focus:outline-none group mt-2">
-                                <span class="text-xs text-gray-200 ml-3">{{auth()->user()->name}}</span>
+                            <button @mouseenter="open = !open ; cart = false" class="flex items-center focus:outline-none group ">
+                                <span class="text-xs text-gray-600 dark:text-gray-200 ml-3">{{auth()->user()->name}}</span>
                                 <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
                                     <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                                          alt="avatar">

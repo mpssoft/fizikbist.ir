@@ -8,5 +8,6 @@
     "File": true,
     "Splash": true,
     "Motion": true,
-    "LessonPlan": true
+    "LessonPlan": true,
+    "Like": true
 }

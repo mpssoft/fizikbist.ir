@@ -12,48 +12,53 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('blog::categories.index', compact('categories'));
+        return view('blog::admin.categories.index', compact('categories'));
     }
 
     // Show form to create category
     public function create()
     {
-        return view('blog::categories.create');
+        return view('blog::admin.categories.create');
     }
 
     // Save new category
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
 
-        Category::create([
-            'name' => $request->name
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:30',
+            'color' => 'required|string|max:30',
+            'description' => 'string',
         ]);
-
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        $data['status'] = $request->has('status') ? 'active':'inactive';
+        Category::create($data);
+        toast('دسته جدید اضافه شد','success')->position('bottom-right');
+        return redirect()->route('admin.categories.index');
     }
 
 
     // Show form to edit category
     public function edit(Category $category)
     {
-        return view('blog::categories.edit', compact('category'));
+
+        return view('blog::admin.categories.edit', compact('category'));
     }
 
     // Update category
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
 
-        $category->update([
-            'name' => $request->name
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:30',
+            'color' => 'required|string|max:30',
+            'description' => 'nullable|string',
         ]);
-
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        $data['status'] = $request->has('status') ? 'active':'inactive';
+        $category->update($data);
+        toast('دسته بروز رسانی شد','success')->position('bottom-right');
+        return redirect()->route('admin.categories.index');
     }
 
     // Delete category

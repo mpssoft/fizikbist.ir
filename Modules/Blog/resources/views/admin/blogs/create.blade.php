@@ -1,254 +1,309 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+    <div class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
-<!-- Header -->
-<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-5">
-    <div class="bg-white dark:bg-gray-800 text-white border border-gray-200 dark:border-gray-700 py-8 px-6 rounded-2xl shadow-lg">
-        <div class="flex items-center gap-4">
-            <form method="GET" action="/tricks">
-                <button type="submit" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition">
-                    <i class="fas fa-arrow-right text-white"></i>
-                </button>
-            </form>
-            <div>
-                <h1 class="text-3xl font-bold">افزودن مقاله جدید</h1>
-                <p class="text-lg opacity-90">مقاله کاربردی خود را با ویرایشگر پیشرفته بسازید</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
-
-    <form method="POST" action="{{route('admin.blogs.store')}}"  class="space-y-8">
-        @csrf
-
-        <!-- Title & Category -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-info-circle text-blue-600 dark:text-blue-400"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">اطلاعات اصلی</h2>
-            </div>
-
-            <!-- Title -->
-            <div class="form-group mb-5">
-                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-heading ml-2 text-purple-600"></i>
-                    عنوان مقاله *
-                </label>
-                <input type="text"
-                       id="title"
-                       name="title"
-                       required
-                       maxlength="100"
-                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-lg"
-                       placeholder="مثال: رمز عبور قوی و امن بسازید">
-
-            </div>
-
-            <!-- Category -->
-            <div class="form-group mb-5">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    <i class="fas fa-tags ml-2 text-purple-600"></i>
-                    دسته‌بندی *
-                </label>
-
-                <select name="category" id="category" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-                    <option value="آشپزی">علمی</option>
-                    <option value="آشپزی">فیزیک</option>
-                    <option value="آشپزی">ریاضی</option>
-                    <option value="آشپزی">تکنولوژی</option>
-                    <option value="آشپزی">سلامت</option>
-                    <option value="آشپزی">سبک زندگی</option>
-                </select>
-
-            </div>
-
-            <!-- Description -->
-            <div class="form-group mb-5">
-                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-align-left ml-2 text-purple-600"></i>
-                    توضیح کوتاه *
-                </label>
-                <textarea id="description"
-                          name="description"
-                          required
-                          maxlength="200"
-                          rows="3"
-                          class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
-                          placeholder="توضیح کوتاهی از مقاله که در کارت نمایش داده می‌شود..."></textarea>
-                <div class="char-counter mt-1" id="description-counter">0/200 کاراکتر</div>
-            </div>
-
-        </div>
-
-        <!-- TinyMCE Content Editor -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای مقاله</h2>
-                <div class="mr-auto">
-                    <span class="text-sm text-gray-500 dark:text-gray-400">ویرایشگر پیشرفته TinyMCE</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    <i class="fas fa-paragraph ml-2 text-purple-600"></i>
-                    شرح کامل مقاله *
-                </label>
-
-                <!-- TinyMCE Editor -->
-                <textarea id="content" name="content" class="tinymce-editor">
-            <p>شرح کامل و مرحله به مرحله مقاله را اینجا بنویسید...</p>
-            <p><br></p>
-            <p><strong>مثال:</strong></p>
-            <ol>
-              <li>مرحله اول: ...</li>
-              <li>مرحله دوم: ...</li>
-              <li>مرحله سوم: ...</li>
-            </ol>
-            <p><br></p>
-            <p><strong>نکته مهم:</strong> ...</p>
-          </textarea>
-
-                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    <i class="fas fa-info-circle ml-1"></i>
-                    از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
+        <!-- Header -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-5">
+            <div class="bg-white dark:bg-gray-800 text-white border border-gray-200 dark:border-gray-700 py-8 px-6 rounded-2xl shadow-lg">
+                <div class="flex items-center gap-4">
+                    <form method="GET" action="/tricks">
+                        <button type="submit" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition">
+                            <i class="fas fa-arrow-right text-white"></i>
+                        </button>
+                    </form>
+                    <div>
+                        <h1 class="text-3xl font-bold"> مقاله جدید </h1>
+                        <p class="text-lg opacity-90">مقاله کاربردی خود را با ویرایشگر پیشرفته بسازید</p>
+                    </div>
                 </div>
             </div>
         </div>
+        @include('layouts.errors')
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
 
-        <!-- Image Upload -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-image text-orange-600 dark:text-orange-400"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">تصویر شاخص</h2>
-            </div>
+            <form method="POST" action="{{route('admin.blogs.store')}}"  class="space-y-8">
+                @csrf
+                @method('post')
+                <!-- Title & Category -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-info-circle text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">اطلاعات اصلی</h2>
+                    </div>
+                    <div class="mb-5 gap-5 grid md:grid-cols-2">
+                        <!-- Title -->
+                        <div class="form-group mb-5">
+                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <i class="fas fa-heading ml-2 text-purple-600"></i>
+                                عنوان مقاله *
+                            </label>
+                            <input type="text"
+                                   id="title"
+                                   name="title" value="{{old('title')}}"
+                                   required
+                                   maxlength="100"
+                                   class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white "
+                                   placeholder="عنوان مقاله">
 
-            <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    <i class="fas fa-camera ml-2 text-purple-600"></i>
-                    تصویر اصلی مقاله
-                </label>
+                        </div>
 
-                <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
-                    <div id="upload-content">
-                        <div class="flex items-stretch space-x-2">
-                            <input type="text" id="image_label" name="cover_image" dir="ltr"
-                                   class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                        <!-- Author Title -->
+                        <div class="form-group mb-5">
+                            <label for="author" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <i class="fas fa-user-edit ml-2 text-purple-600"></i>
+                                نام نویسنده
+                            </label>
+                            <input type="text"
+                                   id="author"
+                                   name="author" value="{{old('author')}}"
+
+                                   maxlength="100"
+                                   class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white "
+                                   placeholder="خالی رها کنید تا نام شما بعنوان نویسنده درج شود">
+
+                        </div>
+                    </div>
+                    <!-- Author Image -->
+                    <div class="form-group mb-5">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-camera ml-2 text-purple-600"></i>
+                            تصویر نویسنده مقاله (در صورت خالی بودن نام نویسنده تصویر شما بعنوان نویسنده مقاله دیده خواهد شد)
+                        </label>
+
+                        <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
+                            <div id="upload-content">
+                                <div class="flex items-stretch space-x-2">
+                                    <input type="text" id="image1" name="author_image" dir="ltr" value="{{old('author_image')}}"
+                                           class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
                   bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
-                                   placeholder="Image">
+                                           placeholder="Image">
 
-                            <button type="button" id="button-image"
-                                    class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                                    <button type="button" id="button-image1"
+                                            class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
                    bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
                    hover:bg-gray-200 dark:hover:bg-gray-700
                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
-                                Select
-                            </button>
+                                        Select
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <!-- Author about -->
+                        <div class="form-group mb-5">
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <i class="fas fa-align-left ml-2 text-purple-600"></i>
+                                توضیح کوتاه درباره نویسنده
+                            </label>
+                            <textarea id="author_about"
+                                      name="author_about"
+                                      rows="3"
+                                      class="w-full text-sm px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                                      placeholder="توضیح کوتاهی از نویسنده مقاله . در صورت خالی بودن نام نویسنده اطلاعات شما (کاربر فعلی) برای این مقاله ثبت می شود...">{{old('author')}}</textarea>
+
+                        </div>
+                        <!-- Reading Time -->
+                        <div class="form-group mb-5">
+                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <i class="fas fa-clock ml-2 text-purple-600"></i>
+                                مدت زمان مطالعه (دقیقه)
+                            </label>
+                            <input type="text"
+                                   id="reading_time"
+                                   name="reading_time" value="{{old('reading_time')}}"
+
+                                   maxlength="100"
+                                   class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-lg"
+                                   placeholder="به دقیقه وارد کنید">
+
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <!-- Category -->
+                        <div class="form-group mb-5">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                                <i class="fas fa-tags ml-2 text-purple-600"></i>
+                                دسته‌بندی *
+                            </label>
+
+                            <select name="categories[]" id="category" multiple class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                @foreach(\Modules\Blog\Models\Category::all() as $category)
+                                    <option value="{{$category->id}}" >{{$category->name}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group mb-5">
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <i class="fas fa-align-left ml-2 text-purple-600"></i>
+                                توضیح کوتاه درباره مقاله *
+                            </label>
+                            <textarea id="description"
+                                      name="description"
+                                      required
+                                      maxlength="200"
+                                      rows="5"
+                                      class="w-full text-sm px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                                      placeholder="توضیح کوتاهی از مقاله که در کارت نمایش داده می‌شود...">{{old('description')}}</textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TinyMCE Content Editor -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای مقاله</h2>
+                        <div class="mr-auto">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">ویرایشگر پیشرفته TinyMCE</span>
                         </div>
                     </div>
 
-                    <div id="image-preview" class="hidden">
-                        <img id="preview-img" class="image-preview mx-auto mb-4" alt="پیش‌نمایش تصویر">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4" id="file-info"></p>
-                        <button type="button" onclick="removeImage()" class="px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
-                            <i class="fas fa-trash ml-2"></i>
-                            حذف تصویر
-                        </button>
+                    <div class="form-group">
+                        <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-paragraph ml-2 text-purple-600"></i>
+                            شرح کامل مقاله *
+                        </label>
+
+                        <!-- TinyMCE Editor -->
+                        <textarea id="content" name="content" class="tinymce-editor">{{old('content')}}</textarea>
+
+                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-info-circle ml-1"></i>
+                            از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    <i class="fas fa-lightbulb ml-1"></i>
-                    این تصویر در کارت مقاله و صفحه جزئیات نمایش داده می‌شود. برای تصاویر داخل متن از ویرایشگر استفاده کنید.
+                <!-- Image Upload -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-image text-orange-600 dark:text-orange-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">تصویر شاخص</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-camera ml-2 text-purple-600"></i>
+                            تصویر اصلی مقاله
+                        </label>
+
+                        <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
+                            <div id="upload-content">
+                                <div class="flex items-stretch space-x-2">
+                                    <input type="text" id="image2" name="cover_image" dir="ltr" value="{{old('cover_image')}}"
+                                           class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                  bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                  focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                           placeholder="Image">
+
+                                    <button type="button" id="button-image2"
+                                            class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                   bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
+                   hover:bg-gray-200 dark:hover:bg-gray-700
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                                        Select
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-lightbulb ml-1"></i>
+                            این تصویر در کارت مقاله و صفحه جزئیات نمایش داده می‌شود. برای تصاویر داخل متن از ویرایشگر استفاده کنید.
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Tags -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-hashtag text-indigo-600 dark:text-indigo-400"></i>
+                <!-- Tags -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-hashtag text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">برچسب‌ها</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tag-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-tags ml-2 text-purple-600"></i>
+                            افزودن برچسب
+                        </label>
+
+                        <div class="flex gap-2 mb-3">
+                            <input type="text" name="tags" value="{{old('tags')}}"
+                                   class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                   placeholder="علمی , ریاضی ..."
+                            >
+
+                        </div>
+
+                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-lightbulb ml-1"></i>
+                            برچسب ها را با کاما (,) از هم جدا کنید
+                        </div>
+                    </div>
                 </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">برچسب‌ها</h2>
-            </div>
 
-            <div class="form-group">
-                <label for="tag-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    <i class="fas fa-tags ml-2 text-purple-600"></i>
-                    افزودن برچسب
-                </label>
+                <!-- State -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-cog text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">وضعیت انتشار</h2>
+                    </div>
 
-                <div class="flex gap-2 mb-3">
-                    <input type="text" name="tags"
-                           class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                           placeholder="علمی , ریاضی ..."
-                          >
+                    <select name="status" id="status" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                        <option value="published" selected>منتشر شده</option>
+                        <option value="draft" >غیر فعال</option>
+
+                    </select>
 
                 </div>
+                <div class="bg-white mb-5 dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <!-- Action Buttons -->
+                    <div class="flex items-center justify-between gap-4 pt-6 ">
 
-                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    <i class="fas fa-lightbulb ml-1"></i>
-                    برچسب ها را با کاما (,) از هم جدا کنید
+
+                        <a href="{{route('admin.blogs.index')}}" class="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition font-medium">
+                            <i class="fas fa-times ml-2"></i>
+                            انصراف
+                        </a>
+
+
+                        <div class="flex items-center gap-3">
+
+
+                            <button type="submit"  class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition font-medium shadow-lg">
+                                <i class="fas fa-paper-plane ml-2"></i>
+                                ثبت مقاله
+                            </button>
+
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- State -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-cog text-purple-600 dark:text-purple-400"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">وضعیت انتشار</h2>
-            </div>
-
-            <select name="status" id="status" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-                <option value="published">منتشر شده</option>
-                <option value="draft">غیر فعال</option>
-
-            </select>
+            </form>
 
         </div>
-        <div class="bg-white mb-5 dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-        <!-- Action Buttons -->
-        <div class="flex items-center justify-between gap-4 pt-6 ">
-
-
-                <a href="{{route('admin.blogs.index')}}" class="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition font-medium">
-                    <i class="fas fa-times ml-2"></i>
-                    انصراف
-                </a>
-
-
-            <div class="flex items-center gap-3">
-
-
-                <button type="submit"  class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition font-medium shadow-lg">
-                    <i class="fas fa-paper-plane ml-2"></i>
-                    انتشار مقاله
-                </button>
-
-            </div>
-
-        </div>
-        </div>
-    </form>
-
-</div>
-</div>
+    </div>
 @endsection
 @push('scripts')
     <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -450,16 +505,24 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            document.getElementById('button-image').addEventListener('click', (event) => {
+            document.getElementById('button-image1').addEventListener('click', (event) => {
                 event.preventDefault();
+                inputId = 'image1';
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+            document.getElementById('button-image2').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                inputId = 'image2';
 
                 window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
             });
         });
-
+        // input
+        let inputId = '';
         // set file link
         function fmSetLink($url) {
-            document.getElementById('image_label').value = $url;
+            document.getElementById(inputId).value = $url;
         }
     </script>
 @endpush

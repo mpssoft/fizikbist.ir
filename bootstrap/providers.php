@@ -12,4 +12,5 @@ return [
     Modules\Motion\Providers\RouteServiceProvider::class,
     Modules\LessonPlan\Providers\RouteServiceProvider::class,
     Modules\Blog\Providers\RouteServiceProvider::class,
+    Modules\Like\Providers\RouteServiceProvider::class,
 ];

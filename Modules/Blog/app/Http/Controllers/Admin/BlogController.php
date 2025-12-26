@@ -13,7 +13,9 @@ class BlogController extends Controller
      */
     public function index()
     {
+
         $blogs = Blog::latest()->paginate(10);
+
         return view('blog::admin.blogs.index', compact('blogs'));
     }
 
@@ -30,17 +32,24 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'title'       => 'required|string|max:255',
-            'category'    => 'required|string|max:100',
+            'categories'    => 'required|array',
             'description' => 'nullable|string',
             'content'     => 'nullable|string',
             'cover_image' => 'nullable|string',
             'tags'        => 'nullable|string',
             'status'      => 'required|in:draft,published',
+            'author'      => 'nullable',
+            'author_image'      => 'nullable',
+            'author_about'      => 'nullable',
+            'reading_time' => 'required|integer',
         ]);
 
-        Blog::create($validated);
+        $data['user_id'] = auth()->user()->id;
+
+        $blog = Blog::create($data);
+        $blog->categories()->sync($data['categories']);
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully.');
     }
@@ -66,17 +75,24 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        $validated = $request->validate([
+
+        $data = $request->validate([
             'title'       => 'required|string|max:255',
-            'category'    => 'required|string|max:100',
+            'categories'    => 'required|array',
             'description' => 'nullable|string',
             'content'     => 'nullable|string',
             'cover_image' => 'nullable|string',
             'tags'        => 'nullable|string',
             'status'      => 'required|in:draft,published',
+            'author'      => 'nullable',
+            'author_image'      => 'nullable',
+            'author_about'      => 'nullable',
+            'reading_time' => 'required|integer',
         ]);
+        $blog->categories()->sync($data['categories']);
+        $data['user_id'] = auth()->user()->id;
 
-        $blog->update($validated);
+        $blog->update($data);
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully.');
     }

@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Blog\Http\Controllers\Frontend\BlogController;
+use Modules\Blog\Models\Blog;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
@@ -31,6 +33,7 @@ class User extends Authenticatable
         'otp',
         'otp_expires_at',
         'role',
+        'about',
 
     ];
 
@@ -118,5 +121,9 @@ class User extends Authenticatable
     public function lessonplans()
     {
         return $this->hasMany(LessonPlan::class);
+    }
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
     }
 }

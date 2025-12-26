@@ -152,6 +152,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Motion\\Database\\Seeders\\' => 32,
             'Modules\\Motion\\Database\\Factories\\' => 34,
             'Modules\\Motion\\' => 15,
+            'Modules\\Like\\Tests\\' => 19,
+            'Modules\\Like\\Database\\Seeders\\' => 30,
+            'Modules\\Like\\Database\\Factories\\' => 32,
+            'Modules\\Like\\' => 13,
             'Modules\\LessonPlan\\Tests\\' => 25,
             'Modules\\LessonPlan\\Database\\Seeders\\' => 36,
             'Modules\\LessonPlan\\Database\\Factories\\' => 38,
@@ -573,6 +577,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Motion\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Motion/app',
+        ),
+        'Modules\\Like\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Like/tests',
+        ),
+        'Modules\\Like\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Like/database/seeders',
+        ),
+        'Modules\\Like\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Like/database/factories',
+        ),
+        'Modules\\Like\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Like/app',
         ),
         'Modules\\LessonPlan\\Tests\\' => 
         array (
@@ -4729,6 +4749,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\LessonPlan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/EventServiceProvider.php',
         'Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/LessonPlanServiceProvider.php',
         'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/RouteServiceProvider.php',
+        'Modules\\Like\\Database\\Seeders\\LikeDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Like/database/seeders/LikeDatabaseSeeder.php',
+        'Modules\\Like\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/Modules/Like/app/Http/Controllers/LikeController.php',
+        'Modules\\Like\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/EventServiceProvider.php',
+        'Modules\\Like\\Providers\\LikeServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/LikeServiceProvider.php',
+        'Modules\\Like\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/RouteServiceProvider.php',
         'Modules\\Motion\\Database\\Seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
         'Modules\\Motion\\Http\\Controllers\\Admin\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/Admin/MotionController.php',
         'Modules\\Motion\\Models\\Motion' => __DIR__ . '/../..' . '/Modules/Motion/app/Models/Motion.php',

@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-
+@include('layouts.errors')
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
 
     <form method="POST" action="{{route('admin.blogs.update',$blog->id)}}"  class="space-y-8">
@@ -33,7 +33,7 @@
                 </div>
                 <h2 class="text-xl font-bold text-gray-900 dark:text-white">اطلاعات اصلی</h2>
             </div>
-
+            <div class="mb-5 gap-5 grid md:grid-cols-2">
             <!-- Title -->
             <div class="form-group mb-5">
                 <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -45,45 +45,119 @@
                        name="title" value="{{old('title',$blog->title)}}"
                        required
                        maxlength="100"
-                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-lg"
-                       placeholder="مثال: رمز عبور قوی و امن بسازید">
+                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white "
+                       placeholder="عنوان مقاله">
 
             </div>
 
-            <!-- Category -->
-            <div class="form-group mb-5">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    <i class="fas fa-tags ml-2 text-purple-600"></i>
-                    دسته‌بندی *
+                <!-- Author Title -->
+                <div class="form-group mb-5">
+                <label for="author" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <i class="fas fa-user-edit ml-2 text-purple-600"></i>
+                    نام نویسنده
                 </label>
+                <input type="text"
+                       id="author"
+                       name="author" value="{{old('author',$blog->author)}}"
 
-                <select name="category" id="category" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-                    <option value="علمی" {{$blog->category == 'علمی' ? 'selected':''}}>علمی</option>
-                    <option value="فیزیک" {{$blog->category == 'فیزیک' ? 'selected':''}}>فیزیک</option>
-                    <option value="ریاضی" {{$blog->category == 'ریاضی' ? 'selected':''}}>ریاضی</option>
-                    <option value="تکنولوژی" {{$blog->category == 'تکنولوژی' ? 'selected':''}}>تکنولوژی</option>
-                    <option value="آشپزی" {{$blog->category == 'سلامت' ? 'selected':''}}>سلامت</option>
-                    <option value="سبک زندگی" {{$blog->category == 'سبک زندگی' ? 'selected':''}}>سبک زندگی</option>
-                </select>
+                       maxlength="100"
+                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white "
+                       placeholder="خالی رها کنید تا نام شما بعنوان نویسنده درج شود">
 
             </div>
-
-            <!-- Description -->
+            </div>
+            <!-- Author Image -->
             <div class="form-group mb-5">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        <i class="fas fa-camera ml-2 text-purple-600"></i>
+                       تصویر نویسنده مقاله (در صورت خالی بودن نام نویسنده تصویر شما بعنوان نویسنده مقاله دیده خواهد شد)
+                    </label>
+
+                    <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
+                        <div id="upload-content">
+                            <div class="flex items-stretch space-x-2">
+                                <input type="text" id="image1" name="author_image" dir="ltr" value="{{old('author_image',$blog->author_image)}}"
+                                       class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                  bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                  focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                       placeholder="Image">
+
+                                <button type="button" id="button-image1"
+                                        class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                   bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
+                   hover:bg-gray-200 dark:hover:bg-gray-700
+                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                                    Select
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            <div class="grid md:grid-cols-2 gap-5">
+                <!-- Author about -->
+                <div class="form-group mb-5">
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-align-left ml-2 text-purple-600"></i>
+                        توضیح کوتاه درباره نویسنده
+                    </label>
+                    <textarea id="author_about"
+                              name="author_about"
+                              rows="3"
+                              class="w-full text-sm px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                              placeholder="توضیح کوتاهی از نویسنده مقاله . در صورت خالی بودن نام نویسنده اطلاعات شما (کاربر فعلی) برای این مقاله ثبت می شود...">{{old('author',$blog->author_about)}}</textarea>
+
+                </div>
+                <!-- Reading Time -->
+                <div class="form-group mb-5">
+                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <i class="fas fa-clock ml-2 text-purple-600"></i>
+                     مدت زمان مطالعه (دقیقه)
+                </label>
+                <input type="text"
+                       id="reading_time"
+                       name="reading_time" value="{{old('reading_time',$blog->reading_time)}}"
+
+                       maxlength="100"
+                       class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-lg"
+                       placeholder="به دقیقه وارد کنید">
+
+            </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-5">
+                <!-- Category -->
+                <div class="form-group mb-5">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        <i class="fas fa-tags ml-2 text-purple-600"></i>
+                        دسته‌بندی *
+                    </label>
+
+                    <select name="categories[]" id="category" multiple class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                       @foreach(\Modules\Blog\Models\Category::all() as $category)
+                            <option value="{{$category->id}}" {{in_array($category->id,$blog->categories()->get()->pluck('id')->toArray()) ? 'selected':''}}>{{$category->name}}</option>
+                       @endforeach
+                    </select>
+
+                </div>
+
+                <!-- Description -->
+                <div class="form-group mb-5">
                 <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     <i class="fas fa-align-left ml-2 text-purple-600"></i>
-                    توضیح کوتاه *
+                    توضیح کوتاه درباره مقاله *
                 </label>
                 <textarea id="description"
                           name="description"
                           required
                           maxlength="200"
-                          rows="3"
-                          class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                          rows="5"
+                          class="w-full text-sm px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
                           placeholder="توضیح کوتاهی از مقاله که در کارت نمایش داده می‌شود...">{{old('description',$blog->description)}}</textarea>
                 <div class="char-counter mt-1" id="description-counter">0/200 کاراکتر</div>
             </div>
-
+            </div>
         </div>
 
         <!-- TinyMCE Content Editor -->
@@ -132,13 +206,13 @@
                 <div class="drag-area border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300" id="drag-area">
                     <div id="upload-content">
                         <div class="flex items-stretch space-x-2">
-                            <input type="text" id="image_label" name="cover_image" dir="ltr" value="{{old('cover_image',$blog->cover_image)}}"
+                            <input type="text" id="image2" name="cover_image" dir="ltr" value="{{old('cover_image',$blog->cover_image)}}"
                                    class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
                   bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                    placeholder="Image">
 
-                            <button type="button" id="button-image"
+                            <button type="button" id="button-image2"
                                     class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
                    bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
                    hover:bg-gray-200 dark:hover:bg-gray-700
@@ -431,16 +505,24 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            document.getElementById('button-image').addEventListener('click', (event) => {
+            document.getElementById('button-image1').addEventListener('click', (event) => {
                 event.preventDefault();
+                inputId = 'image1';
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+            document.getElementById('button-image2').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                inputId = 'image2';
 
                 window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
             });
         });
-
+        // input
+        let inputId = '';
         // set file link
         function fmSetLink($url) {
-            document.getElementById('image_label').value = $url;
+            document.getElementById(inputId).value = $url;
         }
     </script>
 @endpush

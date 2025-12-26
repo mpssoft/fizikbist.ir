@@ -13,7 +13,7 @@ class Category extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name','description'];
+    protected $fillable = ['name','icon','color','status','description'];
 
     // protected static function newFactory(): CategoryFactory
     // {

@@ -27,6 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'Alert' => \RealRashid\SweetAlert\Facades\Alert::class,
             'Melipayamak' => Melipayamak\Laravel\Facade::class,
             'admin.auth' => \App\Http\Middleware\AdminAuthenticateMiddleware::class,
+            'info' => \App\Http\Middleware\UserInfoMiddleware::class,
         ]);
     })
     ->withCommands([

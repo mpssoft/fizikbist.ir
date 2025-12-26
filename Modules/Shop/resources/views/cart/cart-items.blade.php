@@ -6,7 +6,7 @@
         @endphp
         @foreach($cart as $item)
         <!-- Cart Item 1 -->
-        <div class="cart-item flex items-center gap-3 p-3 border border-gray-600 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="cart-item flex items-center gap-3 p-3 border  border-gray-300 dark:border-gray-600  rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
             <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-shopping-bag  text-lg"></i>
 

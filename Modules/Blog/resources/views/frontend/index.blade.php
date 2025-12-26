@@ -7,29 +7,26 @@
 <section class="gradient-bg hero-pattern py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="floating">
-            <i class="fas fa-magic text-6xl text-white mb-6 opacity-80"></i>
+            <i class="fas fa-newspaper text-6xl text-white mb-6 opacity-80"></i>
         </div>
         <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-            خانه مقالات کاربردی
+             مقالات فیزیک بیست
         </h1>
         <p class="text-xl md:text-2xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
-            مجموعه‌ای از بهترین مقالات زندگی، تکنولوژی، آشپزی و سلامت برای بهبود کیفیت زندگی شما
+            مجموعه‌ای از بهترین مقالات علمی، تکنولوژی، آموزش و سلامت
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#tricks" class="px-8 py-4 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition font-medium text-lg">
+            <a href="#articles" class="px-8 py-4 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition font-medium text-lg">
                 <i class="fas fa-arrow-down ml-2"></i>
                 مشاهده مقالات
             </a>
-            <a href="/tricks/create" class="px-8 py-4 bg-white/20 text-white border-2 border-white rounded-lg hover:bg-white/30 transition font-medium text-lg">
-                <i class="fas fa-plus ml-2"></i>
-                اضافه کردن مقاله
-            </a>
+
         </div>
     </div>
 </section>
 
 <!-- last Tricks -->
-<section class="py-16 bg-gray-50 dark:bg-gray-900" id="tricks">
+<section class="py-16 bg-gray-50 dark:bg-gray-900" id="articles">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -45,14 +42,16 @@
 
             @foreach($blogs as $blog)
             <!-- Featured Trick 1 -->
-            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden ">
+            <article class="bg-white  dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden ">
                 <div class="relative">
                     <div style="background:url('{{$blog->cover_image}}');background-size: 100%" class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-white text-4xl"></i>
+
                     </div>
 
                     <div class="absolute bottom-3 right-3">
-                        <span class="category-badge bg-blue-100 text-blue-800">{{$blog->category}}</span>
+                        @foreach($blog->categories as $category)
+                        <span class="category-badge bg-blue-100 text-blue-800 px-3 rounded-2xl">{{$category->name}}</span>
+                        @endforeach
                     </div>
                 </div>
                 <div class="p-6">
@@ -83,12 +82,12 @@
 
         </div>
 
-        <div class="text-center">
+     {{--   <div class="text-center">
             <a href="/tricks" class="inline-flex items-center px-8 py-3 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition font-medium">
                 مشاهده همه مقالات
                 <i class="fas fa-arrow-left mr-3"></i>
             </a>
-        </div>
+        </div>--}}
     </div>
 </section>
 
@@ -107,58 +106,21 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
 
-            <a href="/tricks?category=technology" class="group bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+            @foreach(\Modules\Blog\Models\Category::all() as $category)
+            <a href="/articles?category={{$category->name}}" class="group bg-gradient-to-br from-{{$category->color}}-50 to-{{$category->color}}-100 dark:from-{{$category->color}}-900 dark:to-{{$category->color}}-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
+                <div class="w-16 h-16 bg-{{$category->color}}-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                    <i class="fas fa-{{$category->icon}} text-white text-2xl"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">تکنولوژی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">47 مقاله</p>
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2">{{$category->name}}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{{$category->blogs()->count() ?? 0}} مقاله</p>
             </a>
-
-            <a href="/tricks?category=cooking" class="group bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-utensils text-white text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">آشپزی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">63 مقاله</p>
-            </a>
-
-            <a href="/tricks?category=health" class="group bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-heart text-white text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">سلامت</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">38 مقاله</p>
-            </a>
-
-            <a href="/tricks?category=home" class="group bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-home text-white text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">خانه‌داری</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">52 مقاله</p>
-            </a>
-
-            <a href="/tricks?category=financial" class="group bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-coins text-white text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">مالی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">29 مقاله</p>
-            </a>
-
-            <a href="/tricks?category=lifestyle" class="group bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 p-6 rounded-2xl text-center hover:shadow-lg transition ">
-                <div class="w-16 h-16 bg-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                    <i class="fas fa-star text-white text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">سبک زندگی</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">18 مقاله</p>
-            </a>
+            @endforeach
 
         </div>
     </div>
 </section>
 
+{{--
 <!-- Recent Tricks -->
 <section class="py-16 bg-gray-50 dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -248,6 +210,7 @@
         </div>
     </div>
 </section>
+--}}
 
 
 </div>

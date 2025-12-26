@@ -2,13 +2,16 @@
 
 namespace Modules\Blog\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Like\Traits\HasLikes;
+
 // use Modules\Blog\Database\Factories\BlogFactory;
 
 class Blog extends Model
 {
-    use HasFactory;
+    use HasFactory,HasLikes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,20 +20,26 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
-        'category',
         'description',
         'content',
         'cover_image',
         'tags',
         'status',
+        'user_id',
+        'author',
+        'author_image',
+        'author_about',
+        'reading_time',
+        'view',
     ];
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'blog_category', 'blog_id', 'category_id');
     }
 
-    // protected static function newFactory(): BlogFactory
-    // {
-    //     // return BlogFactory::new();
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
 }

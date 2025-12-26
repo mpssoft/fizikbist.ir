@@ -11,7 +11,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         {!! SEO::generate() !!}
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/js/modules/tailwind.js"></script>
         <!-- Typography plugin CSS (jsDelivr) -->
 
         <script>
@@ -60,7 +60,7 @@
 
             @include("layouts.frontend.footer")
         </div>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
         <script src="/js/jquery/jquery.min.js"> </script>
         <script src="/js/modules/sweetalert2.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>

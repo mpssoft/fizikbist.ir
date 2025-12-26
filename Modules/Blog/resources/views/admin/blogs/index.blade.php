@@ -131,9 +131,9 @@
         @foreach($blogs as $blog)
         <!-- Trick Card 1 -->
         <div class="trick-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden " data-category="technology" data-status="published" data-featured="true">
-            <div class="relative" style="background: url('{{$blog->cover_image}}')">
+            <div class="relative" >
                 <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                    <i class="fas fa-laptop-code text-white text-4xl"></i>
+                    <img src="{{asset($blog->cover_image)}}" class="object-cover w-full max-h-[200px]">
                 </div>
 
                 <div class="absolute bottom-3 right-3">
@@ -165,7 +165,7 @@
                             <i class="fas fa-trash"></i>
                         </button>
                         </form>
-                        <a href="/tricks/1" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm">
+                        <a href="{{route('article.show',$blog->id)}}" target="_blank" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm">
                             مشاهده
                         </a>
                     </div>
