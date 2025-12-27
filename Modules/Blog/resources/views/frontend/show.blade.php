@@ -7,7 +7,7 @@
 <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
     <div class="flex gap-2 items-center">
     <!-- Article Title -->
-    <h1 class="text-2xl mr-10 sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white  leading-tight">{{$blog->title}}</h1>
+    <h1 class="text-2xl mr-10  font-bold text-gray-900 dark:text-white  leading-tight">{{$blog->title}}</h1>
 
     </div>
     <!-- Article Meta -->
@@ -59,20 +59,20 @@
         </div>
     </div>--}}
     <!-- Author Bio -->
-    <div class="mt-16 p-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl border border-blue-100 dark:border-slate-600">
+    <div class="mt-6 p-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl border border-blue-100 dark:border-slate-600">
         <div class="flex flex-col sm:flex-row items-start gap-6">
             <div class="w-full flex flex-col items-center ">
                 <img src="{{$blog->author? $blog->author_image:Storage::disk('users')->url( 'thumbs/'.$blog->user->image)}}" alt="{{$blog->author ?? $blog->user->name}}" class="w-24 h-24 rounded-full object-cover shadow-md">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white ">{{$blog->author ?? $blog->user->name}}</h3>
             </div>
-            <div class="flex-1">
+            <div class="flex">
                 <p class="text-gray-700 dark:text-slate-300 leading-relaxed mb-4">{{$blog->author? $blog->author_about:$blog->user->about}}</p>
             </div>
         </div>
     </div>
     <!-- Tags -->
 
-    <div class="mt-12 flex items-center gap-4  pt-8 border-t border-gray-200 dark:border-slate-700">
+    <div class="mt-6 flex items-center gap-4  pt-8 border-t border-gray-200 dark:border-slate-700">
         <h3 class="text-sm font-semibold text-gray-600 dark:text-slate-400  flex items-center gap-2"><i class="fas fa-tags"></i>  برچسب ها </h3>
         <div class="flex flex-wrap gap-2">
             @foreach(explode(',',$blog->tags) as $tag)
@@ -83,8 +83,8 @@
 
 @if($relatedBlogs->count()>0)
     <!-- Related Articles -->
-    <div class="bg-white mt-4 dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 md:p-12">
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-8">مقالات مرتبط</h2>
+        <h2 class="text-2xl mt-4 font-bold text-slate-900 dark:text-slate-100 mb-2">مقالات مرتبط</h2>
+        <div class="bg-white  dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 md:p-4">
         <div class="grid md:grid-cols-2 gap-6">
             @foreach($relatedBlogs as $rb)
                 <a href="{{route('article.show',$rb->id)}}">
@@ -92,7 +92,7 @@
 
                     <img src="{{asset($rb->cover_image)}}" alt=" {{$rb->title}}" class=" w-full object-cover" />
 
-                <div class=" p-6 h-full ">
+                <div class=" p-6  h-full ">
 
                     <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100  group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                         {{$rb->title}}</h3>

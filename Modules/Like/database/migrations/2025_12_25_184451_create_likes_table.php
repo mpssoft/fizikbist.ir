@@ -18,11 +18,12 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->morphs('likeable');
+            $table->unsignedBigInteger('likeable_id');
+            $table->string('likeable_type', 100); // 🔑 important
 
             $table->timestamps();
 
-            $table->unique(['user_id', 'likeable_id', 'likeable_type']);
+            $table->unique(['user_id', 'likeable_id', 'likeable_type'], 'likes_unique');
         });
 
     }
