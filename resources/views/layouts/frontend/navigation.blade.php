@@ -352,11 +352,11 @@
         <div class="p-3  overflow-y-auto h-full pb-32">
 
             <!-- Home -->
-            <a href="/"  class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+            <a href="/"  class="flex items-center space-x-2 space-x-reverse p-4 py-2 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                     <i class="fas fa-home text-white text-sm"></i>
                 </div>
-                <span class="font-medium text-white">خانه</span>
+                <span class="font-medium text-gray-800 dark:text-white">خانه</span>
             </a>
 
             <!-- Courses Section -->
@@ -386,6 +386,14 @@
                         <i class="fas fa-file-archive text-white text-sm"></i>
                     </div>
                     <span class="font-semibold "> فایل و جزوه آموزشی </span>
+                </div>
+            </a>
+            <a href="{{ route('articles',['p'=>'مقالات آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-newspaper text-white text-sm"></i>
+                    </div>
+                    <span class="font-semibold "> مقالات آموزشی </span>
                 </div>
             </a>
 
