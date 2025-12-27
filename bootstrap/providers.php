@@ -1,10 +1,19 @@
 <?php
 
 return [
+    Modules\Blog\Providers\BlogServiceProvider::class,
+    Modules\Shop\Providers\ShopServiceProvider::class,
+    Modules\Conversation\Providers\ConversationServiceProvider::class,
+    Modules\Sms\Providers\SmsServiceProvider::class,
+    Modules\File\Providers\FileServiceProvider::class,
+    Modules\Splash\Providers\SplashServiceProvider::class,
+    Modules\Motion\Providers\MotionServiceProvider::class,
+    Modules\LessonPlan\Providers\LessonPlanServiceProvider::class,
+    Modules\Like\Providers\LikeServiceProvider::class,
+
     App\Providers\AppServiceProvider::class,
     Alexusmai\LaravelFileManager\FileManagerServiceProvider::class,
-    \Modules\Shop\Providers\RouteServiceProvider::class,
-    \Modules\Shop\Providers\EventServiceProvider::class,
+    Modules\Shop\Providers\RouteServiceProvider::class,
     Modules\Conversation\Providers\RouteServiceProvider::class,
     Modules\Sms\Providers\RouteServiceProvider::class,
     Modules\File\Providers\RouteServiceProvider::class,
