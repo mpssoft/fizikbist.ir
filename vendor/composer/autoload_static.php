@@ -172,7 +172,6 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Blog\\Database\\Seeders\\' => 30,
             'Modules\\Blog\\Database\\Factories\\' => 32,
             'Modules\\Blog\\' => 13,
-            'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -524,7 +523,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Splash\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Splash/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Splash/app',
         ),
         'Modules\\Sms\\Tests\\' => 
         array (
@@ -540,7 +540,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Sms\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Sms/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Sms/app',
         ),
         'Modules\\Shop\\Tests\\' => 
         array (
@@ -560,7 +561,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Shop\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Shop/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Shop/app',
         ),
         'Modules\\Motion\\Tests\\' => 
         array (
@@ -576,7 +578,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Motion\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Motion/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Motion/app',
         ),
         'Modules\\Like\\Tests\\' => 
         array (
@@ -592,7 +595,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Like\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Like/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Like/app',
         ),
         'Modules\\LessonPlan\\Tests\\' => 
         array (
@@ -608,7 +612,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\LessonPlan\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/LessonPlan/app',
         ),
         'Modules\\File\\Tests\\' => 
         array (
@@ -624,7 +629,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\File\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/File/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/File/app',
         ),
         'Modules\\Conversation\\Tests\\' => 
         array (
@@ -640,7 +646,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Conversation\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Conversation/app',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Conversation/app',
         ),
         'Modules\\Blog\\Tests\\' => 
         array (
@@ -656,11 +663,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         ),
         'Modules\\Blog\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Blog/app',
-        ),
-        'Modules\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules',
+            0 => __DIR__ . '/../..' . '/',
+            1 => __DIR__ . '/../..' . '/Modules/Blog/app',
         ),
         'Mockery\\' => 
         array (
@@ -982,6 +986,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\User\\panel\\UserPanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/panel/UserPanelController.php',
         'App\\Http\\Controllers\\User\\panel\\UserProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/panel/UserProfileController.php',
         'App\\Http\\Middleware\\AdminAuthenticateMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminAuthenticateMiddleware.php',
+        'App\\Http\\Middleware\\UserInfoMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/UserInfoMiddleware.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\ActiveCode' => __DIR__ . '/../..' . '/app/Models/ActiveCode.php',
@@ -4751,9 +4756,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/RouteServiceProvider.php',
         'Modules\\Like\\Database\\Seeders\\LikeDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Like/database/seeders/LikeDatabaseSeeder.php',
         'Modules\\Like\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/Modules/Like/app/Http/Controllers/LikeController.php',
+        'Modules\\Like\\Models\\Like' => __DIR__ . '/../..' . '/Modules/Like/app/Models/Like.php',
         'Modules\\Like\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/EventServiceProvider.php',
         'Modules\\Like\\Providers\\LikeServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/LikeServiceProvider.php',
         'Modules\\Like\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/RouteServiceProvider.php',
+        'Modules\\Like\\Traits\\HasLikes' => __DIR__ . '/../..' . '/Modules/Like/app/Traits/HasLikes.php',
         'Modules\\Motion\\Database\\Seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
         'Modules\\Motion\\Http\\Controllers\\Admin\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/Admin/MotionController.php',
         'Modules\\Motion\\Models\\Motion' => __DIR__ . '/../..' . '/Modules/Motion/app/Models/Motion.php',
@@ -4771,7 +4778,6 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/ShopServiceProvider.php',
         'Modules\\Shop\\Services\\CartService' => __DIR__ . '/../..' . '/Modules/Shop/Services/CartService.php',
-        'Modules\\Sms\\Channels\\MelipayamakChannel' => __DIR__ . '/../..' . '/Modules/Sms/Channels/MelipayamakChannel.php',
         'Modules\\Sms\\Database\\Seeders\\SmsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Sms/database/seeders/SmsDatabaseSeeder.php',
         'Modules\\Sms\\Http\\Controllers\\Admin\\MessageTemplateController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/MessageTemplateController.php',
         'Modules\\Sms\\Http\\Controllers\\Admin\\SmsController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/SmsController.php',

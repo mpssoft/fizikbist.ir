@@ -37,7 +37,15 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Modules\\": "Modules/",
+            "Modules\\Blog\\": ".",
+            "Modules\\Conversation\\": ".",
+            "Modules\\File\\": ".",
+            "Modules\\LessonPlan\\": ".",
+            "Modules\\Like\\": ".",
+            "Modules\\Motion\\": ".",
+            "Modules\\Shop\\": ".",
+            "Modules\\Sms\\": ".",
+            "Modules\\Splash\\": ".",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
