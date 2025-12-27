@@ -4,14 +4,11 @@ namespace Modules\Shop\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Cookie;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Services\CartService;
-use Modules\Shop\Models\Discount;
 
 class CartController extends Controller
 {

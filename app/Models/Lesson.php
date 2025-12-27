@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\Discount;
 

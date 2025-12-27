@@ -4,14 +4,10 @@
 use App\Http\Controllers\Admin\panel\SliderController;
 use App\Http\Controllers\Auth\OtpLoginController;
 use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
-
 use App\Http\Controllers\Frontend\ContactMessageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
-
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Modules\Shop\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 

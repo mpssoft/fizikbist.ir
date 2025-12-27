@@ -4,8 +4,8 @@ namespace Modules\Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Shop\Models\Discount;
 use Illuminate\Validation\Rule;
+use Modules\Shop\Models\Discount;
 
 class DiscountController extends Controller
 {

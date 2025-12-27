@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Modules\Blog\Http\Controllers\Frontend\BlogController;
 use Modules\Blog\Models\Blog;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;

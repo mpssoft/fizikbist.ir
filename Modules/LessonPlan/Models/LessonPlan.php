@@ -3,7 +3,6 @@
 namespace Modules\LessonPlan\Models;
 
 use App\Models\Lesson;
-use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

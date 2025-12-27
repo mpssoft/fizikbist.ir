@@ -9,15 +9,12 @@ use App\Models\Payment;
 use App\Notifications\Channels\MelipayamakChannel;
 use App\Notifications\LessonPlanPaidNotification;
 use App\Notifications\NotifyUserLicense;
-use App\Notifications\SendOtpSms;
 use App\Services\SpotPlayerService;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
-use function PHPUnit\Framework\isEmpty;
 
 
 #[AllowDynamicProperties] class PaymentController extends Controller

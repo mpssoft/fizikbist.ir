@@ -4,8 +4,8 @@ namespace Modules\Shop\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use Modules\Shop\Models\Discount;
 use Modules\Shop\Models\CartItem;
+use Modules\Shop\Models\Discount;
 
 class CartService
 {

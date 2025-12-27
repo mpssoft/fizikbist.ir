@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Motion\Database\Seeders;
+namespace Modules\Motion\database\seeders;
 
 use Illuminate\Database\Seeder;
 

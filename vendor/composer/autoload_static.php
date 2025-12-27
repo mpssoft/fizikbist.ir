@@ -135,43 +135,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             'Morilog\\Jalali\\' => 15,
             'Monolog\\' => 8,
-            'Modules\\Splash\\Tests\\' => 21,
-            'Modules\\Splash\\Database\\Seeders\\' => 32,
-            'Modules\\Splash\\Database\\Factories\\' => 34,
-            'Modules\\Splash\\' => 15,
-            'Modules\\Sms\\Tests\\' => 18,
-            'Modules\\Sms\\Database\\Seeders\\' => 29,
-            'Modules\\Sms\\Database\\Factories\\' => 31,
-            'Modules\\Sms\\' => 12,
-            'Modules\\Shop\\Tests\\' => 19,
-            'Modules\\Shop\\Services\\' => 22,
-            'Modules\\Shop\\Database\\Seeders\\' => 30,
-            'Modules\\Shop\\Database\\Factories\\' => 32,
-            'Modules\\Shop\\' => 13,
-            'Modules\\Motion\\Tests\\' => 21,
-            'Modules\\Motion\\Database\\Seeders\\' => 32,
-            'Modules\\Motion\\Database\\Factories\\' => 34,
-            'Modules\\Motion\\' => 15,
-            'Modules\\Like\\Tests\\' => 19,
-            'Modules\\Like\\Database\\Seeders\\' => 30,
-            'Modules\\Like\\Database\\Factories\\' => 32,
-            'Modules\\Like\\' => 13,
-            'Modules\\LessonPlan\\Tests\\' => 25,
-            'Modules\\LessonPlan\\Database\\Seeders\\' => 36,
-            'Modules\\LessonPlan\\Database\\Factories\\' => 38,
-            'Modules\\LessonPlan\\' => 19,
-            'Modules\\File\\Tests\\' => 19,
-            'Modules\\File\\Database\\Seeders\\' => 30,
-            'Modules\\File\\Database\\Factories\\' => 32,
-            'Modules\\File\\' => 13,
-            'Modules\\Conversation\\Tests\\' => 27,
-            'Modules\\Conversation\\Database\\Seeders\\' => 38,
-            'Modules\\Conversation\\Database\\Factories\\' => 40,
-            'Modules\\Conversation\\' => 21,
-            'Modules\\Blog\\Tests\\' => 19,
-            'Modules\\Blog\\Database\\Seeders\\' => 30,
-            'Modules\\Blog\\Database\\Factories\\' => 32,
-            'Modules\\Blog\\' => 13,
+            'Modules\\' => 8,
             'Mockery\\' => 8,
             'Melipayamak\\Laravel\\' => 20,
             'Melipayamak\\' => 12,
@@ -509,162 +473,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Modules\\Splash\\Tests\\' => 
+        'Modules\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Modules/Splash/tests',
-        ),
-        'Modules\\Splash\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Splash/database/seeders',
-        ),
-        'Modules\\Splash\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Splash/database/factories',
-        ),
-        'Modules\\Splash\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Splash/app',
-        ),
-        'Modules\\Sms\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Sms/tests',
-        ),
-        'Modules\\Sms\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Sms/database/seeders',
-        ),
-        'Modules\\Sms\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Sms/database/factories',
-        ),
-        'Modules\\Sms\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Sms/app',
-        ),
-        'Modules\\Shop\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Shop/tests',
-        ),
-        'Modules\\Shop\\Services\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Shop/Services',
-        ),
-        'Modules\\Shop\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Shop/database/seeders',
-        ),
-        'Modules\\Shop\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Shop/database/factories',
-        ),
-        'Modules\\Shop\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Shop/app',
-        ),
-        'Modules\\Motion\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Motion/tests',
-        ),
-        'Modules\\Motion\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Motion/database/seeders',
-        ),
-        'Modules\\Motion\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Motion/database/factories',
-        ),
-        'Modules\\Motion\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Motion/app',
-        ),
-        'Modules\\Like\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Like/tests',
-        ),
-        'Modules\\Like\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Like/database/seeders',
-        ),
-        'Modules\\Like\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Like/database/factories',
-        ),
-        'Modules\\Like\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Like/app',
-        ),
-        'Modules\\LessonPlan\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/tests',
-        ),
-        'Modules\\LessonPlan\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders',
-        ),
-        'Modules\\LessonPlan\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/LessonPlan/database/factories',
-        ),
-        'Modules\\LessonPlan\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/LessonPlan/app',
-        ),
-        'Modules\\File\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/File/tests',
-        ),
-        'Modules\\File\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/File/database/seeders',
-        ),
-        'Modules\\File\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/File/database/factories',
-        ),
-        'Modules\\File\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/File/app',
-        ),
-        'Modules\\Conversation\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Conversation/tests',
-        ),
-        'Modules\\Conversation\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders',
-        ),
-        'Modules\\Conversation\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Conversation/database/factories',
-        ),
-        'Modules\\Conversation\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Conversation/app',
-        ),
-        'Modules\\Blog\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Blog/tests',
-        ),
-        'Modules\\Blog\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Blog/database/seeders',
-        ),
-        'Modules\\Blog\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/Blog/database/factories',
-        ),
-        'Modules\\Blog\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/',
-            1 => __DIR__ . '/../..' . '/Modules/Blog/app',
+            0 => __DIR__ . '/../..' . '/Modules',
         ),
         'Mockery\\' => 
         array (
@@ -4722,80 +4533,81 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
-        'Modules\\Blog\\Database\\Seeders\\BlogDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Blog/database/seeders/BlogDatabaseSeeder.php',
-        'Modules\\Blog\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Admin/BlogController.php',
-        'Modules\\Blog\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Admin/CategoryController.php',
-        'Modules\\Blog\\Http\\Controllers\\Frontend\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Frontend/BlogController.php',
-        'Modules\\Blog\\Models\\Blog' => __DIR__ . '/../..' . '/Modules/Blog/app/Models/Blog.php',
-        'Modules\\Blog\\Models\\Category' => __DIR__ . '/../..' . '/Modules/Blog/app/Models/Category.php',
-        'Modules\\Blog\\Providers\\BlogServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/BlogServiceProvider.php',
-        'Modules\\Blog\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/EventServiceProvider.php',
-        'Modules\\Blog\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/RouteServiceProvider.php',
-        'Modules\\Conversation\\Database\\Seeders\\ConversationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders/ConversationDatabaseSeeder.php',
-        'Modules\\Conversation\\Http\\Controllers\\ConversationController' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Controllers/ConversationController.php',
-        'Modules\\Conversation\\Http\\Requests\\ConversationRequest' => __DIR__ . '/../..' . '/Modules/Conversation/app/Http/Requests/ConversationRequest.php',
-        'Modules\\Conversation\\Models\\Conversation' => __DIR__ . '/../..' . '/Modules/Conversation/app/Models/Conversation.php',
-        'Modules\\Conversation\\Providers\\ConversationServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/ConversationServiceProvider.php',
-        'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/EventServiceProvider.php',
-        'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/app/Providers/RouteServiceProvider.php',
-        'Modules\\File\\Database\\Seeders\\FileDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/File/database/seeders/FileDatabaseSeeder.php',
-        'Modules\\File\\Http\\Controllers\\Admin\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/Admin/FileController.php',
-        'Modules\\File\\Http\\Controllers\\Frontend\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/Frontend/FileController.php',
-        'Modules\\File\\Http\\Controllers\\User\\FileController' => __DIR__ . '/../..' . '/Modules/File/app/Http/Controllers/User/FileController.php',
-        'Modules\\File\\Models\\File' => __DIR__ . '/../..' . '/Modules/File/app/Models/File.php',
-        'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/EventServiceProvider.php',
-        'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
-        'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
-        'Modules\\LessonPlan\\Database\\Seeders\\LessonPlanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders/LessonPlanDatabaseSeeder.php',
-        'Modules\\LessonPlan\\Http\\Controllers\\Admin\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/Admin/LessonPlanController.php',
-        'Modules\\LessonPlan\\Http\\Controllers\\Frontend\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/Frontend/LessonPlanController.php',
-        'Modules\\LessonPlan\\Http\\Controllers\\User\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/User/LessonPlanController.php',
-        'Modules\\LessonPlan\\Models\\LessonPlan' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Models/LessonPlan.php',
-        'Modules\\LessonPlan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/EventServiceProvider.php',
-        'Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/LessonPlanServiceProvider.php',
-        'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/RouteServiceProvider.php',
-        'Modules\\Like\\Database\\Seeders\\LikeDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Like/database/seeders/LikeDatabaseSeeder.php',
-        'Modules\\Like\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/Modules/Like/app/Http/Controllers/LikeController.php',
-        'Modules\\Like\\Models\\Like' => __DIR__ . '/../..' . '/Modules/Like/app/Models/Like.php',
-        'Modules\\Like\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/EventServiceProvider.php',
-        'Modules\\Like\\Providers\\LikeServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/LikeServiceProvider.php',
-        'Modules\\Like\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/app/Providers/RouteServiceProvider.php',
-        'Modules\\Like\\Traits\\HasLikes' => __DIR__ . '/../..' . '/Modules/Like/app/Traits/HasLikes.php',
-        'Modules\\Motion\\Database\\Seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
-        'Modules\\Motion\\Http\\Controllers\\Admin\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/app/Http/Controllers/Admin/MotionController.php',
-        'Modules\\Motion\\Models\\Motion' => __DIR__ . '/../..' . '/Modules/Motion/app/Models/Motion.php',
-        'Modules\\Motion\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/EventServiceProvider.php',
-        'Modules\\Motion\\Providers\\MotionServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/MotionServiceProvider.php',
-        'Modules\\Motion\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/RouteServiceProvider.php',
-        'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
-        'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
-        'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',
-        'Modules\\Shop\\Http\\Controllers\\ShopController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/ShopController.php',
-        'Modules\\Shop\\Listeners\\MergeCartAfterLogin' => __DIR__ . '/../..' . '/Modules/Shop/app/Listeners/MergeCartAfterLogin.php',
-        'Modules\\Shop\\Models\\CartItem' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/CartItem.php',
-        'Modules\\Shop\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Shop/app/Models/Discount.php',
-        'Modules\\Shop\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/EventServiceProvider.php',
-        'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/RouteServiceProvider.php',
-        'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/app/Providers/ShopServiceProvider.php',
+        'Modules\\Blog\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/Http/Controllers/Admin/BlogController.php',
+        'Modules\\Blog\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/Modules/Blog/Http/Controllers/Admin/CategoryController.php',
+        'Modules\\Blog\\Http\\Controllers\\Frontend\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/Http/Controllers/Frontend/BlogController.php',
+        'Modules\\Blog\\Models\\Blog' => __DIR__ . '/../..' . '/Modules/Blog/Models/Blog.php',
+        'Modules\\Blog\\Models\\Category' => __DIR__ . '/../..' . '/Modules/Blog/Models/Category.php',
+        'Modules\\Blog\\Providers\\BlogServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/Providers/BlogServiceProvider.php',
+        'Modules\\Blog\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/Providers/EventServiceProvider.php',
+        'Modules\\Blog\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/Providers/RouteServiceProvider.php',
+        'Modules\\Blog\\database\\seeders\\BlogDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Blog/database/seeders/BlogDatabaseSeeder.php',
+        'Modules\\Conversation\\Http\\Controllers\\ConversationController' => __DIR__ . '/../..' . '/Modules/Conversation/Http/Controllers/ConversationController.php',
+        'Modules\\Conversation\\Http\\Requests\\ConversationRequest' => __DIR__ . '/../..' . '/Modules/Conversation/Http/Requests/ConversationRequest.php',
+        'Modules\\Conversation\\Models\\Conversation' => __DIR__ . '/../..' . '/Modules/Conversation/Models/Conversation.php',
+        'Modules\\Conversation\\Providers\\ConversationServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/Providers/ConversationServiceProvider.php',
+        'Modules\\Conversation\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/Providers/EventServiceProvider.php',
+        'Modules\\Conversation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Conversation/Providers/RouteServiceProvider.php',
+        'Modules\\Conversation\\database\\seeders\\ConversationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Conversation/database/seeders/ConversationDatabaseSeeder.php',
+        'Modules\\File\\Http\\Controllers\\Admin\\FileController' => __DIR__ . '/../..' . '/Modules/File/Http/Controllers/Admin/FileController.php',
+        'Modules\\File\\Http\\Controllers\\Frontend\\FileController' => __DIR__ . '/../..' . '/Modules/File/Http/Controllers/Frontend/FileController.php',
+        'Modules\\File\\Http\\Controllers\\User\\FileController' => __DIR__ . '/../..' . '/Modules/File/Http/Controllers/User/FileController.php',
+        'Modules\\File\\Models\\File' => __DIR__ . '/../..' . '/Modules/File/Models/File.php',
+        'Modules\\File\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/File/Providers/EventServiceProvider.php',
+        'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/Providers/FileServiceProvider.php',
+        'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/Providers/RouteServiceProvider.php',
+        'Modules\\File\\database\\seeders\\FileDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/File/database/seeders/FileDatabaseSeeder.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\Admin\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/Http/Controllers/Admin/LessonPlanController.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\Frontend\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/Http/Controllers/Frontend/LessonPlanController.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\User\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/Http/Controllers/User/LessonPlanController.php',
+        'Modules\\LessonPlan\\Models\\LessonPlan' => __DIR__ . '/../..' . '/Modules/LessonPlan/Models/LessonPlan.php',
+        'Modules\\LessonPlan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/Providers/EventServiceProvider.php',
+        'Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/Providers/LessonPlanServiceProvider.php',
+        'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/Providers/RouteServiceProvider.php',
+        'Modules\\LessonPlan\\database\\seeders\\LessonPlanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders/LessonPlanDatabaseSeeder.php',
+        'Modules\\Like\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/Modules/Like/Http/Controllers/LikeController.php',
+        'Modules\\Like\\Models\\Like' => __DIR__ . '/../..' . '/Modules/Like/Models/Like.php',
+        'Modules\\Like\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/Providers/EventServiceProvider.php',
+        'Modules\\Like\\Providers\\LikeServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/Providers/LikeServiceProvider.php',
+        'Modules\\Like\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Like/Providers/RouteServiceProvider.php',
+        'Modules\\Like\\Traits\\HasLikes' => __DIR__ . '/../..' . '/Modules/Like/Traits/HasLikes.php',
+        'Modules\\Like\\database\\seeders\\LikeDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Like/database/seeders/LikeDatabaseSeeder.php',
+        'Modules\\Motion\\Http\\Controllers\\Admin\\MotionController' => __DIR__ . '/../..' . '/Modules/Motion/Http/Controllers/Admin/MotionController.php',
+        'Modules\\Motion\\Models\\Motion' => __DIR__ . '/../..' . '/Modules/Motion/Models/Motion.php',
+        'Modules\\Motion\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/Providers/EventServiceProvider.php',
+        'Modules\\Motion\\Providers\\MotionServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/Providers/MotionServiceProvider.php',
+        'Modules\\Motion\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/Providers/RouteServiceProvider.php',
+        'Modules\\Motion\\database\\seeders\\MotionDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Motion/database/seeders/MotionDatabaseSeeder.php',
+        'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/Http/Controllers/CartController.php',
+        'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/Http/Controllers/DiscountController.php',
+        'Modules\\Shop\\Http\\Controllers\\ShopController' => __DIR__ . '/../..' . '/Modules/Shop/Http/Controllers/ShopController.php',
+        'Modules\\Shop\\Listeners\\MergeCartAfterLogin' => __DIR__ . '/../..' . '/Modules/Shop/Listeners/MergeCartAfterLogin.php',
+        'Modules\\Shop\\Models\\CartItem' => __DIR__ . '/../..' . '/Modules/Shop/Models/CartItem.php',
+        'Modules\\Shop\\Models\\Discount' => __DIR__ . '/../..' . '/Modules/Shop/Models/Discount.php',
+        'Modules\\Shop\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/Providers/EventServiceProvider.php',
+        'Modules\\Shop\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/Providers/RouteServiceProvider.php',
+        'Modules\\Shop\\Providers\\ShopServiceProvider' => __DIR__ . '/../..' . '/Modules/Shop/Providers/ShopServiceProvider.php',
         'Modules\\Shop\\Services\\CartService' => __DIR__ . '/../..' . '/Modules/Shop/Services/CartService.php',
-        'Modules\\Sms\\Database\\Seeders\\SmsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Sms/database/seeders/SmsDatabaseSeeder.php',
-        'Modules\\Sms\\Http\\Controllers\\Admin\\MessageTemplateController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/MessageTemplateController.php',
-        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/SmsController.php',
-        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsQueueController' => __DIR__ . '/../..' . '/Modules/Sms/app/Http/Controllers/Admin/SmsQueueController.php',
-        'Modules\\Sms\\Jobs\\SendSmsJob' => __DIR__ . '/../..' . '/Modules/Sms/app/Jobs/SendSmsJob.php',
-        'Modules\\Sms\\Models\\MessageTemplate' => __DIR__ . '/../..' . '/Modules/Sms/app/Models/MessageTemplate.php',
-        'Modules\\Sms\\Models\\SmsQueue' => __DIR__ . '/../..' . '/Modules/Sms/app/Models/SmsQueue.php',
-        'Modules\\Sms\\Notifications\\SendSmsNotification' => __DIR__ . '/../..' . '/Modules/Sms/app/Notifications/SendSmsNotification.php',
-        'Modules\\Sms\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/EventServiceProvider.php',
-        'Modules\\Sms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/RouteServiceProvider.php',
-        'Modules\\Sms\\Providers\\SmsServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/app/Providers/SmsServiceProvider.php',
-        'Modules\\Sms\\Services\\SmsService' => __DIR__ . '/../..' . '/Modules/Sms/app/Services/SmsService.php',
-        'Modules\\Splash\\Database\\Seeders\\SplashDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Splash/database/seeders/SplashDatabaseSeeder.php',
-        'Modules\\Splash\\Http\\Controllers\\SplashController' => __DIR__ . '/../..' . '/Modules/Splash/app/Http/Controllers/SplashController.php',
-        'Modules\\Splash\\Models\\Splash' => __DIR__ . '/../..' . '/Modules/Splash/app/Models/Splash.php',
-        'Modules\\Splash\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/EventServiceProvider.php',
-        'Modules\\Splash\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/RouteServiceProvider.php',
-        'Modules\\Splash\\Providers\\SplashServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/app/Providers/SplashServiceProvider.php',
+        'Modules\\Shop\\database\\seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
+        'Modules\\Sms\\Channels\\MelipayamakChannel' => __DIR__ . '/../..' . '/Modules/Sms/Channels/MelipayamakChannel.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\MessageTemplateController' => __DIR__ . '/../..' . '/Modules/Sms/Http/Controllers/Admin/MessageTemplateController.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsController' => __DIR__ . '/../..' . '/Modules/Sms/Http/Controllers/Admin/SmsController.php',
+        'Modules\\Sms\\Http\\Controllers\\Admin\\SmsQueueController' => __DIR__ . '/../..' . '/Modules/Sms/Http/Controllers/Admin/SmsQueueController.php',
+        'Modules\\Sms\\Jobs\\SendSmsJob' => __DIR__ . '/../..' . '/Modules/Sms/Jobs/SendSmsJob.php',
+        'Modules\\Sms\\Models\\MessageTemplate' => __DIR__ . '/../..' . '/Modules/Sms/Models/MessageTemplate.php',
+        'Modules\\Sms\\Models\\SmsQueue' => __DIR__ . '/../..' . '/Modules/Sms/Models/SmsQueue.php',
+        'Modules\\Sms\\Notifications\\SendSmsNotification' => __DIR__ . '/../..' . '/Modules/Sms/Notifications/SendSmsNotification.php',
+        'Modules\\Sms\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/Providers/EventServiceProvider.php',
+        'Modules\\Sms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/Providers/RouteServiceProvider.php',
+        'Modules\\Sms\\Providers\\SmsServiceProvider' => __DIR__ . '/../..' . '/Modules/Sms/Providers/SmsServiceProvider.php',
+        'Modules\\Sms\\Services\\SmsService' => __DIR__ . '/../..' . '/Modules/Sms/Services/SmsService.php',
+        'Modules\\Sms\\database\\seeders\\SmsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Sms/database/seeders/SmsDatabaseSeeder.php',
+        'Modules\\Splash\\Http\\Controllers\\SplashController' => __DIR__ . '/../..' . '/Modules/Splash/Http/Controllers/SplashController.php',
+        'Modules\\Splash\\Models\\Splash' => __DIR__ . '/../..' . '/Modules/Splash/Models/Splash.php',
+        'Modules\\Splash\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/Providers/EventServiceProvider.php',
+        'Modules\\Splash\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/Providers/RouteServiceProvider.php',
+        'Modules\\Splash\\Providers\\SplashServiceProvider' => __DIR__ . '/../..' . '/Modules/Splash/Providers/SplashServiceProvider.php',
+        'Modules\\Splash\\database\\seeders\\SplashDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Splash/database/seeders/SplashDatabaseSeeder.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\Attribute\\WithMonologChannel' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/WithMonologChannel.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
