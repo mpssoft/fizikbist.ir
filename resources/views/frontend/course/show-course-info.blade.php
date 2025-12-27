@@ -4,14 +4,12 @@
 @section('content')
 
 
-<div class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+<div class="bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
 <!-- Course Header -->
 <div class="max-w-6xl mx-auto px-8 py-12">
-    <div class="bg-white dark:bg-gradient-to-r border border-gray-200  dark:from-slate-700 rounded-2xl dark:to-slate-800 text-white  shadow dark:shadow-xl md:p-8">
+    <div class="bg-white dark:bg-gradient-to-r border border-gray-200 dark:border-gray-700  dark:from-slate-700 rounded-2xl dark:to-slate-800 text-white  shadow dark:shadow-xl md:p-8">
         <div class="grid md:grid-cols-7 gap-6 items-center">
-
-
 
             <!-- Course Cover -->
             <div class="relative md:col-span-4  overflow-hidden">

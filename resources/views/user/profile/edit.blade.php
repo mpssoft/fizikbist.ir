@@ -109,7 +109,7 @@
                         درباره من (اختیاری)
                     </label>
                     <textarea id="bio" name="about" rows="3" placeholder="چند کلمه درباره خودتان بنویسید..."
-                              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none">{{auth()->user()->about}}</textarea>
+                              class="w-full px-4 py-3 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none">{{auth()->user()->about}}</textarea>
                 </div>
             </div>
 

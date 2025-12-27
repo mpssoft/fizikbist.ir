@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{$category->description}}</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"><span class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1"> <i class="fas fa-file-alt text-xs"></i> 24 مقاله </span>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"><span class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1"> <i class="fas fa-file-alt text-xs"></i> {{ count($category->blogs()->get())}} مقاله </span>
                             <div class="flex items-center gap-2">
 
                                 <a href="{{route('admin.categories.edit',$category->id)}}" class="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"> <i class="fas fa-edit"></i> </a>

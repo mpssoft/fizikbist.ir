@@ -15,10 +15,11 @@ class UserInfoMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if(auth()->user()->name == 'کاربر جدید'){
-            alert('','لطفا برای استفاده از سایت اطلاعات خود را تکمیل کنید.','warning');
-            return redirect("/user/edit");
+        if(auth()->check()){
+            if(auth()->user()->name == 'کاربر جدید'){
+                alert('','لطفا برای استفاده از سایت اطلاعات خود را تکمیل کنید.','warning');
+                return redirect("/user/edit");
+            }
         }
         return $next($request);
     }

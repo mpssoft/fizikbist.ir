@@ -150,7 +150,7 @@
 
 
             </div>
-            <div class="flex items-center gap-8 " >
+            <div class="flex items-center gap-4 " >
                 <div class="relative">
 
                     <a href="/cart" type="button" aria-label="Open cart" @mouseenter="cart = true; open = false" class="relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm bg-black hover:shadow-md group text-black dark:!text-white">
@@ -178,7 +178,11 @@
                     </div>
 
                 </div>
-
+                <!-- Theme Toggle -->
+                <button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
+                    <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>
+                    <i x-show="dark" class="fas fa-sun text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200"></i>
+                </button>
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 space-x-reverse ">
                     @if(auth()->check())
