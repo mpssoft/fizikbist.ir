@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->constrained();
             $table->string('spotplayer_id')->nullable(); // SpotPlayer _id
             $table->text('spotplayer_key')->nullable();  // License key
             $table->string('spotplayer_url')->nullable(); // Video URL

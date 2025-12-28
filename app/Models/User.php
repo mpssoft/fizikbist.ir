@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Shop\Models\CartItem;
+use Modules\Shop\Models\Discount;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'mobile',
+        'image',
         'two_factor_type',
         'otp',
         'otp_expires_at',
@@ -73,7 +76,7 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->belongsToMany(Course::class)
-            ->withPivot('point')  // rating given by user
+            ->withPivot(['point'])  // rating given by user
             ->withTimestamps();
     }
     public function licenses() {
@@ -84,6 +87,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class, 'teacher_id');
     }
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class);
+    }
 
-
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

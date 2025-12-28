@@ -12,7 +12,11 @@ class License extends Model
     protected $fillable = [
         'user_id',
         'order_id',
-        'spotplayer_code',
+        'order_item_id',
+        'course_id',
+        'spotplayer_id',
+        'spotplayer_key',
+        'spotplayer_url',
         'course_ids',
         'license_data',
     ];
@@ -27,7 +31,10 @@ class License extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
     public function course()
     {
         return $this->belongsTo(Course::class);

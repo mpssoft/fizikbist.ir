@@ -4,172 +4,95 @@
     <!-- Main Content -->
     <div class="pt-5">
         <!-- Beautiful Stats Cards -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-            <!-- Score Card -->
-            <div class="group p-6 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 border border-white/20 dark:border-slate-600/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-100 to-orange-200 dark:from-yellow-900/30 dark:to-orange-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <i class="fas fa-star text-yellow-500 text-xl"></i>
-                    </div>
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 px-5 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">۰</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">امتیاز</p>
+                        <p class="text-blue-100 text-sm font-medium">کل دوره‌ها</p>
+                        <p class="text-3xl font-bold">{{ count($courses) }}</p>
+                    </div>
+                    <div class="p-3 bg-white/20 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Learning Courses Card -->
-            <div class="group p-6 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 border border-white/20 dark:border-slate-600/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <i class="fas fa-book-open text-blue-500 text-xl"></i>
-                    </div>
+            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">۸</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">دوره در حال یادگیری</p>
+                        <p class="text-green-100 text-sm font-medium">دوره‌های فعال</p>
+                        <p class="text-3xl font-bold"> {{count($activeCourses)}}</p>
+                    </div>
+                    <div class="p-3 bg-white/20 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Completed Courses Card -->
-            <div class="group p-6 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 border border-white/20 dark:border-slate-600/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <i class="fas fa-graduation-cap text-green-500 text-xl"></i>
-                    </div>
+            <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">۰</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">دوره کامل شده</p>
+                        <p class="text-orange-100 text-sm font-medium">کل دانشجویان</p>
+                        <p class="text-3xl font-bold">{{ $courses->students_count ?? 0 }}</p>
+                    </div>
+                    <div class="p-3 bg-white/20 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Total Time Card -->
-            <div class="group p-6 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 border border-white/20 dark:border-slate-600/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-pink-100 to-rose-200 dark:from-pink-900/30 dark:to-rose-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <i class="fas fa-clock text-pink-500 text-xl"></i>
-                    </div>
+            <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-lg font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">۲۷:۳۹:۵۰</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">مجموع کل</p>
+                        <p class="text-purple-100 text-sm font-medium">درآمد کل</p>
+                        <p class="text-3xl font-bold"> ?</p>
+                    </div>
+                    <div class="p-3 bg-white/20 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Beautiful Filter Tabs -->
-        <section class="px-6">
-            <div class="flex flex-wrap gap-3 mb-6">
-                <button @click="activeTab = 'current'"
-                        :class="activeTab === 'current' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-play-circle ml-2"></i>
-                    دوره جاری
-                </button>
-                <button @click="activeTab = 'purchased'"
-                        :class="activeTab === 'purchased' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-shopping-cart ml-2"></i>
-                    خریداری شده
-                </button>
-                <button @click="activeTab = 'completed'"
-                        :class="activeTab === 'completed' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-check-circle ml-2"></i>
-                    گذرانده شده
-                </button>
-                <button @click="activeTab = 'inactive'"
-                        :class="activeTab === 'inactive' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 text-gray-700 dark:text-gray-200 hover:from-gray-50 hover:to-slate-50 dark:hover:from-gray-900/20 dark:hover:to-slate-900/20'"
-                        class="px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg border border-white/20 dark:border-slate-600/20">
-                    <i class="fas fa-pause-circle ml-2"></i>
-                    غیرفعال
-                </button>
-            </div>
-        </section>
-
+      <br>
         <!-- Beautiful Course Cards -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 pb-8">
-            <!-- Course Card 1 -->
+            @foreach($courses as $course)
             <div class="group bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-2 border border-white/20 dark:border-slate-600/20 overflow-hidden">
                 <div class="relative">
                     <div class="w-full h-48 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
                         <i class="fas fa-search text-white text-4xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                         <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                            <span class="text-white text-xs font-medium">جدید</span>
+                            <span class="text-white text-xs font-medium">{{$course->status}}</span>
                         </div>
                     </div>
                     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
                 </div>
                 <div class="p-6">
-                    <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200">آشنایی با پکیج scout</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">یادگیری جستجوی پیشرفته در Laravel</p>
+                    <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200">
+                        {{$course->title}}</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">{{$course->description}}</p>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
                             <div class="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">۲۰٪</span>
-                        </div>
-                        <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 hover:scale-105">
-                            ادامه
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Course Card 2 -->
-            <div class="group bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-2 border border-white/20 dark:border-slate-600/20 overflow-hidden">
-                <div class="relative">
-                    <div class="w-full h-48 bg-gradient-to-br from-green-400 via-teal-500 to-blue-500 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-600/20 to-blue-600/20"></div>
-                        <i class="fas fa-bolt text-white text-4xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
-                        <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                            <span class="text-white text-xs font-medium">محبوب</span>
                         </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-blue-500"></div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-200">آموزش Livewire</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">ساخت رابط کاربری تعاملی با Laravel</p>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">۶۵٪</span>
-                        </div>
-                        <button class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-200 hover:scale-105">
-                            ادامه
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Course Card 3 -->
-            <div class="group bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-2 border border-white/20 dark:border-slate-600/20 overflow-hidden">
-                <div class="relative">
-                    <div class="w-full h-48 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-pink-600/20"></div>
-                        <i class="fas fa-code text-white text-4xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
-                        <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                            <span class="text-white text-xs font-medium">پیشرفته</span>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-pink-500"></div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-lg text-gray-800 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200">ساخت API با GraphQL</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">طراحی API های مدرن و قدرتمند</p>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-1 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full"></div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">۱۰٪</span>
-                        </div>
-                        <button class="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-orange-600 hover:to-pink-600 transition-all duration-200 hover:scale-105">
-                            ادامه
-                        </button>
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
     </div>
 @endsection
