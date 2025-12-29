@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Grade;
+use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
@@ -73,6 +74,13 @@ class CourseController extends Controller
         OpenGraph::setTitle($course->title)
             ->setDescription($course->description)
             ->addImage(asset($course->cover_image)); // <-- Here you add the product image
+
+        JsonLd::set([
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $course->title,
+            'description' => $course->description
+        ]);
         return view('frontend.course.show-course-info',compact('course'));
     }
 }
