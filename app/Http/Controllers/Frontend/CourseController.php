@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Grade;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -16,6 +18,7 @@ class CourseController extends Controller
 
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
         ;
+
         $activeCourses = Course::where("status","active")->get();
         $courses = Course::where('status','active')->withCount([
             'raters as ratings_count',
@@ -65,6 +68,11 @@ class CourseController extends Controller
             ->metatags()->setKeywords($course->tags)
             ->setDescription($course->description)
         ;
+
+        // Open Graph for social sharing
+        OpenGraph::setTitle($course->title)
+            ->setDescription($course->description)
+            ->addImage(asset($course->cover_image)); // <-- Here you add the product image
         return view('frontend.course.show-course-info',compact('course'));
     }
 }
