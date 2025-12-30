@@ -154,7 +154,9 @@
             </div>
 @else
             <!-- Actual form (hidden when not logged in) -->
-            <form id="lessonPlanForm" action="#" method="post" class="grid grid-cols-1 gap-5" >
+            <form id="lesson-plan-form" action="{{route('user.lessonplans.store')}}" method="POST" class="grid grid-cols-1 gap-5" >
+                @csrf
+                @method('POST')
                 <div class="grid sm:grid-cols-2 gap-5">
                     <div>
                         <label class="block font-semibold mb-2" for="name">نام و نام خانوادگی</label>
@@ -193,14 +195,86 @@
                               class="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 px-4 py-3"></textarea>
                 </div>
 
+                <!-- File Management -->
+                <div id="add-file" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-700">
+                        <h2 class="text-lg font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            ضمیمه کردن فایل
+                        </h2>
+                    </div>
+                    <div class="p-6 space-y-6">
 
-                <div class="flex items-center gap-3 pt-2">
-                    <button id="btn-send" type="submit" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition">
-                        <span class="fas fa-check"></span>
-                        ارسال درخواست
-                        <span class=" fas fa-spin fa-spinner !hidden"></span>
+                        <div class="space-y-4" id="file-upload-wrapper">
+                            <!-- TEMPLATE (never removed) -->
+                            <div class="file-item   flex hidden items-center gap-3" id="file-template">
+                                <input
+                                    type="file"
+                                    class="file-input block w-full text-sm
+                   text-slate-700 dark:text-slate-200
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-lg file:border-0
+                   file:text-sm file:font-semibold
+                   file:bg-slate-100 file:text-slate-700
+                   dark:file:bg-slate-700 dark:file:text-slate-200
+                   bg-white dark:bg-slate-800
+                   border border-slate-300 dark:border-slate-600
+                   rounded-lg"
+                                    name="files[]"
+                                />
+
+                                <button
+                                    type="button"
+                                    class="remove-btn  px-3 py-2 text-sm rounded-lg
+                   bg-red-500 text-white hover:bg-red-600">
+                                    حذف
+                                </button>
+                            </div>
+                            <div class="file-item flex items-center gap-3">
+                                <input
+                                    type="file"
+                                    class="file-input block w-full text-sm
+                   text-slate-700 dark:text-slate-200
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-lg file:border-0
+                   file:text-sm file:font-semibold
+                   file:bg-slate-100 file:text-slate-700
+                   dark:file:bg-slate-700 dark:file:text-slate-200
+                   bg-white dark:bg-slate-800
+                   border border-slate-300 dark:border-slate-600
+                   rounded-lg"
+                                    name="files[]"
+                                />
+
+                                <button
+                                    type="button"
+                                    class="remove-btn hidden px-3 py-2 text-sm rounded-lg
+                   bg-red-500 text-white hover:bg-red-600">
+                                    حذف
+                                </button>
+                            </div>
+
+                            <button
+                                type="button"
+                                id="add-file-btn"
+                                class="px-4 py-2 text-sm rounded-lg
+               bg-slate-600 text-white hover:bg-slate-700
+               dark:bg-slate-700 dark:hover:bg-slate-600">
+                                افزودن فایل جدید
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="flex items-center gap-3">
+
+                    <button id="submit-btn" type="submit" class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition">
+                        <span class="btn-text"> ثبت درخواست</span>     <i class="fa-solid fa-spinner fa-spin loader !hidden"></i>
                     </button>
-
                 </div>
             </form>
                 <div id="message-box" class="hidden rounded-xl border border-green-300 dark:border-green-800 bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-200 p-4 flex items-center justify-between">
@@ -231,69 +305,132 @@
 
 @push('scripts')
     <script>
-        document.getElementById('lessonPlanForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // stop normal form submit
+        document.getElementById('add-file-btn').addEventListener('click', function () {
+            const wrapper = document.getElementById('file-upload-wrapper');
+            const template = document.getElementById('file-template');
 
-            let formData = new FormData(this);
+            const item = template.cloneNode(true);
+            item.classList.remove('hidden');
+            item.removeAttribute('id');
+            item.removeAttribute('data-file-id');
 
-            let btnsend = document.getElementById('btn-send');
-            let spinner = btnsend.querySelector('.fa-spin');
-            document.getElementById('error-messages').classList.add('hidden')
-            spinner.classList.remove('!hidden');
-            try {
-                let response = await fetch('/lesson-plan/create', {
-                    method: 'POST',
-                    headers: {
-                        //"Content-Type": "application/json",   // tell Laravel it's JSON
-                        "Accept": "application/json",         // expect JSON response
-                        'X-CSRF-TOKEN':  "{{ csrf_token() }}"
-                    },
-                    body: formData
-                });
+            item.querySelector('.file-input').value = '';
 
-                if (!response.ok) {
-                    let errorData = await response.json();
-                    const errors = errorData.errors; // Object: { title: [...], description: [...] }
 
-                    // Get the container
-                    const container = document.getElementById('error-messages');
-                    const messageDiv = container.querySelector('#error-message');
-
-                    // Clear previous messages
-                    messageDiv.innerHTML = '';
-
-                    // Combine all error messages into a single string
-                    const allMessages = [];
-                    for (let field in errors) {
-                        errors[field].forEach(msg => allMessages.push(msg));
-                    }
-
-                    // Insert messages into the container
-                    messageDiv.innerHTML = allMessages.join('<br>');
-
-                    // Show the container
-                    container.classList.remove('hidden');
-                    spinner.classList.add('!hidden')
-                    return; // stop further processing
-                }
-                let data = await response.json();
-
-                if (data.ok) {
-                        document.getElementById('message-box').classList.remove('hidden');
-                        document.getElementById('lessonPlanForm').classList.add('hidden');
-                        document.getElementById('message').textContent = data.message ;
-                    spinner.classList.add('!hidden');
-
-                } else {
-                    alert("Error: " + data.message);
-                    spinner.classList.add('!hidden');
-                }
-            } catch (error) {
-                console.error("Fetch error:", error);
-                spinner.classList.add('!hidden');
-            }
+            wrapper.insertBefore(item, this);
         });
 
 
+        document.addEventListener('change', function (e) {
+            if (!e.target.classList.contains('file-input')) return;
+
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('حجم فایل نباید بیشتر از ۱۰ مگابایت باشد');
+                e.target.value = '';
+
+            }
+
+
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('remove-btn')) return;
+
+            const item = e.target.closest('.file-item');
+
+            item.remove();
+        });
+
+        document.getElementById('lesson-plan-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const loader = submitBtn.querySelector('.loader');
+
+            // show loader
+            submitBtn.disabled = true;
+            btnText.textContent = 'در حال ارسال...';
+            loader.classList.remove('!hidden');
+
+
+            const formData = new FormData(form);
+            const url = form.action;
+
+            fetch( url, {
+                method : 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: formData
+            })
+                .then(async res => {
+                    const text = await res.text();
+                    try {
+                        return JSON.parse(text);
+
+                    } catch {
+                        Swal.fire({
+                            title: 'خطا در عملیات ',
+                            text: 'خطایی هنگام ثبت درسنامه به وجود آمد !',
+                            icon: 'warning',
+                            confirmButtonText: 'بستن',
+                        })
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('message-box').classList.remove('hidden');
+                        document.getElementById('lesson-plan-form').classList.add('hidden');
+                        document.getElementById('message').textContent = data.message ;
+
+
+
+                    } else {
+                        Swal.fire({
+                            title: ' در انتظار  ',
+                            text: data.message,
+                            icon: 'warning',
+                            confirmButtonText: 'بستن',
+                        })
+                    }
+                })
+                .catch(err => console.error(err))
+
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'ثبت درخواست';
+                    loader.classList.add('!hidden');
+                });
+        });
+
+        document.querySelectorAll('.remove-file').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (!confirm('حذف فایل؟')) return;
+
+                const fileId = this.dataset.id;
+                const row = this.closest('.file-row');
+
+                fetch(`/user/lessonplan-files/${fileId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            row.remove();
+                        } else {
+                            alert(data.message || 'خطا در حذف فایل');
+                        }
+                    });
+            });
+        });
     </script>
 @endpush

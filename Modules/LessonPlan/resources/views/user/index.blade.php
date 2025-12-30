@@ -19,6 +19,11 @@
                             <p class="text-sm text-slate-600 dark:text-slate-400">پیگیری و دانلود درسنامه‌های درخواستی</p>
                         </div>
                     </div>
+                    <div class="flex items-center gap-3">
+                        <a href="{{route('user.lessonplans.create')}}" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition">
+                            + درخواست درسنامه جدید
+                        </a>
+                    </div>
                     {{--
                     <div class="flex items-center gap-3">
                         <select class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
@@ -125,7 +130,7 @@
                                     <div class="flex items-center gap-2">
                                         <span class="w-2 h-2 rounded-full bg-slate-400"></span>
                                         <span class="text-slate-600 dark:text-slate-400">هزینه:</span>
-                                        <span class="font-medium">{{number_format($lp->price)}}</span>
+                                        <span class="font-medium">{{$lp->price > 0 ? number_format($lp->price) : "تعیین نشده"}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +210,7 @@
                                         <div class="text-sm font-medium text-slate-700 dark:text-slate-300">در انتظار بررسی</div>
                                     </div>
                                     <div class="text-sm text-slate-600 dark:text-slate-400">درخواست شما ارسال شده و به زودی بررسی خواهد شد.</div>
+                                    <div class="text-sm text-slate-600 dark:text-slate-400">فایل های ارسال شده شما: {{$lp->attachments()->count()}}</div>
                                 </div>
                             @elseif($lp->status == 'paid')
                                 <div class="bg-amber-50 dark:bg-amber-800 rounded-lg p-3 mb-3">
@@ -218,9 +224,11 @@
 
 
                             <div class="flex items-center justify-between">
+                                @if($lp->status == "ready")
                                 <div class="text-xs text-slate-500">
-                                    درخواست شده در {{ \Morilog\Jalali\Jalalian::forge($lp->created_at) }} • تحویل داده شده در   {{ \Morilog\Jalali\Jalalian::forge($lp->delivery_time)->ago() }}
+                                    درخواست شده در {{ \Morilog\Jalali\Jalalian::forge($lp->updated_at) }} • تحویل داده شده در   {{ \Morilog\Jalali\Jalalian::forge($lp->delivery_time)->ago() }}
                                 </div>
+                                @endif
                                 <div class="flex items-center gap-2">
                                     @if($lp->status == 'accepted')
 
@@ -234,13 +242,15 @@
                                         <span class="spinner-{{$lp->id}}  hidden"><i
                                                 class="fas fa-spinner fa-spin-pulse"></i></span>
                                     </button>
+                                        <a href="{{route('user.lessonplans.edit',$lp->id)}}#add-file" class="px-3 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition"><span class="fa fa-edit"></span> ویرایش درخواست  </a>
                                     @elseif($lp->status == 'pending')
                                         <form action="{{ route('user.lessonplans.destroy',$lp->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$lp->id}}">@csrf @method('delete')
-                                        <button  class="px-3 py-2 rounded-lg border border-rose-300 dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
+                                        <button  class="px-3 py-2 rounded-lg border border-rose-300 bg-rose-600 text-white dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
                                         </form>
+
                                     @elseif($lp->status == 'rejected')
                                         <form action="{{ route('user.lessonplans.destroy',$lp->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$lp->id}}">@csrf @method('delete')
-                                            <button  class="px-3 py-2 rounded-lg border border-rose-300 dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
+                                            <button  class="px-3 py-2 rounded-lg border border-rose-300 dark:border-rose-700   text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
                                         </form>
                                     @endif
                                 </div>

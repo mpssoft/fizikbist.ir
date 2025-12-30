@@ -56,6 +56,11 @@ class LessonPlan extends Model
             ->merge($this->files);
 
     }
+    public function attachments()
+    {
+        return $this->hasMany(LessonPlanAttachment::class);
+    }
+
     public function discounts()
     {
         return $this->morphToMany(Discount::class, 'discountable');

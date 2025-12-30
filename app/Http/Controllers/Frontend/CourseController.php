@@ -66,21 +66,15 @@ class CourseController extends Controller
     {
         $this->seo()
             ->setTitle($course->title)
-            ->metatags()->setKeywords($course->tags)
+
             ->setDescription($course->description)
         ;
-
+        SEOMeta::addMeta('keywords', $course->tags, 'name');
         // Open Graph for social sharing
         OpenGraph::setTitle($course->title)
             ->setDescription($course->description)
             ->addImage(asset($course->cover_image)); // <-- Here you add the product image
 
-        JsonLd::set([
-            '@context' => 'https://schema.org',
-            '@type' => 'WebPage',
-            'name' => $course->title,
-            'description' => $course->description
-        ]);
         return view('frontend.course.show-course-info',compact('course'));
     }
 }

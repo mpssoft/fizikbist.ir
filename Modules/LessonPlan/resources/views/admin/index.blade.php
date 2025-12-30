@@ -91,6 +91,17 @@
                         <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 mb-3">
                             <div class="text-xs font-medium text-gray-800 dark:text-white mb-1">درخواست دانش آموز:</div>
                             <div class="text-sm text-blue-700 dark:text-blue-300">{{$lp->description}}</div>
+                            <div class="text-sm text-amber-700 dark:text-amber-300">فایل های ضمیمه</div>
+                            @foreach($lp->attachments as $file)
+                            <a
+                                href="{{ route('admin.lessonplan-files.download', $file->id) }}"
+                                download
+                                class="text-blue-600 text-sm dark:text-gray-300 hover:underline flex items-center gap-1"
+                            >
+                                <i class="fa-solid fa-download"></i>
+                                {{$file->original_name}}
+                            </a>
+                            @endforeach
                         </div>
 
                         <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-sm">
