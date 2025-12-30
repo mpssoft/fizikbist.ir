@@ -184,7 +184,7 @@ class LessonPlanController extends Controller
         foreach($lessonplan->attachments()->get() as $file){
             // Delete file from storage
             if (Storage::exists($file->path)) {
-                echo "yes exists file";
+
                 Storage::delete($file->path);
             }
 

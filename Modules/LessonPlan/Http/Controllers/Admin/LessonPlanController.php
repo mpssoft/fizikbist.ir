@@ -9,6 +9,7 @@ use App\Notifications\LessonPlanAcceptedNotification;
 use App\Notifications\LessonPlanPaidNotification;
 use App\Notifications\LessonPlanReadyNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 
@@ -93,12 +94,25 @@ class LessonPlanController extends Controller
      */
     public function destroy(LessonPlan $lessonplan)
     {
+        $this->deleteLessonPlanAttachments($lessonplan);
         $lessonplan->delete();
 
         return redirect()->route('admin.lessonplans.index')
             ->with('success', 'Lesson Plan deleted successfully.');
     }
 
+    public function deleteLessonPlanAttachments(LessonPlan $lessonplan)
+    {
+        foreach($lessonplan->attachments()->get() as $file){
+            // Delete file from storage
+            if (Storage::exists($file->path)) {
+
+                Storage::delete($file->path);
+            }
+
+        }
+
+    }
 
     public function changeStatus(Request $request, LessonPlan $lessonPlan)
     {
