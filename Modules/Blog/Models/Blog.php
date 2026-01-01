@@ -5,6 +5,7 @@ namespace Modules\Blog\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Like\Models\Like;
 use Modules\Like\Traits\HasLikes;
 
 // use Modules\Blog\Database\Factories\BlogFactory;
@@ -41,5 +42,12 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
-
+    // In Blog model
+     public function likes() {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    public function isLikedByUser($userId): bool
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
 }

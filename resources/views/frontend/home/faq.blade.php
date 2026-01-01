@@ -15,16 +15,15 @@
     @endpush
  @section('content')
 
-<div class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<div class="bg-gray-300 text-gray-800 dark:text-gray-300 dark:bg-gray-900 min-h-screen">
 <!-- Hero Section -->
-<section class="py-20">
+<section class="py-20 bg-gray-200 dark:bg-gray-700 mb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-            <i class="fas fa-atom text-6xl text-indigo-600 mb-4"></i>
-            <h1 class="text-2xl font-bold text-indigo-600">فیزیک بیست</h1>
+        <div class="mb-4">
+            <i class="fas fa-circle-question text-6xl text-indigo-600 mb-4"></i>
         </div>
-        <h2 class="text-5xl font-bold text-gray-900 mb-6">سوالات متداول</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <h2 class="text-3xl font-bold  mb-6">سوالات متداول</h2>
+        <p class="text-xl  max-w-3xl mx-auto leading-relaxed">
             پاسخ سوالات رایج دانش‌آموزان و اولیای محترم درباره دوره‌های فیزیک و آمادگی برای کنکور
         </p>
     </div>
@@ -33,7 +32,7 @@
 <!-- Search Box -->
 <section class="pb-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="bg-gray-100 dark:bg-slate-700 rounded-lg shadow-lg p-6">
             <div class="relative">
                 <input type="text" id="searchInput" placeholder="جستجو در سوالات..."
                        class="w-full text-gray-500 px-10 py-3  border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
@@ -45,7 +44,7 @@
 
 <!-- FAQ Categories -->
 <section class="pb-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-4 gap-4 mb-8">
             <button onclick="filterFAQ('all')" class="filter-btn bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
                 همه سوالات
@@ -65,14 +64,14 @@
 
 <!-- FAQ Content -->
 <section class="pb-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto   px-4 sm:px-6 lg:px-8">
         <div class="space-y-4" id="faqContainer">
 
             <!-- General Questions -->
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="courses">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="courses">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-graduation-cap text-indigo-600 ml-3"></i>
                             دوره‌های فیزیک بیست شامل چه مطالبی است؟
                         </h3>
@@ -80,10 +79,10 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         دوره‌های ما شامل تمام مباحث فیزیک دبیرستان (دهم، یازدهم و دوازدهم) است. هر دوره شامل:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-2 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-2 ">
                         <li>• آموزش کامل مفاهیم با مثال‌های کاربردی</li>
                         <li>• حل تمرین‌های متنوع و تست‌های کنکوری</li>
                         <li>• جزوات و نمونه سوالات</li>
@@ -93,10 +92,10 @@
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="courses">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="courses">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-clock text-indigo-600 ml-3"></i>
                             مدت زمان هر دوره چقدر است؟
                         </h3>
@@ -104,25 +103,25 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         مدت زمان دوره‌ها بسته به نوع دوره متفاوت است:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-2 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-2 ">
                         <li>• دوره پایه (هر پایه): ۴-۶ ماه</li>
                         <li>• دوره جامع کنکور: ۸-۱۰ ماه</li>
                         <li>• دوره فشرده کنکور: ۳-۴ ماه</li>
                         <li>• کلاس‌های تقویتی: بر اساس نیاز</li>
                     </ul>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         هر جلسه ۲ ساعت و هفته‌ای ۲-۳ جلسه برگزار می‌شود.
                     </p>
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="courses">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="courses">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-users text-indigo-600 ml-3"></i>
                             کلاس‌ها به صورت گروهی یا خصوصی برگزار می‌شود؟
                         </h3>
@@ -130,7 +129,7 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         ما هر دو نوع کلاس را ارائه می‌دهیم:
                     </p>
                     <div class="mt-4 grid md:grid-cols-2 gap-4">
@@ -155,10 +154,10 @@
             </div>
 
             <!-- Konkur Questions -->
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="konkur">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="konkur">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-trophy text-indigo-600 ml-3"></i>
                             چه درصد از دانش‌آموزان شما در کنکور قبول می‌شوند؟
                         </h3>
@@ -166,7 +165,7 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         آمار موفقیت دانش‌آموزان ما در کنکور:
                     </p>
                     <div class="mt-4 grid md:grid-cols-3 gap-4">
@@ -183,16 +182,16 @@
                             <div class="text-sm text-purple-800">رتبه زیر ۱۰۰۰</div>
                         </div>
                     </div>
-                    <p class="mt-4 text-gray-600">
+                    <p class="mt-4 ">
                         این آمار مربوط به دانش‌آموزانی است که دوره کامل را گذرانده‌اند.
                     </p>
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="konkur">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="konkur">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-calendar-alt text-indigo-600 ml-3"></i>
                             چه زمانی باید برای کنکور شروع کنم؟
                         </h3>
@@ -200,34 +199,34 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         بهترین زمان شروع بسته به وضعیت شما:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-3 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-3 ">
                         <li>
-                            <strong class="text-gray-900">دانش‌آموزان دهم:</strong>
+                            <strong class="">دانش‌آموزان دهم:</strong>
                             از همین الان! پایه‌ریزی قوی کلید موفقیت است.
                         </li>
                         <li>
-                            <strong class="text-gray-900">دانش‌آموزان یازدهم:</strong>
+                            <strong class="">دانش‌آموزان یازدهم:</strong>
                             حداکثر تا پایان سال یازدهم برای شروع دوره جامع.
                         </li>
                         <li>
-                            <strong class="text-gray-900">دانش‌آموزان دوازدهم:</strong>
+                            <strong class="">دانش‌آموزان دوازدهم:</strong>
                             هر چه زودتر! دوره‌های فشرده در دسترس است.
                         </li>
                         <li>
-                            <strong class="text-gray-900">فارغ‌التحصیلان:</strong>
+                            <strong class="">فارغ‌التحصیلان:</strong>
                             در هر زمان از سال می‌توانید شروع کنید.
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="konkur">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="konkur">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-book text-indigo-600 ml-3"></i>
                             آیا منابع و جزوات ارائه می‌دهید؟
                         </h3>
@@ -235,10 +234,10 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         بله، منابع کاملی در اختیار دانش‌آموزان قرار می‌دهیم:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-2 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-2 ">
                         <li>• جزوات اختصاصی تهیه شده توسط استاد</li>
                         <li>• مجموعه تست‌های طبقه‌بندی شده</li>
                         <li>• نمونه سوالات کنکورهای سال‌های قبل</li>
@@ -246,17 +245,17 @@
                         <li>• ویدیوهای آموزشی تکمیلی</li>
                         <li>• نرم‌افزار تست‌زنی آنلاین</li>
                     </ul>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         تمام منابع به صورت رایگان در اختیار دانش‌آموزان قرار می‌گیرد.
                     </p>
                 </div>
             </div>
 
             <!-- Technical Questions -->
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="technical">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="technical">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-laptop text-indigo-600 ml-3"></i>
                             برای کلاس‌های آنلاین چه تجهیزاتی نیاز دارم؟
                         </h3>
@@ -264,37 +263,37 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         تجهیزات مورد نیاز برای کلاس‌های آنلاین:
                     </p>
                     <div class="mt-4 grid md:grid-cols-2 gap-4">
                         <div>
-                            <h4 class="font-bold text-gray-900 mb-2">ضروری:</h4>
-                            <ul class="mr-4 space-y-1 text-gray-600">
+                            <h4 class="font-bold  mb-2">ضروری:</h4>
+                            <ul class="mr-4 space-y-1 ">
                                 <li>• کامپیوتر، لپ‌تاپ یا تبلت</li>
                                 <li>• اتصال اینترنت پایدار</li>
                                 <li>• هدفون یا اسپیکر</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 mb-2">پیشنهادی:</h4>
-                            <ul class="mr-4 space-y-1 text-gray-600">
+                            <h4 class="font-bold  mb-2">پیشنهادی:</h4>
+                            <ul class="mr-4 space-y-1 ">
                                 <li>• وب‌کم برای تعامل بهتر</li>
                                 <li>• میکروفون برای پرسش سوال</li>
                                 <li>• دفتر و خودکار</li>
                             </ul>
                         </div>
                     </div>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         راهنمای کامل نصب و استفاده از نرم‌افزار ارائه می‌شود.
                     </p>
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="technical">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="technical">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-video text-indigo-600 ml-3"></i>
                             آیا کلاس‌ها ضبط می‌شود؟
                         </h3>
@@ -302,26 +301,26 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         بله، تمام کلاس‌های آنلاین ضبط و در اختیار دانش‌آموزان قرار می‌گیرد:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-2 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-2 ">
                         <li>• دسترسی به ضبط کلاس تا ۶ ماه پس از پایان دوره</li>
                         <li>• امکان مشاهده مجدد مطالب</li>
                         <li>• دانلود ویدیوها برای مشاهده آفلاین</li>
                         <li>• کیفیت HD برای وضوح بهتر</li>
                     </ul>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         در صورت غیبت از کلاس، می‌توانید از ضبط استفاده کنید.
                     </p>
                 </div>
             </div>
 
             <!-- Pricing Questions -->
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="courses">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="courses">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-money-bill-wave text-indigo-600 ml-3"></i>
                             هزینه دوره‌ها چقدر است؟
                         </h3>
@@ -329,7 +328,7 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         هزینه‌ها بسته به نوع دوره متفاوت است:
                     </p>
                     <div class="mt-4 space-y-3">
@@ -346,16 +345,16 @@
                             <p class="text-purple-800">۲,۵۰۰,۰۰۰ تومان در ماه</p>
                         </div>
                     </div>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         تخفیف‌های ویژه برای ثبت‌نام زودهنگام و دانش‌آموزان ممتاز.
                     </p>
                 </div>
             </div>
 
-            <div class="faq-item bg-white rounded-lg shadow-lg" data-category="courses">
+            <div class="faq-item bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg" data-category="courses">
                 <button class="faq-question w-full text-right p-6 focus:outline-none" onclick="toggleFAQ(this)">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-gray-900">
+                        <h3 class="text-lg font-bold ">
                             <i class="fas fa-phone text-indigo-600 ml-3"></i>
                             چگونه می‌توانم ثبت‌نام کنم؟
                         </h3>
@@ -363,16 +362,16 @@
                     </div>
                 </button>
                 <div class="faq-answer px-6 pb-6">
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class=" leading-relaxed">
                         راه‌های ثبت‌نام:
                     </p>
-                    <ul class="mt-3 mr-4 space-y-2 text-gray-600">
+                    <ul class="mt-3 mr-4 space-y-2 ">
                         <li>• تماس تلفنی: ۰۹۱۴۱۸۷۹۷۶۷</li>
                         <li>• ارسال ایمیل: hosseinssp@gmail.com</li>
                         <li>• پر کردن فرم تماس در سایت</li>
                         <li>• مراجعه حضوری (با هماهنگی قبلی)</li>
                     </ul>
-                    <p class="mt-3 text-gray-600">
+                    <p class="mt-3 ">
                         ابتدا جلسه مشاوره رایگان دریافت کنید تا بهترین دوره را انتخاب کنید.
                     </p>
                 </div>

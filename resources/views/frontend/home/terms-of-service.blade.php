@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+<div class="bg-gray-300  dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
 <!-- Header -->
 <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12">

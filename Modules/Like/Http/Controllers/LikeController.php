@@ -10,9 +10,10 @@ class LikeController extends Controller
 {
     public function toggle(Request $request)
     {
+
         $request->validate([
-            'type' => 'required|string',
-            'id'   => 'required|integer',
+            'type' => 'required',
+            'id'   => 'required',
         ]);
 
         $class = Relation::getMorphedModel($request->type);
@@ -24,7 +25,26 @@ class LikeController extends Controller
         $liked = $model->toggleLike();
 
         return response()->json([
-            'liked' => $liked,
+            'success' => true,
+            'count' => $model->likes()->count(),
+            'liked' => $model->isLikedByUser(auth()->id())
+        ]);
+    }
+
+    public function count(Request $request)
+    {
+        $request->validate([
+            'type' => 'required|string',
+            'id'   => 'required|integer',
+        ]);
+
+        $class = Relation::getMorphedModel($request->type);
+
+        abort_unless($class, 404);
+
+        $model = $class::findOrFail($request->id);
+
+        return response()->json([
             'count' => $model->likes()->count(),
         ]);
     }

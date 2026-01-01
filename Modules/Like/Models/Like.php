@@ -4,6 +4,8 @@ namespace Modules\Like\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Blog\Models\Blog;
+
 // use Modules\Like\Database\Factories\LikeFactory;
 
 class Like extends Model

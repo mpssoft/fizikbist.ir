@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<div class="bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-300  min-h-screen">
 <!-- Hero Section -->
-<section class="py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-            <i class="fas fa-atom text-6xl text-indigo-600 mb-4"></i>
-            <h1 class="text-2xl font-bold text-indigo-600">فیزیک بیست</h1>
+<section class="py-20 bg-gray-50 dark:bg-gray-800 ">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center  "
+         >
+        <div class="mb-8 ">
+           <img src="/big_logo.png" class="w-[100px] mx-auto" >
+            <h1 class="text-ld ">فیزیک بیست</h1>
         </div>
-        <h2 class="text-5xl font-bold text-gray-900 mb-6">تماس با ما</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <h2 class="text-3xl mb-6">تماس با ما</h2>
+        <p class="text-lg  max-w-3xl mx-auto leading-relaxed">
             برای دریافت مشاوره رایگان، ثبت‌نام در دوره‌ها یا پاسخ به سوالات خود با ما در تماس باشید. ما همیشه آماده کمک به شما هستیم.
         </p>
     </div>
@@ -18,11 +20,11 @@
 
 <!-- Contact Info & Form Section -->
 <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div class="grid lg:grid-cols-2 gap-12">
             <!-- Contact Information -->
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">اطلاعات تماس</h3>
+            <div class=" rounded-2xl shadow-xl p-8 bg-gray-50 dark:bg-gray-800 ">
+                <h3 class="text-3xl font-bold  mb-8 text-center">اطلاعات تماس</h3>
 
                 <div class="space-y-8">
                     <!-- Phone -->
@@ -31,9 +33,9 @@
                             <i class="fas fa-mobile-alt text-2xl text-green-600"></i>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-1">شماره تماس</h4>
-                            <p class="text-gray-600 text-lg" dir="ltr">09141879767</p>
-                            <p class="text-sm text-gray-500">پاسخگویی: شنبه تا پنج‌شنبه، ۹ تا ۲۱</p>
+                            <h4 class="text-lg font-bold dark:text-white mb-1">شماره تماس</h4>
+                            <p class=" text-lg" dir="ltr">09141879767</p>
+                            <p class="text-sm ">پاسخگویی: شنبه تا پنج‌شنبه، ۹ تا ۲۱</p>
                         </div>
                     </div>
 
@@ -43,9 +45,9 @@
                             <i class="fas fa-envelope text-2xl text-blue-600"></i>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-1">ایمیل</h4>
-                            <p class="text-gray-600 text-lg" dir="ltr">hosseinssp@gmail.com</p>
-                            <p class="text-sm text-gray-500">پاسخ در کمتر از ۲۴ ساعت</p>
+                            <h4 class="text-lg font-bold dark:text-white mb-1">ایمیل</h4>
+                            <p class=" text-lg" dir="ltr">hosseinssp@gmail.com</p>
+                            <p class="text-sm ">پاسخ در کمتر از ۲۴ ساعت</p>
                         </div>
                     </div>
 
@@ -55,9 +57,9 @@
                             <i class="fas fa-map-marker-alt text-2xl text-purple-600"></i>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-1">آدرس</h4>
-                            <p class="text-gray-600">کلاس‌های حضوری و آنلاین</p>
-                            <p class="text-sm text-gray-500">امکان برگزاری کلاس در محل</p>
+                            <h4 class="text-lg font-bold  dark:text-white mb-1">آدرس</h4>
+                            <p class="">کلاس‌های حضوری و آنلاین</p>
+                            <p class="text-sm ">امکان برگزاری کلاس در محل</p>
                         </div>
                     </div>
 
@@ -67,9 +69,9 @@
                             <i class="fas fa-clock text-2xl text-orange-600"></i>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-1">ساعات کاری</h4>
-                            <p class="text-gray-600">شنبه تا پنج‌شنبه: ۹:۰۰ - ۲۱:۰۰</p>
-                            <p class="text-sm text-gray-500">جمعه‌ها: ۱۴:۰۰ - ۱۸:۰۰</p>
+                            <h4 class="text-lg font-bold  dark:text-white mb-1">ساعات کاری</h4>
+                            <p class="">شنبه تا پنج‌شنبه: ۹:۰۰ - ۲۱:۰۰</p>
+                            <p class="text-sm ">جمعه‌ها: ۱۴:۰۰ - ۱۸:۰۰</p>
                         </div>
                     </div>
                 </div>
@@ -88,13 +90,13 @@
             </div>
 
             <!-- Contact Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">ارسال پیام</h3>
+            <div class=" rounded-2xl shadow-xl p-8 bg-gray-50 dark:bg-gray-800">
+                <h3 class="text-3xl font-bold  mb-8 text-center">ارسال پیام</h3>
 
                 <form id="contactForm" class="space-y-6" >
                     <!-- Name -->
                     <div>
-                        <label for="name" class="block text-sm font-bold text-gray-700 mb-2">نام و نام خانوادگی *</label>
+                        <label for="name" class="block text-sm font-bold  mb-2">نام و نام خانوادگی *</label>
                         <input type="text" id="name" name="name" required
                                class="w-full text-gray-800 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                                placeholder="نام کامل خود را وارد کنید">
@@ -102,7 +104,7 @@
 
                     <!-- Phone -->
                     <div>
-                        <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">شماره تماس *</label>
+                        <label for="phone" class="block text-sm font-bold  mb-2">شماره تماس *</label>
                         <input type="tel" id="phone" name="phone" required
                                class="w-full text-gray-800 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                                placeholder="09xxxxxxxxx" dir="ltr">
@@ -110,7 +112,7 @@
 
                     <!-- Email -->
                     <div>
-                        <label for="email" class="block text-sm font-bold text-gray-700 mb-2">ایمیل</label>
+                        <label for="email" class="block text-sm font-bold  mb-2">ایمیل</label>
                         <input type="email" id="email" name="email"
                                class="w-full text-gray-800 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                                placeholder="example@email.com" dir="ltr">
@@ -118,7 +120,7 @@
 
                     <!-- Grade -->
                     <div>
-                        <label for="grade" class="block text-sm font-bold text-gray-700 mb-2">پایه تحصیلی</label>
+                        <label for="grade" class="block text-sm font-bold  mb-2">پایه تحصیلی</label>
                         <select id="grade" name="grade"
                                 class="w-full text-gray-800 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
                             <option value="">انتخاب کنید</option>
@@ -131,7 +133,7 @@
 
                     <!-- Subject -->
                     <div>
-                        <label for="subject" class="block text-sm font-bold text-gray-700 mb-2">موضوع پیام *</label>
+                        <label for="subject" class="block text-sm font-bold  mb-2">موضوع پیام *</label>
                         <select id="subject" name="subject" required
                                 class="w-full px-4 text-gray-800 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
                             <option value="">انتخاب کنید</option>
@@ -145,7 +147,7 @@
 
                     <!-- Message -->
                     <div>
-                        <label for="message" class="block text-sm font-bold text-gray-700 mb-2">پیام شما *</label>
+                        <label for="message" class="block text-sm font-bold  mb-2">پیام شما *</label>
                         <textarea id="message" name="message" rows="5" required
                                   class="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors resize-none"
                                   placeholder="پیام خود را اینجا بنویسید..."></textarea>

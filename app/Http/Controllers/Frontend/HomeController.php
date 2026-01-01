@@ -35,7 +35,18 @@ class HomeController extends Controller
             ->addImages($lesson->thumbnail)
             ->metatags()->setKeywords($lesson->tags)
         ;
-        $lesson->increment('view');
+
+        // Check if this lesson has already been viewed in this session
+        $viewedLessons = session()->get('viewed_lessons', []);
+
+        if (!in_array($lesson->id, $viewedLessons)) {
+            // Increment only once per session
+            $lesson->increment('view');
+
+            // Store lesson id in session
+            session()->push('viewed_lessons', $lesson->id);
+        }
+
         return view('frontend.player.play',compact('lesson'));
     }
     public function playFreeCourse(Course $course)

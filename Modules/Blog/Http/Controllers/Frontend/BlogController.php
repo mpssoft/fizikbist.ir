@@ -60,7 +60,16 @@ class BlogController extends Controller
         OpenGraph::setTitle($blog->name)
             ->setDescription($blog->description)
             ->addImage(asset($blog->cover_image)); // <-- Here you add the product image
+        // Check if this lesson has already been viewed in this session
+        $viewedArticles = session()->get('viewed_atricles', []);
 
+        if (!in_array($blog->id, $viewedArticles)) {
+            // Increment only once per session
+            $blog->increment('view');
+
+            // Store lesson id in session
+            session()->push('viewed_atricles', $blog->id);
+        }
 
         // Get category IDs of current blog
         $categoryIds = $blog->categories->pluck('id')->toArray();
