@@ -23,7 +23,9 @@
 @section("content")
     <!-- Hero Slider Section -->
     @if($motion = \Modules\Motion\Models\Motion::where('active',true)->first())
-        @include('motion::frontend.home-video',compact('motion'))
+        <div class="md:w-[calc(100vw-6rem)] mx-auto rounded-3xl bg-slate-800 " >
+            @include('motion::frontend.home-video',compact('motion'))
+        </div>
     @endif
     <!-- Home Section -->
     <section id="homeSection" class="section">
@@ -99,15 +101,12 @@
 
                     <!-- Profile Section -->
                     <div class="text-center">
-                        <div class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 via-blue-500 to-indigo-600 dark:from-purple-500 dark:via-blue-600 dark:to-indigo-700 rounded-full flex items-center justify-center text-white text-6xl tv-optimized-text-shadow shadow-2xl transition-all duration-300 hover:scale-105">
-                            <i class="fas fa-user-tie"></i>
+                        <div class="w-56 h-56 pt-6 overflow-hidden mx-auto bg-gradient-to-br from-purple-400 via-blue-500 to-indigo-600 dark:from-purple-500 dark:via-blue-600 dark:to-indigo-700 rounded-full flex items-center justify-center text-white text-6xl tv-optimized-text-shadow shadow-2xl transition-all duration-300 hover:scale-105">
+                            <a href="{{asset('/images/users/admin/hossein_nezhad_asad.png')}}" target="_blank">
+                            <img src="{{asset('/images/users/admin/file_small_fizikbist.png')}}">
+                            </a>
                         </div>
-                        <h3 class="text-xl font-semibold mt-6 text-gray-800 dark:text-white transition-colors duration-300">
-                            استاد حسین نژاداسد
-                        </h3>
-                        <p class="text-gray-600 dark:text-gray-400 transition-colors duration-300 mb-4">
-                            دبیر فیزیک
-                        </p>
+
 
 
                     </div>

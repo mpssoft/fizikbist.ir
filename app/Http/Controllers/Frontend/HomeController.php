@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        //auth()->loginUsingId(2);
+        //auth()->loginUsingId(1);
         $this->seo()
             ->setTitle("آموزش به زبان شما!")
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")

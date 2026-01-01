@@ -39,7 +39,7 @@
     </head>
     <body class=" transition-colors duration-1000 bg-white text-black dark:bg-slate-900  dark:text-white" dir="rtl">
         <div class="min-h-screen ">
-            @include('layouts.frontend.navigation')
+            @include('layouts.frontend.navigation2')
 
             <!-- Page Heading -->
             @isset($header)

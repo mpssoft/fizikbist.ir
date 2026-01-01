@@ -52,6 +52,7 @@ class LessonPlan extends Model
     public function items()
     {
         return collect()
+            ->merge($this->discounts)
             ->merge($this->lessons)
             ->merge($this->files);
 

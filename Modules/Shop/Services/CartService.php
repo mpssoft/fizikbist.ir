@@ -17,6 +17,7 @@ class CartService
      */
     public function addItem($type, $id, $qty = 1, $price = 0)
     {
+
         $discount = $this->getDiscountForItem($type, $id);
 
         if (Auth::check()) {
@@ -76,6 +77,7 @@ class CartService
             $tableName = (new $type)->getTable();
         }else
             return null;
+
         return Discount::where('is_active', true)
             ->where(function ($q) use ($now) {
                 $q->whereNull('start_at')->orWhere('start_at', '<=', $now);

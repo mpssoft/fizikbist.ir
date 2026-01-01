@@ -218,7 +218,7 @@
                                         <div class="w-2 h-2 rounded-full bg-amber-500"></div>
                                         <div class="text-sm font-medium text-amber-700 dark:text-amber-300">پرداخت شده  </div>
                                     </div>
-                                    <div class="text-sm text-amber-600 dark:text-amber-400">{{$lp->admin_description ?? "با تشکر از اعتماد شما به فیزیک بیست. درسنامه شما بزودی در مرحله آماده سازی قرار خواهد گرفت.در صورت داشتن هر گونه سوال از قسمت پیام ها می تواندی با ما در ارتباط باشید."}}</div>
+                                    <div class="text-sm text-amber-600 dark:text-amber-400">{{$lp->admin_description ?? "با تشکر از اعتماد شما به فیزیک بیست. درسنامه شما بزودی در مرحله آماده سازی قرار خواهد گرفت.در صورت داشتن هر گونه سوال از قسمت پیام ها می توانید با ما در ارتباط باشید."}}</div>
                                 </div>
                                 @endif
 
@@ -243,6 +243,9 @@
                                                 class="fas fa-spinner fa-spin-pulse"></i></span>
                                     </button>
                                         <a href="{{route('user.lessonplans.edit',$lp->id)}}#add-file" class="px-3 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition"><span class="fa fa-edit"></span> ویرایش درخواست  </a>
+                                        <form action="{{ route('user.lessonplans.destroy',$lp->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$lp->id}}">@csrf @method('delete')
+                                            <button  class="px-3 py-2 rounded-lg border border-rose-300 bg-rose-600 text-white dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
+                                        </form>
                                     @elseif($lp->status == 'pending')
                                         <form action="{{ route('user.lessonplans.destroy',$lp->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$lp->id}}">@csrf @method('delete')
                                         <button  class="px-3 py-2 rounded-lg border border-rose-300 bg-rose-600 text-white dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
@@ -250,7 +253,7 @@
 
                                     @elseif($lp->status == 'rejected')
                                         <form action="{{ route('user.lessonplans.destroy',$lp->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$lp->id}}">@csrf @method('delete')
-                                            <button  class="px-3 py-2 rounded-lg border border-rose-300 dark:border-rose-700   text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
+                                            <button  class="px-3 py-2 rounded-lg border border-rose-300 bg-rose-600 text-white dark:border-rose-700 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 text-sm font-medium transition">حذف</button>
                                         </form>
                                     @endif
                                 </div>
@@ -279,13 +282,13 @@
         function confirmDelete(e) {
             e.preventDefault();
             Swal.fire({
-                title: 'حذف درسنامه؟',
-                text: 'آیا مطمئن هستید که می‌خواهید این درسنامه را حذف کنید؟',
+                title: 'لغو درخواست درسنامه؟',
+                text: 'آیا مطمئن هستید که می‌خواهید این درسنامه را لغو کنید؟',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: "red" ,
-                confirmButtonText: 'بله، حذف کن',
-                cancelButtonText: 'لغو'
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'نه هنوز'
             }).then((result) => {
                 if (result.isConfirmed) {
                     e.target.submit();

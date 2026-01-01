@@ -44,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
             'course'    => \App\Models\Course::class,
             'lesson'    => \App\Models\Lesson::class,
             'file'    => \Modules\File\Models\File::class,
+            'lessonplan'    => \Modules\LessonPlan\Models\LessonPlan::class,
+            'lesson_plan'    => \Modules\LessonPlan\Models\LessonPlan::class,
 
         ]);
     }

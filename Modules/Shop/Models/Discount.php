@@ -50,6 +50,11 @@ class Discount extends Model
     {
         return $this->morphedByMany(LessonPlan::class,'discountable');
     }
+    public function lessonplans()
+    {
+        return $this->morphedByMany(LessonPlan::class,'discountable');
+    }
+
 
 
     /**
@@ -61,6 +66,7 @@ class Discount extends Model
             ->merge($this->courses)
             ->merge($this->lessons)
             ->merge($this->lessonplans)
+            ->merge($this->lesson_plans)
             ->merge($this->files);
 
     }

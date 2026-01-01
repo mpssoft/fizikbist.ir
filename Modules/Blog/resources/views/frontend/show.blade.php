@@ -62,7 +62,7 @@
     <div class="mt-6 p-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl border border-blue-100 dark:border-slate-600">
         <div class="flex flex-col sm:flex-row items-start gap-6">
             <div class="w-full flex flex-col items-center ">
-                <img src="{{$blog->author? $blog->author_image:Storage::disk('users')->url( 'thumbs/'.$blog->user->image)}}" alt="{{$blog->author ?? $blog->user->name}}" class="w-24 h-24 rounded-full object-cover shadow-md">
+                <img src="{{$blog->author?  $blog->author_image:Storage::disk('users')->url( 'thumbs/'.$blog->user->image)}}" alt="{{$blog->author ?? $blog->user->name}}" class="w-24 h-24 rounded-full object-cover shadow-md">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white ">{{$blog->author ?? $blog->user->name}}</h3>
             </div>
             <div class="flex">
