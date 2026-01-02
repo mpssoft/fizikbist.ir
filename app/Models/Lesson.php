@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\LessonPlan\Models\LessonPlan;
+use Modules\Like\Models\Like;
+use Modules\Like\Traits\HasLikes;
 use Modules\Shop\Models\Discount;
 
 class Lesson extends Model
 {
+    use HasLikes;
     protected $fillable = [
         'course_id',
         'title',
@@ -46,5 +49,11 @@ class Lesson extends Model
         return $this->morphToMany(LessonPlan::class, 'item', 'lesson_plan_items', 'item_id', 'lesson_plan_id')
             ->withTimestamps();
     }
-
+    public function likes() {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    public function isLikedByUser($userId): bool
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
 }

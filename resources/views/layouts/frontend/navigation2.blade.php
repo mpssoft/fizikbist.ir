@@ -310,7 +310,7 @@
             <!-- Home -->
             <a href="/"  class="flex items-center space-x-2 space-x-reverse p-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="pr-4 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                    <i class="fas fa-home text-white text-sm"></i>
+                    <i class="fas fa-home text-blue-400 text-sm"></i>
                 </div>
                 <span class="font-medium text-gray-800 dark:text-white pr-2">خانه</span>
             </a>
@@ -320,16 +320,16 @@
                 <a href="{{ route('all.courses',['p'=>'همه دوره های آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                     <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
                         <div class="pr-4 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-book text-white text-sm"></i>
+                            <i class="fas fa-graduation-cap text-cyan-400 text-sm"></i>
                         </div>
-                        <span class="font-semibold ">همه دوره‌ها</span>
+                        <span class="font-semibold ">همه دوره‌های آموزشی</span>
                     </div>
                 </a>
                 <div class="mr-6 space-y-1">
                     @foreach(\App\Models\Grade::all() as $grade)
                         <a href="{{ route('gradeCourses',['gradeName'=>$grade->name]) }}"  class="flex items-center space-x-3 space-x-reverse p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                             <div class="pr-4 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                                <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
+                                <i class="fas fa-chalkboard-teacher text-red-400 text-xs"></i>
                             </div>
                             <span class="font-medium">{{$grade->name}}</span>
                         </a>
@@ -339,7 +339,7 @@
             <a href="{{ route('files',['p'=>'فایل و جزوه آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="flex items-center space-x-4 space-x-reverse p-3 text-gray-800 dark:text-gray-100">
                     <div class="pr-4 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-file-archive text-white text-sm"></i>
+                        <i class="fas fa-file-archive text-green-400 text-sm"></i>
                     </div>
                     <span class="font-semibold "> فایل و جزوه آموزشی </span>
                 </div>
@@ -364,7 +364,7 @@
             <a href="{{ route('articles',['p'=>'مقالات آموزشی']) }}"  class="flex items-center space-x-4 space-x-reverse  rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 dark:hover:from-purple-900/20 dark:hover:to-blue-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                 <div class="flex items-center space-x-4 space-x-reverse p-3 text-gray-800 dark:text-gray-100">
                     <div class="pr-4 flex items-center justify-center">
-                        <i class="fas fa-newspaper text-white text-sm"></i>
+                        <i class="fas fa-newspaper text-purple-400 text-sm"></i>
                     </div>
                     <span class="font-semibold "> مقالات آموزشی </span>
                 </div>
@@ -375,7 +375,7 @@
                 <div id="mobileUserPanelLink" class="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-3 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
                         <div class="pr-4 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                            <i class="fas fa-user-cog text-white text-sm"></i>
+                            <i class="fas fa-user-cog text-black text-sm"></i>
                         </div>
                         <span class="font-medium dark:text-white">پنل کاربری</span>
                     </a>

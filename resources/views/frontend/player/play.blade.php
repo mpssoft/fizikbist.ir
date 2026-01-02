@@ -28,28 +28,14 @@
                 <!-- Video Player -->
                 {!!  $lesson->video_url !!}
                 <!-- Video Info -->
+
                 <div class="mt-4 bg-gray-50 dark:bg-slate-800 rounded-lg p-4 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">{{ $lesson->title }}</h2>
-                    <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        <span>{{$lesson->view}} بازدید</span>
-                        <div class="flex items-center space-x-4">
-                            <button class="flex items-center space-x-1 hover:text-aparat-accent transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-                                </svg>
-                                <span>{{$lesson->like}}</span>
-                            </button>
-                            <button class="flex items-center space-x-1 hover:text-red-500 transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 13l3 3 7-7"></path>
-                                </svg>
-                                <span>اشتراک</span>
-                            </button>
-                        </div>
-                    </div>
+
                     <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                         {{$lesson->description}}                    </p>
                 </div>
+                @include('like::partials.like-view',['model'=>$lesson])
             </div>
 
             <!-- Sidebar -->
@@ -76,9 +62,13 @@
                     </div>
                         </a>
                     @endforeach
+
                   </div>
             </div>
         </div>
     </div>
 
 @endsection
+@push('scripts')
+    @include('like::partials.like-script')
+@endpush

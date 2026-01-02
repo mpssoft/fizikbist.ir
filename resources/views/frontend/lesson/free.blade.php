@@ -40,7 +40,7 @@
                                     <span>{{$lesson->duration}} دقیقه</span>
                                 </div>
                                 <div class="flex items-center gap-1">
-                                    <span class="fas fa-eye"> </span>
+                                    <span class="fa fa-eye"> </span>
                                     <span>{{$lesson->view}} بازدید </span>
                                 </div>
                                 {{--<div class="flex items-center gap-1">
