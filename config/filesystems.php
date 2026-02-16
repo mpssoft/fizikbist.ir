@@ -30,10 +30,16 @@ return [
 
     'disks' => [
 // images folder in public path
-        'images' => [
+        'users' => [
+            'driver' => 'local',
+            'root' => base_path('public_html/images/users'),
+            'url' => '/images/users',
+            'visibility' => 'public'
+        ],'images' => [
             'driver' => 'local',
             'root' => base_path('public_html/images'),
             'url' => '/images',
+            'visibility' => 'public'
         ],
         'local' => [
             'driver' => 'local',
@@ -42,6 +48,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+      'files' => [
+                'driver' => 'local',
+                'root' => storage_path('app/private'),
+                'serve' => true,
+                'throw' => false,
+                'report' => false,
+                'visibility' => 'private'
+            ],
 
         'public' => [
             'driver' => 'local',

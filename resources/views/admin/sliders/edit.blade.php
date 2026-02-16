@@ -17,7 +17,7 @@
     </script>
 @endpush
 @section('content')
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto mt-5">
         <!-- Header Section -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
             <div class="p-8">
@@ -81,7 +81,7 @@
                         <label for="title" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
                             عنوان اسلایدر *
                         </label>
-                        <input type="text" id="title" name="title" required value="خوش آمدید به آکادمی آنلاین"
+                        <input type="text" id="title" name="title" required value="{{$slider->title}}"
                                class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -100,7 +100,7 @@
                                          bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                          focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
                                          focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 resize-none"
-                                  placeholder="توضیح کوتاه و جذاب درباره محتوای اسلایدر">بهترین دوره‌های آموزشی آنلاین را با ما تجربه کنید</textarea>
+                                  placeholder="توضیح کوتاه و جذاب درباره محتوای اسلایدر">{{ $slider->subtitle }}</textarea>
                         <p class="text-sm text-gray-500 dark:text-gray-400">توضیح کوتاهی که زیر عنوان اصلی نمایش داده می‌شود</p>
                     </div>
 
@@ -175,31 +175,45 @@
                         <p class="text-sm text-gray-500 dark:text-gray-400">فرمت‌های مجاز: JPG, PNG, GIF - حداکثر حجم: 2MB - ابعاد پیشنهادی: 1920x800 پیکسل</p>
                     </div>
 
-                    <!-- Link Field -->
-                    <div class="space-y-2">
-                        <label for="link" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
-                            لینک اسلایدر
-                        </label>
-                        <div class="relative">
-                            <input type="text" id="link" name="link" value="/courses"
-                                   class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
+                    <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8  ">
+                        <!-- Link Field -->
+                        <div class="space-y-2">
+                            <label for="link" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                لینک اسلایدر
+                            </label>
+                            <div class="relative">
+                                <input type="url" dir="ltr" id="link" name="link" value="{{old('link',$slider->link)}}"
+                                       class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
                                           focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 pl-12"
-                                   placeholder="https://example.com یا /internal-page">
-                            <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                            </svg>
+                                       placeholder="https://example.com یا /internal-page">
+                                <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">لینکی که کاربر پس از کلیک روی اسلایدر به آن هدایت می‌شود (اختیاری)</p>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">لینکی که کاربر پس از کلیک روی اسلایدر به آن هدایت می‌شود (اختیاری)</p>
+                        <!-- Button Text Field -->
+                        <div class="space-y-2">
+                            <label for="title" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                متن روی دکمه اسلایدر
+                            </label>
+                            <input type="text" id="button_text" name="button_text" value="{{old('button_text',$slider->button_text)}}"
+                                   class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                      focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                      focus:ring-4 focus:ring-purple-500/20 transition-all duration-200"
+                                   placeholder="اطلاعات بیشتر | خرید سریع">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">این متن برای سفارشی کردن متن دکمه اسلایدر استفاده می شود</p>
+                        </div>
                     </div>
-
                     <!-- Display Order -->
                     <div class="space-y-2">
                         <label for="order" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
                             ترتیب نمایش
                         </label>
-                        <input type="number" id="order" name="order" min="1" value="1"
+                        <input type="text" id="order" name="order" value="{{old('order',$slider->order)}}"
                                class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -225,9 +239,9 @@
                     </div>
 
                     <!-- Form Actions -->
-                    <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row items-center gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
                         <button type="submit"
-                                class="w-full sm:flex-1 px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white text-lg font-semibold rounded-xl
+                                class="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white text-lg font-semibold rounded-xl
                                        hover:from-orange-700 hover:to-red-700 hover:shadow-xl hover:scale-105 transition-all duration-200
                                        focus:ring-4 focus:ring-orange-500/20">
                             <svg class="w-6 h-6 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,24 +249,9 @@
                             </svg>
                             ذخیره تغییرات
                         </button>
-                        <button type="button" onclick="saveDraft()"
-                                class="w-full sm:w-auto px-8 py-4 border-2 border-blue-300 dark:border-blue-600 text-blue-700 dark:text-blue-300
-                                       text-lg font-semibold rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200">
-                            <svg class="w-6 h-6 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
-                            </svg>
-                            ذخیره پیش‌نویس
-                        </button>
-                        <button type="button" onclick="resetForm()"
-                                class="w-full sm:w-auto px-8 py-4 border-2 border-yellow-300 dark:border-yellow-600 text-yellow-700 dark:text-yellow-300
-                                       text-lg font-semibold rounded-xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-all duration-200">
-                            <svg class="w-6 h-6 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                            بازنشانی
-                        </button>
+
                         <a href="/admin/sliders"
-                           class="w-full sm:w-auto px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300
+                           class="w-full md:w-auto px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300
                                   text-lg font-semibold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 text-center">
                             انصراف
                         </a>
@@ -261,21 +260,6 @@
             </div>
         </div>
 
-        <!-- Preview Section -->
-        <div id="previewSection" class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mt-8">
-            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">پیش‌نمایش اسلایدر</h3>
-                <p class="text-gray-600 dark:text-gray-300">نمایش اسلایدر پس از اعمال تغییرات</p>
-            </div>
-            <div class="p-8">
-                <div id="sliderPreview" class="relative bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl overflow-hidden min-h-[300px] flex items-center justify-center">
-                    <div class="text-center text-white p-8">
-                        <h2 id="previewTitle" class="text-4xl font-bold mb-4">خوش آمدید به آکادمی آنلاین</h2>
-                        <p id="previewSubtitle" class="text-xl opacity-90">بهترین دوره‌های آموزشی آنلاین را با ما تجربه کنید</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     </div>

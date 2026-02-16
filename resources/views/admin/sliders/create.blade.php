@@ -119,7 +119,7 @@
                                 <p class="text-sm text-gray-400">یا فایل را اینجا بکشید و رها کنید</p>
                             </div>
                             <div class="flex items-stretch space-x-2">
-                                <input type="text" id="image_label" name="cover_image"
+                                <input type="text" id="image_label" name="image"
                                        class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
                   bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
@@ -138,13 +138,14 @@
                         <p class="text-sm text-gray-500 dark:text-gray-400">فرمت‌های مجاز: JPG, PNG, GIF - حداکثر حجم: 2MB - ابعاد پیشنهادی: 1920x800 پیکسل</p>
                     </div>
 
+                    <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8  ">
                     <!-- Link Field -->
-                    <div class="space-y-2">
-                        <label for="link" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
-                            لینک اسلایدر
-                        </label>
+                        <div class="space-y-2">
+                            <label for="link" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                لینک اسلایدر
+                            </label>
                         <div class="relative">
-                            <input type="url" id="link" name="link"
+                            <input type="url" dir="ltr" id="link" name="link" value="{{old('link')}}"
                                    class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -156,13 +157,26 @@
                         </div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">لینکی که کاربر پس از کلیک روی اسلایدر به آن هدایت می‌شود (اختیاری)</p>
                     </div>
-
+                    <!-- Button Text Field -->
+                    <div class="space-y-2">
+                        <label for="title" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
+                             متن روی دکمه اسلایدر
+                        </label>
+                        <input type="text" id="button_text" name="button_text" value=" {{old('button_text','اطلاعات بیشتر')}}"
+                               class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                      focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                      focus:ring-4 focus:ring-purple-500/20 transition-all duration-200"
+                               placeholder="اطلاعات بیشتر | خرید سریع">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">این متن برای سفارشی کردن متن دکمه اسلایدر استفاده می شود</p>
+                    </div>
+                    </div>
                     <!-- Display Order -->
                     <div class="space-y-2">
                         <label for="order" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
                             ترتیب نمایش
                         </label>
-                        <input type="number" id="order" name="order" min="1" value="1"
+                        <input type="text" id="order" name="order"  value="{{old('order',1)}}"
                                class="w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
@@ -188,9 +202,9 @@
                     </div>
 
                     <!-- Form Actions -->
-                    <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row items-center gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
                         <button type="submit"
-                                class="w-full sm:flex-1 px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white text-lg font-semibold rounded-xl
+                                class="w-full md:w-auto  px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white text-lg font-semibold rounded-xl
                                        hover:from-green-700 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-200
                                        focus:ring-4 focus:ring-green-500/20">
                             <svg class="w-6 h-6 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,16 +212,9 @@
                             </svg>
                             ایجاد اسلایدر
                         </button>
-                        <button type="button" onclick="saveDraft()"
-                                class="w-full sm:w-auto px-8 py-4 border-2 border-orange-300 dark:border-orange-600 text-orange-700 dark:text-orange-300
-                                       text-lg font-semibold rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-200">
-                            <svg class="w-6 h-6 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
-                            </svg>
-                            ذخیره پیش‌نویس
-                        </button>
-                        <a href="/admin/sliders"
-                           class="w-full sm:w-auto px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300
+
+                        <a href="{{route('admin.sliders.index')}}"
+                           class="w-full md:w-auto px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300
                                   text-lg font-semibold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 text-center">
                             انصراف
                         </a>
@@ -216,21 +223,6 @@
             </div>
         </div>
 
-        <!-- Preview Section -->
-        <div id="previewSection" class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mt-8 hidden">
-            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">پیش‌نمایش اسلایدر</h3>
-                <p class="text-gray-600 dark:text-gray-300">نمایش اسلایدر در صفحه اصلی</p>
-            </div>
-            <div class="p-8">
-                <div id="sliderPreview" class="relative bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl overflow-hidden min-h-[300px] flex items-center justify-center">
-                    <div class="text-center text-white p-8">
-                        <h2 id="previewTitle" class="text-4xl font-bold mb-4">عنوان اسلایدر</h2>
-                        <p id="previewSubtitle" class="text-xl opacity-90">زیرعنوان اسلایدر</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+       </div>
 
 @endsection

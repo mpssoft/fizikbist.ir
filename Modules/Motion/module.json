@@ -1,0 +1,11 @@
+{
+    "name": "Motion",
+    "alias": "motion",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Motion\\Providers\\MotionServiceProvider"
+    ],
+    "files": []
+}

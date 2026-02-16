@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" x-data="{ sidebarOpen: false, dark: true ,toggleButton: false}" :class="{ 'dark': dark }">
+<html lang="fa" dir="rtl"
+      x-data="{ dark: localStorage.getItem('dark')
+          ? localStorage.getItem('dark') === 'true'
+          : true , sidebarOpen: false ,toggleButton: false }"
+      x-init="$watch('dark', value => localStorage.setItem('dark', value))"
+      :class="{ 'dark': dark, 'transition-colors duration-300': true }">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Responsive Dashboard</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! SEO::generate() !!}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/modules/tailwind.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link href="/css/fizik_styles.css" rel="stylesheet">
     <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         tailwind.config = {
@@ -16,25 +25,20 @@
     </script>
 
 
-    <style>
-        body {
-            font-family: sans-serif, 'Vazirmatn';
-        }
-        body.sidebar-open {
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
-<div class="flex min-h-screen">
+<div class="flex min-h-screen max-w-[2620px] mx-auto">
     <!-- Sidebar -->
-@include('layouts.admin.sidebar')
+
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
         <!-- Top Navbar -->
         @include('layouts.admin.navbar')
-        <div class="content">
+        <div class="flex h-full">
+        @include('layouts.admin.sidebar')
+        <div class="content w-full md:w-[80%] ">
             @yield('content')
+        </div>
         </div>
     </div>
 </div>

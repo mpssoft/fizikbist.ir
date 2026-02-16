@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Shop\Models\Discount;
+
 
 class Course extends Model
 {
@@ -14,10 +16,17 @@ class Course extends Model
         'discount_price',
         'discount_expires_at',
         'description',
+        'content',
         'cover_image',
+        'video',
         'slug',
+        'time',
+        'status',
         'teacher_id',
-        'spotplayer_course_id'
+        'grade_id',
+        'spotplayer_id',
+        'lang',
+        'tags',
     ];
 
     // The teacher of this course (one teacher per course)
@@ -34,7 +43,7 @@ class Course extends Model
             ->withTimestamps();
     }
 
-    public function license()
+    public function licenses()
     {
         $this->hasMany(License::class);
     }
@@ -50,5 +59,26 @@ class Course extends Model
     {
         $this->hasMany(Order::class);
     }
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+    // In Course model
 
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable')
+            ->where('is_active', 1)
+            ->whereDate('start_at', '<=', now())
+            ->whereDate('end_at', '>=', now());
+    }
+
+    public function orderItems()
+    {
+        return $this->morphToMany(OrderItem::class,'item');
+    }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 }

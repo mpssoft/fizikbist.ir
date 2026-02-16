@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرفی استاد - حسین نژاداسد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .tv-optimized-text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .theme-toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+<!-- Theme Toggle Button -->
+<div class="fixed top-6 left-6 z-50">
+    <button onclick="toggleTheme()" class="theme-toggle bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+        <i class="fas fa-sun text-yellow-500 dark:hidden text-xl"></i>
+        <i class="fas fa-moon text-blue-400 hidden dark:block text-xl"></i>
+    </button>
+</div>
+
+<div class="container mx-auto px-4 py-16">
+    <!-- Teacher Introduction Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors duration-300">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Content Section -->
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 transition-colors duration-300">
+                    معرفی استاد
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6 transition-colors duration-300">
+                    استاد حسین نژاداسد با بیش از ۱۰ سال تجربه در تدریس فیزیک و تخصص در روش‌های نوین آموزش،
+                    آماده است تا شما را در مسیر تسلط بر فیزیک و کسب نتایج عالی در کنکور همراهی کند.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                        <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">کارشناسی ارشد فیزیک</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                        <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">بیش از ۱۰ سال تجربه تدریس</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                        <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">متخصص در آمادگی کنکور</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 dark:text-green-400 ml-3 transition-colors duration-300"></i>
+                        <span class="text-gray-700 dark:text-gray-200 transition-colors duration-300">روش‌های نوین تدریس</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="text-center">
+                <div class="w-64 h-64 mx-auto bg-gradient-to-br from-purple-400 via-blue-500 to-indigo-600 dark:from-purple-500 dark:via-blue-600 dark:to-indigo-700 rounded-full flex items-center justify-center text-white text-6xl tv-optimized-text-shadow shadow-2xl transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="text-xl font-semibold mt-6 text-gray-800 dark:text-white transition-colors duration-300">
+                    استاد حسین نژاداسد
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 transition-colors duration-300 mb-4">
+                    دبیر فیزیک
+                </p>
+
+                <!-- Contact Button -->
+                <button class="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-phone ml-2"></i>
+                    تماس با استاد
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Info Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">تجربه آموزشی</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">بیش از ۱۰ سال تدریس موفق</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">نتایج برتر</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">قبولی دانشجویان در دانشگاه‌های برتر</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">روش نوین</h4>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">استفاده از جدیدترین تکنیک‌های آموزش</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+
+        if (isDark) {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Initialize theme from localStorage
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        }
+    }
+
+    // Initialize theme on page load
+    initTheme();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'983c488fe5c230b4',t:'MTc1ODY1NDAxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

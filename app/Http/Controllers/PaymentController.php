@@ -2,69 +2,115 @@
 
 namespace App\Http\Controllers;
 
+use AllowDynamicProperties;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Payment;
-use App\Models\License;
-use App\Models\Course;
+use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\LessonPlanPaidNotification;
+use App\Notifications\NotifyUserLicense;
 use App\Services\SpotPlayerService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Pishran\Zarinpal\Zarinpal;
+use Modules\LessonPlan\Models\LessonPlan;
+use Modules\Shop\Models\CartItem;
 
 
-class PaymentController extends Controller
+#[AllowDynamicProperties] class PaymentController extends Controller
 {
 
     // STEP 1: Create an order (user clicks "buy course")
-    public function createOrder($courseId)
+    public function createOrder()
     {
         $user = auth()->user();
-        $course = Course::findOrFail($courseId);
+        $cart = $user->cartItems()->get(); // fetch user's cart
 
-        // Prevent duplicate orders
-        $existing = Order::where('user_id', $user->id)
-            ->where('course_id', $courseId)
-            ->where('status', 'paid')
-            ->first();
-
-        if ($existing) {
-            return redirect()->route('user.courses')->with('info', 'You already bought this course.');
+        if ($cart->isEmpty()) {
+            alert('سبد خرید خالی است', 'هیچ آیتمی برای پرداخت وجود ندارد', 'toast');
+            return redirect()->route('shop.cart.index');
         }
 
+        // Check for already purchased courses
+        $alreadyBought = [];
+        foreach ($cart as $cartItem) {
+            $itemClass = $cartItem['item_type'];
+            $itemId = $cartItem['item_id'];
+
+            $exists = OrderItem::where('item_type', $itemClass)
+                ->where('item_id', $itemId)
+                ->whereHas('order', function($query) use ($user) {
+                    $query->where('user_id', $user->id)
+                        ->where('status', 'paid');
+                })->exists();
+
+            if ($exists) {
+                $alreadyBought[] = $cartItem['item_name'] ?? $cartItem->item->title;
+            }
+        }
+
+        if (!empty($alreadyBought)) {
+            alert('پرداخت تکراری', ' شما قبلا این دوره(ها) را خریداری کرده‌اید: ' . implode(', ', $alreadyBought), 'success');
+            return redirect()->route('shop.cart.index');
+        }
+
+
+        $totalPrice = $cart->sum(function ($item) {
+            $i = json_decode($item->discount,true);
+            $price = $item['price'] ?? 0;
+            if (!is_null($item->discount)) {
+                if ($i['type'] === 'percent') {
+                    $price -= $price * ($i['value'] / 100);
+                } else  {
+                    $price -= $i['value'];
+                }
+            }
+
+            return max($price, 0); // never below zero
+        });
+
+// Create the Order
         $order = Order::create([
             'user_id' => $user->id,
-            'course_id' => $courseId,
-            'status' => 'pending',
-            'price' => $course->price
+            'status'  => 'pending',
+            'price'   => $totalPrice,
         ]);
 
-        Payment::create([
+
+        // Create OrderItems
+        foreach ($cart as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'item_id' => $cartItem['item_id'],
+                'item_type' => $cartItem['item_type'],
+                'price' => $cartItem['price'],
+                'discount' => $cartItem['discount'] ?? null
+            ]);
+        }
+
+        // Payment creation & redirect (same as before)
+        $payment = Payment::create([
             'order_id' => $order->id,
             'gateway' => 'zarinpal',
             'status' => 'initiated',
         ]);
-        // Redirect to fake/manual payment page or gateway
+
         $response = zarinpal()
-            ->merchantId(config('zarinpal.merchant_id')) // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount($course->price) // مبلغ تراکنش
+            ->merchantId(config('zarinpal.merchant_id'))
+            ->amount($totalPrice)
             ->request()
-            ->description($course->title) // توضیحات تراکنش
-            ->callbackUrl('http://localhost:8000/user/payment/zarinpalCallback/?order_id=' . $order->id . '&price=' . $order->price) // آدرس برگشت پس از پرداخت
-            // ->mobile($user->mobile) // شماره موبایل مشتری - اختیاری
-            //  ->email($user->email) // ایمیل مشتری - اختیاری
+            ->description('پرداخت سفارش #' . $order->id)
+            ->callbackUrl(route('user.payment.zarinpalCallback', [
+                'order_id' => $order->id,
+                'price' => $totalPrice
+            ]))
             ->send();
-        //dd($response);
+
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
-            return redirect('/');
+            return redirect()->route('shop.cart.index');
         }
 
-// ذخیره اطلاعات در دیتابیس
-// $response->authority();
-
-// هدایت مشتری به درگاه پرداخت
         return $response->redirect();
     }
 
@@ -81,8 +127,8 @@ class PaymentController extends Controller
             ->send();
 
         if (!$response->success()) {
-            alert('', $response->error()->message(), 'toast');
-            return redirect('/');
+            alert('', $response->error()->message(), 'error');
+            return redirect('/cart');
 
         }
 
@@ -103,72 +149,144 @@ class PaymentController extends Controller
 
 
         $payment->order->update([
-            'status ' => 'paid',
+            'status' => 'paid',
         ]);
 
-        // payment success so request license fro spotplayer
-        $this->paymentSuccess(request('order_id'), new SpotPlayerService());
+        // if item hase file
+        $this->paymentSuccess($payment->order, new SpotPlayerService());
 
-        alert('', 'پرداخت موفق', 'toast');
+        //alert('', 'پرداخت موفق', 'toast');
+        // clear cart items
 
-        return redirect(route('user.courses'));
+        if($this->file && !is_null($this->licenses))
+        {
+            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
+        }elseif($this->file) {
+            return redirect(route('user.files.index'))->with([
+                'file' => true,
+                'message' => 'پرداخت با موفقیت انجام شد.'
+            ]);
+        }elseif($this->lessonplan) {
+            return redirect(route('user.lessonplans.index'))->with([
+                'lessonplan' => true,
+                'message' => 'پرداخت با موفقیت انجام شد.'
+            ]);
+        }else{
+            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
+        }
+
+
 }
 
 // STEP 2: Simulate payment success
-public function paymentSuccess($orderId, SpotPlayerService $spotPlayer)
-{
-    DB::beginTransaction();
+    public function paymentSuccess(Order $order, SpotPlayerService $spotPlayer)
+    {
+        DB::beginTransaction();
 
-    try {
-        $order = Order::findOrFail($orderId);
-        $user = auth()->user();
-        Log::info("reached paymentSuccess");
+        try {
+            $order->load('items.item'); // eager load order items + related models
+            $user = auth()->user();
+            Log::info("Reached paymentSuccess for order {$order->id}");
+            $licenses=[];
+            $this->file = false;
+            $this->lessonplan = false;
+            foreach ($order->items as $item) {
+                $model = $item->item; // e.g., Course, Product, etc.
+                Log::info("model  is: ". $model->title);
+                // Attach course to user
+                if ($model instanceof \App\Models\Course) {
+                    $user->courses()->syncWithoutDetaching([$model->id]);
+                    //Log::info("Attached course {$model->id} to user {$user->id}");
+                }elseif($model instanceof LessonPlan) {
+                    $model->update([
+                        'status' => 'paid'
+                    ]);
+                    $this->lessonplan = true;
+                }
 
-        // Assign course to user
-        $user->courses()->syncWithoutDetaching([$order->course_id]);
-        Log::info("passed syncWithoutDetaching");
+                // Generate SpotPlayer license if available
+                if (!empty($model->spotplayer_id)) {
+                    $licenses[] = $this->generateLicense($user, $order, $model, $spotPlayer);
 
-        // Call SpotPlayer API
-        $this->generateLicense(request(), $spotPlayer);
+                }
+            }
 
-        DB::commit();
+            DB::commit();
+            $this->licenses = $licenses ;
 
-        return redirect()->route('user.courses')->with('success', 'Payment successful. Course unlocked!');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        Log::error('Payment error', ['message' => $e->getMessage()]);
-        return back()->with('error', 'Payment processed but license generation failed.');
+            CartItem::where('user_id', auth()->id())->delete();
+            Cookie::queue(Cookie::forget('shop_cart'));
+            // send sms
+              // ارسال پیامک
+
+            if (!empty($licenses)) {
+
+                $channel = new MelipayamakChannel();
+                $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course'] ?? 'درس مورد نظر'));
+
+                if ($response['StrRetStatus'] == "Ok") {
+                    if($this->file) {
+                        alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
+                        Log::info('File + licence');
+
+                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
+
+                    }else
+                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
+                } else {
+                    return redirect(route('user.courses'))->with([
+                        'status' => $response['StrRetStatus'],
+                        'code' => $response['RetStatus'],
+                        'message' => 'خطا هنگام ارسال کد'
+                    ]);
+                }
+            }elseif($this->file){
+                alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
+                return redirect(route('user.files.index'))->with([
+                    'file' => true,
+                    'message' => 'پرداخت برای فایل های مورد نظر یا موفقیت انجام شد.'
+                ]);
+            }elseif($this->lessonplan){
+                Log::info('got lesson class: ');
+                $model = $order->items()->first()->item_type;
+                $lessonplan = $model::find($order->items()->first()->item_id);
+
+                $channel = new MelipayamakChannel();
+                $response = $channel->send(auth()->user(), new LessonPlanPaidNotification(auth()->user()->mobile, $lessonplan->title));
+                return redirect(route('user.lessonplans.index'))->with([
+                    'lessonplan' => true,
+                    'message' => 'پرداخت با موفقیت انجام شد.'
+                ]);
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Payment error', [
+                'order_id' => $order->id,
+                'message'  => $e->getMessage(),
+            ]);
+            return back()->with('error', 'Payment processed but license generation failed.');
+        }
     }
 
-}
+    protected function generateLicense($user, Order $order, $model, SpotPlayerService $spotPlayer)
+    {
+        Log::info("Generating SpotPlayer license for user {$user->id}, item {$model->id}");
 
+        $spotplayerCourseId = $model->spotplayer_id;
 
-public
-function generateLicense(Request $request, SpotPlayerService $spotPlayer)
-{
-    Log::info("first line of generateLicense");
-    $orderId = 1;//$request->input('order_id');
-    Log::info("Order id is : $orderId");
+        $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseId,$model);
 
-    $order = Order::with('user','course')->findOrFail($orderId);
-    Log::info("reached generateLicense");
-    // Get user info
-    $user = $order->user;
+        if (!$licenseResponse || empty($licenseResponse['spotplayer_key'])) {
+            Log::error("Failed to generate SpotPlayer license for item {$model->id}");
+            return false;
+        }
 
-    // These are SpotPlayer course IDs (you must store or map them yourself)
-    $spotplayerCourseIds = $order->course->spotplayer_course_id; // Adjust field name
+       // Log::info("SpotPlayer license generated successfully". $licenseResponse);
 
-    // Generate license
-    $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseIds);
-
-    if (!$licenseResponse || empty($licenseResponse['spotplayer_key'])) {
-        return response()->json(['error' => 'Failed to generate license from SpotPlayer'], 500);
+        return ['license' => $licenseResponse->spotplayer_key,
+            'course'=>$licenseResponse->course->title,
+            'teacher'=>$licenseResponse->course->teacher->name
+            ];
     }
 
-
-    return response()->json([
-        'message' => 'License generated and saved successfully.',
-        'status' => 'ok',
-    ]);
-}
 }

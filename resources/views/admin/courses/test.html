@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Language Ribbon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .course-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .course-card {
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .card-header img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* SVG Ribbon Container */
+        .ribbon-container {
+            position: absolute;
+            top: 15px;
+            right: -5px;
+            width: 100px;
+            height: 90px;
+            z-index: 10;
+            transform: rotate(5deg);
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+
+        /* Instructions */
+        .instructions {
+            margin-top: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .course-card {
+            position: relative;
+            width: 250px;
+            height: 200px;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            transform: rotate(45deg) translate(20px, -40px);
+        }
+
+    </style>
+</head>
+<body>
+<div class="course-card">
+    <svg class="ribbon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Back fold -->
+        <polygon points="0,0 200,0 150,50 0,50" fill="#b82b35"/>
+        <!-- Front ribbon -->
+        <polygon points="0,0 200,0 150,50 0,50" fill="#e63946" transform="translate(0,10)"/>
+        <!-- Ribbon text -->
+        <text x="100" y="30" text-anchor="middle" fill="#fff" font-size="18" font-weight="bold" font-family="Vazirmatn, sans-serif">
+            فارسی
+        </text>
+    </svg>
+
+    <h2>Linux Basics</h2>
+    <p>Beginner friendly course on Linux commands.</p>
+</div>
+
+</body>
+</html>

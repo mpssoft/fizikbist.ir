@@ -1,21 +1,7 @@
 @extends('layouts.admin.master')
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
 
-        document.getElementById('button-image').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-        });
-    });
-
-    // set file link
-    function fmSetLink($url) {
-        document.getElementById('image_label').value = $url;
-    }
-</script>
 @section('content')
-    <div class="max-w-4xl mx-auto mt-5">
+    <div class=" max-w-7xl mx-auto px-4 py-6" x-data>
         <!-- Header Section -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mb-5">
             <div class="p-8">
@@ -68,10 +54,38 @@
         <!-- Main Form Container -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div class="p-8">
-                <form method="POST" action="{{ route('admin.courses.update', $course->id) }}" enctype="multipart/form-data" class="space-y-8">
+                <form method="POST" onsubmit="removeCamas()" action="{{ route('admin.courses.update', $course->id) }}"  enctype="multipart/form-data" class="space-y-8">
                     @csrf
                     @method('PUT')
+                <!-- Grade Selection -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
 
+
+
+                                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m12 4 9 5-9 5-9-5 5-2.8M21 9v6m0 0a2 2 0 1 1-4 0v-3" />
+                                </svg>
+
+                                پایه | مقطع | دسته
+                            </span>
+                    </label>
+                    <select name="grade_id"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                       focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
+                        <option value="1">-- انتخاب نوع --</option>
+                        @foreach(App\Models\Grade::all() as $grade)
+                            <option value="{{$grade->id}}" {{$grade->id == $course->id ? 'selected':''}}> {{ $grade->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('grade_id')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
                     <!-- Course Title -->
                     <div class="group">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
@@ -97,7 +111,7 @@
                     </div>
 
                     <!-- Pricing Section -->
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class=" gap-6">
                         <!-- Regular Price -->
                         <div class="group">
                             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
@@ -108,58 +122,18 @@
                                     قیمت (تومان)
                                 </span>
                             </label>
-                            <input type="number" name="price"
+                            <input type="text" name="price"
                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                           bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                           focus:border-green-500 focus:bg-white dark:focus:bg-gray-600
-                                          focus:ring-4 focus:ring-green-500/20 transition-all duration-200"
+                                          focus:ring-4 focus:ring-green-500/20 transition-all duration-200 format_number"
                                    value="{{ old('price', $course->price) }}" required>
                             @error('price')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <!-- Discount Price -->
-                        <div class="group">
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                    </svg>
-                                    قیمت با تخفیف
-                                </span>
-                            </label>
-                            <input type="number" name="discount_price"
-                                   class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
-                                          bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
-                                          focus:border-orange-500 focus:bg-white dark:focus:bg-gray-600
-                                          focus:ring-4 focus:ring-orange-500/20 transition-all duration-200"
-                                   value="{{ old('discount_price', $course->discount_price) }}">
-                            @error('discount_price')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
 
-                    <!-- Discount Expiry -->
-                    <div class="group">
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M3 7h18M5 7h14l-1 10a1 1 0 01-1 1H7a1 1 0 01-1-1L5 7z"></path>
-                                </svg>
-                                تاریخ انقضای تخفیف
-                            </span>
-                        </label>
-                        <input type="datetime-local" name="discount_expires_at"
-                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
-                                      bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
-                                      focus:border-red-500 focus:bg-white dark:focus:bg-gray-600
-                                      focus:ring-4 focus:ring-red-500/20 transition-all duration-200"
-                               value="{{ old('discount_expires_at', $course->discount_expires_at ? \Carbon\Carbon::parse($course->discount_expires_at)->format('Y-m-d H:i:s') : '') }}">
-                        @error('discount_expires_at')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <!-- Teacher Selection -->
@@ -189,6 +163,28 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                <!-- Language Selection -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <span class="fas fa-language"> </span>
+                                زبان
+                            </span>
+                    </label>
+                    <select name="lang"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                       focus:border-purple-500 focus:bg-white dark:focus:bg-gray-600
+                                       focus:ring-4 focus:ring-purple-500/20 transition-all duration-200">
+                        <option value="">-- انتخاب زبان --</option>
+                        <option value="tr" {{$course->lang == 'tr'? 'selected':''}}>ترکی</option>
+                        <option value="fa" {{$course->lang == 'fa'? 'selected':''}}>فارسی</option>
+
+                    </select>
+                    @error('lang')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
                     <!-- Status  -->
 
@@ -244,7 +240,7 @@
                                       placeholder-gray-400 dark:placeholder-gray-500"
                                value="{{ old('time') }}"
                                placeholder="مدت زمان دوره به ساعت ..."
-                               required>
+                               >
                         @error('time')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -276,15 +272,15 @@
                         </label>
                         <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-purple-500 transition-colors duration-200 cursor-pointer">
 
-                            <div class="flex items-stretch space-x-2">
+                            <div class="flex items-stretch space-x-2 gap-2">
                                 <input type="text" id="image_label" name="cover_image" value="{{old('image',$course->cover_image)}}"
-                                       class="flex-1 px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-600
+                                       class="flex-1 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600
                   bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100
                   focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                        placeholder="Image">
 
                                 <button type="button" id="button-image"
-                                        class="px-4 py-2 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600
+                                        class=" py-2 rounded-md border  border-gray-300 dark:border-gray-600
                    bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100
                    hover:bg-gray-200 dark:hover:bg-gray-700
                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
@@ -302,19 +298,19 @@
                                 <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                                 </svg>
-                               کد درس در اسپات پلیر
+                               کد(شناسه) درس در اسپات پلیر
                             </span>
                         </label>
-                        <input type="text" name="spotplayer_course_id"
+                        <input type="text" name="spotplayer_id"
                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
                                       bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
                                       focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600
                                       focus:ring-4 focus:ring-blue-500/20 transition-all duration-200
                                       placeholder-gray-400 dark:placeholder-gray-500"
-                               value="{{ old('spotplayer_course_id',$course->spotplayer_course_id) }}"
+                               value="{{ old('spotplayer_id',$course->spotplayer_id) }}"
                                placeholder="5d2ee35bcddc092a304ae5eb"
                                >
-                        @error('spotplayer_course_id')
+                        @error('spotplayer_id')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -339,7 +335,86 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                <!-- Video -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                ویدیوی معرفی دوره
+                            </span>
+                    </label>
+                    <textarea name="video" rows="5"
+                              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600
+                                         bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100
+                                         focus:border-teal-500 focus:bg-white dark:focus:bg-gray-600
+                                         focus:ring-4 focus:ring-teal-500/20 transition-all duration-200
+                                         placeholder-gray-400 dark:placeholder-gray-500 resize-none"
+                              placeholder="از آیارات کد iframe استفاده شود">{{ old('video',$course->video) }}</textarea>
+                    @error('video')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <!-- Long  text -->
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                توضیح محتویات
+                            </span>
+                    </label>
+                    <!-- TinyMCE Content Editor -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوای درس</h2>
 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                                <i class="fas fa-paragraph ml-2 text-purple-600"></i>
+                                شرح کامل درس *
+                            </label>
+
+                            <!-- TinyMCE Editor -->
+                            <textarea id="content" name="content" class="tinymce-editor"> {{old('content',$course->content)}}</textarea>
+
+                            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-info-circle ml-1"></i>
+                                از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
+                            </div>
+                        </div>
+                    </div>
+
+                    @error('content')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                    <!-- Tags -->
+                    <div class="lg:col-span-2">
+                        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                            </svg>
+                            برچسب‌ها (اختیاری)
+                        </label>
+                        <input type="text" id="tags" name="tags"
+                               value="{{old('tags', $course->tags)}}"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+                                              bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
+                                              focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200"
+                               placeholder="Python, تحلیل داده, مبتدی (با کاما جدا کنید)">
+                    </div>
                     <!-- Submit Button -->
                     <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
                         <div class="flex flex-col sm:flex-row gap-4 justify-end">
@@ -378,3 +453,90 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+
+    <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        // Initialize TinyMCE with Laravel File Manager
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 400,
+            language: 'fa',
+            directionality: 'rtl',
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount', 'emoticons'
+            ],
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | link image media | table | emoticons | code fullscreen preview',
+            content_style: 'body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; direction: rtl; text-align: right; }',
+
+            // Laravel File Manager Integration
+            file_picker_callback (callback, value, meta) {
+                let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
+                let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight
+
+                tinymce.activeEditor.windowManager.openUrl({
+                    url : '/file-manager/tinymce5',
+                    title : 'Laravel File manager',
+                    width : x * 0.8,
+                    height : y * 0.8,
+                    onMessage: (api, message) => {
+                        callback(message.content, { text: message.text })
+                    }
+                })
+            },
+
+            // Additional settings
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            branding: false,
+            menubar: false,
+            statusbar: true,
+            resize: true,
+
+            // Image settings
+            image_advtab: true,
+            image_caption: true,
+            image_title: true,
+
+            // Table settings
+            table_default_attributes: {
+                'class': 'table table-bordered'
+            },
+            table_default_styles: {
+                'border-collapse': 'collapse',
+                'width': '100%'
+            },
+
+            // Setup callback
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            document.getElementById('button-image').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+        });
+
+        // set file link
+        function fmSetLink($url) {
+            document.getElementById('image_label').value = $url;
+        }
+        function removeCamas() {
+            $('.format_number').each(function (index, element) {
+                $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
+            });
+        }
+    </script>
+@endpush

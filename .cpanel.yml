@@ -1,0 +1,15 @@
+---
+deployment:
+  branches:
+    - slider
+  tasks:
+    # Set paths
+    - export REPODIR=/home3/hrbldaru/repositories/fizikbist.ir
+    - export DEPLOYPATH=/home3/hrbldaru
+
+    # Copy all files from repo to project root without deleting existing files
+    - /bin/cp -R $REPODIR/* $DEPLOYPATH
+
+    # Fix permissions for copied files
+    #- /bin/chmod -R 755 $DEPLOYPATH
+    #- /bin/chown -R hrbldaru:hrbldaru $DEPLOYPATH

@@ -30,11 +30,11 @@ class SendOtpSms extends Notification
             'message' => "کد احراز هویت شما: {$this->otp} \nfizikbist.ir"
         ];
     }
-    public function toMeliPayamakSms()
+    public function toMeliPayamakSms($notifiable)
     {
         return [
             'to' => $this->mobile,
-            'otpCode' => $this->otp,
+            'text' => $this->otp,
             'bodyId' => 352289,
         ];
     }
